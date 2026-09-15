@@ -20,8 +20,8 @@
 
 @media (hover: hover) {
   .canvas-control-item:hover {
-    background-color: rgb(var(--ctp-pink));
-    color: var(--text-on-accent);
+    background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
+    color: var(--text-normal);
   }
 }
 

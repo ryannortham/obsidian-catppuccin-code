@@ -69,8 +69,8 @@
 
 .mod-linux .titlebar-button:hover,
 .mod-windows .titlebar-button:hover {
-  background-color: rgb(var(--ctp-pink));
-  color: var(--text-on-accent);
+  background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
+  color: var(--text-normal);
 }
 
 .mod-linux .titlebar-button.mod-close:hover,
@@ -145,8 +145,8 @@
 */
 
 .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button:hover {
-  background-color: rgb(var(--ctp-pink));
-  color: var(--text-on-accent);
+  background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
+  color: var(--text-normal);
 }
 
 /* Fix for #141 */

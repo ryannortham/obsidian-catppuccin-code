@@ -51,14 +51,14 @@
     outline: 1px solid rgb(var(--ctp-surface1));
 
     svg {
-      color: rgb(var(--ctp-pink));
+      color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
     }
 
     &:hover,
     &:hover svg {
-      background-color: rgb(var(--ctp-pink));
+      background-color: var(--ctp-workbench-tab-active-background, rgb(var(--ctp-base)));
       box-shadow: none;
-      color: var(--text-on-accent);
+      color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
     }
   }
 
@@ -67,17 +67,17 @@
   .mod-right-split .workspace-tab-header {
 
     &:hover {
-      background-color: rgb(var(--ctp-pink));
-      color: var(--text-on-accent);
+      background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
+      color: var(--text-normal);
     }
 
     &:hover svg {
-      color: var(--text-on-accent);
+      color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
     }
   }
 
   .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
-    --background-modifier-hover: rgb(var(--ctp-pink));
+    --background-modifier-hover: transparent;
   }
 
   .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container .workspace-tab-header-inner-icon:hover {
@@ -85,11 +85,11 @@
   }
 
   .mod-vertical .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner svg {
-    color: var(--text-on-accent);
+    color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
   }
 
   .mod-vertical .workspace-tabs.mod-stacked .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button:hover svg {
-    color: var(--text-on-accent);
+    color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
   }
 
   /*
@@ -97,11 +97,11 @@
   */
 
   .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-header-inner:hover .workspace-tab-header-inner-title {
-    color: rgb(var(--ctp-pink)); // change to pink in full palette
+    color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
   }
 
   .mod-vertical .workspace-tabs.mod-stacked .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner .workspace-tab-header-inner-title {
-    color: rgb(var(--ctp-pink));
+    color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
   }
 
   /*
@@ -254,7 +254,7 @@
   * Canvas
   */
   .canvas-controls button:hover {
-    background-color: rgb(var(--ctp-pink));
+    background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
   }
 
   /*
@@ -267,7 +267,7 @@
     --nav-item-background-active: rgb(var(--ctp-mauve));
 
     .tree-item-icon {
-      --icon-color: var(--text-on-accent);
+      --icon-color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
     }
   }
 }

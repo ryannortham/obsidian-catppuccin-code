@@ -63,7 +63,7 @@ body {
   --callout-tip: var(--color-cyan);
   --callout-todo: var(--color-blue);
   --callout-warning: var(--color-orange);
-  --callout-quote: rgb(158, 158, 158);
+  --callout-quote: rgb(var(--ctp-subtext0));
 
   /* Canvas */
   --canvas-background: var(--background-primary);
@@ -123,7 +123,7 @@ body {
   --divider-vertical-height: calc(100% - var(--header-height));
 
   /* Dragging */
-  --drag-ghost-background: rgb(0, 0, 0, 85%);
+  --drag-ghost-background: rgb(var(--ctp-crust), 85%);
   --drag-ghost-text-color: var(--text-normal);
 
   /* Embeds */
@@ -371,11 +371,11 @@ body {
 
   /* PDF view */
   --pdf-background: var(--background-primary);
-  --pdf-shadow: 0 0 0 1px rgba(0, 0, 0, 5%), 0 2px 8px rgba(0, 0, 0, 10%);
-  --pdf-spread-shadow: 0 0 0 1px rgba(0, 0, 0, 5%);
+  --pdf-shadow: 0 0 0 1px rgb(var(--ctp-crust), 5%), 0 2px 8px rgb(var(--ctp-crust), 10%);
+  --pdf-spread-shadow: 0 0 0 1px rgb(var(--ctp-crust), 5%);
   --pdf-sidebar-background: var(--background-primary);
   --pdf-thumbnail-shadow:
-    0 0 0 1px rgba(0, 0, 0, 15%), 0 2px 8px rgba(0, 0, 0, 20%);
+    0 0 0 1px rgb(var(--ctp-crust), 15%), 0 2px 8px rgb(var(--ctp-crust), 20%);
 
   /* Popovers - file previews */
   --popover-width: 450px;
@@ -495,7 +495,7 @@ body {
   --tab-stacked-text-align: left;
   --tab-stacked-text-transform: rotate(0deg);
   --tab-stacked-text-writing-mode: vertical-lr;
-  --tab-stacked-shadow: -8px 0 8px 0 rgb(0, 0, 0, 5%);
+  --tab-stacked-shadow: -8px 0 8px 0 rgb(var(--ctp-crust), 5%);
 
   /* Tables */
   --table-background: transparent;
@@ -569,9 +569,10 @@ body {
   /* Color mappings ------------------------ */
 
   /* Accent HSL values */
-  --accent-h: 254;
-  --accent-s: 80%;
-  --accent-l: 68%;
+  /* Obsidian's legacy accent channels mirror Mocha Mauve (#cba6f7). */
+  --accent-h: 267;
+  --accent-s: 84%;
+  --accent-l: 81%;
 
   /* Backgrounds */
   --background-primary: var(--color-base-00);
@@ -587,7 +588,7 @@ body {
   --background-modifier-error-hover: var(--color-red);
   --background-modifier-success-rgb: var(--color-green-rgb);
   --background-modifier-success: var(--color-green);
-  --background-modifier-message: rgb(0, 0, 0, 90%);
+  --background-modifier-message: rgb(var(--ctp-crust), 90%);
 
   /* Inputs */
   --background-modifier-form-field: var(--color-base-00);

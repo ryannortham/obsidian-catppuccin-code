@@ -1,6 +1,6 @@
 /*
- * Catppuccin Workbench aligns Obsidian's Mocha interaction states with the
- * Catppuccin for VS Code workbench. Palette values remain in Style Settings;
+ * Catppuccin Workbench defines Obsidian's Mocha interaction states. Palette
+ * values remain in Style Settings;
  * these variables describe component roles rather than new palette colors.
  */
 body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
@@ -8,11 +8,12 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
   --ctp-workbench-focus-border: rgb(var(--ctp-mauve));
   --ctp-workbench-list-selection-background: rgb(var(--ctp-surface0));
   --ctp-workbench-list-hover-background: rgb(var(--ctp-surface0), 50%);
+  --ctp-workbench-list-secondary-foreground: var(--text-muted);
   --ctp-workbench-tree-guide-active: rgb(var(--ctp-overlay2));
   --ctp-workbench-tree-guide-inactive: rgb(var(--ctp-surface1));
   --ctp-workbench-tab-active-background: rgb(var(--ctp-base));
   --ctp-workbench-tab-inactive-background: rgb(var(--ctp-mantle));
-  --ctp-workbench-tab-hover-background: #28283d;
+  --ctp-workbench-tab-hover-background: rgb(var(--ctp-surface0));
   --ctp-workbench-tab-active-foreground: rgb(var(--ctp-mauve));
   --ctp-workbench-close-hover-background: rgb(var(--ctp-surface0));
 
@@ -29,9 +30,6 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
       background-color: var(--ctp-workbench-list-selection-background);
       color: var(--text-normal);
 
-      .tree-item-icon {
-        --icon-color: var(--text-muted);
-      }
     }
   }
 
@@ -84,7 +82,7 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
   /*
    * Obsidian paints native tree guides below descendant row backgrounds.
    * Repaint the one-pixel guide above rows, and use :has() so every guide in
-   * the hovered or selected branch receives the VS Code active guide color.
+   * the hovered or selected branch receives the active guide color.
    */
   .nav-files-container {
     --indentation-guide-color: var(--ctp-workbench-tree-guide-inactive);

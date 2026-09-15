@@ -69,8 +69,8 @@
 }
 
 .search-result-file-match:hover .search-result-file-matched-text {
-  background-color: rgb(var(--ctp-rosewater), 60%);
-  color: var(--text-on-accent);
+  background-color: transparent;
+  color: inherit;
 }
 
 .search-result-file-matched-text {

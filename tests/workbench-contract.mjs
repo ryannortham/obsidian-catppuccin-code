@@ -1,17 +1,8 @@
-import { readFileSync } from "node:fs";
-import { homedir } from "node:os";
+import { readFileSync, readdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const referencePath =
-  process.env.CATPPUCCIN_VSC_MOCHA ??
-  join(
-    homedir(),
-    ".vscode/extensions/catppuccin.catppuccin-vsc-3.19.0/themes/mocha.json",
-  );
-
-const reference = JSON.parse(readFileSync(referencePath, "utf8"));
 const workbenchSource = readFileSync(
   join(root, "scss/layout/_workbench.scss"),
   "utf8",
@@ -25,6 +16,13 @@ const paletteSource = readFileSync(
   "utf8",
 );
 const compiledCss = readFileSync(join(root, "theme.css"), "utf8");
+const searchSource = readFileSync(join(root, "scss/components/_search.scss"), "utf8");
+const interactionSources = [
+  "scss/components/_icons.scss",
+  "scss/themes/_full-palette.scss",
+  "scss/pages/_canvas.scss",
+  "scss/vendors/_plugins.scss",
+].map((path) => readFileSync(join(root, path), "utf8"));
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -61,36 +59,38 @@ function resolveRole(name) {
   throw new Error(`Unsupported role expression for --${name}: ${value}`);
 }
 
-const roles = {
-  "ctp-workbench-icon-foreground": "icon.foreground",
-  "ctp-workbench-focus-border": "focusBorder",
-  "ctp-workbench-list-selection-background": "list.activeSelectionBackground",
-  "ctp-workbench-list-hover-background": "list.hoverBackground",
-  "ctp-workbench-tree-guide-active": "tree.indentGuidesStroke",
-  "ctp-workbench-tree-guide-inactive": "tree.inactiveIndentGuidesStroke",
-  "ctp-workbench-tab-active-background": "tab.activeBackground",
-  "ctp-workbench-tab-inactive-background": "tab.inactiveBackground",
-  "ctp-workbench-tab-hover-background": "tab.hoverBackground",
-  "ctp-workbench-tab-active-foreground": "tab.activeForeground",
+const expectedRoles = {
+  "ctp-workbench-icon-foreground": "#cba6f7",
+  "ctp-workbench-focus-border": "#cba6f7",
+  "ctp-workbench-list-selection-background": "#313244",
+  "ctp-workbench-list-hover-background": "#31324480",
+  "ctp-workbench-tree-guide-active": "#9399b2",
+  "ctp-workbench-tree-guide-inactive": "#45475a",
+  "ctp-workbench-tab-active-background": "#1e1e2e",
+  "ctp-workbench-tab-inactive-background": "#181825",
+  "ctp-workbench-tab-hover-background": "#313244",
+  "ctp-workbench-tab-active-foreground": "#cba6f7",
 };
 
 const resolved = {};
-for (const [role, token] of Object.entries(roles)) {
+for (const [role, expected] of Object.entries(expectedRoles)) {
   const actual = resolveRole(role);
-  const expected = reference.colors[token]?.toLowerCase();
-  assert(expected, `VS Code reference is missing ${token}`);
-  assert(actual === expected, `${role} is ${actual}; ${token} requires ${expected}`);
+  assert(actual === expected, `${role} is ${actual}; expected ${expected}`);
   resolved[role] = actual;
 }
 
 assert(
-  resolveRole("ctp-workbench-list-selection-background") ===
-    reference.colors["list.inactiveSelectionBackground"].toLowerCase(),
-  "Active and inactive selections must share Surface0",
+  resolveRole("ctp-workbench-list-selection-background") === "#313244",
+  "Selections must use Mocha Surface0",
 );
 assert(
   resolveRole("ctp-workbench-close-hover-background") === "#313244",
   "Close-button hover must use Surface0",
+);
+assert(
+  declaration(workbenchSource, "ctp-workbench-list-secondary-foreground") ===
+    "var(--text-muted)",
+  "Selected-row icons and counts must use muted text",
 );
 assert(!workbenchSource.includes("!important"), "Core workbench rules must not use !important");
 assert(
@@ -105,10 +105,19 @@ assert(
   !/background(?:-color)?:[^;]*(?:ctp-pink|ctp-red)/.test(workbenchSource),
   "Core workbench rules contain a pink or red background fill",
 );
+assert(
+  interactionSources.every((source) => !source.includes("var(--ctp-pink)")),
+  "Interactive component partials must not use the Pink palette token",
+);
+assert(
+  !/\.search-result-file-match:hover \.search-result-file-matched-text\s*\{\s*background-color:\s*rgb\(var\(--ctp-rosewater/.test(searchSource),
+  "Search-match hover must not restore a pink highlight fill",
+);
 
 const requiredCompiledFragments = [
-  "--ctp-workbench-tab-hover-background: #28283d",
+  "--ctp-workbench-tab-hover-background: rgb(var(--ctp-surface0))",
   ".workspace-split.mod-sidedock .tree-item-self",
+  ".tree-item-self:is(.is-active, .is-selected) :is(.tree-item-icon",
   ".nav-files-container .tree-item-children:has(",
   ".workspace-split.mod-root .workspace-tab-header",
   ".workspace-leaf-content[data-type=backlink]",
@@ -118,6 +127,74 @@ const requiredCompiledFragments = [
 for (const fragment of requiredCompiledFragments) {
   assert(compiledCss.includes(fragment), `Compiled theme is missing: ${fragment}`);
 }
+
+function collectScssFiles(directory) {
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const path = join(directory, entry.name);
+    return entry.isDirectory()
+      ? collectScssFiles(path)
+      : entry.name.endsWith(".scss") ? [path] : [];
+  });
+}
+
+const paletteColors = new Set([
+  ...[...mochaPalette.matchAll(/--ctp-[\w-]+:\s*(\d{1,3},\s*\d{1,3},\s*\d{1,3});/g)]
+    .map((match) => rgbToHex(match[1]).toLowerCase()),
+  ...[...mochaPalette.matchAll(/--hex-[\w-]+:\s*(#[0-9a-f]{6});/gi)]
+    .map((match) => match[1].toLowerCase()),
+]);
+const auditedSources = collectScssFiles(join(root, "scss"))
+  .filter((path) => !path.endsWith("_ctp-style-settings.scss"));
+const paletteLiteralUses = [];
+for (const path of auditedSources) {
+  const source = readFileSync(path, "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
+  for (const match of source.matchAll(/#[0-9a-f]{3,4}(?:[0-9a-f]{2})?(?:[0-9a-f]{2})?\b/gi)) {
+    const color = match[0].toLowerCase();
+    assert(paletteColors.has(color), `${path} uses non-palette color literal ${color}`);
+    paletteLiteralUses.push(color);
+  }
+  for (const match of source.matchAll(/(?:fill|stroke)="%23([0-9a-f]{6})"/gi)) {
+    const color = `#${match[1].toLowerCase()}`;
+    assert(paletteColors.has(color), `${path} uses non-palette SVG color literal ${color}`);
+    paletteLiteralUses.push(color);
+  }
+  assert(
+    !/\b(?:rgba?|hsla?)\(\s*(?:\d|\.\d)/i.test(source),
+    `${path} contains a numeric RGB/HSL color literal instead of a palette token`,
+  );
+  assert(
+    !/(?:fill|stroke)\s*=\s*["'](?:white|black)\b/i.test(source) &&
+      !/(?:^|[;{\s])(?:color|background(?:-color)?|border-color|outline-color|fill|stroke)\s*:\s*(?:white|black)\b/im.test(source),
+    `${path} contains a named white/black color instead of a palette value`,
+  );
+}
+
+const accentChannels = ["accent-h", "accent-s", "accent-l"].map((name) =>
+  declaration(readFileSync(join(root, "scss/base/_app-variables.scss"), "utf8"), name),
+);
+const [red, green, blue] = hexChannels(paletteHex("ctp-mauve")).map((channel) => channel / 255);
+const maximum = Math.max(red, green, blue);
+const minimum = Math.min(red, green, blue);
+const delta = maximum - minimum;
+let hue = 0;
+if (delta !== 0) {
+  if (maximum === red) hue = 60 * (((green - blue) / delta) % 6);
+  else if (maximum === green) hue = 60 * ((blue - red) / delta + 2);
+  else hue = 60 * ((red - green) / delta + 4);
+}
+if (hue < 0) hue += 360;
+const lightness = (maximum + minimum) / 2;
+const saturation = delta === 0 ? 0 : delta / (1 - Math.abs(2 * lightness - 1));
+const expectedAccentChannels = [
+  Math.round(hue),
+  `${Math.round(saturation * 100)}%`,
+  `${Math.round(lightness * 100)}%`,
+];
+assert(
+  accentChannels.join(" ") === expectedAccentChannels.join(" "),
+  `Obsidian accent channels ${accentChannels.join(" ")} must match Mocha Mauve ${expectedAccentChannels.join(" ")}`,
+);
+assert(paletteLiteralUses.length > 0, "Expected palette-valued SVG literals for checklist glyphs");
 
 function hexChannels(hex) {
   const value = hex.slice(1, 7);
@@ -157,12 +234,16 @@ for (const [label, ratio] of Object.entries(contrastChecks)) {
 console.log(
   JSON.stringify(
     {
-      reference: referencePath,
-      roles,
+      expectedRoles,
       resolved,
       contrast: Object.fromEntries(
         Object.entries(contrastChecks).map(([label, ratio]) => [label, ratio.toFixed(2)]),
       ),
+      colorAudit: {
+        scssFiles: auditedSources.length,
+        paletteLiteralUses: paletteLiteralUses.length,
+        result: "pass",
+      },
       result: "pass",
     },
     null,

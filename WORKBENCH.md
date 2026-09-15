@@ -1,7 +1,7 @@
 # Catppuccin Workbench
 
-This fork keeps Catppuccin's palette intact while aligning Obsidian's Mocha
-workbench interaction states with Catppuccin for VS Code 3.19.0.
+This fork keeps Catppuccin's palette intact while defining Obsidian's Mocha
+workbench interaction states as a coherent theme baseline.
 
 ## Baseline
 
@@ -30,22 +30,25 @@ partial. Its component-local selectors use the normal cascade and contain no
 
 ## Mocha workbench roles
 
-| Semantic role | VS Code token | Mocha value |
-| --- | --- | --- |
-| Icon foreground | `icon.foreground` | `#cba6f7` |
-| Focus border | `focusBorder` | `#cba6f7` |
-| Active/inactive selection | `list.activeSelectionBackground`, `list.inactiveSelectionBackground` | `#313244` |
-| List hover | `list.hoverBackground` | `#31324480` |
-| Active tree guide | `tree.indentGuidesStroke` | `#9399b2` |
-| Inactive tree guide | `tree.inactiveIndentGuidesStroke` | `#45475a` |
-| Active editor tab | `tab.activeBackground` | `#1e1e2e` |
-| Inactive editor tab | `tab.inactiveBackground` | `#181825` |
-| Editor-tab hover | `tab.hoverBackground` | `#28283d` |
-| Active editor-tab foreground | `tab.activeForeground` | `#cba6f7` |
-| Close-button hover | Workbench toolbar behavior | `#313244` |
+| Semantic role | Mocha value |
+| --- | --- |
+| Icon foreground | `#cba6f7` |
+| Focus border | `#cba6f7` |
+| Active/inactive selection | `#313244` |
+| List hover | `#31324480` |
+| Active tree guide | `#9399b2` |
+| Inactive tree guide | `#45475a` |
+| Active editor tab | `#1e1e2e` |
+| Inactive editor tab | `#181825` |
+| Editor-tab hover | `#313244` (Surface0) |
+| Active editor-tab foreground | `#cba6f7` |
+| Close-button hover | `#313244` |
 
-`#28283d` is an exact component value from the VS Code theme. It is not a
-Catppuccin palette color and must remain a component token.
+Every workbench role resolves to a token in the Catppuccin Mocha palette. Keep
+component-state choices in semantic role variables; do not introduce
+non-palette color literals. Checklist SVG data images cannot inherit CSS custom
+properties, so their encoded Mocha Crust fill is the sole palette-valued literal
+exception; the contract resolves it against the palette.
 
 ## Compatibility boundary
 
@@ -65,8 +68,7 @@ pnpm run test:visual
 pnpm run test:visual:check
 ```
 
-The contract test reads the installed Catppuccin for VS Code Mocha 3.19.0 theme
-by default. Override it with `CATPPUCCIN_VSC_MOCHA=/absolute/path/mocha.json`.
+The contract test validates the theme's declared Mocha workbench roles directly.
 The visual command renders `tests/fixtures/workbench-states.html` with the local
 Chrome installation and writes `tests/visual/workbench-states.png`.
 

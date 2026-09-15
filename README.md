@@ -7,8 +7,8 @@
 
 > [!NOTE]
 > This local fork is installed as **Catppuccin Workbench**. It preserves the
-> Catppuccin palette and aligns Mocha workbench interaction states with
-> Catppuccin for VS Code 3.19.0. See [WORKBENCH.md](WORKBENCH.md) for the source
+> Catppuccin palette and defines consistent Mocha workbench interaction states
+> for Obsidian. See [WORKBENCH.md](WORKBENCH.md) for the source
 > map, token contract, compatibility boundary, build, and regression workflow.
 
 <p align="center">

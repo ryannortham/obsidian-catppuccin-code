@@ -80,7 +80,9 @@
   color: var(--text-on-accent);
 
   .tree-item-icon {
-    color: var(--text-on-accent);
+    --icon-color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
+
+    color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
   }
 }
 
@@ -90,12 +92,18 @@ body:not(.is-grabbing) .tree-item-self.is-active:hover,
   --nav-item-background-active: rgb(var(--ctp-accent));
 
   .tree-item-icon {
-    --icon-color: var(--text-on-accent);
+    --icon-color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
   }
 }
 
+.tree-item-self:is(.is-active, .is-selected)
+  :is(.tree-item-icon, .tree-item-icon svg, .tree-item-flair) {
+  color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
+}
+
 @media (hover: hover) {
-  body:not(.is-grabbing) .tree-item-self.is-clickable:hover {
+  body:not(.is-grabbing)
+    .tree-item-self.is-clickable:not(.is-active, .is-selected):hover {
     .tree-item-icon {
       --icon-color: var(--text-on-accent);
     }
