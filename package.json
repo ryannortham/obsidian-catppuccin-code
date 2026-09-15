@@ -1,11 +1,15 @@
 {
-  "name": "obsidian",
-  "version": "1.0.0",
+  "name": "catppuccin-obsidian-workbench",
+  "version": "0.4.49-workbench.1",
   "description": "<h3 align=\"center\"> \t<img src=\"https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png\" width=\"100\" alt=\"Logo\"/><br/> \t<img src=\"https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png\" height=\"30\" width=\"0px\"/> \tCatppuccin for <a href=\"https://obsidian.md\">Obsidian</a> \t<img src=\"https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png\" height=\"30\" width=\"0px\"/> </h3>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "sass scss/main.scss:dist/catppuccin.css"
+    "build": "sass scss/main.scss:dist/catppuccin-workbench.css",
+    "build:theme": "sass scss/main.scss:theme.css",
+    "lint": "stylelint scss/layout/_workbench.scss scss/vendors/_workbench-compatibility.scss",
+    "test": "node tests/workbench-contract.mjs",
+    "test:visual": "node tests/render-workbench-fixture.mjs",
+    "test:visual:check": "node tests/render-workbench-fixture.mjs --check"
   },
   "repository": {
     "type": "git",

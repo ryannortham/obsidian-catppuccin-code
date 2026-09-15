@@ -1,7 +1,7 @@
 {
-	"name": "Catppuccin",
-	"version": "0.4.49",
+	"name": "Catppuccin Workbench",
+	"version": "0.4.49-workbench.1",
 	"minAppVersion": "1.13.0",
-	"author": "Catppuccin",
+	"author": "Catppuccin / Workbench fork",
 	"authorUrl": "https://github.com/catppuccin/obsidian"
 }

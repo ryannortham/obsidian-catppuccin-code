@@ -1,0 +1,209 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: rgb(var(--ctp-crust));
+  color: rgb(var(--ctp-text));
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+main {
+  width: 1360px;
+  margin: 0 auto;
+  padding: 28px 36px 40px;
+}
+
+header {
+  margin-bottom: 24px;
+  padding: 20px 24px;
+  border: 1px solid rgb(var(--ctp-surface1));
+  background: rgb(var(--ctp-mantle));
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 4px;
+  color: rgb(var(--ctp-mauve));
+  font-size: 30px;
+}
+
+h2 {
+  margin: 0 0 10px;
+  color: rgb(var(--ctp-lavender));
+  font-size: 17px;
+}
+
+h3 {
+  margin-bottom: 10px;
+  color: rgb(var(--ctp-blue));
+  font-size: 13px;
+}
+
+section {
+  margin-bottom: 18px;
+}
+
+.subtitle,
+.focus-note,
+.legend {
+  color: rgb(var(--ctp-subtext0));
+}
+
+.panel {
+  padding: 12px;
+  border: 1px solid rgb(var(--ctp-surface0));
+  background: rgb(var(--ctp-mantle));
+}
+
+.grid-three,
+.grid-two,
+.row,
+.tab-strip {
+  display: grid;
+  gap: 10px;
+}
+
+.grid-three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-two {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.row {
+  grid-template-columns: 120px 120px 1fr 1fr;
+  align-items: center;
+}
+
+.tab-strip {
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0;
+}
+
+.tree-item-self,
+.search-result-file-match {
+  min-height: 30px;
+  padding: 6px 9px;
+}
+
+.tree-item-children {
+  margin-left: 20px;
+  padding-left: 12px;
+}
+
+.tree-item-flair {
+  float: right;
+}
+
+.tree-item-inner-subtext {
+  color: rgb(var(--ctp-overlay1));
+  font-size: 11px;
+}
+
+.search-result-file-matched-text {
+  background: rgb(var(--ctp-rosewater));
+  color: rgb(var(--ctp-base));
+}
+
+.fixture-hover.tree-item-self,
+.fixture-hover.search-result-file-match,
+.agent-client-session-manager .fixture-hover.tree-item-self {
+  background: var(--ctp-workbench-list-hover-background);
+  color: var(--text-normal);
+}
+
+.fixture-hover.search-result-file-match .search-result-file-matched-text {
+  background: transparent;
+  color: inherit;
+}
+
+.inactive-guide,
+.active-guide,
+.token-grid span {
+  display: inline-block;
+  width: 22px;
+  height: 10px;
+  margin: 0 7px 0 16px;
+  background: var(--ctp-workbench-tree-guide-inactive);
+}
+
+.active-guide {
+  background: var(--ctp-workbench-tree-guide-active);
+}
+
+.workspace-tab-header {
+  min-width: 0;
+}
+
+.workspace-tab-header-inner {
+  display: flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+}
+
+.workspace-tab-header-inner-title {
+  overflow: hidden;
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workspace-split.mod-sidedock .workspace-tab-header.fixture-hover,
+.workspace-split.mod-sidedock .workspace-tab-header.fixture-hover .workspace-tab-header-inner {
+  background: transparent;
+  color: var(--ctp-workbench-icon-foreground);
+}
+
+.workspace-split.mod-root .workspace-tab-header.fixture-hover,
+.workspace-split.mod-root .workspace-tab-header.fixture-hover .workspace-tab-header-inner {
+  background: var(--ctp-workbench-tab-hover-background);
+  color: var(--ctp-workbench-icon-foreground);
+}
+
+.workspace-split.mod-root .fixture-hover .workspace-tab-header-inner-close-button {
+  visibility: visible;
+}
+
+.workspace-split.mod-root .fixture-close-hover .workspace-tab-header-inner-close-button {
+  padding: 1px 5px;
+  background: var(--ctp-workbench-close-hover-background);
+}
+
+button {
+  min-height: 34px;
+  border: 0;
+  background: transparent;
+  color: rgb(var(--ctp-mauve));
+  font: inherit;
+}
+
+button.is-active {
+  background: var(--ctp-workbench-tab-active-background);
+}
+
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-content: center;
+  gap: 16px;
+}
+
+.token-grid span {
+  width: 42px;
+  height: 18px;
+  margin-left: 0;
+  background: var(--swatch);
+  vertical-align: middle;
+}

@@ -19,6 +19,8 @@
 @use "pages/settings";
 @use "themes/latte-adjustments";
 @use "themes/full-palette";
+@use "layout/workbench";
 @use "vendors/plugins";
+@use "vendors/workbench-compatibility";
 @use "vendors/checklists";
 @use "vendors/fonts";

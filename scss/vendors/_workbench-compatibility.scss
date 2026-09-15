@@ -1,0 +1,36 @@
+/*
+ * Catppuccin Workbench compatibility boundary.
+ * These selectors are plugin DOM contracts, not Obsidian core theme APIs.
+ */
+body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
+  .agent-client-session-manager .tree-item-self {
+    border-radius: 0;
+
+    &:is(.is-active, .is-selected) {
+      --nav-item-background-active: var(--ctp-workbench-list-selection-background);
+      --nav-item-background-selected: var(--ctp-workbench-list-selection-background);
+      --nav-item-color-active: var(--text-normal);
+      --nav-item-color-selected: var(--text-normal);
+
+      background-color: var(--ctp-workbench-list-selection-background);
+      color: var(--text-normal);
+    }
+  }
+
+  @media (hover: hover) {
+    &:not(.is-grabbing)
+      .agent-client-session-manager
+      .tree-item-self.is-clickable:not(.is-active, .is-selected):hover {
+      --nav-item-background-hover: var(--ctp-workbench-list-hover-background);
+      --nav-item-color-hover: var(--text-normal);
+
+      background-color: var(--ctp-workbench-list-hover-background);
+      color: var(--text-normal);
+    }
+  }
+
+  .workspace-tab-header .metadata-menu.fileclass-icon,
+  .workspace-tab-header .metadata-menu.fileclass-icon svg {
+    color: rgb(var(--ctp-blue));
+  }
+}

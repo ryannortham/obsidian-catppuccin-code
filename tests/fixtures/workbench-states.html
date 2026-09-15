@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Catppuccin Workbench state matrix</title>
+    <link rel="stylesheet" href="../../theme.css" />
+    <link rel="stylesheet" href="workbench-fixture.css" />
+  </head>
+  <body class="theme-dark ctp-mocha">
+    <main>
+      <header>
+        <p>Catppuccin Workbench · Obsidian Mocha</p>
+        <h1>Interaction state matrix</h1>
+        <p class="subtitle">Catppuccin for VS Code 3.19.0 reference roles</p>
+      </header>
+
+      <section>
+        <h2>File tree and guides</h2>
+        <div class="workspace-split mod-sidedock panel nav-files-container">
+          <div class="tree-item-self is-clickable"><span class="collapse-icon">⌄</span>Inactive folder</div>
+          <div class="tree-item-children">
+            <div class="tree-item-self is-clickable fixture-hover">Hovered file</div>
+            <div class="tree-item-children">
+              <div class="tree-item-self is-clickable is-selected">Selected nested file</div>
+            </div>
+          </div>
+        </div>
+        <div class="legend"><span class="inactive-guide"></span> Surface1 inactive guide <span class="active-guide"></span> Overlay2 active guide</div>
+      </section>
+
+      <section>
+        <h2>Core sidebar lists</h2>
+        <div class="workspace-split mod-sidedock grid-three">
+          <div class="workspace-leaf-content panel" data-type="tag">
+            <h3>Tags</h3>
+            <div class="tree-item-self is-clickable fixture-hover"><span class="tree-item-icon">#</span> design <span class="tree-item-flair">12</span></div>
+            <div class="tree-item-self is-clickable is-selected"><span class="tree-item-icon">#</span> workbench <span class="tree-item-flair">4</span></div>
+          </div>
+          <div class="workspace-leaf-content panel" data-type="outgoing-link">
+            <h3>Outgoing links</h3>
+            <div class="tree-item-self is-clickable fixture-hover">Theme tokens<div class="tree-item-inner-subtext">Personal/Projects</div></div>
+            <div class="tree-item-self is-clickable">Visual matrix</div>
+          </div>
+          <div class="workspace-leaf-content panel" data-type="backlink">
+            <h3>Backlinks</h3>
+            <div class="search-result-file-match fixture-hover">The <span class="search-result-file-matched-text">workbench</span> fork</div>
+            <div class="search-result-file-match">Mocha <span class="search-result-file-matched-text">tokens</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Utility controls and sidebar tabs</h2>
+        <div class="row workspace-split mod-sidedock panel">
+          <button class="sidebar-toggle-button">◫ <span>Hover</span></button>
+          <button class="sidebar-toggle-button is-active">◆ <span>Active</span></button>
+          <div class="workspace-tab-header is-active"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">▤</div><div class="workspace-tab-header-inner-title">Files · active</div></div></div>
+          <div class="workspace-tab-header fixture-hover"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">⌕</div><div class="workspace-tab-header-inner-title">Search · hover</div></div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Editor tabs and close buttons</h2>
+        <div class="workspace-split mod-root panel tab-strip">
+          <div class="workspace-tab-header is-active">
+            <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Active</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
+          </div>
+          <div class="workspace-tab-header">
+            <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive</div><div class="workspace-tab-header-inner-close-button">×</div></div>
+          </div>
+          <div class="workspace-tab-header fixture-hover">
+            <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive hover</div><div class="workspace-tab-header-inner-close-button">×</div></div>
+          </div>
+          <div class="workspace-tab-header fixture-hover fixture-close-hover">
+            <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Close hover</div><div class="workspace-tab-header-inner-close-button">×</div></div>
+          </div>
+        </div>
+        <p class="focus-note">Focused and unfocused panes intentionally keep the same Base/Mantle surfaces.</p>
+      </section>
+
+      <section>
+        <h2>Plugin compatibility boundary</h2>
+        <div class="grid-two">
+          <div class="agent-client-session-manager panel">
+            <h3>Agent Client</h3>
+            <div class="tree-item-self is-clickable fixture-hover">Session row · hover</div>
+            <div class="tree-item-self is-clickable is-selected">Session row · selected</div>
+          </div>
+          <div class="panel token-grid">
+            <div><span style="--swatch: var(--ctp-workbench-list-selection-background)"></span>Selection</div>
+            <div><span style="--swatch: var(--ctp-workbench-list-hover-background)"></span>Hover</div>
+            <div><span style="--swatch: var(--ctp-workbench-icon-foreground)"></span>Mauve</div>
+            <div><span style="--swatch: var(--ctp-workbench-tab-hover-background)"></span>#28283d</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
