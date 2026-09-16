@@ -124,18 +124,25 @@
 
       <section>
         <h2>Editor tabs and close buttons</h2>
-        <div class="workspace-split mod-root panel tab-strip">
-          <div class="workspace-tab-header is-active">
-            <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Active</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
-          </div>
-          <div class="workspace-tab-header">
-            <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive</div><div class="workspace-tab-header-inner-close-button">×</div></div>
-          </div>
-          <div class="workspace-tab-header fixture-hover">
-            <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive hover</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
-          </div>
-          <div class="workspace-tab-header fixture-hover fixture-close-hover">
-            <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Close hover</div><div class="workspace-tab-header-inner-close-button">×</div></div>
+        <div class="workspace">
+          <div class="workspace-split mod-root panel">
+            <div class="workspace-tabs">
+              <div class="workspace-tab-header-container tab-strip">
+                <div class="workspace-tab-header is-active">
+                  <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Active</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
+                </div>
+                <div class="workspace-tab-header">
+                  <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
+                </div>
+                <div class="workspace-tab-header fixture-hover">
+                  <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive hover</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
+                </div>
+                <div class="workspace-tab-header fixture-hover fixture-close-hover">
+                  <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Close hover</div><div class="workspace-tab-header-inner-close-button">×</div></div>
+                </div>
+                <div class="fixture-tab-strip-empty" aria-label="Empty tab strip"></div>
+              </div>
+            </div>
           </div>
         </div>
         <p class="focus-note">Focused and unfocused panes intentionally keep the same Base/Mantle surfaces.</p>

@@ -39,9 +39,10 @@ partial. Its component-local selectors use the normal cascade and contain no
 | Toolbar-control hover | `--ctp-surface0` at 25% |
 | Active tree guide | `--ctp-overlay2` |
 | Inactive tree guide | `--ctp-surface1` |
+| Empty editor tab strip | `--ctp-crust` |
 | Active editor tab | `--ctp-base` |
-| Inactive editor tab | 50% `--ctp-base` over Mantle |
-| Editor-tab hover | 75% `--ctp-base` over Mantle |
+| Inactive editor tab | `--ctp-mantle` |
+| Editor-tab hover | `--ctp-base` lightened 5%, matching Catppuccin VS Code |
 | Active editor-tab foreground | `--ctp-mauve` |
 | Close-button hover | `--ctp-surface1` (distinct from editor-tab hover) |
 
@@ -101,6 +102,11 @@ Top-bar controls use the shared 25% Surface0 control-hover role, with hover
 painted on a normalized 30px inner hit target so panel toggles and tab actions
 keep the same subdued squircle across focus, translucency, and Style Settings
 states.
+Root editor tabs follow Catppuccin VS Code's four-surface sequence: Crust for the
+empty strip, Mantle for inactive tabs, Base for the unchanged active tab, and
+Base lightened by 5% for inactive hover. Inactive close buttons remain in layout
+while hidden, so Metadata Menu file-class icons do not shift when hover reveals
+the close control.
 
 ## Compatibility boundary
 

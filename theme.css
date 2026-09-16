@@ -3186,9 +3186,11 @@ body.theme-light {
   --ctp-workbench-list-secondary-foreground: var(--text-muted);
   --ctp-workbench-tree-guide-active: rgb(var(--ctp-overlay2));
   --ctp-workbench-tree-guide-inactive: rgb(var(--ctp-surface1));
+  --ctp-workbench-tab-strip-background: rgb(var(--ctp-crust));
   --ctp-workbench-tab-active-background: rgb(var(--ctp-base));
-  --ctp-workbench-tab-inactive-background: rgb(var(--ctp-base), 50%);
-  --ctp-workbench-tab-hover-background: rgb(var(--ctp-base), 75%);
+  --ctp-workbench-tab-inactive-background: rgb(var(--ctp-mantle));
+  /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
+  --ctp-workbench-tab-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
   --ctp-workbench-tab-active-foreground: rgb(var(--ctp-mauve));
   --ctp-workbench-close-hover-background: rgb(var(--ctp-surface1));
   /* The ribbon edge blends into the standard panel surface. */
@@ -3472,6 +3474,10 @@ body.theme-dark,
 body.theme-light {
   /* Root editor tabs use stable surfaces regardless of pane focus. */
 }
+body.theme-dark .workspace-split.mod-root .workspace-tab-header-container,
+body.theme-light .workspace-split.mod-root .workspace-tab-header-container {
+  background-color: var(--ctp-workbench-tab-strip-background);
+}
 body.theme-dark .workspace-split.mod-root .workspace-tab-header, body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner,
 body.theme-light .workspace-split.mod-root .workspace-tab-header,
 body.theme-light .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner {
@@ -3481,19 +3487,20 @@ body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-h
 body.theme-light .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner::after {
   display: none;
 }
-body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active), body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner,
-body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active),
-body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner {
+body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active),
+body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active) {
   --tab-text-color: var(--text-muted);
   --tab-text-color-active: var(--text-muted);
   --tab-text-color-focused: var(--text-muted);
   --tab-text-color-focused-active: var(--text-muted);
   background-color: var(--ctp-workbench-tab-inactive-background);
+  box-shadow: none;
   color: var(--text-muted);
 }
-body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active),
-body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active) {
-  box-shadow: none;
+body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner,
+body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner {
+  background-color: transparent;
+  color: var(--text-muted);
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active, body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner,
 body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active,
@@ -3526,22 +3533,25 @@ body.theme-light .workspace-split.mod-root .workspace-tab-header:focus-visible {
   outline: 1px solid var(--ctp-workbench-focus-border);
   outline-offset: -1px;
 }
-body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button,
-body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button {
+body.theme-dark,
+body.theme-light {
+  /* Obsidian hides inactive close buttons with a later, highly specific rule.
+     Keep its slot in flow so Metadata Menu icons do not shift when hover reveals it. */
+}
+body.theme-dark .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button,
+body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button {
   display: flex;
   pointer-events: none;
   visibility: hidden;
 }
-body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-close-button,
-body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-close-button {
+body.theme-dark .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-close-button,
+body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-close-button {
   pointer-events: auto;
   visibility: visible;
 }
 @media (hover: hover) {
   body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover,
-  body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner,
-  body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover,
-  body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
+  body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover {
     --background-modifier-hover: transparent;
     --background-modifier-active-hover: transparent;
     --tab-text-color: var(--ctp-workbench-icon-foreground);
@@ -3549,6 +3559,10 @@ body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active)
     --tab-text-color-hover: var(--ctp-workbench-icon-foreground);
     background-color: var(--ctp-workbench-tab-hover-background);
     color: var(--ctp-workbench-icon-foreground);
+  }
+  body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner,
+  body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
+    background-color: transparent;
   }
   body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-title,
   .workspace-tab-header-inner-close-button,

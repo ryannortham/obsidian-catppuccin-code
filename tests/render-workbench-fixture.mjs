@@ -42,7 +42,7 @@ try {
       "--no-default-browser-check",
       "--no-first-run",
       "--force-device-scale-factor=1",
-      "--window-size=1440,1180",
+      "--window-size=1440,1800",
       `--user-data-dir=${chromeProfile}-${scenario}`,
       `--screenshot=${output}`,
       `${pathToFileURL(fixture).href}?scenario=${scenario}`,

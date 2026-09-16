@@ -86,8 +86,13 @@ section {
 }
 
 .tab-strip {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   padding: 0;
+  background: var(--ctp-workbench-tab-strip-background);
+}
+
+.fixture-tab-strip-empty {
+  background: var(--ctp-workbench-tab-strip-background);
 }
 
 .tree-item-self,
@@ -190,11 +195,7 @@ body:is(.theme-dark, .theme-light)
 
 body:is(.theme-dark, .theme-light)
   .workspace-split.mod-root
-  .workspace-tab-header.fixture-hover:not(.is-active),
-body:is(.theme-dark, .theme-light)
-  .workspace-split.mod-root
-  .workspace-tab-header.fixture-hover:not(.is-active)
-  .workspace-tab-header-inner {
+  .workspace-tab-header.fixture-hover:not(.is-active) {
   background-color: var(--ctp-workbench-tab-hover-background);
   color: var(--ctp-workbench-icon-foreground);
 }
@@ -202,12 +203,24 @@ body:is(.theme-dark, .theme-light)
 body:is(.theme-dark, .theme-light)
   .workspace-split.mod-root
   .workspace-tab-header.fixture-hover:not(.is-active)
+  .workspace-tab-header-inner {
+  background-color: transparent;
+}
+
+body:is(.theme-dark, .theme-light)
+  .workspace
+  .workspace-split.mod-root
+  .workspace-tabs:not(.mod-stacked)
+  .workspace-tab-header.fixture-hover:not(.is-active)
   .workspace-tab-header-inner-close-button {
+  pointer-events: auto;
   visibility: visible;
 }
 
 body:is(.theme-dark, .theme-light)
+  .workspace
   .workspace-split.mod-root
+  .workspace-tabs:not(.mod-stacked)
   .workspace-tab-header.fixture-close-hover:not(.is-active)
   .workspace-tab-header-inner-close-button {
   display: flex;

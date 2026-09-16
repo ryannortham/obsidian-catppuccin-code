@@ -63,6 +63,44 @@ function rgbToHex(value) {
   return `#${channels.map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
 }
 
+function lightenHex(hex, amount) {
+  const channels = [1, 3, 5].map((index) => Number.parseInt(hex.slice(index, index + 2), 16) / 255);
+  const max = Math.max(...channels);
+  const min = Math.min(...channels);
+  let hue = 0;
+  let saturation = 0;
+  let lightness = (max + min) / 2;
+
+  if (max !== min) {
+    const delta = max - min;
+    saturation = lightness > 0.5 ? delta / (2 - max - min) : delta / (max + min);
+    if (max === channels[0]) hue = (channels[1] - channels[2]) / delta + (channels[1] < channels[2] ? 6 : 0);
+    if (max === channels[1]) hue = (channels[2] - channels[0]) / delta + 2;
+    if (max === channels[2]) hue = (channels[0] - channels[1]) / delta + 4;
+    hue /= 6;
+  }
+
+  lightness = Math.min(1, lightness + amount);
+  const hueChannel = (p, q, value) => {
+    let channel = value;
+    if (channel < 0) channel += 1;
+    if (channel > 1) channel -= 1;
+    if (channel < 1 / 6) return p + (q - p) * 6 * channel;
+    if (channel < 1 / 2) return q;
+    if (channel < 2 / 3) return p + (q - p) * (2 / 3 - channel) * 6;
+    return p;
+  };
+  const output = saturation === 0
+    ? [lightness, lightness, lightness]
+    : [hue + 1 / 3, hue, hue - 1 / 3].map((value) => {
+      const q = lightness < 0.5
+        ? lightness * (1 + saturation)
+        : lightness + saturation - lightness * saturation;
+      return hueChannel(2 * lightness - q, q, value);
+    });
+  return `#${output.map((channel) => Math.round(channel * 255).toString(16).padStart(2, "0")).join("")}`;
+}
+
 const paletteMarkers = {
   latte: ".theme-light,\n.theme-light.ctp-latte",
   frappe: ".theme-dark.ctp-frappe",
@@ -98,6 +136,10 @@ function resolveRole(name, palette = mochaPalette) {
       .padStart(2, "0");
     return `${paletteHex(alpha[1], palette)}${channel}`;
   }
+  const lightened = value.match(
+    /^hsl\(from rgb\(var\(--(ctp-[a-z0-9-]+)\)\) h s calc\(l \+ (\d+)\)\)$/,
+  );
+  if (lightened) return lightenHex(paletteHex(lightened[1], palette), Number(lightened[2]) / 100);
   throw new Error(`Unsupported role expression for --${name}: ${value}`);
 }
 
@@ -108,8 +150,9 @@ const roleTokens = {
   "ctp-workbench-list-hover-background": "ctp-surface0",
   "ctp-workbench-tree-guide-active": "ctp-overlay2",
   "ctp-workbench-tree-guide-inactive": "ctp-surface1",
+  "ctp-workbench-tab-strip-background": "ctp-crust",
   "ctp-workbench-tab-active-background": "ctp-base",
-  "ctp-workbench-tab-inactive-background": "ctp-base",
+  "ctp-workbench-tab-inactive-background": "ctp-mantle",
   "ctp-workbench-tab-hover-background": "ctp-base",
   "ctp-workbench-tab-active-foreground": "ctp-mauve",
   "ctp-workbench-close-hover-background": "ctp-surface1",
@@ -120,15 +163,13 @@ for (const [flavor, palette] of Object.entries(palettes)) {
   resolved[flavor] = {};
   for (const [role, token] of Object.entries(roleTokens)) {
     const expected = paletteHex(token, palette);
-    const alphaByRole = {
-      "ctp-workbench-list-hover-background": 50,
-      "ctp-workbench-tab-inactive-background": 50,
-      "ctp-workbench-tab-hover-background": 75,
-    };
+    const alphaByRole = { "ctp-workbench-list-hover-background": 50 };
     const alpha = alphaByRole[role];
-    const expectedWithAlpha = alpha
-      ? `${expected}${Math.round(alpha * 255 / 100).toString(16).padStart(2, "0")}`
-      : expected;
+    const expectedWithAlpha = role === "ctp-workbench-tab-hover-background"
+      ? lightenHex(expected, 0.05)
+      : alpha
+        ? `${expected}${Math.round(alpha * 255 / 100).toString(16).padStart(2, "0")}`
+        : expected;
     const actual = resolveRole(role, palette);
     assert(actual === expectedWithAlpha, `${flavor} ${role} is ${actual}; expected ${expectedWithAlpha}`);
     resolved[flavor][role] = actual;
@@ -161,13 +202,34 @@ assert(
   declaration(workbenchSource, "ctp-workbench-tab-active-background") ===
     "rgb(var(--ctp-base))" &&
     declaration(workbenchSource, "ctp-workbench-tab-inactive-background") ===
-      "rgb(var(--ctp-base), 50%)",
-  "Editor tabs must keep active Base above a subdued Base-over-Mantle inactive tier",
+      "rgb(var(--ctp-mantle))" &&
+    declaration(workbenchSource, "ctp-workbench-tab-strip-background") ===
+      "rgb(var(--ctp-crust))",
+  "Editor tabs must keep the VS Code Crust/Mantle/Base strip hierarchy",
 );
 assert(
   declaration(workbenchSource, "ctp-workbench-tab-hover-background") ===
-    "rgb(var(--ctp-base), 75%)",
-  "Editor-tab hover must sit between the inactive and active tab surfaces",
+    "hsl(from rgb(var(--ctp-base)) h s calc(l + 5))" &&
+    resolveRole("ctp-workbench-tab-hover-background") === "#28283d",
+  "Editor-tab hover must match Catppuccin VS Code's Base +5% lightness treatment",
+);
+assert(
+  /\.workspace-split\.mod-root \.workspace-tab-header-container\s*\{\s*background-color: var\(--ctp-workbench-tab-strip-background\)/s.test(
+    workbenchSource,
+  ),
+  "Root editor tab strip must paint the Crust no-tab surface",
+);
+assert(
+  /\.workspace\s+\.workspace-split\.mod-root\s+\.workspace-tabs:not\(\.mod-stacked\)[\s\S]*?\.workspace-tab-header-inner-close-button\s*\{\s*display: flex;[\s\S]*?visibility: hidden;/s.test(
+    workbenchSource,
+  ),
+  "Inactive editor tabs must reserve the close-button slot against Obsidian's later rule",
+);
+assert(
+  /\.workspace\s+\.workspace-split\.mod-root\s+\.workspace-tabs:not\(\.mod-stacked\)[\s\S]*?\.workspace-tab-header:not\(\.is-active\):hover[\s\S]*?\.workspace-tab-header-inner-close-button\s*\{\s*pointer-events: auto;\s*visibility: visible;/s.test(
+    workbenchSource,
+  ),
+  "Inactive editor-tab hover must reveal the reserved close-button slot",
 );
 assert(
   resolveRole("ctp-workbench-close-hover-background") !==
@@ -322,7 +384,9 @@ assert(
 );
 
 const requiredCompiledFragments = [
-  "--ctp-workbench-tab-hover-background: rgb(var(--ctp-base), 75%)",
+  "--ctp-workbench-tab-strip-background: rgb(var(--ctp-crust))",
+  "--ctp-workbench-tab-inactive-background: rgb(var(--ctp-mantle))",
+  "--ctp-workbench-tab-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5))",
   ".status-bar-item.mod-clickable",
   ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self",
   ".mod-settings .vertical-tab-nav-item",
