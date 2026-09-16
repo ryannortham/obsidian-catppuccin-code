@@ -3189,15 +3189,15 @@ body.theme-light {
   --ctp-workbench-tab-hover-background: rgb(var(--ctp-surface0));
   --ctp-workbench-tab-active-foreground: rgb(var(--ctp-mauve));
   --ctp-workbench-close-hover-background: rgb(var(--ctp-surface1));
-  /* The ribbon edge borders the Base side-dock surface, not the tab chrome. */
+  /* The ribbon edge blends into the standard panel surface. */
 }
 body.theme-dark .workspace-ribbon,
 body.theme-light .workspace-ribbon {
-  border-right-color: var(--background-primary);
+  border-right-color: var(--background-secondary);
 }
 body.theme-dark,
 body.theme-light {
-  /* Vertical split handles expose the editor surface between adjacent panes. */
+  /* Vertical split handles blend into the standard panel surface. */
 }
 body.theme-dark :is(.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
 .workspace-split.mod-left-split > .workspace-leaf-resize-handle,
@@ -3205,7 +3205,7 @@ body.theme-dark :is(.workspace-split.mod-vertical > * > .workspace-leaf-resize-h
 body.theme-light :is(.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
 .workspace-split.mod-left-split > .workspace-leaf-resize-handle,
 .workspace-split.mod-right-split > .workspace-leaf-resize-handle) {
-  background-color: var(--background-primary);
+  background-color: var(--background-secondary);
 }
 body.theme-dark,
 body.theme-light {

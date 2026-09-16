@@ -158,13 +158,13 @@ assert(
 );
 assert(
   workbenchSource.includes(".workspace-ribbon") &&
-    workbenchSource.includes("border-right-color: var(--background-primary)"),
-  "Ribbon vertical seam must match the Base side-dock surface",
+    workbenchSource.includes("border-right-color: var(--background-secondary)"),
+  "Ribbon vertical seam must match the panel surface",
 );
 assert(
   workbenchSource.includes(".workspace-split.mod-vertical > * > .workspace-leaf-resize-handle") &&
-    workbenchSource.includes("background-color: var(--background-primary)"),
-  "Vertical split handles must match the Base editor surface",
+    workbenchSource.includes("background-color: var(--background-secondary)"),
+  "Vertical split handles must match the panel surface",
 );
 assert(
   workbenchSource.includes(".status-bar-item.mod-clickable") &&
@@ -287,7 +287,7 @@ const requiredCompiledFragments = [
   ".agent-client-session-manager .tree-item-self",
   ".workspace-tab-header .metadata-menu.fileclass-icon",
   "body.theme-dark .workspace-ribbon",
-  "border-right-color: var(--background-primary)",
+  "border-right-color: var(--background-secondary)",
   ".workspace-split.mod-vertical > * > .workspace-leaf-resize-handle",
 ];
 for (const fragment of requiredCompiledFragments) {
