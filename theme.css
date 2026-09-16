@@ -2585,21 +2585,6 @@ body:not(.ctp-tag-pill) .cm-hashtag::selection {
   color: var(--text-on-accent);
 }
 
-.horizontal-tab-nav-item:hover,
-.vertical-tab-nav-item:hover {
-  background-color: rgb(var(--ctp-accent));
-  color: var(--text-on-accent);
-}
-
-.horizontal-tab-nav-item.is-active,
-.vertical-tab-nav-item.is-active {
-  background-color: rgb(var(--ctp-accent));
-}
-.horizontal-tab-nav-item.is-active:hover,
-.vertical-tab-nav-item.is-active:hover {
-  background-color: rgb(var(--ctp-accent));
-}
-
 .search-result:not(.is-collapsed) .search-result-file-title {
   --nav-item-color-active: var(--text-normal);
 }
@@ -2783,20 +2768,6 @@ button.mod-cta:hover {
   --tag-background: rgb(var(--ctp-accent));
   --tag-color: var(--text-on-accent);
   text-transform: lowercase;
-}
-
-body:not(.is-phone) .horizontal-tab-nav-item.is-active,
-body:not(.is-phone) .vertical-tab-nav-item.is-active {
-  --ctp-accent: var(--ctp-mauve);
-  background-color: rgb(var(--ctp-accent));
-  color: var(--text-on-accent);
-}
-
-.horizontal-tab-nav-item:hover .vertical-tab-nav-item-icon,
-.vertical-tab-nav-item:hover .vertical-tab-nav-item-icon,
-.horizontal-tab-nav-item.is-active .vertical-tab-nav-item-icon,
-.vertical-tab-nav-item.is-active .vertical-tab-nav-item-icon {
-  color: var(--text-on--accent);
 }
 
 /**
@@ -3178,32 +3149,6 @@ body:not(.is-phone) .vertical-tab-nav-item.is-active {
   background-color: rgb(var(--ctp-accent));
   box-shadow: 0 0 0 1px rgb(var(--ctp-accent), 40%);
 }
-.theme-dark:not(.css-settings-manager) .horizontal-tab-nav-item:hover,
-.theme-dark:not(.css-settings-manager) .vertical-tab-nav-item:hover,
-.theme-light:not(.css-settings-manager) .horizontal-tab-nav-item:hover,
-.theme-light:not(.css-settings-manager) .vertical-tab-nav-item:hover,
-.ctp-full-palette .horizontal-tab-nav-item:hover,
-.ctp-full-palette .vertical-tab-nav-item:hover {
-  background-color: rgb(var(--ctp-accent));
-  color: var(--text-on-accent);
-}
-.theme-dark:not(.css-settings-manager) .horizontal-tab-nav-item.is-active,
-.theme-dark:not(.css-settings-manager) .vertical-tab-nav-item.is-active,
-.theme-light:not(.css-settings-manager) .horizontal-tab-nav-item.is-active,
-.theme-light:not(.css-settings-manager) .vertical-tab-nav-item.is-active,
-.ctp-full-palette .horizontal-tab-nav-item.is-active,
-.ctp-full-palette .vertical-tab-nav-item.is-active {
-  background-color: rgb(var(--ctp-accent));
-  color: var(--text-on-accent);
-}
-.theme-dark:not(.css-settings-manager) .horizontal-tab-nav-item.is-active:hover,
-.theme-dark:not(.css-settings-manager) .vertical-tab-nav-item.is-active:hover,
-.theme-light:not(.css-settings-manager) .horizontal-tab-nav-item.is-active:hover,
-.theme-light:not(.css-settings-manager) .vertical-tab-nav-item.is-active:hover,
-.ctp-full-palette .horizontal-tab-nav-item.is-active:hover,
-.ctp-full-palette .vertical-tab-nav-item.is-active:hover {
-  background-color: rgb(var(--ctp-accent));
-}
 .theme-dark:not(.css-settings-manager),
 .theme-light:not(.css-settings-manager),
 .ctp-full-palette {
@@ -3289,12 +3234,13 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
   --ctp-workbench-tab-hover-background: rgb(var(--ctp-surface0));
   --ctp-workbench-tab-active-foreground: rgb(var(--ctp-mauve));
   --ctp-workbench-close-hover-background: rgb(var(--ctp-surface1));
-  /* Core tree lists in either sidebar. */
+  /* Tree rows and Settings navigation share one selection and hover contract. */
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .tree-item-self {
+body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(.workspace-split.mod-sidedock .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item) {
+  --nav-item-radius: 0;
   border-radius: 0;
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .tree-item-self:is(.is-active, .is-selected) {
+body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(.workspace-split.mod-sidedock .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item):is(.is-active, .is-selected) {
   --nav-item-background-active: var(--ctp-workbench-list-selection-background);
   --nav-item-background-selected: var(--ctp-workbench-list-selection-background);
   --nav-item-color-active: var(--text-normal);
@@ -3303,7 +3249,7 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspa
   color: var(--text-normal);
 }
 @media (hover: hover) {
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato):not(.is-grabbing) .workspace-split.mod-sidedock .tree-item-self.is-clickable:not(.is-active, .is-selected):hover {
+  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato):not(.is-grabbing) :is(.workspace-split.mod-sidedock .tree-item-self.is-clickable:not(.is-active, .is-selected):hover, .mod-settings .vertical-tab-nav-item:not(.is-active, .is-selected):hover, .mod-settings .horizontal-tab-nav-item:not(.is-active, .is-selected):hover) {
     --nav-item-background-hover: var(--ctp-workbench-list-hover-background);
     --nav-item-color-hover: var(--text-normal);
     background-color: var(--ctp-workbench-list-hover-background);

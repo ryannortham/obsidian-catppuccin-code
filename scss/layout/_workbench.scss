@@ -8,6 +8,16 @@ $ctp-workbench-control-selectors: (
   ".canvas-controls button",
   ".markdown-source-view.mod-cm6 .pdf-embed .edit-block-button"
 );
+$ctp-workbench-list-row-selectors: (
+  ".workspace-split.mod-sidedock .tree-item-self",
+  ".mod-settings .vertical-tab-nav-item",
+  ".mod-settings .horizontal-tab-nav-item"
+);
+$ctp-workbench-list-hover-selectors: (
+  ".workspace-split.mod-sidedock .tree-item-self.is-clickable:not(.is-active, .is-selected):hover",
+  ".mod-settings .vertical-tab-nav-item:not(.is-active, .is-selected):hover",
+  ".mod-settings .horizontal-tab-nav-item:not(.is-active, .is-selected):hover"
+);
 
 /*
  * Catppuccin Workbench defines Obsidian's Mocha interaction states. Palette
@@ -28,8 +38,10 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
   --ctp-workbench-tab-active-foreground: rgb(var(--ctp-mauve));
   --ctp-workbench-close-hover-background: rgb(var(--ctp-surface1));
 
-  /* Core tree lists in either sidebar. */
-  .workspace-split.mod-sidedock .tree-item-self {
+  /* Tree rows and Settings navigation share one selection and hover contract. */
+  :is(#{$ctp-workbench-list-row-selectors}) {
+    --nav-item-radius: 0;
+
     border-radius: 0;
 
     &:is(.is-active, .is-selected) {
@@ -45,9 +57,7 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
   }
 
   @media (hover: hover) {
-    &:not(.is-grabbing)
-      .workspace-split.mod-sidedock
-      .tree-item-self.is-clickable:not(.is-active, .is-selected):hover {
+    &:not(.is-grabbing) :is(#{$ctp-workbench-list-hover-selectors}) {
       --nav-item-background-hover: var(--ctp-workbench-list-hover-background);
       --nav-item-color-hover: var(--text-normal);
 

@@ -179,22 +179,6 @@
     }
   }
 
-  .horizontal-tab-nav-item:hover,
-  .vertical-tab-nav-item:hover {
-    background-color: rgb(var(--ctp-accent));
-    color: var(--text-on-accent);
-  }
-
-  .horizontal-tab-nav-item.is-active,
-  .vertical-tab-nav-item.is-active {
-    background-color: rgb(var(--ctp-accent));
-    color: var(--text-on-accent);
-
-    &:hover {
-      background-color: rgb(var(--ctp-accent));
-    }
-  }
-
   /*
 ? I think !important is necessary to overwrite app.css
 */

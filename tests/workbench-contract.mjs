@@ -17,6 +17,11 @@ const paletteSource = readFileSync(
 );
 const compiledCss = readFileSync(join(root, "theme.css"), "utf8");
 const searchSource = readFileSync(join(root, "scss/components/_search.scss"), "utf8");
+const legacyNavigationSources = [
+  "scss/layout/_sidebar.scss",
+  "scss/pages/_settings.scss",
+  "scss/themes/_full-palette.scss",
+].map((path) => readFileSync(join(root, path), "utf8"));
 const coreControlSources = [
   "scss/components/_icons.scss",
   "scss/pages/_canvas.scss",
@@ -108,6 +113,18 @@ assert(
   "Files and Outline must share the core nested-tree guide contract",
 );
 assert(
+  workbenchSource.includes(".mod-settings .vertical-tab-nav-item") &&
+    workbenchSource.includes(".mod-settings .horizontal-tab-nav-item") &&
+    workbenchSource.includes("--nav-item-radius: 0"),
+  "Desktop and mobile Settings navigation must share square workbench list rows",
+);
+assert(
+  legacyNavigationSources.every(
+    (source) => !/(?:horizontal|vertical)-tab-nav-item(?:\.is-active|:hover)/.test(source),
+  ),
+  "Legacy accent-driven Settings navigation states must be removed from canonical partials",
+);
+assert(
   /:is\(\.collapse-icon, \.collapse-icon svg\)\s*\{\s*--icon-color: var\(--ctp-workbench-icon-foreground\);\s*color: var\(--ctp-workbench-icon-foreground\);/s.test(
     workbenchSource,
   ),
@@ -181,6 +198,8 @@ const requiredCompiledFragments = [
   "--ctp-workbench-tab-hover-background: rgb(var(--ctp-surface0))",
   ".status-bar-item.mod-clickable",
   ".workspace-split.mod-sidedock .tree-item-self",
+  ".mod-settings .vertical-tab-nav-item",
+  ".mod-settings .horizontal-tab-nav-item",
   ".tree-item-self:is(.is-active, .is-selected) :is(.tree-item-icon",
   ".workspace-leaf-content[data-type=outline]",
   ".workspace-split.mod-root .workspace-tab-header",

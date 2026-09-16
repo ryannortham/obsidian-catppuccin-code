@@ -110,12 +110,29 @@ section {
   font-size: 11px;
 }
 
+.vertical-tab-nav-list {
+  display: grid;
+  gap: 2px;
+}
+
+.vertical-tab-nav-item,
+.horizontal-tab-nav-item {
+  padding: 6px 9px;
+  border-radius: var(--radius-s);
+}
+
+.horizontal-tab-nav-list {
+  display: flex;
+  gap: 4px;
+}
+
 .search-result-file-matched-text {
   background: rgb(var(--ctp-rosewater));
   color: rgb(var(--ctp-base));
 }
 
 .fixture-hover.tree-item-self,
+.fixture-hover:is(.vertical-tab-nav-item, .horizontal-tab-nav-item),
 .fixture-hover.search-result-file-match,
 .agent-client-session-manager .fixture-hover.tree-item-self {
   background: var(--ctp-workbench-list-hover-background);
