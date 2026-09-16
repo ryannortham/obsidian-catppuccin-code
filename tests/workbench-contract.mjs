@@ -105,7 +105,7 @@ const roleTokens = {
   "ctp-workbench-tree-guide-inactive": "ctp-surface1",
   "ctp-workbench-tab-active-background": "ctp-base",
   "ctp-workbench-tab-inactive-background": "ctp-base",
-  "ctp-workbench-tab-hover-background": "ctp-surface0",
+  "ctp-workbench-tab-hover-background": "ctp-base",
   "ctp-workbench-tab-active-foreground": "ctp-mauve",
   "ctp-workbench-close-hover-background": "ctp-surface1",
 };
@@ -155,6 +155,11 @@ assert(
     declaration(workbenchSource, "ctp-workbench-tab-inactive-background") ===
       "rgb(var(--ctp-base), 50%)",
   "Editor tabs must keep active Base above a subdued Base-over-Mantle inactive tier",
+);
+assert(
+  declaration(workbenchSource, "ctp-workbench-tab-hover-background") ===
+    declaration(workbenchSource, "ctp-workbench-tab-active-background"),
+  "Editor-tab hover must not be brighter than the active tab",
 );
 assert(
   resolveRole("ctp-workbench-close-hover-background") !==
@@ -309,7 +314,7 @@ assert(
 );
 
 const requiredCompiledFragments = [
-  "--ctp-workbench-tab-hover-background: rgb(var(--ctp-surface0))",
+  "--ctp-workbench-tab-hover-background: rgb(var(--ctp-base))",
   ".status-bar-item.mod-clickable",
   ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self",
   ".mod-settings .vertical-tab-nav-item",

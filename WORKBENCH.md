@@ -9,7 +9,7 @@ Obsidian workbench interaction states as a coherent theme baseline.
   `1316e03af5c31964116661ab08e7784bfa1d00b3`.
 - Upstream and installed Obsidian manifest version: `0.4.49`.
 - Baseline review build: `pnpm exec sass scss/main.scss:theme.css`.
-- Current build SHA-256: `f34ffa34ee724c8b1776807d8e16680db1bb2a9c6ffbe8cf284819aecd7c74a6`.
+- Current build SHA-256: `7e79b8b2a63901818cadd289a0b7367f4177fbab836e1071b87edd9ad732a6fb`.
 - pnpm 11 requires the locked `@parcel/watcher` build to be explicitly allowed;
   `pnpm-workspace.yaml` records that reviewed dependency.
 
@@ -41,7 +41,7 @@ partial. Its component-local selectors use the normal cascade and contain no
 | Inactive tree guide | `--ctp-surface1` |
 | Active editor tab | `--ctp-base` |
 | Inactive editor tab | 50% `--ctp-base` over Mantle |
-| Editor-tab hover | `--ctp-surface0` |
+| Editor-tab hover | `--ctp-base` |
 | Active editor-tab foreground | `--ctp-mauve` |
 | Close-button hover | `--ctp-surface1` (distinct from editor-tab hover) |
 
