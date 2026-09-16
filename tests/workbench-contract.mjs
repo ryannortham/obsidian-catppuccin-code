@@ -103,7 +103,7 @@ const roleTokens = {
   "ctp-workbench-list-hover-background": "ctp-surface0",
   "ctp-workbench-tree-guide-active": "ctp-overlay2",
   "ctp-workbench-tree-guide-inactive": "ctp-surface1",
-  "ctp-workbench-tab-active-background": "ctp-surface0",
+  "ctp-workbench-tab-active-background": "ctp-base",
   "ctp-workbench-tab-inactive-background": "ctp-base",
   "ctp-workbench-tab-hover-background": "ctp-surface0",
   "ctp-workbench-tab-active-foreground": "ctp-mauve",
@@ -115,7 +115,10 @@ for (const [flavor, palette] of Object.entries(palettes)) {
   resolved[flavor] = {};
   for (const [role, token] of Object.entries(roleTokens)) {
     const expected = paletteHex(token, palette);
-    const expectedWithAlpha = role === "ctp-workbench-list-hover-background"
+  const expectedWithAlpha = [
+    "ctp-workbench-list-hover-background",
+    "ctp-workbench-tab-inactive-background",
+  ].includes(role)
       ? `${expected}80`
       : expected;
     const actual = resolveRole(role, palette);
@@ -148,10 +151,10 @@ assert(
 );
 assert(
   declaration(workbenchSource, "ctp-workbench-tab-active-background") ===
-    "rgb(var(--ctp-surface0))" &&
+    "rgb(var(--ctp-base))" &&
     declaration(workbenchSource, "ctp-workbench-tab-inactive-background") ===
-      "rgb(var(--ctp-base))",
-  "Editor tabs must keep active Surface0 above inactive Base and the Mantle chrome",
+      "rgb(var(--ctp-base), 50%)",
+  "Editor tabs must keep active Base above a subdued Base-over-Mantle inactive tier",
 );
 assert(
   resolveRole("ctp-workbench-close-hover-background") !==
