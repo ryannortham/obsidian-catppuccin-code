@@ -87,6 +87,11 @@ variables (including the ribbon edge) switch to transparent so they do not draw
 strokes over the backdrop.
 The Settings two-column navigation edge is explicitly transparent in both modes,
 so the Settings pane does not inherit the darker global divider stroke.
+Detached Settings windows also paint their titlebar with
+`var(--background-primary)`, matching the Settings Base surface in focused,
+unfocused, opaque, and translucent states.
+The scoped rule removes the titlebar bottom border and shadow so opaque mode
+cannot reintroduce a horizontal seam.
 
 Every workbench role resolves to a token in the active Catppuccin palette.
 Style Settings selects the flavor and accent classes; it does not disable the

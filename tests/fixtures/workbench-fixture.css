@@ -64,6 +64,12 @@ section {
   background: rgb(var(--ctp-mantle));
 }
 
+.fixture-settings-titlebar {
+  min-height: 30px;
+  margin-bottom: 10px;
+  padding: 7px 12px;
+}
+
 .grid-three,
 .grid-two,
 .row,

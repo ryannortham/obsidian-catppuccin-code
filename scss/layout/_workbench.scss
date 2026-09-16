@@ -67,6 +67,14 @@ body.theme-light {
     border-inline-color: transparent;
   }
 
+  /* A detached Settings window must use the same Base surface above and below
+     the macOS traffic lights, regardless of the global translucency setting. */
+  &:has(.mod-settings) .titlebar {
+    border-bottom: 0;
+    background-color: var(--background-primary);
+    box-shadow: none;
+  }
+
   /* Keep top-bar wrappers transparent; the inner controls own one shared
      hit area so every toolbar hover has the same size and radius. */
   :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button) {

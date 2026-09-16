@@ -3226,6 +3226,17 @@ body.theme-light .mod-settings :is(.vertical-tab-header, .vertical-tab-content) 
 }
 body.theme-dark,
 body.theme-light {
+  /* A detached Settings window must use the same Base surface above and below
+     the macOS traffic lights, regardless of the global translucency setting. */
+}
+body.theme-dark:has(.mod-settings) .titlebar,
+body.theme-light:has(.mod-settings) .titlebar {
+  border-bottom: 0;
+  background-color: var(--background-primary);
+  box-shadow: none;
+}
+body.theme-dark,
+body.theme-light {
   /* Keep top-bar wrappers transparent; the inner controls own one shared
      hit area so every toolbar hover has the same size and radius. */
 }

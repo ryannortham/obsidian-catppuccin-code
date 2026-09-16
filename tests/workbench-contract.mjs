@@ -272,6 +272,13 @@ assert(
   "Settings navigation edges must not draw a contrasting seam",
 );
 assert(
+  /&:has\(\.mod-settings\) \.titlebar\s*\{\s*border-bottom: 0;\s*background-color: var\(--background-primary\);\s*box-shadow: none;/s.test(
+    workbenchSource,
+  ) &&
+    fixtureSource.includes("Settings window titlebar · stable Base surface"),
+  "Settings titlebar must share the Settings Base surface without a separator in every translucency state",
+);
+assert(
   workbenchSource.includes(".status-bar-item.mod-clickable") &&
     workbenchSource.includes(".clickable-icon:not("),
   "Status-bar and icon controls must share the core workbench control selectors",
@@ -419,6 +426,8 @@ const requiredCompiledFragments = [
   "--divider-color: transparent",
   "border-right-color: transparent",
   ".mod-settings :is(.vertical-tab-header, .vertical-tab-content)",
+  "body.theme-dark:has(.mod-settings) .titlebar",
+  "background-color: var(--background-primary)",
   "inline-size: var(--ctp-workbench-control-size)",
 ];
 for (const fragment of requiredCompiledFragments) {
