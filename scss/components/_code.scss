@@ -1,0 +1,164 @@
+/* Catppuccin syntax roles for rendered blocks and Obsidian's source editor. */
+
+.markdown-rendered pre code {
+  color: var(--code-normal);
+}
+
+/* Prism tokens used by rendered code blocks. */
+.markdown-rendered pre code {
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: var(--code-comment);
+  }
+
+  .token.keyword,
+  .token.control,
+  .token.storage {
+    color: var(--code-keyword);
+  }
+
+  .token.string,
+  .token.char,
+  .token.inserted,
+  .token.selector {
+    color: var(--code-string);
+  }
+
+  .token.function,
+  .token.method,
+  .token.function-variable,
+  .token.method.function {
+    color: var(--code-function);
+  }
+
+  .token.operator,
+  .token.arrow {
+    color: var(--code-operator);
+  }
+
+  .token.number,
+  .token.boolean,
+  .token.constant {
+    color: var(--code-value);
+  }
+
+  .token.builtin,
+  .token.symbol,
+  .token.deleted {
+    color: var(--code-tag);
+  }
+
+  .token.class-name,
+  .token.maybe-class-name,
+  .token.type,
+  .token.annotation {
+    color: var(--code-type);
+  }
+
+  .token.property,
+  .token.property-access,
+  .token.entity,
+  .token.url,
+  .token.variable {
+    color: var(--code-property);
+  }
+
+  .token.parameter {
+    color: var(--code-parameter);
+  }
+
+  .token.attr-name,
+  .token.attribute {
+    color: var(--code-type);
+  }
+
+  .token.tag {
+    color: var(--code-tag);
+  }
+
+  .token.punctuation {
+    color: var(--code-punctuation);
+  }
+
+  .token.regex {
+    color: var(--code-regex);
+  }
+
+  .token.important {
+    color: var(--code-important);
+  }
+
+  .token.macro {
+    color: rgb(var(--ctp-rosewater));
+  }
+}
+
+/* CodeMirror token classes used by source mode and live preview. */
+.markdown-source-view,
+.cm-s-obsidian {
+  .cm-keyword {
+    color: var(--code-keyword);
+  }
+
+  .cm-string {
+    color: var(--code-string);
+  }
+
+  .cm-comment {
+    color: var(--code-comment);
+  }
+
+  .cm-function,
+  .cm-def:not(.cm-hmd-frontmatter) {
+    color: var(--code-function);
+  }
+
+  .cm-operator {
+    color: var(--code-operator);
+  }
+
+  .cm-number {
+    color: var(--code-value);
+  }
+
+  .cm-atom,
+  .cm-builtin {
+    color: var(--code-tag);
+  }
+
+  .cm-variable-2,
+  .cm-variable-3,
+  .cm-parameter {
+    color: var(--code-parameter);
+  }
+
+  .cm-property,
+  .cm-qualifier {
+    color: var(--code-property);
+  }
+
+  .cm-type,
+  [class~="cm-typeName"],
+  [class~="cm-className"] {
+    color: var(--code-type);
+  }
+
+  .cm-tag {
+    color: var(--code-tag);
+  }
+
+  .cm-attribute {
+    color: var(--code-type);
+  }
+
+  .cm-meta,
+  .cm-punctuation {
+    color: var(--code-punctuation);
+  }
+
+  .cm-variable {
+    color: var(--code-normal);
+  }
+}

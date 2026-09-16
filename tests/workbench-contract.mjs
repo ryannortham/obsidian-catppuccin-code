@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -13,6 +13,14 @@ const pluginSource = readFileSync(
 );
 const paletteSource = readFileSync(
   join(root, "scss/base/_ctp-style-settings.scss"),
+  "utf8",
+);
+const appVariablesSource = readFileSync(
+  join(root, "scss/base/_app-variables.scss"),
+  "utf8",
+);
+const codeSource = readFileSync(
+  join(root, "scss/components/_code.scss"),
   "utf8",
 );
 const compiledCss = readFileSync(join(root, "theme.css"), "utf8");
@@ -36,6 +44,16 @@ const interactionSources = [
 function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
+
+const manifest = JSON.parse(readFileSync(join(root, "manifest.json"), "utf8"));
+assert(
+  existsSync(join(root, "screenshot.png")),
+  "Theme package is missing the Obsidian Community themes preview screenshot.png",
+);
+assert(
+  manifest.repo && manifest.screenshot === "assets/screenshot.png",
+  "Manifest must provide the Community themes preview repository and screenshot path",
+);
 
 function declaration(source, name) {
   const match = source.match(new RegExp(`--${name}:\\s*([^;]+);`));
@@ -205,6 +223,30 @@ assert(
 assert(
   interactionSources.every((source) => !source.includes("var(--ctp-pink)")),
   "Interactive component partials must not use the Pink palette token",
+);
+const expectedCodeRoles = {
+  "code-normal": "rgb(var(--ctp-text))",
+  "code-comment": "rgb(var(--ctp-overlay2))",
+  "code-function": "rgb(var(--ctp-blue))",
+  "code-keyword": "rgb(var(--ctp-mauve))",
+  "code-operator": "rgb(var(--ctp-sky))",
+  "code-property": "rgb(var(--ctp-blue))",
+  "code-string": "rgb(var(--ctp-green))",
+  "code-type": "rgb(var(--ctp-yellow))",
+  "code-value": "rgb(var(--ctp-peach))",
+};
+for (const [role, expected] of Object.entries(expectedCodeRoles)) {
+  assert(
+    declaration(appVariablesSource, role) === expected,
+    `--${role} must use the Catppuccin Mocha role ${expected}`,
+  );
+}
+assert(
+  codeSource.includes(".token.maybe-class-name") &&
+    codeSource.includes(".token.property-access") &&
+    codeSource.includes('[class~="cm-typeName"]') &&
+    codeSource.includes(".cm-punctuation"),
+  "Rendered and source code token mappings are incomplete",
 );
 assert(
   !/\.search-result-file-match:hover \.search-result-file-matched-text\s*\{\s*background-color:\s*rgb\(var\(--ctp-rosewater/.test(searchSource),

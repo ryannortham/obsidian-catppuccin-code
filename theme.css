@@ -82,17 +82,21 @@ body {
   /* Code */
   --code-white-space: pre-wrap;
   --code-size: var(--font-smaller);
-  --code-background: var(--background-primary-alt);
-  --code-normal: var(--text-muted);
-  --code-comment: var(--text-faint);
-  --code-function: var(--color-yellow);
-  --code-important: var(--color-orange);
-  --code-keyword: var(--color-pink);
-  --code-property: var(--color-cyan);
-  --code-punctuation: var(--text-muted);
-  --code-string: var(--color-green);
-  --code-tag: var(--color-red);
-  --code-value: var(--color-purple);
+  --code-background: rgb(var(--ctp-mantle));
+  --code-normal: rgb(var(--ctp-text));
+  --code-comment: rgb(var(--ctp-overlay2));
+  --code-function: rgb(var(--ctp-blue));
+  --code-important: rgb(var(--ctp-peach));
+  --code-keyword: rgb(var(--ctp-mauve));
+  --code-operator: rgb(var(--ctp-sky));
+  --code-parameter: rgb(var(--ctp-maroon));
+  --code-property: rgb(var(--ctp-blue));
+  --code-punctuation: rgb(var(--ctp-overlay2));
+  --code-regex: rgb(var(--ctp-pink));
+  --code-string: rgb(var(--ctp-green));
+  --code-tag: rgb(var(--ctp-red));
+  --code-type: rgb(var(--ctp-yellow));
+  --code-value: rgb(var(--ctp-peach));
   /* Collapse icons */
   --collapse-icon-color: var(--text-faint);
   --collapse-icon-color-collapsed: var(--text-muted);
@@ -2053,6 +2057,159 @@ body {
 .callout[data-callout=quote],
 .callout[data-callout=cite] {
   --callout-icon: quote-glyph;
+}
+
+/* Catppuccin syntax roles for rendered blocks and Obsidian's source editor. */
+.markdown-rendered pre code {
+  color: var(--code-normal);
+}
+
+/* Prism tokens used by rendered code blocks. */
+.markdown-rendered pre code .token.comment,
+.markdown-rendered pre code .token.prolog,
+.markdown-rendered pre code .token.doctype,
+.markdown-rendered pre code .token.cdata {
+  color: var(--code-comment);
+}
+.markdown-rendered pre code .token.keyword,
+.markdown-rendered pre code .token.control,
+.markdown-rendered pre code .token.storage {
+  color: var(--code-keyword);
+}
+.markdown-rendered pre code .token.string,
+.markdown-rendered pre code .token.char,
+.markdown-rendered pre code .token.inserted,
+.markdown-rendered pre code .token.selector {
+  color: var(--code-string);
+}
+.markdown-rendered pre code .token.function,
+.markdown-rendered pre code .token.method,
+.markdown-rendered pre code .token.function-variable,
+.markdown-rendered pre code .token.method.function {
+  color: var(--code-function);
+}
+.markdown-rendered pre code .token.operator,
+.markdown-rendered pre code .token.arrow {
+  color: var(--code-operator);
+}
+.markdown-rendered pre code .token.number,
+.markdown-rendered pre code .token.boolean,
+.markdown-rendered pre code .token.constant {
+  color: var(--code-value);
+}
+.markdown-rendered pre code .token.builtin,
+.markdown-rendered pre code .token.symbol,
+.markdown-rendered pre code .token.deleted {
+  color: var(--code-tag);
+}
+.markdown-rendered pre code .token.class-name,
+.markdown-rendered pre code .token.maybe-class-name,
+.markdown-rendered pre code .token.type,
+.markdown-rendered pre code .token.annotation {
+  color: var(--code-type);
+}
+.markdown-rendered pre code .token.property,
+.markdown-rendered pre code .token.property-access,
+.markdown-rendered pre code .token.entity,
+.markdown-rendered pre code .token.url,
+.markdown-rendered pre code .token.variable {
+  color: var(--code-property);
+}
+.markdown-rendered pre code .token.parameter {
+  color: var(--code-parameter);
+}
+.markdown-rendered pre code .token.attr-name,
+.markdown-rendered pre code .token.attribute {
+  color: var(--code-type);
+}
+.markdown-rendered pre code .token.tag {
+  color: var(--code-tag);
+}
+.markdown-rendered pre code .token.punctuation {
+  color: var(--code-punctuation);
+}
+.markdown-rendered pre code .token.regex {
+  color: var(--code-regex);
+}
+.markdown-rendered pre code .token.important {
+  color: var(--code-important);
+}
+.markdown-rendered pre code .token.macro {
+  color: rgb(var(--ctp-rosewater));
+}
+
+/* CodeMirror token classes used by source mode and live preview. */
+.markdown-source-view .cm-keyword,
+.cm-s-obsidian .cm-keyword {
+  color: var(--code-keyword);
+}
+.markdown-source-view .cm-string,
+.cm-s-obsidian .cm-string {
+  color: var(--code-string);
+}
+.markdown-source-view .cm-comment,
+.cm-s-obsidian .cm-comment {
+  color: var(--code-comment);
+}
+.markdown-source-view .cm-function,
+.markdown-source-view .cm-def:not(.cm-hmd-frontmatter),
+.cm-s-obsidian .cm-function,
+.cm-s-obsidian .cm-def:not(.cm-hmd-frontmatter) {
+  color: var(--code-function);
+}
+.markdown-source-view .cm-operator,
+.cm-s-obsidian .cm-operator {
+  color: var(--code-operator);
+}
+.markdown-source-view .cm-number,
+.cm-s-obsidian .cm-number {
+  color: var(--code-value);
+}
+.markdown-source-view .cm-atom,
+.markdown-source-view .cm-builtin,
+.cm-s-obsidian .cm-atom,
+.cm-s-obsidian .cm-builtin {
+  color: var(--code-tag);
+}
+.markdown-source-view .cm-variable-2,
+.markdown-source-view .cm-variable-3,
+.markdown-source-view .cm-parameter,
+.cm-s-obsidian .cm-variable-2,
+.cm-s-obsidian .cm-variable-3,
+.cm-s-obsidian .cm-parameter {
+  color: var(--code-parameter);
+}
+.markdown-source-view .cm-property,
+.markdown-source-view .cm-qualifier,
+.cm-s-obsidian .cm-property,
+.cm-s-obsidian .cm-qualifier {
+  color: var(--code-property);
+}
+.markdown-source-view .cm-type,
+.markdown-source-view [class~=cm-typeName],
+.markdown-source-view [class~=cm-className],
+.cm-s-obsidian .cm-type,
+.cm-s-obsidian [class~=cm-typeName],
+.cm-s-obsidian [class~=cm-className] {
+  color: var(--code-type);
+}
+.markdown-source-view .cm-tag,
+.cm-s-obsidian .cm-tag {
+  color: var(--code-tag);
+}
+.markdown-source-view .cm-attribute,
+.cm-s-obsidian .cm-attribute {
+  color: var(--code-type);
+}
+.markdown-source-view .cm-meta,
+.markdown-source-view .cm-punctuation,
+.cm-s-obsidian .cm-meta,
+.cm-s-obsidian .cm-punctuation {
+  color: var(--code-punctuation);
+}
+.markdown-source-view .cm-variable,
+.cm-s-obsidian .cm-variable {
+  color: var(--code-normal);
 }
 
 .prompt {

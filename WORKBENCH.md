@@ -74,7 +74,7 @@ Chrome installation and writes `tests/visual/workbench-states.png`.
 
 ## Obsidian installation and rollback
 
-1. Build `theme.css` and copy it with `manifest.json` into
+1. Build `theme.css` and copy it with `manifest.json` and `screenshot.png` into
    `.obsidian/themes/Catppuccin Workbench/`.
 2. Select **Catppuccin Workbench** and force reload Obsidian from the View menu.
 3. Disable `file-browser-neutral-states` and `ui-button-states`.
