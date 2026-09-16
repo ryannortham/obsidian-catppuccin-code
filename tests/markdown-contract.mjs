@@ -66,6 +66,13 @@ for (const [name, token] of Object.entries(defaults)) {
     new RegExp(`id: ctp-${name}[\\s\\S]*?default: var\\(--ctp-${token}\\)`),
     `Style Settings default ctp-${name} must be ctp-${token}`,
   );
+  const settingBlock = settings.match(
+    new RegExp(`\\n    id: ctp-${name}\\s[\\s\\S]*?(?=\\n  -\\n    id:|\\n  \\*/)`),
+  )?.[0];
+  assert(
+    settingBlock?.includes(`value: var(--ctp-${token})`),
+    `Style Settings ctp-${name} must expose its default as an option`,
+  );
 }
 
 has(typography, /--bold-color: rgb\(var\(--ctp-bold, var\(--ctp-text\)\)\)/, "Bold prose must default to Text");

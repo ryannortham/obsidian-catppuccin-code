@@ -9,7 +9,7 @@ Obsidian workbench interaction states as a coherent theme baseline.
   `1316e03af5c31964116661ab08e7784bfa1d00b3`.
 - Upstream and installed Obsidian manifest version: `0.4.49`.
 - Baseline review build: `pnpm exec sass scss/main.scss:theme.css`.
-- Current build SHA-256: `75ef309ede9d80e8b7c209875d100d0e94bf9a518c61a2321a1fb4dedd8aa85c`.
+- Current build SHA-256: `1873de12be0c8ea5fc7840201111faf6f3a7f07d214e522bcfac49b042b4051e`.
 - pnpm 11 requires the locked `@parcel/watcher` build to be explicitly allowed;
   `pnpm-workspace.yaml` records that reviewed dependency.
 
@@ -70,7 +70,9 @@ Obsidian exposes a matching role. Unclassified code remains Text; Markdown
 syntax selectors are scoped to Reading View and Live Preview code surfaces.
 The generated artifact is installed at
 `.obsidian/themes/Catppuccin Workbench/theme.css` and is byte-identical to the
-reviewed build.
+reviewed build. Every `variable-select` default is also present in its options
+list, so Style Settings can render and restore the default rather than showing a
+blank selector.
 
 Every workbench role resolves to a token in the active Catppuccin palette.
 Style Settings selects the flavor and accent classes; it does not disable the

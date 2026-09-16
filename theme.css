@@ -817,6 +817,9 @@ settings:
         label: Lavender
         value: var(--ctp-lavender)
       -
+        label: Overlay 1
+        value: var(--ctp-overlay1)
+      -
         label: White
         value: var(--ctp-text)
       -
@@ -875,6 +878,9 @@ settings:
       -
         label: Lavender
         value: var(--ctp-lavender)
+      -
+        label: Subtext 1
+        value: var(--ctp-subtext1)
       -
         label: White
         value: var(--ctp-text)
@@ -1235,6 +1241,9 @@ settings:
       -
         label: Lavender
         value: var(--ctp-lavender)
+      -
+        label: Subtext 1
+        value: var(--ctp-subtext1)
       -
         label: White
         value: var(--ctp-text)
