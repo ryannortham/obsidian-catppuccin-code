@@ -568,8 +568,7 @@ body {
 
   /* Color mappings ------------------------ */
 
-  /* Accent HSL values */
-  /* Obsidian's legacy accent channels mirror Mocha Mauve (#cba6f7). */
+  /* Accent HSL values: overridden by each Catppuccin flavor block. */
   --accent-h: 267;
   --accent-s: 84%;
   --accent-l: 81%;

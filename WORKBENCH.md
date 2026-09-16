@@ -1,7 +1,7 @@
 # Catppuccin Workbench
 
-This fork keeps Catppuccin's palette intact while defining Obsidian's Mocha
-workbench interaction states as a coherent theme baseline.
+This fork keeps Catppuccin's palette intact while defining flavor-relative
+Obsidian workbench interaction states as a coherent theme baseline.
 
 ## Baseline
 
@@ -28,27 +28,26 @@ workbench interaction states as a coherent theme baseline.
 partial. Its component-local selectors use the normal cascade and contain no
 `!important` declarations. Generated CSS is never the edit target.
 
-## Mocha workbench roles
+## Flavor-relative workbench roles
 
-| Semantic role | Mocha value |
+| Semantic role | Active palette token |
 | --- | --- |
-| Icon foreground | `#cba6f7` |
-| Focus border | `#cba6f7` |
-| Active/inactive selection | `#313244` |
-| List hover | `#31324480` |
-| Active tree guide | `#9399b2` |
-| Inactive tree guide | `#45475a` |
-| Active editor tab | `#1e1e2e` |
-| Inactive editor tab | `#181825` |
-| Editor-tab hover | `#313244` (Surface0) |
-| Active editor-tab foreground | `#cba6f7` |
-| Close-button hover | `#45475a` (Surface1, distinct from Surface0 editor-tab hover) |
+| Icon foreground | `--ctp-mauve` |
+| Focus border | `--ctp-mauve` |
+| Active/inactive selection | `--ctp-surface0` |
+| List hover | `--ctp-surface0` at 50% |
+| Active tree guide | `--ctp-overlay2` |
+| Inactive tree guide | `--ctp-surface1` |
+| Active editor tab | `--ctp-base` |
+| Inactive editor tab | `--ctp-mantle` |
+| Editor-tab hover | `--ctp-surface0` |
+| Active editor-tab foreground | `--ctp-mauve` |
+| Close-button hover | `--ctp-surface1` (distinct from editor-tab hover) |
 
-Every workbench role resolves to a token in the Catppuccin Mocha palette. Keep
-component-state choices in semantic role variables; do not introduce
-non-palette color literals. Checklist SVG data images cannot inherit CSS custom
-properties, so their encoded Mocha Crust fill is the sole palette-valued literal
-exception; the contract resolves it against the palette.
+Every workbench role resolves to a token in the active Catppuccin palette.
+Style Settings selects the flavor and accent classes; it does not disable the
+Workbench contract. Keep component-state choices in semantic role variables and
+do not introduce flavor-specific color literals.
 
 ## Compatibility boundary
 
@@ -68,7 +67,9 @@ pnpm run test:visual
 pnpm run test:visual:check
 ```
 
-The contract test validates the theme's declared Mocha workbench roles directly.
+The contract test validates the theme's declared workbench roles against Latte,
+Frappé, Macchiato, and Mocha palette blocks directly, including the
+Style-Settings-enabled body classes.
 The visual command renders `tests/fixtures/workbench-states.html` with the local
 Chrome installation and writes `tests/visual/workbench-states.png`.
 

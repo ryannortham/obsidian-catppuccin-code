@@ -20,11 +20,12 @@ $ctp-workbench-list-hover-selectors: (
 );
 
 /*
- * Catppuccin Workbench defines Obsidian's Mocha interaction states. Palette
- * values remain in Style Settings;
- * these variables describe component roles rather than new palette colors.
+ * Catppuccin Workbench defines palette-relative interaction states. Style
+ * Settings supplies the active flavor's palette values; these variables
+ * describe component roles rather than new palette colors.
  */
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
+body.theme-dark,
+body.theme-light {
   --ctp-workbench-icon-foreground: rgb(var(--ctp-mauve));
   --ctp-workbench-focus-border: rgb(var(--ctp-mauve));
   --ctp-workbench-list-selection-background: rgb(var(--ctp-surface0));

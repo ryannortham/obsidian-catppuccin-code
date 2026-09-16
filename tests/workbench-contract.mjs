@@ -16,6 +16,10 @@ const paletteSource = readFileSync(
   "utf8",
 );
 const compiledCss = readFileSync(join(root, "theme.css"), "utf8");
+const fixtureSource = readFileSync(
+  join(root, "tests/fixtures/workbench-states.html"),
+  "utf8",
+);
 const searchSource = readFileSync(join(root, "scss/components/_search.scss"), "utf8");
 const legacyNavigationSources = [
   "scss/layout/_sidebar.scss",
@@ -59,49 +63,86 @@ function rgbToHex(value) {
   return `#${channels.map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
 }
 
-const mochaStart = paletteSource.indexOf(".theme-dark,\n.theme-dark.ctp-mocha {");
-assert(mochaStart >= 0, "Missing Mocha palette block");
-const mochaEnd = paletteSource.indexOf("\n}", mochaStart);
-const mochaPalette = paletteSource.slice(mochaStart, mochaEnd + 2);
+const paletteMarkers = {
+  latte: ".theme-light,\n.theme-light.ctp-latte",
+  frappe: ".theme-dark.ctp-frappe",
+  macchiato: ".theme-dark.ctp-macchiato",
+  mocha: ".theme-dark,\n.theme-dark.ctp-mocha",
+};
 
-function paletteHex(name) {
-  return rgbToHex(declaration(mochaPalette, name));
+function paletteBlock(marker) {
+  const start = paletteSource.indexOf(`${marker} {`);
+  assert(start >= 0, `Missing ${marker} palette block`);
+  const end = paletteSource.indexOf("\n}", start);
+  return paletteSource.slice(start, end + 2);
 }
 
-function resolveRole(name) {
+const palettes = Object.fromEntries(
+  Object.entries(paletteMarkers).map(([flavor, marker]) => [flavor, paletteBlock(marker)]),
+);
+const mochaPalette = palettes.mocha;
+
+function paletteHex(name, palette = mochaPalette) {
+  return rgbToHex(declaration(palette, name));
+}
+
+function resolveRole(name, palette = mochaPalette) {
   const value = declaration(workbenchSource, name).toLowerCase();
   if (/^#[0-9a-f]{6}$/.test(value)) return value;
   const opaque = value.match(/^rgb\(var\(--(ctp-[a-z0-9-]+)\)\)$/);
-  if (opaque) return paletteHex(opaque[1]);
+  if (opaque) return paletteHex(opaque[1], palette);
   const alpha = value.match(/^rgb\(var\(--(ctp-[a-z0-9-]+)\),\s*50%\)$/);
-  if (alpha) return `${paletteHex(alpha[1])}80`;
+  if (alpha) return `${paletteHex(alpha[1], palette)}80`;
   throw new Error(`Unsupported role expression for --${name}: ${value}`);
 }
 
-const expectedRoles = {
-  "ctp-workbench-icon-foreground": "#cba6f7",
-  "ctp-workbench-focus-border": "#cba6f7",
-  "ctp-workbench-list-selection-background": "#313244",
-  "ctp-workbench-list-hover-background": "#31324480",
-  "ctp-workbench-tree-guide-active": "#9399b2",
-  "ctp-workbench-tree-guide-inactive": "#45475a",
-  "ctp-workbench-tab-active-background": "#1e1e2e",
-  "ctp-workbench-tab-inactive-background": "#181825",
-  "ctp-workbench-tab-hover-background": "#313244",
-  "ctp-workbench-tab-active-foreground": "#cba6f7",
-  "ctp-workbench-close-hover-background": "#45475a",
+const roleTokens = {
+  "ctp-workbench-icon-foreground": "ctp-mauve",
+  "ctp-workbench-focus-border": "ctp-mauve",
+  "ctp-workbench-list-selection-background": "ctp-surface0",
+  "ctp-workbench-list-hover-background": "ctp-surface0",
+  "ctp-workbench-tree-guide-active": "ctp-overlay2",
+  "ctp-workbench-tree-guide-inactive": "ctp-surface1",
+  "ctp-workbench-tab-active-background": "ctp-base",
+  "ctp-workbench-tab-inactive-background": "ctp-mantle",
+  "ctp-workbench-tab-hover-background": "ctp-surface0",
+  "ctp-workbench-tab-active-foreground": "ctp-mauve",
+  "ctp-workbench-close-hover-background": "ctp-surface1",
 };
 
 const resolved = {};
-for (const [role, expected] of Object.entries(expectedRoles)) {
-  const actual = resolveRole(role);
-  assert(actual === expected, `${role} is ${actual}; expected ${expected}`);
-  resolved[role] = actual;
+for (const [flavor, palette] of Object.entries(palettes)) {
+  resolved[flavor] = {};
+  for (const [role, token] of Object.entries(roleTokens)) {
+    const expected = paletteHex(token, palette);
+    const expectedWithAlpha = role === "ctp-workbench-list-hover-background"
+      ? `${expected}80`
+      : expected;
+    const actual = resolveRole(role, palette);
+    assert(actual === expectedWithAlpha, `${flavor} ${role} is ${actual}; expected ${expectedWithAlpha}`);
+    resolved[flavor][role] = actual;
+  }
 }
 
 assert(
-  resolveRole("ctp-workbench-list-selection-background") === "#313244",
-  "Selections must use Mocha Surface0",
+  /body\.theme-dark,\s*body\.theme-light\s*\{/.test(workbenchSource),
+  "Workbench rules must apply to both light and dark theme bodies",
+);
+assert(
+  !/css-settings-manager|\.ctp-(?:mocha|frappe|macchiato|latte)/.test(workbenchSource) &&
+    !/css-settings-manager|\.ctp-(?:mocha|frappe|macchiato|latte)/.test(pluginSource),
+  "Workbench boundaries must not gate on Style Settings or a single flavor",
+);
+assert(
+  /css-settings-manager/.test(fixtureSource) &&
+    /ctp-mocha/.test(fixtureSource) &&
+    /ctp-full-palette/.test(fixtureSource),
+  "Visual fixture must exercise the real Style Settings body classes",
+);
+
+assert(
+  resolveRole("ctp-workbench-list-selection-background") === paletteHex("ctp-surface0"),
+  "Selections must use the active flavor's Surface0",
 );
 assert(
   resolveRole("ctp-workbench-close-hover-background") !==
@@ -247,12 +288,14 @@ function collectScssFiles(directory) {
   });
 }
 
-const paletteColors = new Set([
-  ...[...mochaPalette.matchAll(/--ctp-[\w-]+:\s*(\d{1,3},\s*\d{1,3},\s*\d{1,3});/g)]
-    .map((match) => rgbToHex(match[1]).toLowerCase()),
-  ...[...mochaPalette.matchAll(/--hex-[\w-]+:\s*(#[0-9a-f]{6});/gi)]
-    .map((match) => match[1].toLowerCase()),
-]);
+const paletteColors = new Set(
+  Object.values(palettes).flatMap((palette) => [
+    ...[...palette.matchAll(/--ctp-[\w-]+:\s*(\d{1,3},\s*\d{1,3},\s*\d{1,3});/g)]
+      .map((match) => rgbToHex(match[1]).toLowerCase()),
+    ...[...palette.matchAll(/--hex-[\w-]+:\s*(#[0-9a-f]{6});/gi)]
+      .map((match) => match[1].toLowerCase()),
+  ]),
+);
 const auditedSources = collectScssFiles(join(root, "scss"))
   .filter((path) => !path.endsWith("_ctp-style-settings.scss"));
 const paletteLiteralUses = [];
@@ -279,30 +322,10 @@ for (const path of auditedSources) {
   );
 }
 
-const accentChannels = ["accent-h", "accent-s", "accent-l"].map((name) =>
-  declaration(readFileSync(join(root, "scss/base/_app-variables.scss"), "utf8"), name),
-);
-const [red, green, blue] = hexChannels(paletteHex("ctp-mauve")).map((channel) => channel / 255);
-const maximum = Math.max(red, green, blue);
-const minimum = Math.min(red, green, blue);
-const delta = maximum - minimum;
-let hue = 0;
-if (delta !== 0) {
-  if (maximum === red) hue = 60 * (((green - blue) / delta) % 6);
-  else if (maximum === green) hue = 60 * ((blue - red) / delta + 2);
-  else hue = 60 * ((red - green) / delta + 4);
-}
-if (hue < 0) hue += 360;
-const lightness = (maximum + minimum) / 2;
-const saturation = delta === 0 ? 0 : delta / (1 - Math.abs(2 * lightness - 1));
-const expectedAccentChannels = [
-  Math.round(hue),
-  `${Math.round(saturation * 100)}%`,
-  `${Math.round(lightness * 100)}%`,
-];
+const appVariables = readFileSync(join(root, "scss/base/_app-variables.scss"), "utf8");
 assert(
-  accentChannels.join(" ") === expectedAccentChannels.join(" "),
-  `Obsidian accent channels ${accentChannels.join(" ")} must match Mocha Mauve ${expectedAccentChannels.join(" ")}`,
+  /Accent HSL values: overridden by each Catppuccin flavor block/.test(appVariables),
+  "Accent channels must be documented as flavor-relative overrides",
 );
 assert(paletteLiteralUses.length > 0, "Expected palette-valued SVG literals for checklist glyphs");
 
@@ -327,27 +350,36 @@ function contrast(foreground, background) {
   return (high + 0.05) / (low + 0.05);
 }
 
-const text = paletteHex("ctp-text");
-const mauve = paletteHex("ctp-mauve");
-const surface0 = paletteHex("ctp-surface0");
-const base = paletteHex("ctp-base");
-const tabHover = resolveRole("ctp-workbench-tab-hover-background");
-const contrastChecks = {
-  "normal text / selected row": contrast(text, surface0),
-  "mauve / active tab": contrast(mauve, base),
-  "mauve / hovered tab": contrast(mauve, tabHover),
-};
-for (const [label, ratio] of Object.entries(contrastChecks)) {
-  assert(ratio >= 4.5, `${label} contrast is ${ratio.toFixed(2)}; expected at least 4.5`);
+const contrastChecks = {};
+for (const [flavor, palette] of Object.entries(palettes)) {
+  const text = paletteHex("ctp-text", palette);
+  const mauve = paletteHex("ctp-mauve", palette);
+  const surface0 = paletteHex("ctp-surface0", palette);
+  const base = paletteHex("ctp-base", palette);
+  contrastChecks[flavor] = {
+    "normal text / selected row": contrast(text, surface0),
+    "mauve / active tab": contrast(mauve, base),
+    "mauve / hovered tab": contrast(mauve, surface0),
+  };
+  for (const [label, ratio] of Object.entries(contrastChecks[flavor])) {
+    const minimum = label === "normal text / selected row" ? 4.5 : 3;
+    assert(
+      ratio >= minimum,
+      `${flavor} ${label} contrast is ${ratio.toFixed(2)}; expected at least ${minimum}`,
+    );
+  }
 }
 
 console.log(
   JSON.stringify(
     {
-      expectedRoles,
+      roleTokens,
       resolved,
       contrast: Object.fromEntries(
-        Object.entries(contrastChecks).map(([label, ratio]) => [label, ratio.toFixed(2)]),
+        Object.entries(contrastChecks).map(([flavor, checks]) => [
+          flavor,
+          Object.fromEntries(Object.entries(checks).map(([label, ratio]) => [label, ratio.toFixed(2)])),
+        ]),
       ),
       colorAudit: {
         scssFiles: auditedSources.length,

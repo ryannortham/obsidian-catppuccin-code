@@ -862,6 +862,9 @@ settings:
 
 .theme-light,
 .theme-light.ctp-latte {
+  --accent-h: 266;
+  --accent-s: 85%;
+  --accent-l: 58%;
   --ctp-rosewater: 220, 138, 120;
   --ctp-flamingo: 221, 120, 120;
   --ctp-pink: 234, 118, 203;
@@ -902,6 +905,9 @@ settings:
 }
 
 .theme-dark.ctp-frappe {
+  --accent-h: 277;
+  --accent-s: 59%;
+  --accent-l: 76%;
   --ctp-rosewater: 242, 213, 207;
   --ctp-flamingo: 238, 190, 190;
   --ctp-pink: 244, 184, 228;
@@ -942,6 +948,9 @@ settings:
 }
 
 .theme-dark.ctp-macchiato {
+  --accent-h: 267;
+  --accent-s: 83%;
+  --accent-l: 80%;
   --ctp-rosewater: 244, 219, 214;
   --ctp-flamingo: 240, 198, 198;
   --ctp-pink: 245, 189, 230;
@@ -983,6 +992,9 @@ settings:
 
 .theme-dark,
 .theme-dark.ctp-mocha {
+  --accent-h: 267;
+  --accent-s: 84%;
+  --accent-l: 81%;
   --ctp-rosewater: 245, 224, 220;
   --ctp-flamingo: 242, 205, 205;
   --ctp-pink: 245, 194, 231;

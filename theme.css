@@ -511,8 +511,7 @@ body {
   /* Workspace */
   --workspace-background-translucent: rgb(var(--mono-rgb-0), 60%);
   /* Color mappings ------------------------ */
-  /* Accent HSL values */
-  /* Obsidian's legacy accent channels mirror Mocha Mauve (#cba6f7). */
+  /* Accent HSL values: overridden by each Catppuccin flavor block. */
   --accent-h: 267;
   --accent-s: 84%;
   --accent-l: 81%;
@@ -1406,6 +1405,9 @@ settings:
 */
 .theme-light,
 .theme-light.ctp-latte {
+  --accent-h: 266;
+  --accent-s: 85%;
+  --accent-l: 58%;
   --ctp-rosewater: 220, 138, 120;
   --ctp-flamingo: 221, 120, 120;
   --ctp-pink: 234, 118, 203;
@@ -1446,6 +1448,9 @@ settings:
 }
 
 .theme-dark.ctp-frappe {
+  --accent-h: 277;
+  --accent-s: 59%;
+  --accent-l: 76%;
   --ctp-rosewater: 242, 213, 207;
   --ctp-flamingo: 238, 190, 190;
   --ctp-pink: 244, 184, 228;
@@ -1486,6 +1491,9 @@ settings:
 }
 
 .theme-dark.ctp-macchiato {
+  --accent-h: 267;
+  --accent-s: 83%;
+  --accent-l: 80%;
   --ctp-rosewater: 244, 219, 214;
   --ctp-flamingo: 240, 198, 198;
   --ctp-pink: 245, 189, 230;
@@ -1527,6 +1535,9 @@ settings:
 
 .theme-dark,
 .theme-dark.ctp-mocha {
+  --accent-h: 267;
+  --accent-s: 84%;
+  --accent-l: 81%;
   --ctp-rosewater: 245, 224, 220;
   --ctp-flamingo: 242, 205, 205;
   --ctp-pink: 245, 194, 231;
@@ -3126,11 +3137,12 @@ button.mod-cta:hover {
 }
 
 /*
- * Catppuccin Workbench defines Obsidian's Mocha interaction states. Palette
- * values remain in Style Settings;
- * these variables describe component roles rather than new palette colors.
+ * Catppuccin Workbench defines palette-relative interaction states. Style
+ * Settings supplies the active flavor's palette values; these variables
+ * describe component roles rather than new palette colors.
  */
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
+body.theme-dark,
+body.theme-light {
   --ctp-workbench-icon-foreground: rgb(var(--ctp-mauve));
   --ctp-workbench-focus-border: rgb(var(--ctp-mauve));
   --ctp-workbench-list-selection-background: rgb(var(--ctp-surface0));
@@ -3145,11 +3157,13 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
   --ctp-workbench-close-hover-background: rgb(var(--ctp-surface1));
   /* Tree rows and Settings navigation share one selection and hover contract. */
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item) {
+body.theme-dark :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item),
+body.theme-light :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item) {
   --nav-item-radius: 0;
   border-radius: 0;
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item):is(.is-active, .is-selected) {
+body.theme-dark :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item):is(.is-active, .is-selected),
+body.theme-light :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item):is(.is-active, .is-selected) {
   --nav-item-background-active: var(--ctp-workbench-list-selection-background);
   --nav-item-background-selected: var(--ctp-workbench-list-selection-background);
   --nav-item-color-active: var(--text-normal);
@@ -3158,13 +3172,18 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(:is(
   color: var(--text-normal);
 }
 @media (hover: hover) {
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato):not(.is-grabbing) :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self.is-clickable:not(.is-active, .is-selected):hover, .mod-settings .vertical-tab-nav-item:not(.is-active, .is-selected):hover, .mod-settings .horizontal-tab-nav-item:not(.is-active, .is-selected):hover) {
+  body.theme-dark:not(.is-grabbing) :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self.is-clickable:not(.is-active, .is-selected):hover, .mod-settings .vertical-tab-nav-item:not(.is-active, .is-selected):hover, .mod-settings .horizontal-tab-nav-item:not(.is-active, .is-selected):hover),
+  body.theme-light:not(.is-grabbing) :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self.is-clickable:not(.is-active, .is-selected):hover, .mod-settings .vertical-tab-nav-item:not(.is-active, .is-selected):hover, .mod-settings .horizontal-tab-nav-item:not(.is-active, .is-selected):hover) {
     --nav-item-background-hover: var(--ctp-workbench-list-hover-background);
     --nav-item-color-hover: var(--text-normal);
     background-color: var(--ctp-workbench-list-hover-background);
     color: var(--text-normal);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato):not(.is-grabbing) .workspace-leaf-content:is([data-type=tag],
+  body.theme-dark:not(.is-grabbing) .workspace-leaf-content:is([data-type=tag],
+  [data-type=all-properties],
+  [data-type=backlink],
+  [data-type=outgoing-link]) .tree-item-self.is-clickable:not(.is-active, .is-selected):hover :is(.tree-item-icon, .tree-item-icon svg, .tree-item-flair),
+  body.theme-light:not(.is-grabbing) .workspace-leaf-content:is([data-type=tag],
   [data-type=all-properties],
   [data-type=backlink],
   [data-type=outgoing-link]) .tree-item-self.is-clickable:not(.is-active, .is-selected):hover :is(.tree-item-icon, .tree-item-icon svg, .tree-item-flair) {
@@ -3172,19 +3191,23 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(:is(
     background-color: transparent;
     color: var(--text-muted);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato):not(.is-grabbing) .workspace-leaf-content[data-type=outgoing-link] .tree-item-self.is-clickable:not(.is-active, .is-selected):hover .tree-item-inner-subtext {
+  body.theme-dark:not(.is-grabbing) .workspace-leaf-content[data-type=outgoing-link] .tree-item-self.is-clickable:not(.is-active, .is-selected):hover .tree-item-inner-subtext,
+  body.theme-light:not(.is-grabbing) .workspace-leaf-content[data-type=outgoing-link] .tree-item-self.is-clickable:not(.is-active, .is-selected):hover .tree-item-inner-subtext {
     color: var(--text-muted);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato):not(.is-grabbing) .workspace-leaf-content[data-type=backlink] .search-result-file-match:hover {
+  body.theme-dark:not(.is-grabbing) .workspace-leaf-content[data-type=backlink] .search-result-file-match:hover,
+  body.theme-light:not(.is-grabbing) .workspace-leaf-content[data-type=backlink] .search-result-file-match:hover {
     background-color: var(--ctp-workbench-list-hover-background);
     color: var(--text-normal);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato):not(.is-grabbing) .workspace-leaf-content[data-type=backlink] .search-result-file-match:hover .search-result-file-matched-text {
+  body.theme-dark:not(.is-grabbing) .workspace-leaf-content[data-type=backlink] .search-result-file-match:hover .search-result-file-matched-text,
+  body.theme-light:not(.is-grabbing) .workspace-leaf-content[data-type=backlink] .search-result-file-match:hover .search-result-file-matched-text {
     background-color: transparent;
     color: inherit;
   }
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
+body.theme-dark,
+body.theme-light {
   /*
    * Obsidian paints native tree guides below descendant row backgrounds.
    * Repaint the one-pixel guide above rows, and use :has() so every guide in
@@ -3192,7 +3215,8 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
    * Outline share this nested tree structure and guide contract.
    */
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) {
+body.theme-dark :is(.nav-files-container, .workspace-leaf-content[data-type=outline]),
+body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) {
   --indentation-guide-color: var(--ctp-workbench-tree-guide-inactive);
   --indentation-guide-color-active: var(--ctp-workbench-tree-guide-active);
   --indentation-guide-width: 1px;
@@ -3202,11 +3226,13 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(.nav
   --nav-indentation-guide-width: 1px;
   --nav-item-radius: 0;
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) .tree-item-children {
+body.theme-dark :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) .tree-item-children,
+body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) .tree-item-children {
   position: relative;
   border-inline-start-color: transparent;
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) .tree-item-children::before {
+body.theme-dark :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) .tree-item-children::before,
+body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) .tree-item-children::before {
   position: absolute;
   z-index: 1;
   width: var(--nav-indentation-guide-width);
@@ -3216,32 +3242,43 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(.nav
   inset-inline-start: calc(-1 * var(--nav-indentation-guide-width));
   pointer-events: none;
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) .tree-item-children:has(.tree-item-self:is(:hover, .is-active, .is-selected))::before {
+body.theme-dark :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) .tree-item-children:has(.tree-item-self:is(:hover, .is-active, .is-selected))::before,
+body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) .tree-item-children:has(.tree-item-self:is(:hover, .is-active, .is-selected))::before {
   background-color: var(--ctp-workbench-tree-guide-active);
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) :is(.collapse-icon, .collapse-icon svg) {
+body.theme-dark :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) :is(.collapse-icon, .collapse-icon svg),
+body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) :is(.collapse-icon, .collapse-icon svg) {
   --icon-color: var(--ctp-workbench-icon-foreground);
   color: var(--ctp-workbench-icon-foreground);
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
+body.theme-dark,
+body.theme-light {
   /* Core controls share one hover treatment; close and destructive controls are excluded. */
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active, .is-selected, [aria-pressed=true]) {
+body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active, .is-selected, [aria-pressed=true]),
+body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active, .is-selected, [aria-pressed=true]) {
   --background-modifier-active-hover: var(--ctp-workbench-tab-active-background);
   --icon-color-active: var(--ctp-workbench-icon-foreground);
   background-color: var(--ctp-workbench-tab-active-background);
   color: var(--ctp-workbench-icon-foreground);
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active, .is-selected, [aria-pressed=true]) svg {
+body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active, .is-selected, [aria-pressed=true]) svg,
+body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active, .is-selected, [aria-pressed=true]) svg {
   background-color: transparent;
   color: var(--ctp-workbench-icon-foreground);
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):focus-visible {
+body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):focus-visible,
+body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):focus-visible {
   outline: 1px solid var(--ctp-workbench-focus-border);
   outline-offset: -1px;
 }
 @media (hover: hover) {
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):not(.is-active,
+  body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):not(.is-active,
+  .is-selected,
+  [aria-pressed=true],
+  [aria-disabled=true],
+  :disabled):hover,
+  body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):not(.is-active,
   .is-selected,
   [aria-pressed=true],
   [aria-disabled=true],
@@ -3251,7 +3288,12 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :where(:
     background-color: var(--ctp-workbench-list-hover-background);
     color: var(--ctp-workbench-icon-foreground);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):not(.is-active,
+  body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):not(.is-active,
+  .is-selected,
+  [aria-pressed=true],
+  [aria-disabled=true],
+  :disabled):hover svg,
+  body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):not(.is-active,
   .is-selected,
   [aria-pressed=true],
   [aria-disabled=true],
@@ -3259,7 +3301,10 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :where(:
     background-color: transparent;
     color: var(--ctp-workbench-icon-foreground);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active,
+  body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active,
+  .is-selected,
+  [aria-pressed=true]):not([aria-disabled=true], :disabled):hover,
+  body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active,
   .is-selected,
   [aria-pressed=true]):not([aria-disabled=true], :disabled):hover {
     --background-modifier-hover: var(--ctp-workbench-tab-active-background);
@@ -3268,64 +3313,86 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :where(:
     box-shadow: inset 0 0 4px rgb(var(--ctp-crust)), inset 0 0 6px rgb(var(--ctp-base));
     color: var(--ctp-workbench-icon-foreground);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active,
+  body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active,
+  .is-selected,
+  [aria-pressed=true]):not([aria-disabled=true], :disabled):hover svg,
+  body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active,
   .is-selected,
   [aria-pressed=true]):not([aria-disabled=true], :disabled):hover svg {
     background-color: transparent;
     color: var(--ctp-workbench-icon-foreground);
   }
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
+body.theme-dark,
+body.theme-light {
   /* Sidebar tabs share one boundary for the left and right sidedocks. */
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active), body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active) .workspace-tab-header-inner {
+body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active), body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active) .workspace-tab-header-inner,
+body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active),
+body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active) .workspace-tab-header-inner {
   --tab-text-color: var(--icon-color);
   background-color: transparent;
   color: var(--icon-color);
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .workspace-tab-header.is-active, body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .workspace-tab-header.is-active .workspace-tab-header-inner {
+body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active, body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active .workspace-tab-header-inner,
+body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active,
+body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active .workspace-tab-header-inner {
   --tab-text-color-active: var(--ctp-workbench-icon-foreground);
   background-color: var(--ctp-workbench-tab-active-background);
   color: var(--ctp-workbench-icon-foreground);
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .workspace-tab-header.is-active svg {
+body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active svg,
+body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active svg {
   background-color: transparent;
   color: var(--ctp-workbench-icon-foreground);
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .workspace-tab-header:focus-visible {
+body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:focus-visible,
+body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:focus-visible {
   outline: 1px solid var(--ctp-workbench-focus-border);
   outline-offset: -1px;
 }
 @media (hover: hover) {
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover, body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
+  body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover, body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner,
+  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover,
+  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
     --background-modifier-hover: var(--ctp-workbench-list-hover-background);
     --background-modifier-active-hover: var(--ctp-workbench-list-hover-background);
     --tab-text-color-hover: var(--ctp-workbench-icon-foreground);
     background-color: var(--ctp-workbench-list-hover-background);
     color: var(--ctp-workbench-icon-foreground);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-title, .workspace-tab-header-inner-icon, svg), body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
+  body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-title, .workspace-tab-header-inner-icon, svg), body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg),
+  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-title, .workspace-tab-header-inner-icon, svg),
+  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
     --icon-color-hover: var(--ctp-workbench-icon-foreground);
     background-color: transparent;
     color: var(--ctp-workbench-icon-foreground);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover, body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover .workspace-tab-header-inner {
+  body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover, body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover .workspace-tab-header-inner,
+  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover,
+  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover .workspace-tab-header-inner {
     --background-modifier-hover: var(--ctp-workbench-tab-active-background);
     --background-modifier-active-hover: var(--ctp-workbench-tab-active-background);
     background-color: var(--ctp-workbench-tab-active-background);
     color: var(--ctp-workbench-icon-foreground);
   }
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
+body.theme-dark,
+body.theme-light {
   /* Root editor tabs use stable surfaces regardless of pane focus. */
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header, body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner {
+body.theme-dark .workspace-split.mod-root .workspace-tab-header, body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner,
+body.theme-light .workspace-split.mod-root .workspace-tab-header,
+body.theme-light .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner {
   border-radius: 0;
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner::after {
+body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner::after,
+body.theme-light .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner::after {
   display: none;
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header:not(.is-active), body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner {
+body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active), body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner,
+body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active),
+body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner {
   --tab-text-color: var(--text-muted);
   --tab-text-color-active: var(--text-muted);
   --tab-text-color-focused: var(--text-muted);
@@ -3333,10 +3400,13 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspa
   background-color: var(--ctp-workbench-tab-inactive-background);
   color: var(--text-muted);
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header:not(.is-active) {
+body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active),
+body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active) {
   box-shadow: none;
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header.is-active, body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner {
+body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active, body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner,
+body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active,
+body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner {
   --tab-text-color: var(--ctp-workbench-tab-active-foreground);
   --tab-text-color-active: var(--ctp-workbench-tab-active-foreground);
   --tab-text-color-focused: var(--ctp-workbench-tab-active-foreground);
@@ -3344,33 +3414,43 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspa
   background-color: var(--ctp-workbench-tab-active-background);
   color: var(--ctp-workbench-tab-active-foreground);
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header.is-active {
+body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active,
+body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active {
   box-shadow: inset 0 1px 0 var(--ctp-workbench-focus-border);
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-title,
+body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-title,
+.workspace-tab-header-inner-close-button,
+.workspace-tab-header-inner-close-button svg),
+body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-title,
 .workspace-tab-header-inner-close-button,
 .workspace-tab-header-inner-close-button svg) {
   color: var(--ctp-workbench-tab-active-foreground);
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
+body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg),
+body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
   color: var(--text-normal);
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header:focus-visible {
+body.theme-dark .workspace-split.mod-root .workspace-tab-header:focus-visible,
+body.theme-light .workspace-split.mod-root .workspace-tab-header:focus-visible {
   outline: 1px solid var(--ctp-workbench-focus-border);
   outline-offset: -1px;
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button {
+body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button,
+body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button {
   display: flex;
   pointer-events: none;
   visibility: hidden;
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-close-button {
+body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-close-button,
+body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-close-button {
   pointer-events: auto;
   visibility: visible;
 }
 @media (hover: hover) {
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover,
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
+  body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover,
+  body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner,
+  body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover,
+  body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
     --background-modifier-hover: transparent;
     --background-modifier-active-hover: transparent;
     --tab-text-color: var(--ctp-workbench-icon-foreground);
@@ -3379,26 +3459,34 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspa
     background-color: var(--ctp-workbench-tab-hover-background);
     color: var(--ctp-workbench-icon-foreground);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-title,
+  body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-title,
+  .workspace-tab-header-inner-close-button,
+  .workspace-tab-header-inner-close-button svg),
+  body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-title,
   .workspace-tab-header-inner-close-button,
   .workspace-tab-header-inner-close-button svg) {
     color: var(--ctp-workbench-icon-foreground);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
+  body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg),
+  body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
     color: var(--text-normal);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner-close-button:hover {
+  body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner-close-button:hover,
+  body.theme-light .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner-close-button:hover {
     --background-modifier-hover: var(--ctp-workbench-close-hover-background);
     background-color: var(--ctp-workbench-close-hover-background);
     box-shadow: none;
     color: var(--text-normal);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner-close-button:hover svg {
+  body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner-close-button:hover svg,
+  body.theme-light .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner-close-button:hover svg {
     background-color: transparent;
     color: var(--text-normal);
   }
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-close-button:hover,
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-close-button:hover svg {
+  body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-close-button:hover,
+  body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-close-button:hover svg,
+  body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-close-button:hover,
+  body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-close-button:hover svg {
     color: var(--ctp-workbench-tab-active-foreground);
   }
 }
@@ -3677,10 +3765,12 @@ body.css-settings-manager:not(.is-phone, .ctp-full-palette) .vertical-tab-nav-it
  * Catppuccin Workbench compatibility boundary.
  * These selectors are plugin DOM contracts, not Obsidian core theme APIs.
  */
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .agent-client-session-manager .tree-item-self {
+body.theme-dark .agent-client-session-manager .tree-item-self,
+body.theme-light .agent-client-session-manager .tree-item-self {
   border-radius: 0;
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .agent-client-session-manager .tree-item-self:is(.is-active, .is-selected) {
+body.theme-dark .agent-client-session-manager .tree-item-self:is(.is-active, .is-selected),
+body.theme-light .agent-client-session-manager .tree-item-self:is(.is-active, .is-selected) {
   --nav-item-background-active: var(--ctp-workbench-list-selection-background);
   --nav-item-background-selected: var(--ctp-workbench-list-selection-background);
   --nav-item-color-active: var(--text-normal);
@@ -3689,15 +3779,18 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .agent-c
   color: var(--text-normal);
 }
 @media (hover: hover) {
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato):not(.is-grabbing) .agent-client-session-manager .tree-item-self.is-clickable:not(.is-active, .is-selected):hover {
+  body.theme-dark:not(.is-grabbing) .agent-client-session-manager .tree-item-self.is-clickable:not(.is-active, .is-selected):hover,
+  body.theme-light:not(.is-grabbing) .agent-client-session-manager .tree-item-self.is-clickable:not(.is-active, .is-selected):hover {
     --nav-item-background-hover: var(--ctp-workbench-list-hover-background);
     --nav-item-color-hover: var(--text-normal);
     background-color: var(--ctp-workbench-list-hover-background);
     color: var(--text-normal);
   }
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-tab-header .metadata-menu.fileclass-icon,
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) .workspace-tab-header .metadata-menu.fileclass-icon svg {
+body.theme-dark .workspace-tab-header .metadata-menu.fileclass-icon,
+body.theme-dark .workspace-tab-header .metadata-menu.fileclass-icon svg,
+body.theme-light .workspace-tab-header .metadata-menu.fileclass-icon,
+body.theme-light .workspace-tab-header .metadata-menu.fileclass-icon svg {
   color: rgb(var(--ctp-blue));
 }
 

@@ -177,10 +177,10 @@ section {
   white-space: nowrap;
 }
 
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
+body:is(.theme-dark, .theme-light)
   .workspace-split.mod-sidedock
   .workspace-tab-header.fixture-hover:not(.is-active),
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
+body:is(.theme-dark, .theme-light)
   .workspace-split.mod-sidedock
   .workspace-tab-header.fixture-hover:not(.is-active)
   .workspace-tab-header-inner {
@@ -188,10 +188,10 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
   color: var(--ctp-workbench-icon-foreground);
 }
 
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
+body:is(.theme-dark, .theme-light)
   .workspace-split.mod-root
   .workspace-tab-header.fixture-hover:not(.is-active),
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
+body:is(.theme-dark, .theme-light)
   .workspace-split.mod-root
   .workspace-tab-header.fixture-hover:not(.is-active)
   .workspace-tab-header-inner {
@@ -199,14 +199,14 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
   color: var(--ctp-workbench-icon-foreground);
 }
 
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
+body:is(.theme-dark, .theme-light)
   .workspace-split.mod-root
   .workspace-tab-header.fixture-hover:not(.is-active)
   .workspace-tab-header-inner-close-button {
   visibility: visible;
 }
 
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
+body:is(.theme-dark, .theme-light)
   .workspace-split.mod-root
   .workspace-tab-header.fixture-close-hover:not(.is-active)
   .workspace-tab-header-inner-close-button {

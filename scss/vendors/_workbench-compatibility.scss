@@ -2,7 +2,8 @@
  * Catppuccin Workbench compatibility boundary.
  * These selectors are plugin DOM contracts, not Obsidian core theme APIs.
  */
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
+body.theme-dark,
+body.theme-light {
   .agent-client-session-manager .tree-item-self {
     border-radius: 0;
 
