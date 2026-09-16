@@ -47,7 +47,7 @@
 
 .tree-item-self:is(.is-active, .is-selected)
   :is(.tree-item-icon, .tree-item-icon svg, .tree-item-flair) {
-  color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
+  color: var(--ctp-list-secondary-foreground, var(--text-on-accent));
 }
 
 @media (hover: hover) {

@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Catppuccin Workbench state matrix</title>
+    <title>Catppuccin Code state matrix</title>
     <link rel="stylesheet" href="../../theme.css" />
-    <link rel="stylesheet" href="workbench-fixture.css" />
+    <link rel="stylesheet" href="interface-fixture.css" />
   </head>
   <body class="theme-dark css-settings-manager ctp-mocha ctp-full-palette">
     <script>
@@ -23,14 +23,14 @@
       ].join(" ");
       document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".subtitle").textContent =
-          `Flavor-relative workbench roles · ${scenario}`;
+          `Flavor-relative interface roles · ${scenario}`;
       });
     </script>
     <main>
       <header>
-        <p>Catppuccin Workbench · Style Settings enabled</p>
+        <p>Catppuccin Code · Style Settings enabled</p>
         <h1>Interaction state matrix</h1>
-        <p class="subtitle">Flavor-relative workbench roles · mocha</p>
+        <p class="subtitle">Flavor-relative interface roles · mocha</p>
       </header>
 
       <section>
@@ -65,7 +65,7 @@
           <div class="workspace-leaf-content panel" data-type="tag">
             <h3>Tags</h3>
             <div class="tree-item-self is-clickable fixture-hover"><span class="tree-item-icon">#</span> design <span class="tree-item-flair">12</span></div>
-            <div class="tree-item-self is-clickable is-selected"><span class="tree-item-icon">#</span> workbench <span class="tree-item-flair">4</span></div>
+            <div class="tree-item-self is-clickable is-selected"><span class="tree-item-icon">#</span> interface <span class="tree-item-flair">4</span></div>
           </div>
           <div class="workspace-leaf-content panel" data-type="outgoing-link">
             <h3>Outgoing links</h3>
@@ -74,7 +74,7 @@
           </div>
           <div class="workspace-leaf-content panel" data-type="backlink">
             <h3>Backlinks</h3>
-            <div class="search-result-file-match fixture-hover">The <span class="search-result-file-matched-text">workbench</span> fork</div>
+            <div class="search-result-file-match fixture-hover">The <span class="search-result-file-matched-text">interface</span> fork</div>
             <div class="search-result-file-match">Mocha <span class="search-result-file-matched-text">tokens</span></div>
           </div>
         </div>
@@ -158,10 +158,10 @@
             <div class="tree-item-self is-clickable is-selected">Session row · selected</div>
           </div>
           <div class="panel token-grid">
-            <div><span style="--swatch: var(--ctp-workbench-list-selection-background)"></span>Selection</div>
-            <div><span style="--swatch: var(--ctp-workbench-list-hover-background)"></span>Hover</div>
-            <div><span style="--swatch: var(--ctp-workbench-icon-foreground)"></span>Mauve</div>
-            <div><span style="--swatch: var(--ctp-workbench-hover-background)"></span>Shared control/tab hover</div>
+            <div><span style="--swatch: var(--ctp-list-selection-background)"></span>Selection</div>
+            <div><span style="--swatch: var(--ctp-list-hover-background)"></span>Hover</div>
+            <div><span style="--swatch: var(--ctp-icon-foreground)"></span>Mauve</div>
+            <div><span style="--swatch: var(--ctp-hover-background)"></span>Shared control/tab hover</div>
           </div>
         </div>
       </section>

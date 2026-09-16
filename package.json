@@ -1,29 +1,32 @@
 {
-  "name": "catppuccin-obsidian-workbench",
-  "version": "0.4.49-workbench.1",
-  "description": "<h3 align=\"center\"> \t<img src=\"https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png\" width=\"100\" alt=\"Logo\"/><br/> \t<img src=\"https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png\" height=\"30\" width=\"0px\"/> \tCatppuccin for <a href=\"https://obsidian.md\">Obsidian</a> \t<img src=\"https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png\" height=\"30\" width=\"0px\"/> </h3>",
-  "main": "index.js",
+  "name": "obsidian-catppuccin-code",
+  "version": "1.0.0",
+  "description": "Catppuccin for Obsidian, reworked to match Catppuccin for VS Code.",
   "scripts": {
-    "build": "sass scss/main.scss:dist/catppuccin-workbench.css",
+    "build": "sass scss/main.scss:dist/catppuccin.css",
     "build:theme": "sass scss/main.scss:theme.css",
-    "lint": "stylelint scss/layout/_workbench.scss scss/vendors/_workbench-compatibility.scss",
-    "test": "node tests/workbench-contract.mjs && node tests/markdown-contract.mjs",
-    "test:visual": "node tests/render-workbench-fixture.mjs",
-    "test:visual:check": "node tests/render-workbench-fixture.mjs --check",
+    "lint": "stylelint scss/layout/_interface.scss scss/vendors/_plugin-compatibility.scss",
+    "test": "node tests/theme-contract.mjs && node tests/markdown-contract.mjs",
+    "test:visual": "node tests/render-interface-fixture.mjs",
+    "test:visual:check": "node tests/render-interface-fixture.mjs --check",
     "test:visual:markdown": "node tests/render-markdown-fixture.mjs",
     "test:visual:markdown:check": "node tests/render-markdown-fixture.mjs --check"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/catppuccin/obsidian.git"
+    "url": "git+https://github.com/ryannortham/obsidian-catppuccin-code.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "catppuccin",
+    "obsidian",
+    "theme"
+  ],
+  "author": "Ryan Northam",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/catppuccin/obsidian/issues"
+    "url": "https://github.com/ryannortham/obsidian-catppuccin-code/issues"
   },
-  "homepage": "https://github.com/catppuccin/obsidian#readme",
+  "homepage": "https://github.com/ryannortham/obsidian-catppuccin-code#readme",
   "packageManager": "pnpm@11.20.0",
   "engines": {
     "node": ">=23.0.0",

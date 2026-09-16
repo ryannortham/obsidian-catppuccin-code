@@ -3,12 +3,12 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const workbenchSource = readFileSync(
-  join(root, "scss/layout/_workbench.scss"),
+const interfaceSource = readFileSync(
+  join(root, "scss/layout/_interface.scss"),
   "utf8",
 );
 const pluginSource = readFileSync(
-  join(root, "scss/vendors/_workbench-compatibility.scss"),
+  join(root, "scss/vendors/_plugin-compatibility.scss"),
   "utf8",
 );
 const paletteSource = readFileSync(
@@ -17,7 +17,7 @@ const paletteSource = readFileSync(
 );
 const compiledCss = readFileSync(join(root, "theme.css"), "utf8");
 const fixtureSource = readFileSync(
-  join(root, "tests/fixtures/workbench-states.html"),
+  join(root, "tests/fixtures/interface-states.html"),
   "utf8",
 );
 const searchSource = readFileSync(join(root, "scss/components/_search.scss"), "utf8");
@@ -46,9 +46,16 @@ assert(
   existsSync(join(root, "screenshot.png")),
   "Theme package is missing the Obsidian Community themes preview screenshot.png",
 );
+assert(manifest.name === "Catppuccin Code", "Manifest must use the public theme name");
+assert(manifest.author === "Ryan Northam", "Manifest must identify the theme author");
+assert(/^\d+\.\d+\.\d+$/.test(manifest.version), "Manifest version must use x.y.z SemVer");
 assert(
-  manifest.repo && manifest.screenshot === "assets/screenshot.png",
-  "Manifest must provide the Community themes preview repository and screenshot path",
+  manifest.repo === "ryannortham/obsidian-catppuccin-code",
+  "Manifest must point to the renamed GitHub repository",
+);
+assert(
+  manifest.screenshot === "screenshot.png",
+  "Manifest must point to the bundled preview image",
 );
 
 function declaration(source, name) {
@@ -133,7 +140,7 @@ function paletteHex(name, palette = mochaPalette) {
 }
 
 function resolveRole(name, palette = mochaPalette) {
-  const value = declaration(workbenchSource, name).toLowerCase();
+  const value = declaration(interfaceSource, name).toLowerCase();
   if (/^#[0-9a-f]{6}$/.test(value)) return value;
   const opaque = value.match(/^rgb\(var\(--(ctp-[a-z0-9-]+)\)\)$/);
   if (opaque) return paletteHex(opaque[1], palette);
@@ -152,16 +159,16 @@ function resolveRole(name, palette = mochaPalette) {
 }
 
 const roleTokens = {
-  "ctp-workbench-icon-foreground": "ctp-mauve",
-  "ctp-workbench-focus-border": "ctp-mauve",
-  "ctp-workbench-list-selection-background": "ctp-surface0",
-  "ctp-workbench-list-hover-background": "ctp-surface0",
-  "ctp-workbench-hover-background": "ctp-base",
-  "ctp-workbench-tree-guide-active": "ctp-overlay2",
-  "ctp-workbench-tree-guide-inactive": "ctp-surface1",
-  "ctp-workbench-tab-active-background": "ctp-base",
-  "ctp-workbench-tab-active-foreground": "ctp-mauve",
-  "ctp-workbench-close-hover-background": "ctp-surface1",
+  "ctp-icon-foreground": "ctp-mauve",
+  "ctp-focus-border": "ctp-mauve",
+  "ctp-list-selection-background": "ctp-surface0",
+  "ctp-list-hover-background": "ctp-surface0",
+  "ctp-hover-background": "ctp-base",
+  "ctp-tree-guide-active": "ctp-overlay2",
+  "ctp-tree-guide-inactive": "ctp-surface1",
+  "ctp-tab-active-background": "ctp-base",
+  "ctp-tab-active-foreground": "ctp-mauve",
+  "ctp-close-hover-background": "ctp-surface1",
 };
 
 const resolved = {};
@@ -169,9 +176,9 @@ for (const [flavor, palette] of Object.entries(palettes)) {
   resolved[flavor] = {};
   for (const [role, token] of Object.entries(roleTokens)) {
     const expected = paletteHex(token, palette);
-    const alphaByRole = { "ctp-workbench-list-hover-background": 50 };
+    const alphaByRole = { "ctp-list-hover-background": 50 };
     const alpha = alphaByRole[role];
-    const expectedWithAlpha = role === "ctp-workbench-hover-background"
+    const expectedWithAlpha = role === "ctp-hover-background"
       ? lightenHex(expected, 0.05)
       : alpha
         ? `${expected}${Math.round(alpha * 255 / 100).toString(16).padStart(2, "0")}`
@@ -183,13 +190,13 @@ for (const [flavor, palette] of Object.entries(palettes)) {
 }
 
 assert(
-  /body\.theme-dark,\s*body\.theme-light\s*\{/.test(workbenchSource),
-  "Workbench rules must apply to both light and dark theme bodies",
+  /body\.theme-dark,\s*body\.theme-light\s*\{/.test(interfaceSource),
+  "interface rules must apply to both light and dark theme bodies",
 );
 assert(
-  !/css-settings-manager|\.ctp-(?:mocha|frappe|macchiato|latte)/.test(workbenchSource) &&
+  !/css-settings-manager|\.ctp-(?:mocha|frappe|macchiato|latte)/.test(interfaceSource) &&
     !/css-settings-manager|\.ctp-(?:mocha|frappe|macchiato|latte)/.test(pluginSource),
-  "Workbench boundaries must not gate on Style Settings or a single flavor",
+  "interface boundaries must not gate on Style Settings or a single flavor",
 );
 assert(
   /css-settings-manager/.test(fixtureSource) &&
@@ -201,106 +208,106 @@ assert(
 );
 
 assert(
-  resolveRole("ctp-workbench-list-selection-background") === paletteHex("ctp-surface0"),
+  resolveRole("ctp-list-selection-background") === paletteHex("ctp-surface0"),
   "Selections must use the active flavor's Surface0",
 );
 assert(
-  declaration(workbenchSource, "ctp-workbench-tab-active-background") ===
+  declaration(interfaceSource, "ctp-tab-active-background") ===
     "rgb(var(--ctp-base))" &&
-    declaration(workbenchSource, "ctp-workbench-tab-inactive-background") ===
+    declaration(interfaceSource, "ctp-tab-inactive-background") ===
       "color-mix(\n    in srgb,\n    var(--background-secondary) 50%,\n    rgb(var(--ctp-base)) 50%\n  )" &&
-    declaration(workbenchSource, "ctp-workbench-tab-strip-background") ===
+    declaration(interfaceSource, "ctp-tab-strip-background") ===
       "var(--background-secondary)" &&
     mixHex(paletteHex("ctp-mantle"), paletteHex("ctp-base")) === "#1b1b2a",
   "Opaque editor tabs must use Mantle, the Mantle/Base midpoint, and unchanged Base",
 );
 assert(
-  !/&\.is-translucent:not\(\.is-fullscreen\)\s*\{[^}]*--ctp-workbench-tab-(?:strip|inactive)-background:/s.test(
-    workbenchSource,
+  !/&\.is-translucent:not\(\.is-fullscreen\)\s*\{[^}]*--ctp-tab-(?:strip|inactive)-background:/s.test(
+    interfaceSource,
   ),
   "Translucency must not change the editor-tab strip or inactive-tab roles",
 );
 assert(
-  declaration(workbenchSource, "ctp-workbench-hover-background") ===
+  declaration(interfaceSource, "ctp-hover-background") ===
     "hsl(from rgb(var(--ctp-base)) h s calc(l + 5))" &&
-    resolveRole("ctp-workbench-hover-background") === "#28283d",
+    resolveRole("ctp-hover-background") === "#28283d",
   "Controls and editor tabs must share Catppuccin VS Code's Base +5% lightness hover",
 );
 assert(
-  /\.workspace-split\.mod-root \.workspace-tab-header-container\s*\{\s*background-color: var\(--ctp-workbench-tab-strip-background\)/s.test(
-    workbenchSource,
+  /\.workspace-split\.mod-root \.workspace-tab-header-container\s*\{\s*background-color: var\(--ctp-tab-strip-background\)/s.test(
+    interfaceSource,
   ),
   "Root editor tab strip must paint the configured no-tab surface",
 );
 assert(
   /\.workspace\s+\.workspace-split\.mod-root\s+\.workspace-tabs:not\(\.mod-stacked\)[\s\S]*?\.workspace-tab-header-inner-close-button\s*\{\s*display: flex;[\s\S]*?visibility: hidden;/s.test(
-    workbenchSource,
+    interfaceSource,
   ),
   "Inactive editor tabs must reserve the close-button slot against Obsidian's later rule",
 );
 assert(
   /\.workspace\s+\.workspace-split\.mod-root\s+\.workspace-tabs:not\(\.mod-stacked\)[\s\S]*?\.workspace-tab-header:not\(\.is-active\):hover[\s\S]*?\.workspace-tab-header-inner-close-button\s*\{\s*pointer-events: auto;\s*visibility: visible;/s.test(
-    workbenchSource,
+    interfaceSource,
   ),
   "Inactive editor-tab hover must reveal the reserved close-button slot",
 );
 assert(
-  resolveRole("ctp-workbench-close-hover-background") !==
-    resolveRole("ctp-workbench-hover-background"),
+  resolveRole("ctp-close-hover-background") !==
+    resolveRole("ctp-hover-background"),
   "Close-button hover must be distinguishable from the hovered editor tab",
 );
 assert(
-  declaration(workbenchSource, "ctp-workbench-list-secondary-foreground") ===
+  declaration(interfaceSource, "ctp-list-secondary-foreground") ===
     "var(--text-muted)",
   "Selected-row icons and counts must use muted text",
 );
 assert(
-  workbenchSource.includes(".workspace-ribbon") &&
-    workbenchSource.includes("border-right-color: var(--background-secondary)"),
+  interfaceSource.includes(".workspace-ribbon") &&
+    interfaceSource.includes("border-right-color: var(--background-secondary)"),
   "Ribbon vertical seam must match the panel surface",
 );
 assert(
-  workbenchSource.includes("is-translucent:not(.is-fullscreen)") &&
-    workbenchSource.includes("--divider-color: transparent") &&
-    workbenchSource.includes("--tab-outline-color: transparent") &&
-    workbenchSource.includes("border-right-color: transparent"),
+  interfaceSource.includes("is-translucent:not(.is-fullscreen)") &&
+    interfaceSource.includes("--divider-color: transparent") &&
+    interfaceSource.includes("--tab-outline-color: transparent") &&
+    interfaceSource.includes("border-right-color: transparent"),
   "Translucent workspaces must hide divider strokes",
 );
 assert(
-  workbenchSource.includes(".mod-settings :is(.vertical-tab-header, .vertical-tab-content)") &&
-    workbenchSource.includes("border-inline-color: transparent"),
+  interfaceSource.includes(".mod-settings :is(.vertical-tab-header, .vertical-tab-content)") &&
+    interfaceSource.includes("border-inline-color: transparent"),
   "Settings navigation edges must not draw a contrasting seam",
 );
 assert(
   /&:has\(\.mod-settings\) \.titlebar\s*\{\s*border-bottom: 0;\s*background-color: var\(--background-primary\);\s*box-shadow: none;/s.test(
-    workbenchSource,
+    interfaceSource,
   ) &&
     fixtureSource.includes("Settings window titlebar · stable Base surface"),
   "Settings titlebar must share the Settings Base surface without a separator in every translucency state",
 );
 assert(
-  workbenchSource.includes(".status-bar-item.mod-clickable") &&
-    workbenchSource.includes(".clickable-icon:not("),
-  "Status-bar and icon controls must share the core workbench control selectors",
+  interfaceSource.includes(".status-bar-item.mod-clickable") &&
+    interfaceSource.includes(".clickable-icon:not("),
+  "Status-bar and icon controls must share the core interface control selectors",
 );
 assert(
-  workbenchSource.includes('.workspace-leaf-content[data-type="outline"]'),
+  interfaceSource.includes('.workspace-leaf-content[data-type="outline"]'),
   "Files and Outline must share the core nested-tree guide contract",
 );
 assert(
-  workbenchSource.includes(
+  interfaceSource.includes(
     ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self",
   ) &&
-    workbenchSource.includes(
+    interfaceSource.includes(
       ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self.is-clickable:not(.is-active, .is-selected):hover",
     ),
-  "Mobile file-tree rows must share the workbench selection and hover contract",
+  "Mobile file-tree rows must share the interface selection and hover contract",
 );
 assert(
-  workbenchSource.includes(".mod-settings .vertical-tab-nav-item") &&
-    workbenchSource.includes(".mod-settings .horizontal-tab-nav-item") &&
-    workbenchSource.includes("--nav-item-radius: 0"),
-  "Desktop and mobile Settings navigation must share square workbench list rows",
+  interfaceSource.includes(".mod-settings .vertical-tab-nav-item") &&
+    interfaceSource.includes(".mod-settings .horizontal-tab-nav-item") &&
+    interfaceSource.includes("--nav-item-radius: 0"),
+  "Desktop and mobile Settings navigation must share square interface list rows",
 );
 assert(
   legacyNavigationSources.every(
@@ -317,36 +324,36 @@ assert(
   "Legacy accent-driven file-tree states must be removed from canonical partials",
 );
 assert(
-  /:is\(\.collapse-icon, \.collapse-icon svg\)\s*\{\s*--icon-color: var\(--ctp-workbench-icon-foreground\);\s*color: var\(--ctp-workbench-icon-foreground\);/s.test(
-    workbenchSource,
+  /:is\(\.collapse-icon, \.collapse-icon svg\)\s*\{\s*--icon-color: var\(--ctp-icon-foreground\);\s*color: var\(--ctp-icon-foreground\);/s.test(
+    interfaceSource,
   ),
   "Files and Outline disclosure chevrons must use the shared Mauve icon role",
 );
 assert(
-  workbenchSource.includes(
-    "--background-modifier-hover: var(--ctp-workbench-hover-background)",
+  interfaceSource.includes(
+    "--background-modifier-hover: var(--ctp-hover-background)",
   ),
-  "Core controls must use the shared workbench hover surface",
+  "Core controls must use the shared interface hover surface",
 );
 assert(
-  !/--ctp-workbench-(?:control|tab)-hover-background/.test(workbenchSource) &&
-    /:where\(:is\(#\{\$ctp-workbench-control-selectors\}\)\)[\s\S]*?background-color: var\(--ctp-workbench-hover-background\)/.test(
-      workbenchSource,
+  !/--ctp-(?:control|tab)-hover-background/.test(interfaceSource) &&
+    /:where\(:is\(#\{\$ctp-control-selectors\}\)\)[\s\S]*?background-color: var\(--ctp-hover-background\)/.test(
+      interfaceSource,
     ) &&
-    /\.workspace-split\.mod-sidedock \.workspace-tab-header[\s\S]*?background-color: var\(--ctp-workbench-hover-background\)/.test(
-      workbenchSource,
+    /\.workspace-split\.mod-sidedock \.workspace-tab-header[\s\S]*?background-color: var\(--ctp-hover-background\)/.test(
+      interfaceSource,
     ) &&
-    /\.workspace-split\.mod-root[\s\S]*?\.workspace-tab-header:not\(\.is-active\):hover[\s\S]*?background-color: var\(--ctp-workbench-hover-background\)/.test(
-      workbenchSource,
+    /\.workspace-split\.mod-root[\s\S]*?\.workspace-tab-header:not\(\.is-active\):hover[\s\S]*?background-color: var\(--ctp-hover-background\)/.test(
+      interfaceSource,
     ),
   "Core controls, sidebar tabs, and editor tabs must consume one shared hover token",
 );
 assert(
-  workbenchSource.includes(
+  interfaceSource.includes(
     ":is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button)",
   ) &&
-    workbenchSource.includes("inline-size: var(--ctp-workbench-control-size)") &&
-    workbenchSource.includes("block-size: var(--ctp-workbench-control-size)"),
+    interfaceSource.includes("inline-size: var(--ctp-control-size)") &&
+    interfaceSource.includes("block-size: var(--ctp-control-size)"),
   "Top-bar controls must share one normalized hit-target size",
 );
 assert(
@@ -359,13 +366,13 @@ assert(
   "Core controls must not define one-off accent hover fills",
 );
 assert(
-  /\.clickable-icon:not\([^)]*\.modal-close-button[^)]*\.mod-close/.test(workbenchSource),
+  /\.clickable-icon:not\([^)]*\.modal-close-button[^)]*\.mod-close/.test(interfaceSource),
   "Shared control hover must leave close and destructive buttons to their semantic rules",
 );
-assert(!workbenchSource.includes("!important"), "Core workbench rules must not use !important");
+assert(!interfaceSource.includes("!important"), "Core interface rules must not use !important");
 assert(
-  !/agent-client-session-manager|metadata-menu/.test(workbenchSource),
-  "Plugin contracts leaked into the core workbench partial",
+  !/agent-client-session-manager|metadata-menu/.test(interfaceSource),
+  "Plugin contracts leaked into the core interface partial",
 );
 assert(
   /agent-client-session-manager/.test(pluginSource) && /metadata-menu/.test(pluginSource),
@@ -379,7 +386,7 @@ assert(
 );
 assert(
   !/\.mod-vertical \.workspace-tab-header:not\(\.is-active\):hover/.test(compiledCss),
-  "Legacy vertical tab hover rules must not override the workbench tab contract",
+  "Legacy vertical tab hover rules must not override the interface tab contract",
 );
 assert(
   !/\.workspace-tab-header-inner-close-button:hover\s*\{\s*background-color:\s*rgb\(var\(--ctp-red\)/s.test(
@@ -388,15 +395,15 @@ assert(
   "Legacy red tab-close hover must not override the shared close-surface role",
 );
 assert(
-  workbenchSource.includes(".workspace-tab-header-inner-close-button:hover") &&
-    workbenchSource.includes(
-      "background-color: var(--ctp-workbench-close-hover-background)",
+  interfaceSource.includes(".workspace-tab-header-inner-close-button:hover") &&
+    interfaceSource.includes(
+      "background-color: var(--ctp-close-hover-background)",
     ),
   "Root tab close-button hover must use the shared close-surface role",
 );
 assert(
-  !/background(?:-color)?:[^;]*(?:ctp-pink|ctp-red)/.test(workbenchSource),
-  "Core workbench rules contain a pink or red background fill",
+  !/background(?:-color)?:[^;]*(?:ctp-pink|ctp-red)/.test(interfaceSource),
+  "Core interface rules contain a pink or red background fill",
 );
 assert(
   interactionSources.every((source) => !source.includes("var(--ctp-pink)")),
@@ -408,9 +415,9 @@ assert(
 );
 
 const requiredCompiledFragments = [
-  "--ctp-workbench-tab-strip-background: var(--background-secondary)",
-  "--ctp-workbench-tab-inactive-background: color-mix(\n    in srgb,\n    var(--background-secondary) 50%,\n    rgb(var(--ctp-base)) 50%\n  )",
-  "--ctp-workbench-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5))",
+  "--ctp-tab-strip-background: var(--background-secondary)",
+  "--ctp-tab-inactive-background: color-mix(\n    in srgb,\n    var(--background-secondary) 50%,\n    rgb(var(--ctp-base)) 50%\n  )",
+  "--ctp-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5))",
   ".status-bar-item.mod-clickable",
   ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self",
   ".mod-settings .vertical-tab-nav-item",
@@ -428,7 +435,8 @@ const requiredCompiledFragments = [
   ".mod-settings :is(.vertical-tab-header, .vertical-tab-content)",
   "body.theme-dark:has(.mod-settings) .titlebar",
   "background-color: var(--background-primary)",
-  "inline-size: var(--ctp-workbench-control-size)",
+  "inline-size: var(--ctp-control-size)",
+  "--slider-thumb-radius: var(--slider-thumb-height)",
 ];
 for (const fragment of requiredCompiledFragments) {
   assert(compiledCss.includes(fragment), `Compiled theme is missing: ${fragment}`);
@@ -481,6 +489,10 @@ const appVariables = readFileSync(join(root, "scss/base/_app-variables.scss"), "
 assert(
   /Accent HSL values: overridden by each Catppuccin flavor block/.test(appVariables),
   "Accent channels must be documented as flavor-relative overrides",
+);
+assert(
+  /--slider-thumb-radius:\s*var\(--slider-thumb-height\);/.test(appVariables),
+  "Slider thumb radius must preserve Obsidian's pill geometry",
 );
 assert(paletteLiteralUses.length > 0, "Expected palette-valued SVG literals for checklist glyphs");
 

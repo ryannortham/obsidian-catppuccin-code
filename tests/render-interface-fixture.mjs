@@ -12,13 +12,13 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const fixture = join(root, "tests/fixtures/workbench-states.html");
+const fixture = join(root, "tests/fixtures/interface-states.html");
 const scenarios = ["latte", "frappe", "macchiato", "mocha", "mochaBlue"];
 const chrome =
   process.env.CHROME_BIN ??
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const check = process.argv.includes("--check");
-const temporary = mkdtempSync(join(tmpdir(), "catppuccin-workbench-"));
+const temporary = mkdtempSync(join(tmpdir(), "catppuccin-interface-"));
 const chromeProfile = join(temporary, "chrome");
 
 if (!existsSync(chrome)) throw new Error(`Chrome not found: ${chrome}`);
@@ -30,8 +30,8 @@ function delay(milliseconds) {
 
 try {
   for (const scenario of scenarios) {
-    const baseline = join(root, `tests/visual/workbench-states-${scenario}.png`);
-    const output = check ? join(temporary, `workbench-states-${scenario}.png`) : baseline;
+    const baseline = join(root, `tests/visual/interface-states-${scenario}.png`);
+    const output = check ? join(temporary, `interface-states-${scenario}.png`) : baseline;
     rmSync(output, { force: true });
     const child = spawn(chrome, [
       "--headless=new",

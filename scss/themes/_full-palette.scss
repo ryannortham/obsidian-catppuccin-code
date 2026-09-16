@@ -26,14 +26,14 @@
     outline: 1px solid rgb(var(--ctp-surface1));
 
     svg {
-      color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+      color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
     }
 
     &:hover,
     &:hover svg {
-      background-color: var(--ctp-workbench-tab-active-background, rgb(var(--ctp-base)));
+      background-color: var(--ctp-tab-active-background, rgb(var(--ctp-base)));
       box-shadow: none;
-      color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+      color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
     }
   }
 
@@ -42,12 +42,12 @@
   .mod-right-split .workspace-tab-header {
 
     &:hover {
-      background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
-      color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+      background-color: var(--ctp-list-hover-background, rgb(var(--ctp-surface0), 50%));
+      color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
     }
 
     &:hover svg {
-      color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+      color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
     }
   }
 
@@ -186,7 +186,7 @@
   * Canvas
   */
   .canvas-controls button:hover {
-    background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
+    background-color: var(--ctp-list-hover-background, rgb(var(--ctp-surface0), 50%));
   }
 
 }

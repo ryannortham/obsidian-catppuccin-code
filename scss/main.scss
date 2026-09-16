@@ -18,8 +18,8 @@
 @use "pages/settings";
 @use "themes/latte-adjustments";
 @use "themes/full-palette";
-@use "layout/workbench";
+@use "layout/interface";
 @use "vendors/plugins";
-@use "vendors/workbench-compatibility";
+@use "vendors/plugin-compatibility";
 @use "vendors/checklists";
 @use "vendors/fonts";

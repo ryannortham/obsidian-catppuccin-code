@@ -105,12 +105,12 @@ body:not(.is-mobile) .mk-main-menu-button:hover {
 .ctp-full-palette .mk-sidebar-item {
 
   &:hover {
-    background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
+    background-color: var(--ctp-list-hover-background, rgb(var(--ctp-surface0), 50%));
     color: var(--text-normal);
   }
 
   &:hover svg {
-    color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+    color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
   }
 }
 
@@ -121,14 +121,14 @@ body:not(.is-mobile) .mk-main-menu-button:hover {
   outline: 1px solid rgb(var(--ctp-surface1));
 
   svg {
-    color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+    color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
   }
 
   &:hover svg,
   &:hover {
-    background-color: var(--ctp-workbench-tab-active-background, rgb(var(--ctp-base)));
+    background-color: var(--ctp-tab-active-background, rgb(var(--ctp-base)));
     box-shadow: none;
-    color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+    color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
   }
 }
 

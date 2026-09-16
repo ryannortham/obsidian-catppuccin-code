@@ -1,15 +1,14 @@
-# Catppuccin Workbench
+# Catppuccin Code
 
 This fork keeps Catppuccin's palette intact while defining flavor-relative
-Obsidian workbench interaction states as a coherent theme baseline.
+Obsidian interface interaction states as a coherent theme baseline.
 
 ## Baseline
 
 - Upstream: `catppuccin/obsidian` commit
   `1316e03af5c31964116661ab08e7784bfa1d00b3`.
-- Upstream and installed Obsidian manifest version: `0.4.49`.
+- Upstream manifest version: `0.4.49`; Catppuccin Code begins at `1.0.0`.
 - Baseline review build: `pnpm exec sass scss/main.scss:theme.css`.
-- Current build SHA-256: `0f9b35eec8c9b9179878ea57fbaff830347cd630326f0c66e0d14b927cd1b48f`.
 - pnpm 11 requires the locked `@parcel/watcher` build to be explicitly allowed;
   `pnpm-workspace.yaml` records that reviewed dependency.
 
@@ -17,18 +16,18 @@ Obsidian workbench interaction states as a coherent theme baseline.
 
 | Surface | Upstream source | Fork owner |
 | --- | --- | --- |
-| Palette and app variables | `scss/base/_ctp-style-settings.scss`, `scss/base/_app-variables.scss` | Palette remains unchanged; semantic roles live in `scss/layout/_workbench.scss` |
-| Clickable and close icons | `scss/components/_icons.scss`, `scss/themes/_full-palette.scss` | `scss/layout/_workbench.scss` |
-| Tree rows and navigation states | `scss/layout/_sidebar.scss`, `scss/themes/_full-palette.scss` | `scss/layout/_workbench.scss` |
-| Backlinks context matches | `scss/components/_search.scss` | `scss/layout/_workbench.scss` |
-| Sidebar and editor tabs | `scss/layout/_tabs.scss`, `scss/themes/_full-palette.scss` | `scss/layout/_workbench.scss` |
-| Metadata Menu and Agent Client | External plugin DOM | `scss/vendors/_workbench-compatibility.scss` compatibility boundary |
+| Palette and app variables | `scss/base/_ctp-style-settings.scss`, `scss/base/_app-variables.scss` | Palette remains unchanged; semantic roles live in `scss/layout/_interface.scss` |
+| Clickable and close icons | `scss/components/_icons.scss`, `scss/themes/_full-palette.scss` | `scss/layout/_interface.scss` |
+| Tree rows and navigation states | `scss/layout/_sidebar.scss`, `scss/themes/_full-palette.scss` | `scss/layout/_interface.scss` |
+| Backlinks context matches | `scss/components/_search.scss` | `scss/layout/_interface.scss` |
+| Sidebar and editor tabs | `scss/layout/_tabs.scss`, `scss/themes/_full-palette.scss` | `scss/layout/_interface.scss` |
+| Metadata Menu and Agent Client | External plugin DOM | `scss/vendors/_plugin-compatibility.scss` compatibility boundary |
 
-`scss/layout/_workbench.scss` is intentionally loaded after the full-palette
+`scss/layout/_interface.scss` is intentionally loaded after the full-palette
 partial. Its component-local selectors use the normal cascade and contain no
 `!important` declarations. Generated CSS is never the edit target.
 
-## Flavor-relative workbench roles
+## Flavor-relative interface roles
 
 | Semantic role | Active palette token |
 | --- | --- |
@@ -48,7 +47,7 @@ partial. Its component-local selectors use the normal cascade and contain no
 ## Markdown presentation roles
 
 `scss/components/_markdown.scss` owns document-only surfaces so prose styling
-does not leak into workbench controls. Typography and link partials provide the
+does not leak into interface controls. Typography and link partials provide the
 semantic fallbacks; Style Settings variables remain the user override boundary.
 
 | Document role | Default token |
@@ -70,7 +69,7 @@ Fenced-code syntax variables follow the Catppuccin editor guidance where
 Obsidian exposes a matching role. Unclassified code remains Text; Markdown
 syntax selectors are scoped to Reading View and Live Preview code surfaces.
 The generated artifact is installed at
-`.obsidian/themes/Catppuccin Workbench/theme.css` and is byte-identical to the
+`.obsidian/themes/Catppuccin Code/theme.css` and is byte-identical to the
 reviewed build. Every `variable-select` default is also present in its options
 list, so Style Settings can render and restore the default rather than showing a
 blank selector.
@@ -93,17 +92,17 @@ unfocused, opaque, and translucent states.
 The scoped rule removes the titlebar bottom border and shadow so opaque mode
 cannot reintroduce a horizontal seam.
 
-Every workbench role resolves to a token in the active Catppuccin palette.
+Every interface role resolves to a token in the active Catppuccin palette.
 Style Settings selects the flavor and accent classes; it does not disable the
-Workbench contract. Keep component-state choices in semantic role variables and
+interface contract. Keep component-state choices in semantic role variables and
 do not introduce flavor-specific color literals.
 
-Workbench chrome uses one panel surface in both focus states: the focused
+Interface chrome uses one panel surface in both focus states: the focused
 titlebar now shares `var(--background-secondary)` with the tabs, ribbon, and
 status bar, and its border is transparent. Translucent mode only changes the
 divider strokes to transparent so the surface contract does not branch by focus.
 Ordinary clickable controls, status-bar actions, sidebar tabs, and inactive
-editor tabs consume one `--ctp-workbench-hover-background` role. It matches
+editor tabs consume one `--ctp-hover-background` role. It matches
 Catppuccin VS Code's Base-lightened-by-5% tab hover and is painted on normalized
 30px inner hit targets where Obsidian uses top-bar wrappers. Active, close, and
 destructive states retain their separate semantic treatments.
@@ -117,9 +116,10 @@ the close control.
 ## Compatibility boundary
 
 Metadata Menu file-class icons and Agent Client session rows are supported as
-isolated plugin contracts in `scss/vendors/_workbench-compatibility.scss`. Their selectors must
-not move into the core workbench partial. If either plugin changes its DOM, core
-Obsidian controls must continue to work without those selectors.
+isolated plugin contracts in `scss/vendors/_plugin-compatibility.scss`. Their
+selectors must not move into the core interface partial. If either plugin
+changes its DOM, core Obsidian controls must continue to work without those
+selectors.
 
 ## Build and validation
 
@@ -132,18 +132,18 @@ pnpm run test:visual
 pnpm run test:visual:check
 ```
 
-The contract test validates the theme's declared workbench roles against Latte,
+The contract test validates the theme's declared interface roles against Latte,
 Frappé, Macchiato, and Mocha palette blocks directly, including the
 Style-Settings-enabled body classes.
 The visual command renders the same fixture under Latte, Frappé, Macchiato,
 Mocha, and Mocha with the alternate Blue accent. It writes one deterministic
-baseline per scenario under `tests/visual/workbench-states-*.png`.
+baseline per scenario under `tests/visual/interface-states-*.png`.
 
 ## Obsidian installation and rollback
 
 1. Build `theme.css` and copy it with `manifest.json` and `screenshot.png` into
-   `.obsidian/themes/Catppuccin Workbench/`.
-2. Select **Catppuccin Workbench** and force reload Obsidian from the View menu.
+   `.obsidian/themes/Catppuccin Code/`.
+2. Select **Catppuccin Code** and force reload Obsidian from the View menu.
 3. Disable `file-browser-neutral-states` and `ui-button-states`.
 4. Run the live state matrix in both sidebars and the root editor tabs.
 

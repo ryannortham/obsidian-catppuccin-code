@@ -445,7 +445,7 @@ body {
   --slider-thumb-height: 18px;
   --slider-thumb-width: 18px;
   --slider-thumb-y: -6px;
-  --slider-thumb-radius: 50%;
+  --slider-thumb-radius: var(--slider-thumb-height);
   --slider-s-thumb-size: 15px;
   --slider-s-thumb-position: -5px;
   --slider-track-background: var(--background-modifier-border);

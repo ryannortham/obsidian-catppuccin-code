@@ -400,7 +400,7 @@ body {
   --slider-thumb-height: 18px;
   --slider-thumb-width: 18px;
   --slider-thumb-y: -6px;
-  --slider-thumb-radius: 50%;
+  --slider-thumb-radius: var(--slider-thumb-height);
   --slider-s-thumb-size: 15px;
   --slider-s-thumb-position: -5px;
   --slider-track-background: var(--background-modifier-border);
@@ -1410,7 +1410,7 @@ settings:
     type: heading
     level: 1
     collapsed: false
-    description: 💎 View and contribute to the port at github.com/catppuccin/obsidian
+    description: 💎 View and contribute at github.com/ryannortham/obsidian-catppuccin-code
 */
 .theme-light,
 .theme-light.ctp-latte {
@@ -2149,7 +2149,7 @@ body {
 */
 .mod-linux .titlebar-button:hover,
 .mod-windows .titlebar-button:hover {
-  background-color: var(--ctp-workbench-hover-background);
+  background-color: var(--ctp-hover-background);
   color: var(--text-normal);
 }
 
@@ -2218,7 +2218,7 @@ body {
 * Bring block edit button in line with rest of button hovers
 */
 .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button:hover {
-  background-color: var(--ctp-workbench-hover-background);
+  background-color: var(--ctp-hover-background);
   color: var(--text-normal);
 }
 
@@ -2399,7 +2399,7 @@ body:not(.ctp-tag-pill) .cm-hashtag::selection {
   color: var(--text-on-accent);
 }
 
-/* Document-focused Markdown surfaces. Keep these separate from workbench UI. */
+/* Document-focused Markdown surfaces. Keep these separate from interface UI. */
 .markdown-rendered :not(pre) > code,
 .markdown-source-view.mod-cm6 :is(.cm-inline-code, .cm-hmd-indented-code) {
   background-color: rgb(var(--ctp-mantle));
@@ -2669,7 +2669,7 @@ body:not(.ctp-tag-pill) .cm-hashtag::selection {
 * Bookmarks
 */
 .tree-item-self:is(.is-active, .is-selected) :is(.tree-item-icon, .tree-item-icon svg, .tree-item-flair) {
-  color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
+  color: var(--ctp-list-secondary-foreground, var(--text-on-accent));
 }
 
 @media (hover: hover) {
@@ -2829,7 +2829,7 @@ button.mod-cta:hover {
 .ctp-full-palette .mod-right-split .workspace-tab-header.has-active-menu svg,
 .ctp-full-palette .mod-left-split .workspace-tab-header.is-active svg,
 .ctp-full-palette .mod-right-split .workspace-tab-header.is-active svg {
-  color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+  color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
 }
 .theme-dark:not(.css-settings-manager) .clickable-icon.is-active:hover, .theme-dark:not(.css-settings-manager) .clickable-icon.is-active:hover svg,
 .theme-dark:not(.css-settings-manager) .mod-left-split .workspace-tab-header.has-active-menu:hover,
@@ -2860,9 +2860,9 @@ button.mod-cta:hover {
 .ctp-full-palette .mod-left-split .workspace-tab-header.is-active:hover svg,
 .ctp-full-palette .mod-right-split .workspace-tab-header.is-active:hover,
 .ctp-full-palette .mod-right-split .workspace-tab-header.is-active:hover svg {
-  background-color: var(--ctp-workbench-tab-active-background, rgb(var(--ctp-base)));
+  background-color: var(--ctp-tab-active-background, rgb(var(--ctp-base)));
   box-shadow: none;
-  color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+  color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
 }
 .theme-dark:not(.css-settings-manager) .clickable-icon:hover,
 .theme-dark:not(.css-settings-manager) .mod-left-split .workspace-tab-header:hover,
@@ -2873,8 +2873,8 @@ button.mod-cta:hover {
 .ctp-full-palette .clickable-icon:hover,
 .ctp-full-palette .mod-left-split .workspace-tab-header:hover,
 .ctp-full-palette .mod-right-split .workspace-tab-header:hover {
-  background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
-  color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+  background-color: var(--ctp-list-hover-background, rgb(var(--ctp-surface0), 50%));
+  color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
 }
 .theme-dark:not(.css-settings-manager) .clickable-icon:hover svg,
 .theme-dark:not(.css-settings-manager) .mod-left-split .workspace-tab-header:hover svg,
@@ -2885,7 +2885,7 @@ button.mod-cta:hover {
 .ctp-full-palette .clickable-icon:hover svg,
 .ctp-full-palette .mod-left-split .workspace-tab-header:hover svg,
 .ctp-full-palette .mod-right-split .workspace-tab-header:hover svg {
-  color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+  color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
 }
 .theme-dark:not(.css-settings-manager),
 .theme-light:not(.css-settings-manager),
@@ -3167,35 +3167,35 @@ button.mod-cta:hover {
 .theme-dark:not(.css-settings-manager) .canvas-controls button:hover,
 .theme-light:not(.css-settings-manager) .canvas-controls button:hover,
 .ctp-full-palette .canvas-controls button:hover {
-  background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
+  background-color: var(--ctp-list-hover-background, rgb(var(--ctp-surface0), 50%));
 }
 
 /*
- * Catppuccin Workbench defines palette-relative interaction states. Style
+ * Catppuccin Code defines palette-relative interaction states. Style
  * Settings supplies the active flavor's palette values; these variables
  * describe component roles rather than new palette colors.
  */
 body.theme-dark,
 body.theme-light {
-  --ctp-workbench-icon-foreground: rgb(var(--ctp-mauve));
-  --ctp-workbench-focus-border: rgb(var(--ctp-mauve));
-  --ctp-workbench-list-selection-background: rgb(var(--ctp-surface0));
-  --ctp-workbench-list-hover-background: rgb(var(--ctp-surface0), 50%);
+  --ctp-icon-foreground: rgb(var(--ctp-mauve));
+  --ctp-focus-border: rgb(var(--ctp-mauve));
+  --ctp-list-selection-background: rgb(var(--ctp-surface0));
+  --ctp-list-hover-background: rgb(var(--ctp-surface0), 50%);
   /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
-  --ctp-workbench-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
-  --ctp-workbench-control-size: calc(var(--header-height) - 10px);
-  --ctp-workbench-list-secondary-foreground: var(--text-muted);
-  --ctp-workbench-tree-guide-active: rgb(var(--ctp-overlay2));
-  --ctp-workbench-tree-guide-inactive: rgb(var(--ctp-surface1));
-  --ctp-workbench-tab-strip-background: var(--background-secondary);
-  --ctp-workbench-tab-active-background: rgb(var(--ctp-base));
-  --ctp-workbench-tab-inactive-background: color-mix(
+  --ctp-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
+  --ctp-control-size: calc(var(--header-height) - 10px);
+  --ctp-list-secondary-foreground: var(--text-muted);
+  --ctp-tree-guide-active: rgb(var(--ctp-overlay2));
+  --ctp-tree-guide-inactive: rgb(var(--ctp-surface1));
+  --ctp-tab-strip-background: var(--background-secondary);
+  --ctp-tab-active-background: rgb(var(--ctp-base));
+  --ctp-tab-inactive-background: color-mix(
     in srgb,
     var(--background-secondary) 50%,
     rgb(var(--ctp-base)) 50%
   );
-  --ctp-workbench-tab-active-foreground: rgb(var(--ctp-mauve));
-  --ctp-workbench-close-hover-background: rgb(var(--ctp-surface1));
+  --ctp-tab-active-foreground: rgb(var(--ctp-mauve));
+  --ctp-close-hover-background: rgb(var(--ctp-surface1));
   /* The ribbon edge blends into the standard panel surface. */
 }
 body.theme-dark .workspace-ribbon,
@@ -3251,10 +3251,10 @@ body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-t
   justify-content: center;
   padding: 0;
   border-radius: var(--clickable-icon-radius);
-  block-size: var(--ctp-workbench-control-size);
-  inline-size: var(--ctp-workbench-control-size);
-  min-block-size: var(--ctp-workbench-control-size);
-  min-inline-size: var(--ctp-workbench-control-size);
+  block-size: var(--ctp-control-size);
+  inline-size: var(--ctp-control-size);
+  min-block-size: var(--ctp-control-size);
+  min-inline-size: var(--ctp-control-size);
 }
 body.theme-dark,
 body.theme-light {
@@ -3267,19 +3267,19 @@ body.theme-light :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .t
 }
 body.theme-dark :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item):is(.is-active, .is-selected),
 body.theme-light :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item):is(.is-active, .is-selected) {
-  --nav-item-background-active: var(--ctp-workbench-list-selection-background);
-  --nav-item-background-selected: var(--ctp-workbench-list-selection-background);
+  --nav-item-background-active: var(--ctp-list-selection-background);
+  --nav-item-background-selected: var(--ctp-list-selection-background);
   --nav-item-color-active: var(--text-normal);
   --nav-item-color-selected: var(--text-normal);
-  background-color: var(--ctp-workbench-list-selection-background);
+  background-color: var(--ctp-list-selection-background);
   color: var(--text-normal);
 }
 @media (hover: hover) {
   body.theme-dark:not(.is-grabbing) :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self.is-clickable:not(.is-active, .is-selected):hover, .mod-settings .vertical-tab-nav-item:not(.is-active, .is-selected):hover, .mod-settings .horizontal-tab-nav-item:not(.is-active, .is-selected):hover),
   body.theme-light:not(.is-grabbing) :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self.is-clickable:not(.is-active, .is-selected):hover, .mod-settings .vertical-tab-nav-item:not(.is-active, .is-selected):hover, .mod-settings .horizontal-tab-nav-item:not(.is-active, .is-selected):hover) {
-    --nav-item-background-hover: var(--ctp-workbench-list-hover-background);
+    --nav-item-background-hover: var(--ctp-list-hover-background);
     --nav-item-color-hover: var(--text-normal);
-    background-color: var(--ctp-workbench-list-hover-background);
+    background-color: var(--ctp-list-hover-background);
     color: var(--text-normal);
   }
   body.theme-dark:not(.is-grabbing) .workspace-leaf-content:is([data-type=tag],
@@ -3300,7 +3300,7 @@ body.theme-light :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .t
   }
   body.theme-dark:not(.is-grabbing) .workspace-leaf-content[data-type=backlink] .search-result-file-match:hover,
   body.theme-light:not(.is-grabbing) .workspace-leaf-content[data-type=backlink] .search-result-file-match:hover {
-    background-color: var(--ctp-workbench-list-hover-background);
+    background-color: var(--ctp-list-hover-background);
     color: var(--text-normal);
   }
   body.theme-dark:not(.is-grabbing) .workspace-leaf-content[data-type=backlink] .search-result-file-match:hover .search-result-file-matched-text,
@@ -3320,12 +3320,12 @@ body.theme-light {
 }
 body.theme-dark :is(.nav-files-container, .workspace-leaf-content[data-type=outline]),
 body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) {
-  --indentation-guide-color: var(--ctp-workbench-tree-guide-inactive);
-  --indentation-guide-color-active: var(--ctp-workbench-tree-guide-active);
+  --indentation-guide-color: var(--ctp-tree-guide-inactive);
+  --indentation-guide-color-active: var(--ctp-tree-guide-active);
   --indentation-guide-width: 1px;
-  --nav-collapse-icon-color: var(--ctp-workbench-icon-foreground);
-  --nav-collapse-icon-color-collapsed: var(--ctp-workbench-icon-foreground);
-  --nav-indentation-guide-color: var(--ctp-workbench-tree-guide-inactive);
+  --nav-collapse-icon-color: var(--ctp-icon-foreground);
+  --nav-collapse-icon-color-collapsed: var(--ctp-icon-foreground);
+  --nav-indentation-guide-color: var(--ctp-tree-guide-inactive);
   --nav-indentation-guide-width: 1px;
   --nav-item-radius: 0;
 }
@@ -3339,7 +3339,7 @@ body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=out
   position: absolute;
   z-index: 1;
   width: var(--nav-indentation-guide-width);
-  background-color: var(--ctp-workbench-tree-guide-inactive);
+  background-color: var(--ctp-tree-guide-inactive);
   content: "";
   inset-block: 0;
   inset-inline-start: calc(-1 * var(--nav-indentation-guide-width));
@@ -3347,12 +3347,12 @@ body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=out
 }
 body.theme-dark :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) .tree-item-children:has(.tree-item-self:is(:hover, .is-active, .is-selected))::before,
 body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) .tree-item-children:has(.tree-item-self:is(:hover, .is-active, .is-selected))::before {
-  background-color: var(--ctp-workbench-tree-guide-active);
+  background-color: var(--ctp-tree-guide-active);
 }
 body.theme-dark :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) :is(.collapse-icon, .collapse-icon svg),
 body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) :is(.collapse-icon, .collapse-icon svg) {
-  --icon-color: var(--ctp-workbench-icon-foreground);
-  color: var(--ctp-workbench-icon-foreground);
+  --icon-color: var(--ctp-icon-foreground);
+  color: var(--ctp-icon-foreground);
 }
 body.theme-dark,
 body.theme-light {
@@ -3360,19 +3360,19 @@ body.theme-light {
 }
 body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active, .is-selected, [aria-pressed=true]),
 body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active, .is-selected, [aria-pressed=true]) {
-  --background-modifier-active-hover: var(--ctp-workbench-tab-active-background);
-  --icon-color-active: var(--ctp-workbench-icon-foreground);
-  background-color: var(--ctp-workbench-tab-active-background);
-  color: var(--ctp-workbench-icon-foreground);
+  --background-modifier-active-hover: var(--ctp-tab-active-background);
+  --icon-color-active: var(--ctp-icon-foreground);
+  background-color: var(--ctp-tab-active-background);
+  color: var(--ctp-icon-foreground);
 }
 body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active, .is-selected, [aria-pressed=true]) svg,
 body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active, .is-selected, [aria-pressed=true]) svg {
   background-color: transparent;
-  color: var(--ctp-workbench-icon-foreground);
+  color: var(--ctp-icon-foreground);
 }
 body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):focus-visible,
 body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):focus-visible {
-  outline: 1px solid var(--ctp-workbench-focus-border);
+  outline: 1px solid var(--ctp-focus-border);
   outline-offset: -1px;
 }
 @media (hover: hover) {
@@ -3386,10 +3386,10 @@ body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-
   [aria-pressed=true],
   [aria-disabled=true],
   :disabled):hover {
-    --background-modifier-hover: var(--ctp-workbench-hover-background);
-    --icon-color-hover: var(--ctp-workbench-icon-foreground);
-    background-color: var(--ctp-workbench-hover-background);
-    color: var(--ctp-workbench-icon-foreground);
+    --background-modifier-hover: var(--ctp-hover-background);
+    --icon-color-hover: var(--ctp-icon-foreground);
+    background-color: var(--ctp-hover-background);
+    color: var(--ctp-icon-foreground);
   }
   body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):not(.is-active,
   .is-selected,
@@ -3402,7 +3402,7 @@ body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-
   [aria-disabled=true],
   :disabled):hover svg {
     background-color: transparent;
-    color: var(--ctp-workbench-icon-foreground);
+    color: var(--ctp-icon-foreground);
   }
   body.theme-dark :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button):hover,
   body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button):hover {
@@ -3414,11 +3414,11 @@ body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-
   body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active,
   .is-selected,
   [aria-pressed=true]):not([aria-disabled=true], :disabled):hover {
-    --background-modifier-hover: var(--ctp-workbench-tab-active-background);
-    --background-modifier-active-hover: var(--ctp-workbench-tab-active-background);
-    background-color: var(--ctp-workbench-tab-active-background);
+    --background-modifier-hover: var(--ctp-tab-active-background);
+    --background-modifier-active-hover: var(--ctp-tab-active-background);
+    background-color: var(--ctp-tab-active-background);
     box-shadow: inset 0 0 4px rgb(var(--ctp-crust)), inset 0 0 6px rgb(var(--ctp-base));
-    color: var(--ctp-workbench-icon-foreground);
+    color: var(--ctp-icon-foreground);
   }
   body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active,
   .is-selected,
@@ -3427,7 +3427,7 @@ body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-
   .is-selected,
   [aria-pressed=true]):not([aria-disabled=true], :disabled):hover svg {
     background-color: transparent;
-    color: var(--ctp-workbench-icon-foreground);
+    color: var(--ctp-icon-foreground);
   }
 }
 body.theme-dark,
@@ -3444,44 +3444,44 @@ body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-act
 body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active, body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active .workspace-tab-header-inner,
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active,
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active .workspace-tab-header-inner {
-  --tab-text-color-active: var(--ctp-workbench-icon-foreground);
-  background-color: var(--ctp-workbench-tab-active-background);
-  color: var(--ctp-workbench-icon-foreground);
+  --tab-text-color-active: var(--ctp-icon-foreground);
+  background-color: var(--ctp-tab-active-background);
+  color: var(--ctp-icon-foreground);
 }
 body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active svg,
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active svg {
   background-color: transparent;
-  color: var(--ctp-workbench-icon-foreground);
+  color: var(--ctp-icon-foreground);
 }
 body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:focus-visible,
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:focus-visible {
-  outline: 1px solid var(--ctp-workbench-focus-border);
+  outline: 1px solid var(--ctp-focus-border);
   outline-offset: -1px;
 }
 @media (hover: hover) {
   body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover, body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner,
   body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover,
   body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
-    --background-modifier-hover: var(--ctp-workbench-hover-background);
-    --background-modifier-active-hover: var(--ctp-workbench-hover-background);
-    --tab-text-color-hover: var(--ctp-workbench-icon-foreground);
-    background-color: var(--ctp-workbench-hover-background);
-    color: var(--ctp-workbench-icon-foreground);
+    --background-modifier-hover: var(--ctp-hover-background);
+    --background-modifier-active-hover: var(--ctp-hover-background);
+    --tab-text-color-hover: var(--ctp-icon-foreground);
+    background-color: var(--ctp-hover-background);
+    color: var(--ctp-icon-foreground);
   }
   body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-title, .workspace-tab-header-inner-icon, svg), body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg),
   body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-title, .workspace-tab-header-inner-icon, svg),
   body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
-    --icon-color-hover: var(--ctp-workbench-icon-foreground);
+    --icon-color-hover: var(--ctp-icon-foreground);
     background-color: transparent;
-    color: var(--ctp-workbench-icon-foreground);
+    color: var(--ctp-icon-foreground);
   }
   body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover, body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover .workspace-tab-header-inner,
   body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover,
   body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover .workspace-tab-header-inner {
-    --background-modifier-hover: var(--ctp-workbench-tab-active-background);
-    --background-modifier-active-hover: var(--ctp-workbench-tab-active-background);
-    background-color: var(--ctp-workbench-tab-active-background);
-    color: var(--ctp-workbench-icon-foreground);
+    --background-modifier-hover: var(--ctp-tab-active-background);
+    --background-modifier-active-hover: var(--ctp-tab-active-background);
+    background-color: var(--ctp-tab-active-background);
+    color: var(--ctp-icon-foreground);
   }
 }
 body.theme-dark,
@@ -3490,7 +3490,7 @@ body.theme-light {
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header-container,
 body.theme-light .workspace-split.mod-root .workspace-tab-header-container {
-  background-color: var(--ctp-workbench-tab-strip-background);
+  background-color: var(--ctp-tab-strip-background);
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header, body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner,
 body.theme-light .workspace-split.mod-root .workspace-tab-header,
@@ -3507,7 +3507,7 @@ body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active)
   --tab-text-color-active: var(--text-muted);
   --tab-text-color-focused: var(--text-muted);
   --tab-text-color-focused-active: var(--text-muted);
-  background-color: var(--ctp-workbench-tab-inactive-background);
+  background-color: var(--ctp-tab-inactive-background);
   box-shadow: none;
   color: var(--text-muted);
 }
@@ -3519,16 +3519,16 @@ body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active)
 body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active, body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner,
 body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active,
 body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner {
-  --tab-text-color: var(--ctp-workbench-tab-active-foreground);
-  --tab-text-color-active: var(--ctp-workbench-tab-active-foreground);
-  --tab-text-color-focused: var(--ctp-workbench-tab-active-foreground);
-  --tab-text-color-focused-active: var(--ctp-workbench-tab-active-foreground);
-  background-color: var(--ctp-workbench-tab-active-background);
-  color: var(--ctp-workbench-tab-active-foreground);
+  --tab-text-color: var(--ctp-tab-active-foreground);
+  --tab-text-color-active: var(--ctp-tab-active-foreground);
+  --tab-text-color-focused: var(--ctp-tab-active-foreground);
+  --tab-text-color-focused-active: var(--ctp-tab-active-foreground);
+  background-color: var(--ctp-tab-active-background);
+  color: var(--ctp-tab-active-foreground);
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active,
 body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active {
-  box-shadow: inset 0 1px 0 var(--ctp-workbench-focus-border);
+  box-shadow: inset 0 1px 0 var(--ctp-focus-border);
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-title,
 .workspace-tab-header-inner-close-button,
@@ -3536,7 +3536,7 @@ body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active :is(.w
 body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-title,
 .workspace-tab-header-inner-close-button,
 .workspace-tab-header-inner-close-button svg) {
-  color: var(--ctp-workbench-tab-active-foreground);
+  color: var(--ctp-tab-active-foreground);
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg),
 body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
@@ -3544,7 +3544,7 @@ body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active :is(.
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header:focus-visible,
 body.theme-light .workspace-split.mod-root .workspace-tab-header:focus-visible {
-  outline: 1px solid var(--ctp-workbench-focus-border);
+  outline: 1px solid var(--ctp-focus-border);
   outline-offset: -1px;
 }
 body.theme-dark,
@@ -3568,11 +3568,11 @@ body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-s
   body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover {
     --background-modifier-hover: transparent;
     --background-modifier-active-hover: transparent;
-    --tab-text-color: var(--ctp-workbench-icon-foreground);
-    --tab-text-color-focused: var(--ctp-workbench-icon-foreground);
-    --tab-text-color-hover: var(--ctp-workbench-icon-foreground);
-    background-color: var(--ctp-workbench-hover-background);
-    color: var(--ctp-workbench-icon-foreground);
+    --tab-text-color: var(--ctp-icon-foreground);
+    --tab-text-color-focused: var(--ctp-icon-foreground);
+    --tab-text-color-hover: var(--ctp-icon-foreground);
+    background-color: var(--ctp-hover-background);
+    color: var(--ctp-icon-foreground);
   }
   body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner,
   body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
@@ -3584,7 +3584,7 @@ body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-s
   body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-title,
   .workspace-tab-header-inner-close-button,
   .workspace-tab-header-inner-close-button svg) {
-    color: var(--ctp-workbench-icon-foreground);
+    color: var(--ctp-icon-foreground);
   }
   body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg),
   body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
@@ -3592,8 +3592,8 @@ body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-s
   }
   body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner-close-button:hover,
   body.theme-light .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner-close-button:hover {
-    --background-modifier-hover: var(--ctp-workbench-close-hover-background);
-    background-color: var(--ctp-workbench-close-hover-background);
+    --background-modifier-hover: var(--ctp-close-hover-background);
+    background-color: var(--ctp-close-hover-background);
     box-shadow: none;
     color: var(--text-normal);
   }
@@ -3606,7 +3606,7 @@ body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-s
   body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-close-button:hover svg,
   body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-close-button:hover,
   body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-close-button:hover svg {
-    color: var(--ctp-workbench-tab-active-foreground);
+    color: var(--ctp-tab-active-foreground);
   }
 }
 
@@ -3706,11 +3706,11 @@ body:not(.is-mobile) .mk-main-menu-button:hover {
 }
 
 .ctp-full-palette .mk-sidebar-item:hover {
-  background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
+  background-color: var(--ctp-list-hover-background, rgb(var(--ctp-surface0), 50%));
   color: var(--text-normal);
 }
 .ctp-full-palette .mk-sidebar-item:hover svg {
-  color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+  color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
 }
 
 .ctp-full-palette .mk-sidebar-item-active {
@@ -3718,12 +3718,12 @@ body:not(.is-mobile) .mk-main-menu-button:hover {
   outline: 1px solid rgb(var(--ctp-surface1));
 }
 .ctp-full-palette .mk-sidebar-item-active svg {
-  color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+  color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
 }
 .ctp-full-palette .mk-sidebar-item-active:hover svg, .ctp-full-palette .mk-sidebar-item-active:hover {
-  background-color: var(--ctp-workbench-tab-active-background, rgb(var(--ctp-base)));
+  background-color: var(--ctp-tab-active-background, rgb(var(--ctp-base)));
   box-shadow: none;
-  color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
+  color: var(--ctp-icon-foreground, rgb(var(--ctp-mauve)));
 }
 
 .mk-sidebar-item:hover {
@@ -3881,7 +3881,7 @@ body.css-settings-manager:not(.is-phone, .ctp-full-palette) .vertical-tab-nav-it
 }
 
 /*
- * Catppuccin Workbench compatibility boundary.
+ * Catppuccin Code compatibility boundary.
  * These selectors are plugin DOM contracts, not Obsidian core theme APIs.
  */
 body.theme-dark .agent-client-session-manager .tree-item-self,
@@ -3890,19 +3890,19 @@ body.theme-light .agent-client-session-manager .tree-item-self {
 }
 body.theme-dark .agent-client-session-manager .tree-item-self:is(.is-active, .is-selected),
 body.theme-light .agent-client-session-manager .tree-item-self:is(.is-active, .is-selected) {
-  --nav-item-background-active: var(--ctp-workbench-list-selection-background);
-  --nav-item-background-selected: var(--ctp-workbench-list-selection-background);
+  --nav-item-background-active: var(--ctp-list-selection-background);
+  --nav-item-background-selected: var(--ctp-list-selection-background);
   --nav-item-color-active: var(--text-normal);
   --nav-item-color-selected: var(--text-normal);
-  background-color: var(--ctp-workbench-list-selection-background);
+  background-color: var(--ctp-list-selection-background);
   color: var(--text-normal);
 }
 @media (hover: hover) {
   body.theme-dark:not(.is-grabbing) .agent-client-session-manager .tree-item-self.is-clickable:not(.is-active, .is-selected):hover,
   body.theme-light:not(.is-grabbing) .agent-client-session-manager .tree-item-self.is-clickable:not(.is-active, .is-selected):hover {
-    --nav-item-background-hover: var(--ctp-workbench-list-hover-background);
+    --nav-item-background-hover: var(--ctp-list-hover-background);
     --nav-item-color-hover: var(--text-normal);
-    background-color: var(--ctp-workbench-list-hover-background);
+    background-color: var(--ctp-list-hover-background);
     color: var(--text-normal);
   }
 }

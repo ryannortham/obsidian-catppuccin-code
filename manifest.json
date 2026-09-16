@@ -1,9 +1,9 @@
 {
-	"name": "Catppuccin Workbench",
-	"version": "0.4.49-workbench.1",
+	"name": "Catppuccin Code",
+	"version": "1.0.0",
 	"minAppVersion": "1.13.0",
-	"author": "Catppuccin / Workbench fork",
-	"authorUrl": "https://github.com/catppuccin/obsidian",
-	"repo": "catppuccin/obsidian",
-	"screenshot": "assets/screenshot.png"
+	"author": "Ryan Northam",
+	"authorUrl": "https://github.com/ryannortham",
+	"repo": "ryannortham/obsidian-catppuccin-code",
+	"screenshot": "screenshot.png"
 }

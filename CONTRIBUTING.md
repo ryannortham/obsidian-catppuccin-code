@@ -6,7 +6,9 @@ Contributions are always appreciated, especially if you want to use your contrib
 
 The theme file structure is loosely based on the [7-1 Pattern](https://sass-guidelin.es/#the-7-1-pattern). It's written largely in plain CSS, but contained in SCSS files. If you are not familiar with SCSS, please see [sass-lang.com](https://sass-lang.com/). The repository includes a `.stylelintrc.yml` file if you care to use [Stylelint](https://stylelint.io/).
 
-There are two files that might be helpful to investigate before contributing: [_app-variables.scss](https://github.com/catppuccin/obsidian/blob/main/scss/base/_app-variables.scss) and [_ctp-style-settings.scss](https://github.com/catppuccin/obsidian/blob/main/scss/base/_ctp-style-settings.scss).
+There are two files that might be helpful to investigate before contributing:
+[_app-variables.scss](scss/base/_app-variables.scss) and
+[_ctp-style-settings.scss](scss/base/_ctp-style-settings.scss).
 
 `_app-variables.scss` contains variables from Obsidian's CSS, some of which have been customized for Catppuccin. You can rely on these variables as references, but it is generally best to leave this file untouched. However, it can sometimes make sense to change variables inside specific selectors. For example:
 
@@ -18,7 +20,10 @@ There are two files that might be helpful to investigate before contributing: [_
 }
 ```
 
-`_ctp-style-settings.scss` defines the Catppuccin colors for the theme. This file provides the names of the colors being used elsewhere in the theme. Color usage unique to the default user experience can be found in [_full-palette.scss](https://github.com/catppuccin/obsidian/blob/main/scss/themes/_full-palette.scss).
+`_ctp-style-settings.scss` defines the Catppuccin colors for the theme. This
+file provides the names of the colors being used elsewhere in the theme. Color
+usage unique to the default user experience can be found in
+[_full-palette.scss](scss/themes/_full-palette.scss).
 
 ## What colors go where?
 
@@ -50,7 +55,9 @@ The full palette aims to use colors in the following ways:
   + Hovering over an item should cause either some part of it to get brighter or its text to become underlined
   + Items in this category will often need their `color` changed from something like `var(--text-normal)` to `var(--text-on-accent)`
 
-When transitioning from a default state to one of the above states, the relevant transition from [_animations.scss](https://github.com/catppuccin/obsidian/blob/main/scss/components/_animations.scss) is often applied. For example:
+When transitioning from a default state to one of the above states, the
+relevant transition from [_animations.scss](scss/components/_animations.scss)
+is often applied. For example:
 
 ```scss
 .a-guy {
