@@ -7,8 +7,8 @@
 
 > [!NOTE]
 > This local fork is installed as **Catppuccin Workbench**. It preserves the
-> Catppuccin palette and defines consistent Mocha workbench interaction states
-> for Obsidian. See [WORKBENCH.md](WORKBENCH.md) for the source
+> Catppuccin palette and defines consistent, flavor-relative Workbench
+> interaction states for Obsidian. See [WORKBENCH.md](WORKBENCH.md) for the source
 > map, token contract, compatibility boundary, build, and regression workflow.
 
 <p align="center">
@@ -84,7 +84,9 @@ theme name.
 
 To use Catppuccin Latte, set the `Base color scheme` option to `Light`.
 For one of the three dark themes, set `Base color scheme` to `Dark`.
-This defaults to Catppuccin Mocha; install Style Settings as described below to change your dark theme flavor to Frappé or Macchiato.
+This defaults to Catppuccin Mocha; install Style Settings as described below to
+change your flavor and accent selections while retaining the same Workbench
+interaction contract.
 
 ### Style Settings plugin installation and use
 
