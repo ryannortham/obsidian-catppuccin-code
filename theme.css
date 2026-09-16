@@ -3211,6 +3211,14 @@ body.theme-light.is-translucent:not(.is-fullscreen) .workspace-ribbon {
 }
 body.theme-dark,
 body.theme-light {
+  /* Settings’ two-column navigation should not draw a contrasting seam. */
+}
+body.theme-dark .mod-settings :is(.vertical-tab-header, .vertical-tab-content),
+body.theme-light .mod-settings :is(.vertical-tab-header, .vertical-tab-content) {
+  border-inline-color: transparent;
+}
+body.theme-dark,
+body.theme-light {
   /* Tree rows and Settings navigation share one selection and hover contract. */
 }
 body.theme-dark :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item),

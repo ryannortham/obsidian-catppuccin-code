@@ -169,6 +169,11 @@ assert(
   "Translucent workspaces must hide divider strokes",
 );
 assert(
+  workbenchSource.includes(".mod-settings :is(.vertical-tab-header, .vertical-tab-content)") &&
+    workbenchSource.includes("border-inline-color: transparent"),
+  "Settings navigation edges must not draw a contrasting seam",
+);
+assert(
   workbenchSource.includes(".status-bar-item.mod-clickable") &&
     workbenchSource.includes(".clickable-icon:not("),
   "Status-bar and icon controls must share the core workbench control selectors",
@@ -292,6 +297,7 @@ const requiredCompiledFragments = [
   "border-right-color: var(--background-secondary)",
   "--divider-color: transparent",
   "border-right-color: transparent",
+  ".mod-settings :is(.vertical-tab-header, .vertical-tab-content)",
 ];
 for (const fragment of requiredCompiledFragments) {
   assert(compiledCss.includes(fragment), `Compiled theme is missing: ${fragment}`);

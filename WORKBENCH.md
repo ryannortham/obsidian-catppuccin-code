@@ -9,7 +9,7 @@ Obsidian workbench interaction states as a coherent theme baseline.
   `1316e03af5c31964116661ab08e7784bfa1d00b3`.
 - Upstream and installed Obsidian manifest version: `0.4.49`.
 - Baseline review build: `pnpm exec sass scss/main.scss:theme.css`.
-- Current build SHA-256: `5c5a7e36f518f17cf544c6401e9bbce41c51964e1e7b83be678ea63596d71ecc`.
+- Current build SHA-256: `d604a38523872bbd9ab9073c657344058d624dccd362516e2051914d5cb70720`.
 - pnpm 11 requires the locked `@parcel/watcher` build to be explicitly allowed;
   `pnpm-workspace.yaml` records that reviewed dependency.
 
@@ -84,6 +84,8 @@ so they do not cover adjacent scrollbars; resize hover remains accented.
 When Obsidian’s translucent window mode is active, divider and tab-outline
 variables (including the ribbon edge) switch to transparent so they do not draw
 strokes over the backdrop.
+The Settings two-column navigation edge is explicitly transparent in both modes,
+so the Settings pane does not inherit the darker global divider stroke.
 
 Every workbench role resolves to a token in the active Catppuccin palette.
 Style Settings selects the flavor and accent classes; it does not disable the
