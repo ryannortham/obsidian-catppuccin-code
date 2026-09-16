@@ -116,7 +116,7 @@ body {
   --dialog-max-height: 85vh;
 
   /* Dividers â€” between panes */
-  --divider-color: transparent;
+  --divider-color: var(--background-secondary);
   --divider-color-hover: var(--interactive-accent);
   --divider-width: 1px;
   --divider-width-hover: 2px;
@@ -478,8 +478,8 @@ body {
   --tab-font-size: var(--font-ui-small);
   --tab-font-weight: inherit;
   --tab-container-background: var(--background-secondary);
-  --tab-divider-color: transparent;
-  --tab-outline-color: transparent;
+  --tab-divider-color: var(--background-secondary);
+  --tab-outline-color: var(--background-secondary);
   --tab-outline-width: 1px;
   --tab-curve: 6px;
   --tab-radius: var(--radius-s);

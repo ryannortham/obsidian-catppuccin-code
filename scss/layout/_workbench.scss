@@ -39,6 +39,20 @@ body.theme-light {
   --ctp-workbench-tab-active-foreground: rgb(var(--ctp-mauve));
   --ctp-workbench-close-hover-background: rgb(var(--ctp-surface1));
 
+  /* The ribbon edge borders the Base side-dock surface, not the tab chrome. */
+  .workspace-ribbon {
+    border-right-color: var(--background-primary);
+  }
+
+  /* Vertical split handles expose the editor surface between adjacent panes. */
+  :is(
+    .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
+    .workspace-split.mod-left-split > .workspace-leaf-resize-handle,
+    .workspace-split.mod-right-split > .workspace-leaf-resize-handle
+  ) {
+    background-color: var(--background-primary);
+  }
+
   /* Tree rows and Settings navigation share one selection and hover contract. */
   :is(#{$ctp-workbench-list-row-selectors}) {
     --nav-item-radius: 0;

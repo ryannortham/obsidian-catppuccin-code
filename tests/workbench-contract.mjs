@@ -157,6 +157,16 @@ assert(
   "Selected-row icons and counts must use muted text",
 );
 assert(
+  workbenchSource.includes(".workspace-ribbon") &&
+    workbenchSource.includes("border-right-color: var(--background-primary)"),
+  "Ribbon vertical seam must match the Base side-dock surface",
+);
+assert(
+  workbenchSource.includes(".workspace-split.mod-vertical > * > .workspace-leaf-resize-handle") &&
+    workbenchSource.includes("background-color: var(--background-primary)"),
+  "Vertical split handles must match the Base editor surface",
+);
+assert(
   workbenchSource.includes(".status-bar-item.mod-clickable") &&
     workbenchSource.includes(".clickable-icon:not("),
   "Status-bar and icon controls must share the core workbench control selectors",
@@ -276,6 +286,9 @@ const requiredCompiledFragments = [
   ".workspace-leaf-content[data-type=backlink]",
   ".agent-client-session-manager .tree-item-self",
   ".workspace-tab-header .metadata-menu.fileclass-icon",
+  "body.theme-dark .workspace-ribbon",
+  "border-right-color: var(--background-primary)",
+  ".workspace-split.mod-vertical > * > .workspace-leaf-resize-handle",
 ];
 for (const fragment of requiredCompiledFragments) {
   assert(compiledCss.includes(fragment), `Compiled theme is missing: ${fragment}`);

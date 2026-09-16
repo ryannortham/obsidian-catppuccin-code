@@ -9,7 +9,7 @@ Obsidian workbench interaction states as a coherent theme baseline.
   `1316e03af5c31964116661ab08e7784bfa1d00b3`.
 - Upstream and installed Obsidian manifest version: `0.4.49`.
 - Baseline review build: `pnpm exec sass scss/main.scss:theme.css`.
-- Current build SHA-256: `22d69cf918eaffcc79cd19490f2103f9a3b324b02c9513c4a49640e14d2e006e`.
+- Current build SHA-256: `4597b5ba8c3e35d9b6088b62a1fbfb5ec4620ca21fae7bf72292b62e0ea5b0f6`.
 - pnpm 11 requires the locked `@parcel/watcher` build to be explicitly allowed;
   `pnpm-workspace.yaml` records that reviewed dependency.
 
@@ -74,9 +74,13 @@ reviewed build. Every `variable-select` default is also present in its options
 list, so Style Settings can render and restore the default rather than showing a
 blank selector.
 
-Pane and tab seams are intentionally invisible: `--divider-color`,
-`--tab-divider-color`, and `--tab-outline-color` resolve to `transparent`.
-Resize handles retain their hover accent so pane resizing remains discoverable.
+Pane and tab seams match the standard panel surface: `--divider-color`,
+`--tab-divider-color`, and `--tab-outline-color` resolve to
+`var(--background-secondary)`, so the divider geometry remains available without
+introducing a contrasting rule.
+The ribbon edge and vertical split handles use `var(--background-primary)` to
+blend into the adjacent editor surface. Resize handles retain their hover accent
+so pane resizing remains discoverable.
 
 Every workbench role resolves to a token in the active Catppuccin palette.
 Style Settings selects the flavor and accent classes; it does not disable the

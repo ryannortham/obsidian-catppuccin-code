@@ -104,7 +104,7 @@ body {
   --dialog-max-width: 80vw;
   --dialog-max-height: 85vh;
   /* Dividers â€” between panes */
-  --divider-color: transparent;
+  --divider-color: var(--background-secondary);
   --divider-color-hover: var(--interactive-accent);
   --divider-width: 1px;
   --divider-width-hover: 2px;
@@ -430,8 +430,8 @@ body {
   --tab-font-size: var(--font-ui-small);
   --tab-font-weight: inherit;
   --tab-container-background: var(--background-secondary);
-  --tab-divider-color: transparent;
-  --tab-outline-color: transparent;
+  --tab-divider-color: var(--background-secondary);
+  --tab-outline-color: var(--background-secondary);
   --tab-outline-width: 1px;
   --tab-curve: 6px;
   --tab-radius: var(--radius-s);
@@ -3189,6 +3189,26 @@ body.theme-light {
   --ctp-workbench-tab-hover-background: rgb(var(--ctp-surface0));
   --ctp-workbench-tab-active-foreground: rgb(var(--ctp-mauve));
   --ctp-workbench-close-hover-background: rgb(var(--ctp-surface1));
+  /* The ribbon edge borders the Base side-dock surface, not the tab chrome. */
+}
+body.theme-dark .workspace-ribbon,
+body.theme-light .workspace-ribbon {
+  border-right-color: var(--background-primary);
+}
+body.theme-dark,
+body.theme-light {
+  /* Vertical split handles expose the editor surface between adjacent panes. */
+}
+body.theme-dark :is(.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
+.workspace-split.mod-left-split > .workspace-leaf-resize-handle,
+.workspace-split.mod-right-split > .workspace-leaf-resize-handle),
+body.theme-light :is(.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
+.workspace-split.mod-left-split > .workspace-leaf-resize-handle,
+.workspace-split.mod-right-split > .workspace-leaf-resize-handle) {
+  background-color: var(--background-primary);
+}
+body.theme-dark,
+body.theme-light {
   /* Tree rows and Settings navigation share one selection and hover contract. */
 }
 body.theme-dark :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item),
