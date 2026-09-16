@@ -2,21 +2,6 @@
   --nav-item-color-active: var(--text-normal);
 }
 
-:not(.is-grabbing) .nav-file-title:hover,
-:not(.is-grabbing) .nav-folder-title:hover,
-.nav-file-title.is-active,
-.nav-folder-title.is-active,
-.tree-item-self.is-clickable:hover {
-  --nav-item-background-active: rgb(var(--ctp-accent));
-  --nav-item-background-hover: rgb(var(--ctp-accent));
-  --nav-item-color-hover: var(--text-on-accent);
-  --nav-item-color-active: var(--text-on-accent);
-}
-
-.nav-folder.mod-root > .nav-folder-title:hover {
-  color: rgb(var(--text-normal));
-}
-
 .tree-item-flair {
   color: var(--text-muted);
 }
@@ -59,27 +44,6 @@
 /*
 * Bookmarks
 */
-
-.tree-item-self.is-selected {
-  background-color: rgb(var(--ctp-accent));
-  color: var(--text-on-accent);
-
-  .tree-item-icon {
-    --icon-color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
-
-    color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
-  }
-}
-
-body:not(.is-grabbing) .tree-item-self.is-active:hover,
-.tree-item-self.is-active {
-  --nav-item-color-active: var(--text-on-accent);
-  --nav-item-background-active: rgb(var(--ctp-accent));
-
-  .tree-item-icon {
-    --icon-color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
-  }
-}
 
 .tree-item-self:is(.is-active, .is-selected)
   :is(.tree-item-icon, .tree-item-icon svg, .tree-item-flair) {

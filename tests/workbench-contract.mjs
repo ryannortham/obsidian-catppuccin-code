@@ -113,6 +113,15 @@ assert(
   "Files and Outline must share the core nested-tree guide contract",
 );
 assert(
+  workbenchSource.includes(
+    ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self",
+  ) &&
+    workbenchSource.includes(
+      ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self.is-clickable:not(.is-active, .is-selected):hover",
+    ),
+  "Mobile file-tree rows must share the workbench selection and hover contract",
+);
+assert(
   workbenchSource.includes(".mod-settings .vertical-tab-nav-item") &&
     workbenchSource.includes(".mod-settings .horizontal-tab-nav-item") &&
     workbenchSource.includes("--nav-item-radius: 0"),
@@ -123,6 +132,14 @@ assert(
     (source) => !/(?:horizontal|vertical)-tab-nav-item(?:\.is-active|:hover)/.test(source),
   ),
   "Legacy accent-driven Settings navigation states must be removed from canonical partials",
+);
+assert(
+  legacyNavigationSources.every(
+    (source) =>
+      !/\.nav-(?:file|folder)-title(?:\.is-active|:hover)/.test(source) &&
+      !/\.tree-item-self\.is-(?:active|selected)\s*\{/.test(source),
+  ),
+  "Legacy accent-driven file-tree states must be removed from canonical partials",
 );
 assert(
   /:is\(\.collapse-icon, \.collapse-icon svg\)\s*\{\s*--icon-color: var\(--ctp-workbench-icon-foreground\);\s*color: var\(--ctp-workbench-icon-foreground\);/s.test(
@@ -197,7 +214,7 @@ assert(
 const requiredCompiledFragments = [
   "--ctp-workbench-tab-hover-background: rgb(var(--ctp-surface0))",
   ".status-bar-item.mod-clickable",
-  ".workspace-split.mod-sidedock .tree-item-self",
+  ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self",
   ".mod-settings .vertical-tab-nav-item",
   ".mod-settings .horizontal-tab-nav-item",
   ".tree-item-self:is(.is-active, .is-selected) :is(.tree-item-icon",

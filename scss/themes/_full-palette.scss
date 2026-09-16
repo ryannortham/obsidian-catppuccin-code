@@ -12,27 +12,6 @@
   --checklist-done-color: rgb(var(--ctp-green));
 
   /*
-  * Nav bar
-  */
-
-  .nav-file-title.is-active,
-  .nav-folder-title.is-active {
-    --nav-item-background-active: rgb(var(--ctp-mauve));
-  }
-
-  :not(.is-grabbing) .nav-file-title:hover,
-  :not(.is-grabbing) .nav-folder-title:hover,
-  .tree-item-self.is-clickable:hover {
-    background-color: rgb(var(--ctp-accent));
-    color: var(--text-on-accent);
-  }
-
-  .nav-folder.mod-root > .nav-folder-title:hover {
-    background-color: transparent;
-    color: rgb(var(--text-normal));
-  }
-
-  /*
   * Icons
   */
 
@@ -209,17 +188,4 @@
     background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
   }
 
-  /*
-  * Bookmarks
-  */
-
-  body:not(.is-grabbing) .tree-item-self.is-active:hover,
-  .tree-item-self.is-active {
-    --nav-item-color-active: var(--text-on-accent);
-    --nav-item-background-active: rgb(var(--ctp-mauve));
-
-    .tree-item-icon {
-      --icon-color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
-    }
-  }
 }

@@ -2589,21 +2589,6 @@ body:not(.ctp-tag-pill) .cm-hashtag::selection {
   --nav-item-color-active: var(--text-normal);
 }
 
-:not(.is-grabbing) .nav-file-title:hover,
-:not(.is-grabbing) .nav-folder-title:hover,
-.nav-file-title.is-active,
-.nav-folder-title.is-active,
-.tree-item-self.is-clickable:hover {
-  --nav-item-background-active: rgb(var(--ctp-accent));
-  --nav-item-background-hover: rgb(var(--ctp-accent));
-  --nav-item-color-hover: var(--text-on-accent);
-  --nav-item-color-active: var(--text-on-accent);
-}
-
-.nav-folder.mod-root > .nav-folder-title:hover {
-  color: rgb(var(--text-normal));
-}
-
 .tree-item-flair {
   color: var(--text-muted);
 }
@@ -2642,25 +2627,6 @@ body:not(.ctp-tag-pill) .cm-hashtag::selection {
 /*
 * Bookmarks
 */
-.tree-item-self.is-selected {
-  background-color: rgb(var(--ctp-accent));
-  color: var(--text-on-accent);
-}
-.tree-item-self.is-selected .tree-item-icon {
-  --icon-color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
-  color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
-}
-
-body:not(.is-grabbing) .tree-item-self.is-active:hover,
-.tree-item-self.is-active {
-  --nav-item-color-active: var(--text-on-accent);
-  --nav-item-background-active: rgb(var(--ctp-accent));
-}
-body:not(.is-grabbing) .tree-item-self.is-active:hover .tree-item-icon,
-.tree-item-self.is-active .tree-item-icon {
-  --icon-color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
-}
-
 .tree-item-self:is(.is-active, .is-selected) :is(.tree-item-icon, .tree-item-icon svg, .tree-item-flair) {
   color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
 }
@@ -2785,39 +2751,6 @@ button.mod-cta:hover {
   --indentation-guide-width: 2px;
   --list-marker-color: rgb(var(--ctp-sapphire));
   --checklist-done-color: rgb(var(--ctp-green));
-  /*
-  * Nav bar
-  */
-}
-.theme-dark:not(.css-settings-manager) .nav-file-title.is-active,
-.theme-dark:not(.css-settings-manager) .nav-folder-title.is-active,
-.theme-light:not(.css-settings-manager) .nav-file-title.is-active,
-.theme-light:not(.css-settings-manager) .nav-folder-title.is-active,
-.ctp-full-palette .nav-file-title.is-active,
-.ctp-full-palette .nav-folder-title.is-active {
-  --nav-item-background-active: rgb(var(--ctp-mauve));
-}
-.theme-dark:not(.css-settings-manager) :not(.is-grabbing) .nav-file-title:hover,
-.theme-dark:not(.css-settings-manager) :not(.is-grabbing) .nav-folder-title:hover,
-.theme-dark:not(.css-settings-manager) .tree-item-self.is-clickable:hover,
-.theme-light:not(.css-settings-manager) :not(.is-grabbing) .nav-file-title:hover,
-.theme-light:not(.css-settings-manager) :not(.is-grabbing) .nav-folder-title:hover,
-.theme-light:not(.css-settings-manager) .tree-item-self.is-clickable:hover,
-.ctp-full-palette :not(.is-grabbing) .nav-file-title:hover,
-.ctp-full-palette :not(.is-grabbing) .nav-folder-title:hover,
-.ctp-full-palette .tree-item-self.is-clickable:hover {
-  background-color: rgb(var(--ctp-accent));
-  color: var(--text-on-accent);
-}
-.theme-dark:not(.css-settings-manager) .nav-folder.mod-root > .nav-folder-title:hover,
-.theme-light:not(.css-settings-manager) .nav-folder.mod-root > .nav-folder-title:hover,
-.ctp-full-palette .nav-folder.mod-root > .nav-folder-title:hover {
-  background-color: transparent;
-  color: rgb(var(--text-normal));
-}
-.theme-dark:not(.css-settings-manager),
-.theme-light:not(.css-settings-manager),
-.ctp-full-palette {
   /*
   * Icons
   */
@@ -3191,30 +3124,6 @@ button.mod-cta:hover {
 .ctp-full-palette .canvas-controls button:hover {
   background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
 }
-.theme-dark:not(.css-settings-manager),
-.theme-light:not(.css-settings-manager),
-.ctp-full-palette {
-  /*
-  * Bookmarks
-  */
-}
-.theme-dark:not(.css-settings-manager) body:not(.is-grabbing) .tree-item-self.is-active:hover,
-.theme-dark:not(.css-settings-manager) .tree-item-self.is-active,
-.theme-light:not(.css-settings-manager) body:not(.is-grabbing) .tree-item-self.is-active:hover,
-.theme-light:not(.css-settings-manager) .tree-item-self.is-active,
-.ctp-full-palette body:not(.is-grabbing) .tree-item-self.is-active:hover,
-.ctp-full-palette .tree-item-self.is-active {
-  --nav-item-color-active: var(--text-on-accent);
-  --nav-item-background-active: rgb(var(--ctp-mauve));
-}
-.theme-dark:not(.css-settings-manager) body:not(.is-grabbing) .tree-item-self.is-active:hover .tree-item-icon,
-.theme-dark:not(.css-settings-manager) .tree-item-self.is-active .tree-item-icon,
-.theme-light:not(.css-settings-manager) body:not(.is-grabbing) .tree-item-self.is-active:hover .tree-item-icon,
-.theme-light:not(.css-settings-manager) .tree-item-self.is-active .tree-item-icon,
-.ctp-full-palette body:not(.is-grabbing) .tree-item-self.is-active:hover .tree-item-icon,
-.ctp-full-palette .tree-item-self.is-active .tree-item-icon {
-  --icon-color: var(--ctp-workbench-list-secondary-foreground, var(--text-on-accent));
-}
 
 /*
  * Catppuccin Workbench defines Obsidian's Mocha interaction states. Palette
@@ -3236,11 +3145,11 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
   --ctp-workbench-close-hover-background: rgb(var(--ctp-surface1));
   /* Tree rows and Settings navigation share one selection and hover contract. */
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(.workspace-split.mod-sidedock .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item) {
+body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item) {
   --nav-item-radius: 0;
   border-radius: 0;
 }
-body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(.workspace-split.mod-sidedock .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item):is(.is-active, .is-selected) {
+body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item):is(.is-active, .is-selected) {
   --nav-item-background-active: var(--ctp-workbench-list-selection-background);
   --nav-item-background-selected: var(--ctp-workbench-list-selection-background);
   --nav-item-color-active: var(--text-normal);
@@ -3249,7 +3158,7 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) :is(.wor
   color: var(--text-normal);
 }
 @media (hover: hover) {
-  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato):not(.is-grabbing) :is(.workspace-split.mod-sidedock .tree-item-self.is-clickable:not(.is-active, .is-selected):hover, .mod-settings .vertical-tab-nav-item:not(.is-active, .is-selected):hover, .mod-settings .horizontal-tab-nav-item:not(.is-active, .is-selected):hover) {
+  body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato):not(.is-grabbing) :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self.is-clickable:not(.is-active, .is-selected):hover, .mod-settings .vertical-tab-nav-item:not(.is-active, .is-selected):hover, .mod-settings .horizontal-tab-nav-item:not(.is-active, .is-selected):hover) {
     --nav-item-background-hover: var(--ctp-workbench-list-hover-background);
     --nav-item-color-hover: var(--text-normal);
     background-color: var(--ctp-workbench-list-hover-background);

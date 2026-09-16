@@ -9,12 +9,12 @@ $ctp-workbench-control-selectors: (
   ".markdown-source-view.mod-cm6 .pdf-embed .edit-block-button"
 );
 $ctp-workbench-list-row-selectors: (
-  ".workspace-split.mod-sidedock .tree-item-self",
+  ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self",
   ".mod-settings .vertical-tab-nav-item",
   ".mod-settings .horizontal-tab-nav-item"
 );
 $ctp-workbench-list-hover-selectors: (
-  ".workspace-split.mod-sidedock .tree-item-self.is-clickable:not(.is-active, .is-selected):hover",
+  ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self.is-clickable:not(.is-active, .is-selected):hover",
   ".mod-settings .vertical-tab-nav-item:not(.is-active, .is-selected):hover",
   ".mod-settings .horizontal-tab-nav-item:not(.is-active, .is-selected):hover"
 );
