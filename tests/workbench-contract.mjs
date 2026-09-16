@@ -103,8 +103,8 @@ const roleTokens = {
   "ctp-workbench-list-hover-background": "ctp-surface0",
   "ctp-workbench-tree-guide-active": "ctp-overlay2",
   "ctp-workbench-tree-guide-inactive": "ctp-surface1",
-  "ctp-workbench-tab-active-background": "ctp-base",
-  "ctp-workbench-tab-inactive-background": "ctp-mantle",
+  "ctp-workbench-tab-active-background": "ctp-surface0",
+  "ctp-workbench-tab-inactive-background": "ctp-base",
   "ctp-workbench-tab-hover-background": "ctp-surface0",
   "ctp-workbench-tab-active-foreground": "ctp-mauve",
   "ctp-workbench-close-hover-background": "ctp-surface1",
@@ -145,6 +145,13 @@ assert(
 assert(
   resolveRole("ctp-workbench-list-selection-background") === paletteHex("ctp-surface0"),
   "Selections must use the active flavor's Surface0",
+);
+assert(
+  declaration(workbenchSource, "ctp-workbench-tab-active-background") ===
+    "rgb(var(--ctp-surface0))" &&
+    declaration(workbenchSource, "ctp-workbench-tab-inactive-background") ===
+      "rgb(var(--ctp-base))",
+  "Editor tabs must keep active Surface0 above inactive Base and the Mantle chrome",
 );
 assert(
   resolveRole("ctp-workbench-close-hover-background") !==
