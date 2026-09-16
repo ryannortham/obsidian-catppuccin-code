@@ -40,6 +40,8 @@ const appRoles = {
   "tag-color-hover": "rgb(var(--ctp-tag-pill-color, var(--ctp-blue)))",
   "tab-divider-color": "var(--background-secondary)",
   "tab-outline-color": "var(--background-secondary)",
+  "titlebar-background-focused": "var(--background-secondary)",
+  "titlebar-border-color": "transparent",
 };
 
 for (const [role, value] of Object.entries(appRoles)) {
@@ -113,6 +115,8 @@ for (const fragment of [
   "--divider-color: var(--background-secondary)",
   "--tab-divider-color: var(--background-secondary)",
   "--tab-outline-color: var(--background-secondary)",
+  "--titlebar-background-focused: var(--background-secondary)",
+  "--titlebar-border-color: transparent",
   "background-color: rgb(var(--ctp-crust))",
   "background-color: rgb(var(--ctp-mantle))",
   "border-color: rgb(var(--ctp-surface2))",

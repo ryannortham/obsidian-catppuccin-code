@@ -485,9 +485,9 @@ body {
   --tag-radius: 0.8em;
   /* Window frame */
   --titlebar-background: var(--background-secondary);
-  --titlebar-background-focused: var(--background-secondary-alt);
+  --titlebar-background-focused: var(--background-secondary);
   --titlebar-border-width: 0;
-  --titlebar-border-color: var(--background-modifier-border);
+  --titlebar-border-color: transparent;
   --titlebar-text-color: var(--text-muted);
   --titlebar-text-color-focused: var(--text-normal);
   --titlebar-text-color-highlighted: var(--text-accent-hover);

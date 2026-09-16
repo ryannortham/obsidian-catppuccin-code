@@ -9,7 +9,7 @@ Obsidian workbench interaction states as a coherent theme baseline.
   `1316e03af5c31964116661ab08e7784bfa1d00b3`.
 - Upstream and installed Obsidian manifest version: `0.4.49`.
 - Baseline review build: `pnpm exec sass scss/main.scss:theme.css`.
-- Current build SHA-256: `d604a38523872bbd9ab9073c657344058d624dccd362516e2051914d5cb70720`.
+- Current build SHA-256: `e4b2e5f6d2f6df8f891f760377f066bb9ffdd2226d8d64fea7da80fd28956788`.
 - pnpm 11 requires the locked `@parcel/watcher` build to be explicitly allowed;
   `pnpm-workspace.yaml` records that reviewed dependency.
 
@@ -91,6 +91,11 @@ Every workbench role resolves to a token in the active Catppuccin palette.
 Style Settings selects the flavor and accent classes; it does not disable the
 Workbench contract. Keep component-state choices in semantic role variables and
 do not introduce flavor-specific color literals.
+
+Workbench chrome uses one panel surface in both focus states: the focused
+titlebar now shares `var(--background-secondary)` with the tabs, ribbon, and
+status bar, and its border is transparent. Translucent mode only changes the
+divider strokes to transparent so the surface contract does not branch by focus.
 
 ## Compatibility boundary
 
