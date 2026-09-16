@@ -91,8 +91,13 @@ function resolveRole(name, palette = mochaPalette) {
   if (/^#[0-9a-f]{6}$/.test(value)) return value;
   const opaque = value.match(/^rgb\(var\(--(ctp-[a-z0-9-]+)\)\)$/);
   if (opaque) return paletteHex(opaque[1], palette);
-  const alpha = value.match(/^rgb\(var\(--(ctp-[a-z0-9-]+)\),\s*50%\)$/);
-  if (alpha) return `${paletteHex(alpha[1], palette)}80`;
+  const alpha = value.match(/^rgb\(var\(--(ctp-[a-z0-9-]+)\),\s*(\d+)%\)$/);
+  if (alpha) {
+    const channel = Math.round(Number(alpha[2]) * 255 / 100)
+      .toString(16)
+      .padStart(2, "0");
+    return `${paletteHex(alpha[1], palette)}${channel}`;
+  }
   throw new Error(`Unsupported role expression for --${name}: ${value}`);
 }
 
@@ -115,11 +120,14 @@ for (const [flavor, palette] of Object.entries(palettes)) {
   resolved[flavor] = {};
   for (const [role, token] of Object.entries(roleTokens)) {
     const expected = paletteHex(token, palette);
-  const expectedWithAlpha = [
-    "ctp-workbench-list-hover-background",
-    "ctp-workbench-tab-inactive-background",
-  ].includes(role)
-      ? `${expected}80`
+    const alphaByRole = {
+      "ctp-workbench-list-hover-background": 50,
+      "ctp-workbench-tab-inactive-background": 50,
+      "ctp-workbench-tab-hover-background": 75,
+    };
+    const alpha = alphaByRole[role];
+    const expectedWithAlpha = alpha
+      ? `${expected}${Math.round(alpha * 255 / 100).toString(16).padStart(2, "0")}`
       : expected;
     const actual = resolveRole(role, palette);
     assert(actual === expectedWithAlpha, `${flavor} ${role} is ${actual}; expected ${expectedWithAlpha}`);
@@ -158,8 +166,8 @@ assert(
 );
 assert(
   declaration(workbenchSource, "ctp-workbench-tab-hover-background") ===
-    declaration(workbenchSource, "ctp-workbench-tab-active-background"),
-  "Editor-tab hover must not be brighter than the active tab",
+    "rgb(var(--ctp-base), 75%)",
+  "Editor-tab hover must sit between the inactive and active tab surfaces",
 );
 assert(
   resolveRole("ctp-workbench-close-hover-background") !==
@@ -314,7 +322,7 @@ assert(
 );
 
 const requiredCompiledFragments = [
-  "--ctp-workbench-tab-hover-background: rgb(var(--ctp-base))",
+  "--ctp-workbench-tab-hover-background: rgb(var(--ctp-base), 75%)",
   ".status-bar-item.mod-clickable",
   ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self",
   ".mod-settings .vertical-tab-nav-item",
