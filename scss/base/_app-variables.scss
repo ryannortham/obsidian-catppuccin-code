@@ -90,21 +90,17 @@ body {
   /* Code */
   --code-white-space: pre-wrap;
   --code-size: var(--font-smaller);
-  --code-background: rgb(var(--ctp-mantle));
-  --code-normal: rgb(var(--ctp-text));
-  --code-comment: rgb(var(--ctp-overlay2));
-  --code-function: rgb(var(--ctp-blue));
-  --code-important: rgb(var(--ctp-peach));
-  --code-keyword: rgb(var(--ctp-mauve));
-  --code-operator: rgb(var(--ctp-sky));
-  --code-parameter: rgb(var(--ctp-maroon));
-  --code-property: rgb(var(--ctp-blue));
-  --code-punctuation: rgb(var(--ctp-overlay2));
-  --code-regex: rgb(var(--ctp-pink));
-  --code-string: rgb(var(--ctp-green));
-  --code-tag: rgb(var(--ctp-red));
-  --code-type: rgb(var(--ctp-yellow));
-  --code-value: rgb(var(--ctp-peach));
+  --code-background: var(--background-primary-alt);
+  --code-normal: var(--text-muted);
+  --code-comment: var(--text-faint);
+  --code-function: var(--color-yellow);
+  --code-important: var(--color-orange);
+  --code-keyword: var(--color-pink);
+  --code-property: var(--color-cyan);
+  --code-punctuation: var(--text-muted);
+  --code-string: var(--color-green);
+  --code-tag: var(--color-red);
+  --code-value: var(--color-purple);
 
   /* Collapse icons */
   --collapse-icon-color: var(--text-faint);
