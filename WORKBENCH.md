@@ -9,7 +9,7 @@ Obsidian workbench interaction states as a coherent theme baseline.
   `1316e03af5c31964116661ab08e7784bfa1d00b3`.
 - Upstream and installed Obsidian manifest version: `0.4.49`.
 - Baseline review build: `pnpm exec sass scss/main.scss:theme.css`.
-- Baseline SHA-256: `f1cab3be0129f6e9850d12d89462fa034f7a1437c48a6b3817dc96c95cbca422`.
+- Current build SHA-256: `995612864888ca0340321d0e63ee4e4fd9b255b397fa02ed9b7301fdaa0d7abe`.
 - pnpm 11 requires the locked `@parcel/watcher` build to be explicitly allowed;
   `pnpm-workspace.yaml` records that reviewed dependency.
 
@@ -70,8 +70,9 @@ pnpm run test:visual:check
 The contract test validates the theme's declared workbench roles against Latte,
 Frappé, Macchiato, and Mocha palette blocks directly, including the
 Style-Settings-enabled body classes.
-The visual command renders `tests/fixtures/workbench-states.html` with the local
-Chrome installation and writes `tests/visual/workbench-states.png`.
+The visual command renders the same fixture under Latte, Frappé, Macchiato,
+Mocha, and Mocha with the alternate Blue accent. It writes one deterministic
+baseline per scenario under `tests/visual/workbench-states-*.png`.
 
 ## Obsidian installation and rollback
 

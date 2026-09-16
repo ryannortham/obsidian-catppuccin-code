@@ -8,11 +8,29 @@
     <link rel="stylesheet" href="workbench-fixture.css" />
   </head>
   <body class="theme-dark css-settings-manager ctp-mocha ctp-full-palette">
+    <script>
+      const scenarios = {
+        latte: ["theme-light", "ctp-latte", "ctp-full-palette"],
+        frappe: ["theme-dark", "ctp-frappe", "ctp-full-palette"],
+        macchiato: ["theme-dark", "ctp-macchiato", "ctp-full-palette"],
+        mocha: ["theme-dark", "ctp-mocha", "ctp-full-palette"],
+        mochaBlue: ["theme-dark", "ctp-mocha", "ctp-accent-blue"],
+      };
+      const scenario = new URLSearchParams(location.search).get("scenario") || "mocha";
+      document.body.className = [
+        "css-settings-manager",
+        ...(scenarios[scenario] || scenarios.mocha),
+      ].join(" ");
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector(".subtitle").textContent =
+          `Flavor-relative workbench roles · ${scenario}`;
+      });
+    </script>
     <main>
       <header>
         <p>Catppuccin Workbench · Style Settings enabled</p>
         <h1>Interaction state matrix</h1>
-        <p class="subtitle">Flavor-relative workbench roles · Mocha sample</p>
+        <p class="subtitle">Flavor-relative workbench roles · mocha</p>
       </header>
 
       <section>
@@ -135,7 +153,7 @@
             <div><span style="--swatch: var(--ctp-workbench-list-selection-background)"></span>Selection</div>
             <div><span style="--swatch: var(--ctp-workbench-list-hover-background)"></span>Hover</div>
             <div><span style="--swatch: var(--ctp-workbench-icon-foreground)"></span>Mauve</div>
-            <div><span style="--swatch: var(--ctp-workbench-tab-hover-background)"></span>#313244</div>
+            <div><span style="--swatch: var(--ctp-workbench-tab-hover-background)"></span>Tab hover token</div>
           </div>
         </div>
       </section>

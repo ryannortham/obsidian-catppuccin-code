@@ -136,8 +136,10 @@ assert(
 assert(
   /css-settings-manager/.test(fixtureSource) &&
     /ctp-mocha/.test(fixtureSource) &&
-    /ctp-full-palette/.test(fixtureSource),
-  "Visual fixture must exercise the real Style Settings body classes",
+    /ctp-full-palette/.test(fixtureSource) &&
+    /ctp-accent-blue/.test(fixtureSource) &&
+    /scenarios\s*=/.test(fixtureSource),
+  "Visual fixture must exercise the real Style Settings flavor and accent classes",
 );
 
 assert(
