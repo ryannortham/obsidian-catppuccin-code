@@ -32,11 +32,14 @@ const appRoles = {
   "code-string": "var(--color-green)",
   "code-tag": "var(--color-red)",
   "code-value": "var(--color-orange)",
+  "divider-color": "transparent",
   "hr-color": "rgb(var(--ctp-surface2))",
   "link-external-color": "rgb(var(--ctp-blue))",
   "link-external-color-hover": "rgb(var(--ctp-blue))",
   "tag-color": "rgb(var(--ctp-tag-pill-color, var(--ctp-blue)))",
   "tag-color-hover": "rgb(var(--ctp-tag-pill-color, var(--ctp-blue)))",
+  "tab-divider-color": "transparent",
+  "tab-outline-color": "transparent",
 };
 
 for (const [role, value] of Object.entries(appRoles)) {
@@ -107,6 +110,9 @@ for (const fragment of [
   "--code-keyword: var(--color-purple)",
   "--code-function: var(--color-blue)",
   "--hr-color: rgb(var(--ctp-surface2))",
+  "--divider-color: transparent",
+  "--tab-divider-color: transparent",
+  "--tab-outline-color: transparent",
   "background-color: rgb(var(--ctp-crust))",
   "background-color: rgb(var(--ctp-mantle))",
   "border-color: rgb(var(--ctp-surface2))",
