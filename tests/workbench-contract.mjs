@@ -101,6 +101,14 @@ function lightenHex(hex, amount) {
   return `#${output.map((channel) => Math.round(channel * 255).toString(16).padStart(2, "0")).join("")}`;
 }
 
+function mixHex(first, second) {
+  const channels = [1, 3, 5].map((index) => Math.round(
+    (Number.parseInt(first.slice(index, index + 2), 16) +
+      Number.parseInt(second.slice(index, index + 2), 16)) / 2,
+  ));
+  return `#${channels.map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
+}
+
 const paletteMarkers = {
   latte: ".theme-light,\n.theme-light.ctp-latte",
   frappe: ".theme-dark.ctp-frappe",
@@ -148,12 +156,10 @@ const roleTokens = {
   "ctp-workbench-focus-border": "ctp-mauve",
   "ctp-workbench-list-selection-background": "ctp-surface0",
   "ctp-workbench-list-hover-background": "ctp-surface0",
+  "ctp-workbench-hover-background": "ctp-base",
   "ctp-workbench-tree-guide-active": "ctp-overlay2",
   "ctp-workbench-tree-guide-inactive": "ctp-surface1",
-  "ctp-workbench-tab-strip-background": "ctp-crust",
   "ctp-workbench-tab-active-background": "ctp-base",
-  "ctp-workbench-tab-inactive-background": "ctp-mantle",
-  "ctp-workbench-tab-hover-background": "ctp-base",
   "ctp-workbench-tab-active-foreground": "ctp-mauve",
   "ctp-workbench-close-hover-background": "ctp-surface1",
 };
@@ -165,7 +171,7 @@ for (const [flavor, palette] of Object.entries(palettes)) {
     const expected = paletteHex(token, palette);
     const alphaByRole = { "ctp-workbench-list-hover-background": 50 };
     const alpha = alphaByRole[role];
-    const expectedWithAlpha = role === "ctp-workbench-tab-hover-background"
+    const expectedWithAlpha = role === "ctp-workbench-hover-background"
       ? lightenHex(expected, 0.05)
       : alpha
         ? `${expected}${Math.round(alpha * 255 / 100).toString(16).padStart(2, "0")}`
@@ -202,22 +208,29 @@ assert(
   declaration(workbenchSource, "ctp-workbench-tab-active-background") ===
     "rgb(var(--ctp-base))" &&
     declaration(workbenchSource, "ctp-workbench-tab-inactive-background") ===
-      "rgb(var(--ctp-mantle))" &&
+      "color-mix(\n    in srgb,\n    var(--background-secondary) 50%,\n    rgb(var(--ctp-base)) 50%\n  )" &&
     declaration(workbenchSource, "ctp-workbench-tab-strip-background") ===
-      "rgb(var(--ctp-crust))",
-  "Editor tabs must keep the VS Code Crust/Mantle/Base strip hierarchy",
+      "var(--background-secondary)" &&
+    mixHex(paletteHex("ctp-mantle"), paletteHex("ctp-base")) === "#1b1b2a",
+  "Opaque editor tabs must use Mantle, the Mantle/Base midpoint, and unchanged Base",
 );
 assert(
-  declaration(workbenchSource, "ctp-workbench-tab-hover-background") ===
+  !/&\.is-translucent:not\(\.is-fullscreen\)\s*\{[^}]*--ctp-workbench-tab-(?:strip|inactive)-background:/s.test(
+    workbenchSource,
+  ),
+  "Translucency must not change the editor-tab strip or inactive-tab roles",
+);
+assert(
+  declaration(workbenchSource, "ctp-workbench-hover-background") ===
     "hsl(from rgb(var(--ctp-base)) h s calc(l + 5))" &&
-    resolveRole("ctp-workbench-tab-hover-background") === "#28283d",
-  "Editor-tab hover must match Catppuccin VS Code's Base +5% lightness treatment",
+    resolveRole("ctp-workbench-hover-background") === "#28283d",
+  "Controls and editor tabs must share Catppuccin VS Code's Base +5% lightness hover",
 );
 assert(
   /\.workspace-split\.mod-root \.workspace-tab-header-container\s*\{\s*background-color: var\(--ctp-workbench-tab-strip-background\)/s.test(
     workbenchSource,
   ),
-  "Root editor tab strip must paint the Crust no-tab surface",
+  "Root editor tab strip must paint the configured no-tab surface",
 );
 assert(
   /\.workspace\s+\.workspace-split\.mod-root\s+\.workspace-tabs:not\(\.mod-stacked\)[\s\S]*?\.workspace-tab-header-inner-close-button\s*\{\s*display: flex;[\s\S]*?visibility: hidden;/s.test(
@@ -233,7 +246,7 @@ assert(
 );
 assert(
   resolveRole("ctp-workbench-close-hover-background") !==
-    resolveRole("ctp-workbench-tab-hover-background"),
+    resolveRole("ctp-workbench-hover-background"),
   "Close-button hover must be distinguishable from the hovered editor tab",
 );
 assert(
@@ -304,18 +317,22 @@ assert(
 );
 assert(
   workbenchSource.includes(
-    "--background-modifier-hover: var(--ctp-workbench-list-hover-background)",
+    "--background-modifier-hover: var(--ctp-workbench-hover-background)",
   ),
-  "Core button hover must use the shared subtle workbench surface",
+  "Core controls must use the shared workbench hover surface",
 );
 assert(
-  workbenchSource.includes(
-    "--ctp-workbench-control-hover-background: rgb(var(--ctp-surface0), 25%)",
-  ) &&
-    workbenchSource.includes(
-      "background-color: var(--ctp-workbench-control-hover-background)",
+  !/--ctp-workbench-(?:control|tab)-hover-background/.test(workbenchSource) &&
+    /:where\(:is\(#\{\$ctp-workbench-control-selectors\}\)\)[\s\S]*?background-color: var\(--ctp-workbench-hover-background\)/.test(
+      workbenchSource,
+    ) &&
+    /\.workspace-split\.mod-sidedock \.workspace-tab-header[\s\S]*?background-color: var\(--ctp-workbench-hover-background\)/.test(
+      workbenchSource,
+    ) &&
+    /\.workspace-split\.mod-root[\s\S]*?\.workspace-tab-header:not\(\.is-active\):hover[\s\S]*?background-color: var\(--ctp-workbench-hover-background\)/.test(
+      workbenchSource,
     ),
-  "Toolbar controls must use a subdued shared hover surface",
+  "Core controls, sidebar tabs, and editor tabs must consume one shared hover token",
 );
 assert(
   workbenchSource.includes(
@@ -384,9 +401,9 @@ assert(
 );
 
 const requiredCompiledFragments = [
-  "--ctp-workbench-tab-strip-background: rgb(var(--ctp-crust))",
-  "--ctp-workbench-tab-inactive-background: rgb(var(--ctp-mantle))",
-  "--ctp-workbench-tab-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5))",
+  "--ctp-workbench-tab-strip-background: var(--background-secondary)",
+  "--ctp-workbench-tab-inactive-background: color-mix(\n    in srgb,\n    var(--background-secondary) 50%,\n    rgb(var(--ctp-base)) 50%\n  )",
+  "--ctp-workbench-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5))",
   ".status-bar-item.mod-clickable",
   ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self",
   ".mod-settings .vertical-tab-nav-item",
@@ -402,7 +419,6 @@ const requiredCompiledFragments = [
   "--divider-color: transparent",
   "border-right-color: transparent",
   ".mod-settings :is(.vertical-tab-header, .vertical-tab-content)",
-  "--ctp-workbench-control-hover-background: rgb(var(--ctp-surface0), 25%)",
   "inline-size: var(--ctp-workbench-control-size)",
 ];
 for (const fragment of requiredCompiledFragments) {

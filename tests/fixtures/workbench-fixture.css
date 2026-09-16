@@ -189,14 +189,14 @@ body:is(.theme-dark, .theme-light)
   .workspace-split.mod-sidedock
   .workspace-tab-header.fixture-hover:not(.is-active)
   .workspace-tab-header-inner {
-  background: var(--ctp-workbench-list-hover-background);
+  background: var(--ctp-workbench-hover-background);
   color: var(--ctp-workbench-icon-foreground);
 }
 
 body:is(.theme-dark, .theme-light)
   .workspace-split.mod-root
   .workspace-tab-header.fixture-hover:not(.is-active) {
-  background-color: var(--ctp-workbench-tab-hover-background);
+  background-color: var(--ctp-workbench-hover-background);
   color: var(--ctp-workbench-icon-foreground);
 }
 
@@ -259,7 +259,7 @@ button.is-active {
 }
 
 .fixture-hover:is(.sidebar-toggle-button, .status-bar-item.mod-clickable) {
-  background: var(--ctp-workbench-list-hover-background);
+  background: var(--ctp-workbench-hover-background);
   color: var(--ctp-workbench-icon-foreground);
 }
 

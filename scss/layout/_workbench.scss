@@ -30,16 +30,19 @@ body.theme-light {
   --ctp-workbench-focus-border: rgb(var(--ctp-mauve));
   --ctp-workbench-list-selection-background: rgb(var(--ctp-surface0));
   --ctp-workbench-list-hover-background: rgb(var(--ctp-surface0), 50%);
-  --ctp-workbench-control-hover-background: rgb(var(--ctp-surface0), 25%);
+  /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
+  --ctp-workbench-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
   --ctp-workbench-control-size: calc(var(--header-height) - 10px);
   --ctp-workbench-list-secondary-foreground: var(--text-muted);
   --ctp-workbench-tree-guide-active: rgb(var(--ctp-overlay2));
   --ctp-workbench-tree-guide-inactive: rgb(var(--ctp-surface1));
-  --ctp-workbench-tab-strip-background: rgb(var(--ctp-crust));
+  --ctp-workbench-tab-strip-background: var(--background-secondary);
   --ctp-workbench-tab-active-background: rgb(var(--ctp-base));
-  --ctp-workbench-tab-inactive-background: rgb(var(--ctp-mantle));
-  /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
-  --ctp-workbench-tab-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
+  --ctp-workbench-tab-inactive-background: color-mix(
+    in srgb,
+    var(--background-secondary) 50%,
+    rgb(var(--ctp-base)) 50%
+  );
   --ctp-workbench-tab-active-foreground: rgb(var(--ctp-mauve));
   --ctp-workbench-close-hover-background: rgb(var(--ctp-surface1));
 
@@ -216,10 +219,10 @@ body.theme-light {
         [aria-disabled="true"],
         :disabled
       ):hover {
-      --background-modifier-hover: var(--ctp-workbench-control-hover-background);
+      --background-modifier-hover: var(--ctp-workbench-hover-background);
       --icon-color-hover: var(--ctp-workbench-icon-foreground);
 
-      background-color: var(--ctp-workbench-control-hover-background);
+      background-color: var(--ctp-workbench-hover-background);
       color: var(--ctp-workbench-icon-foreground);
 
       svg {
@@ -286,11 +289,11 @@ body.theme-light {
     .workspace-split.mod-sidedock .workspace-tab-header {
       &:not(.is-active):hover,
       &:not(.is-active):hover .workspace-tab-header-inner {
-        --background-modifier-hover: var(--ctp-workbench-list-hover-background);
-        --background-modifier-active-hover: var(--ctp-workbench-list-hover-background);
+        --background-modifier-hover: var(--ctp-workbench-hover-background);
+        --background-modifier-active-hover: var(--ctp-workbench-hover-background);
         --tab-text-color-hover: var(--ctp-workbench-icon-foreground);
 
-        background-color: var(--ctp-workbench-list-hover-background);
+        background-color: var(--ctp-workbench-hover-background);
         color: var(--ctp-workbench-icon-foreground);
       }
 
@@ -409,7 +412,7 @@ body.theme-light {
       --tab-text-color-focused: var(--ctp-workbench-icon-foreground);
       --tab-text-color-hover: var(--ctp-workbench-icon-foreground);
 
-      background-color: var(--ctp-workbench-tab-hover-background);
+      background-color: var(--ctp-workbench-hover-background);
       color: var(--ctp-workbench-icon-foreground);
 
       .workspace-tab-header-inner {

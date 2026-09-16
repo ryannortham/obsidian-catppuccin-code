@@ -36,13 +36,12 @@ partial. Its component-local selectors use the normal cascade and contain no
 | Focus border | `--ctp-mauve` |
 | Active/inactive selection | `--ctp-surface0` |
 | List hover | `--ctp-surface0` at 50% |
-| Toolbar-control hover | `--ctp-surface0` at 25% |
+| Shared control/editor-tab hover | `--ctp-base` lightened 5% |
 | Active tree guide | `--ctp-overlay2` |
 | Inactive tree guide | `--ctp-surface1` |
-| Empty editor tab strip | `--ctp-crust` |
+| Empty editor tab strip | `--background-secondary` (`--ctp-mantle`) |
 | Active editor tab | `--ctp-base` |
-| Inactive editor tab | `--ctp-mantle` |
-| Editor-tab hover | `--ctp-base` lightened 5%, matching Catppuccin VS Code |
+| Inactive editor tab | 50/50 `--ctp-mantle`/`--ctp-base` |
 | Active editor-tab foreground | `--ctp-mauve` |
 | Close-button hover | `--ctp-surface1` (distinct from editor-tab hover) |
 
@@ -98,13 +97,15 @@ Workbench chrome uses one panel surface in both focus states: the focused
 titlebar now shares `var(--background-secondary)` with the tabs, ribbon, and
 status bar, and its border is transparent. Translucent mode only changes the
 divider strokes to transparent so the surface contract does not branch by focus.
-Top-bar controls use the shared 25% Surface0 control-hover role, with hover
-painted on a normalized 30px inner hit target so panel toggles and tab actions
-keep the same subdued squircle across focus, translucency, and Style Settings
-states.
-Root editor tabs follow Catppuccin VS Code's four-surface sequence: Crust for the
-empty strip, Mantle for inactive tabs, Base for the unchanged active tab, and
-Base lightened by 5% for inactive hover. Inactive close buttons remain in layout
+Ordinary clickable controls, status-bar actions, sidebar tabs, and inactive
+editor tabs consume one `--ctp-workbench-hover-background` role. It matches
+Catppuccin VS Code's Base-lightened-by-5% tab hover and is painted on normalized
+30px inner hit targets where Obsidian uses top-bar wrappers. Active, close, and
+destructive states retain their separate semantic treatments.
+Root editor tabs use the standard secondary background (Mantle) for the empty
+strip, a 50/50 Mantle/Base midpoint for inactive tabs, unchanged Base for the
+active tab, and Base lightened by 5% for inactive hover. These roles do not
+change when translucency is toggled. Inactive close buttons remain in layout
 while hidden, so Metadata Menu file-class icons do not shift when hover reveals
 the close control.
 
