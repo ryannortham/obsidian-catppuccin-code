@@ -162,11 +162,6 @@ assert(
   "Ribbon vertical seam must match the panel surface",
 );
 assert(
-  workbenchSource.includes(".workspace-split.mod-vertical > * > .workspace-leaf-resize-handle") &&
-    workbenchSource.includes("background-color: var(--background-secondary)"),
-  "Vertical split handles must match the panel surface",
-);
-assert(
   workbenchSource.includes(".status-bar-item.mod-clickable") &&
     workbenchSource.includes(".clickable-icon:not("),
   "Status-bar and icon controls must share the core workbench control selectors",
@@ -288,7 +283,6 @@ const requiredCompiledFragments = [
   ".workspace-tab-header .metadata-menu.fileclass-icon",
   "body.theme-dark .workspace-ribbon",
   "border-right-color: var(--background-secondary)",
-  ".workspace-split.mod-vertical > * > .workspace-leaf-resize-handle",
 ];
 for (const fragment of requiredCompiledFragments) {
   assert(compiledCss.includes(fragment), `Compiled theme is missing: ${fragment}`);

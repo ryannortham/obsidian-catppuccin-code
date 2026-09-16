@@ -3197,18 +3197,6 @@ body.theme-light .workspace-ribbon {
 }
 body.theme-dark,
 body.theme-light {
-  /* Vertical split handles blend into the standard panel surface. */
-}
-body.theme-dark :is(.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
-.workspace-split.mod-left-split > .workspace-leaf-resize-handle,
-.workspace-split.mod-right-split > .workspace-leaf-resize-handle),
-body.theme-light :is(.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
-.workspace-split.mod-left-split > .workspace-leaf-resize-handle,
-.workspace-split.mod-right-split > .workspace-leaf-resize-handle) {
-  background-color: var(--background-secondary);
-}
-body.theme-dark,
-body.theme-light {
   /* Tree rows and Settings navigation share one selection and hover contract. */
 }
 body.theme-dark :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item),

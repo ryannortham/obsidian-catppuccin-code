@@ -9,7 +9,7 @@ Obsidian workbench interaction states as a coherent theme baseline.
   `1316e03af5c31964116661ab08e7784bfa1d00b3`.
 - Upstream and installed Obsidian manifest version: `0.4.49`.
 - Baseline review build: `pnpm exec sass scss/main.scss:theme.css`.
-- Current build SHA-256: `899246378df27b55679658910eb3d5f3c9f13f9c63ca369af2cea7c94af35420`.
+- Current build SHA-256: `94ef44805cca0ee32a3c7fb0ba6f7ab247c80c81d8881338651ce0bec63b56ce`.
 - pnpm 11 requires the locked `@parcel/watcher` build to be explicitly allowed;
   `pnpm-workspace.yaml` records that reviewed dependency.
 
@@ -78,9 +78,9 @@ Pane and tab seams match the standard panel surface: `--divider-color`,
 `--tab-divider-color`, and `--tab-outline-color` resolve to
 `var(--background-secondary)`, so the divider geometry remains available without
 introducing a contrasting rule.
-The ribbon edge and vertical split handles use `var(--background-secondary)` to
-blend into the standard panel surface. Resize handles retain their hover accent
-so pane resizing remains discoverable.
+The ribbon edge uses `var(--background-secondary)` to blend into the standard
+panel surface. Vertical split handles retain Obsidian’s transparent native paint
+so they do not cover adjacent scrollbars; resize hover remains accented.
 
 Every workbench role resolves to a token in the active Catppuccin palette.
 Style Settings selects the flavor and accent classes; it does not disable the

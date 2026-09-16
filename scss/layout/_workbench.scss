@@ -44,15 +44,6 @@ body.theme-light {
     border-right-color: var(--background-secondary);
   }
 
-  /* Vertical split handles blend into the standard panel surface. */
-  :is(
-    .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
-    .workspace-split.mod-left-split > .workspace-leaf-resize-handle,
-    .workspace-split.mod-right-split > .workspace-leaf-resize-handle
-  ) {
-    background-color: var(--background-secondary);
-  }
-
   /* Tree rows and Settings navigation share one selection and hover contract. */
   :is(#{$ctp-workbench-list-row-selectors}) {
     --nav-item-radius: 0;
