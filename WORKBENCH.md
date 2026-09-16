@@ -9,7 +9,7 @@ Obsidian workbench interaction states as a coherent theme baseline.
   `1316e03af5c31964116661ab08e7784bfa1d00b3`.
 - Upstream and installed Obsidian manifest version: `0.4.49`.
 - Baseline review build: `pnpm exec sass scss/main.scss:theme.css`.
-- Current build SHA-256: `e4b2e5f6d2f6df8f891f760377f066bb9ffdd2226d8d64fea7da80fd28956788`.
+- Current build SHA-256: `4c3df24a86f55a2f0234ca71c45d2527bb78c66541870c52d93a08472e5a2cbe`.
 - pnpm 11 requires the locked `@parcel/watcher` build to be explicitly allowed;
   `pnpm-workspace.yaml` records that reviewed dependency.
 
@@ -36,6 +36,7 @@ partial. Its component-local selectors use the normal cascade and contain no
 | Focus border | `--ctp-mauve` |
 | Active/inactive selection | `--ctp-surface0` |
 | List hover | `--ctp-surface0` at 50% |
+| Toolbar-control hover | `--ctp-surface0` at 25% |
 | Active tree guide | `--ctp-overlay2` |
 | Inactive tree guide | `--ctp-surface1` |
 | Active editor tab | `--ctp-base` |
@@ -96,6 +97,10 @@ Workbench chrome uses one panel surface in both focus states: the focused
 titlebar now shares `var(--background-secondary)` with the tabs, ribbon, and
 status bar, and its border is transparent. Translucent mode only changes the
 divider strokes to transparent so the surface contract does not branch by focus.
+Top-bar controls use the shared 25% Surface0 control-hover role, with hover
+painted on a normalized 30px inner hit target so panel toggles and tab actions
+keep the same subdued squircle across focus, translucency, and Style Settings
+states.
 
 ## Compatibility boundary
 

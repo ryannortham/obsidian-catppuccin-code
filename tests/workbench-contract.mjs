@@ -224,6 +224,23 @@ assert(
   "Core button hover must use the shared subtle workbench surface",
 );
 assert(
+  workbenchSource.includes(
+    "--ctp-workbench-control-hover-background: rgb(var(--ctp-surface0), 25%)",
+  ) &&
+    workbenchSource.includes(
+      "background-color: var(--ctp-workbench-control-hover-background)",
+    ),
+  "Toolbar controls must use a subdued shared hover surface",
+);
+assert(
+  workbenchSource.includes(
+    ":is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button)",
+  ) &&
+    workbenchSource.includes("inline-size: var(--ctp-workbench-control-size)") &&
+    workbenchSource.includes("block-size: var(--ctp-workbench-control-size)"),
+  "Top-bar controls must share one normalized hit-target size",
+);
+assert(
   coreControlSources.every(
     (source) =>
       !/(?:--background-modifier-hover|--interactive-hover)\s*:\s*rgb\(var\(--ctp-accent\)\)/.test(
@@ -298,6 +315,8 @@ const requiredCompiledFragments = [
   "--divider-color: transparent",
   "border-right-color: transparent",
   ".mod-settings :is(.vertical-tab-header, .vertical-tab-content)",
+  "--ctp-workbench-control-hover-background: rgb(var(--ctp-surface0), 25%)",
+  "inline-size: var(--ctp-workbench-control-size)",
 ];
 for (const fragment of requiredCompiledFragments) {
   assert(compiledCss.includes(fragment), `Compiled theme is missing: ${fragment}`);

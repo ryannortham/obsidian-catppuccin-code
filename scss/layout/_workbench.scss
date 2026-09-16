@@ -30,6 +30,8 @@ body.theme-light {
   --ctp-workbench-focus-border: rgb(var(--ctp-mauve));
   --ctp-workbench-list-selection-background: rgb(var(--ctp-surface0));
   --ctp-workbench-list-hover-background: rgb(var(--ctp-surface0), 50%);
+  --ctp-workbench-control-hover-background: rgb(var(--ctp-surface0), 25%);
+  --ctp-workbench-control-size: calc(var(--header-height) - 10px);
   --ctp-workbench-list-secondary-foreground: var(--text-muted);
   --ctp-workbench-tree-guide-active: rgb(var(--ctp-overlay2));
   --ctp-workbench-tree-guide-inactive: rgb(var(--ctp-surface1));
@@ -58,6 +60,24 @@ body.theme-light {
   /* Settings’ two-column navigation should not draw a contrasting seam. */
   .mod-settings :is(.vertical-tab-header, .vertical-tab-content) {
     border-inline-color: transparent;
+  }
+
+  /* Keep top-bar wrappers transparent; the inner controls own one shared
+     hit area so every toolbar hover has the same size and radius. */
+  :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button) {
+    background-color: transparent;
+
+    .clickable-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border-radius: var(--clickable-icon-radius);
+      block-size: var(--ctp-workbench-control-size);
+      inline-size: var(--ctp-workbench-control-size);
+      min-block-size: var(--ctp-workbench-control-size);
+      min-inline-size: var(--ctp-workbench-control-size);
+    }
   }
 
   /* Tree rows and Settings navigation share one selection and hover contract. */
@@ -194,16 +214,20 @@ body.theme-light {
         [aria-disabled="true"],
         :disabled
       ):hover {
-      --background-modifier-hover: var(--ctp-workbench-list-hover-background);
+      --background-modifier-hover: var(--ctp-workbench-control-hover-background);
       --icon-color-hover: var(--ctp-workbench-icon-foreground);
 
-      background-color: var(--ctp-workbench-list-hover-background);
+      background-color: var(--ctp-workbench-control-hover-background);
       color: var(--ctp-workbench-icon-foreground);
 
       svg {
         background-color: transparent;
         color: var(--ctp-workbench-icon-foreground);
       }
+    }
+
+    :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button):hover {
+      background-color: transparent;
     }
 
     :where(:is(#{$ctp-workbench-control-selectors})):is(

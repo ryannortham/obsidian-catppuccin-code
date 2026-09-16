@@ -2149,7 +2149,7 @@ body {
 */
 .mod-linux .titlebar-button:hover,
 .mod-windows .titlebar-button:hover {
-  background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
+  background-color: var(--ctp-workbench-control-hover-background, rgb(var(--ctp-surface0), 25%));
   color: var(--text-normal);
 }
 
@@ -2218,7 +2218,7 @@ body {
 * Bring block edit button in line with rest of button hovers
 */
 .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button:hover {
-  background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
+  background-color: var(--ctp-workbench-control-hover-background, rgb(var(--ctp-surface0), 25%));
   color: var(--text-normal);
 }
 
@@ -3181,6 +3181,8 @@ body.theme-light {
   --ctp-workbench-focus-border: rgb(var(--ctp-mauve));
   --ctp-workbench-list-selection-background: rgb(var(--ctp-surface0));
   --ctp-workbench-list-hover-background: rgb(var(--ctp-surface0), 50%);
+  --ctp-workbench-control-hover-background: rgb(var(--ctp-surface0), 25%);
+  --ctp-workbench-control-size: calc(var(--header-height) - 10px);
   --ctp-workbench-list-secondary-foreground: var(--text-muted);
   --ctp-workbench-tree-guide-active: rgb(var(--ctp-overlay2));
   --ctp-workbench-tree-guide-inactive: rgb(var(--ctp-surface1));
@@ -3216,6 +3218,27 @@ body.theme-light {
 body.theme-dark .mod-settings :is(.vertical-tab-header, .vertical-tab-content),
 body.theme-light .mod-settings :is(.vertical-tab-header, .vertical-tab-content) {
   border-inline-color: transparent;
+}
+body.theme-dark,
+body.theme-light {
+  /* Keep top-bar wrappers transparent; the inner controls own one shared
+     hit area so every toolbar hover has the same size and radius. */
+}
+body.theme-dark :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button),
+body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button) {
+  background-color: transparent;
+}
+body.theme-dark :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button) .clickable-icon,
+body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button) .clickable-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: var(--clickable-icon-radius);
+  block-size: var(--ctp-workbench-control-size);
+  inline-size: var(--ctp-workbench-control-size);
+  min-block-size: var(--ctp-workbench-control-size);
+  min-inline-size: var(--ctp-workbench-control-size);
 }
 body.theme-dark,
 body.theme-light {
@@ -3347,9 +3370,9 @@ body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-
   [aria-pressed=true],
   [aria-disabled=true],
   :disabled):hover {
-    --background-modifier-hover: var(--ctp-workbench-list-hover-background);
+    --background-modifier-hover: var(--ctp-workbench-control-hover-background);
     --icon-color-hover: var(--ctp-workbench-icon-foreground);
-    background-color: var(--ctp-workbench-list-hover-background);
+    background-color: var(--ctp-workbench-control-hover-background);
     color: var(--ctp-workbench-icon-foreground);
   }
   body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):not(.is-active,
@@ -3364,6 +3387,10 @@ body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-
   :disabled):hover svg {
     background-color: transparent;
     color: var(--ctp-workbench-icon-foreground);
+  }
+  body.theme-dark :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button):hover,
+  body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button):hover {
+    background-color: transparent;
   }
   body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button)):is(.is-active,
   .is-selected,
