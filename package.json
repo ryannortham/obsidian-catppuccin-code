@@ -7,9 +7,11 @@
     "build": "sass scss/main.scss:dist/catppuccin-workbench.css",
     "build:theme": "sass scss/main.scss:theme.css",
     "lint": "stylelint scss/layout/_workbench.scss scss/vendors/_workbench-compatibility.scss",
-    "test": "node tests/workbench-contract.mjs",
+    "test": "node tests/workbench-contract.mjs && node tests/markdown-contract.mjs",
     "test:visual": "node tests/render-workbench-fixture.mjs",
-    "test:visual:check": "node tests/render-workbench-fixture.mjs --check"
+    "test:visual:check": "node tests/render-workbench-fixture.mjs --check",
+    "test:visual:markdown": "node tests/render-markdown-fixture.mjs",
+    "test:visual:markdown:check": "node tests/render-markdown-fixture.mjs --check"
   },
   "repository": {
     "type": "git",

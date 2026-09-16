@@ -1,0 +1,79 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: rgb(var(--ctp-crust));
+  color: rgb(var(--ctp-text));
+  font-family: Vollkorn, Georgia, serif;
+}
+
+main {
+  width: 1120px;
+  margin: 0 auto;
+  padding: 36px 48px 56px;
+  background: rgb(var(--ctp-base));
+}
+
+.markdown-rendered {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6 {
+  margin: 1em 0 0.35em;
+}
+
+.markdown-rendered p {
+  line-height: 1.6;
+}
+
+.markdown-rendered .sample-code {
+  margin: 1.2em 0;
+}
+
+.markdown-rendered pre {
+  padding: 18px 20px;
+  border: 1px solid rgb(var(--ctp-surface0));
+  border-radius: 8px;
+  overflow: auto;
+}
+
+.markdown-rendered pre code {
+  font-family: "JetBrains Mono", monospace;
+  line-height: 1.55;
+}
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgb(var(--ctp-surface0));
+  background: rgb(var(--ctp-mantle));
+}
+
+.task-grid label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cm-preview {
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px dashed rgb(var(--ctp-surface1));
+  background: rgb(var(--ctp-mantle));
+  font-family: "JetBrains Mono", monospace;
+}
+
+.cm-preview .HyperMD-codeblock-bg {
+  padding: 8px;
+}

@@ -1,0 +1,25 @@
+/* Document-focused Markdown surfaces. Keep these separate from workbench UI. */
+
+.markdown-rendered :not(pre) > code,
+.markdown-source-view.mod-cm6 :is(.cm-inline-code, .cm-hmd-indented-code) {
+  background-color: rgb(var(--ctp-mantle));
+}
+
+/* Obsidian's CodeMirror classes intentionally retain their upstream casing. */
+/* stylelint-disable selector-class-pattern */
+.markdown-rendered pre,
+.markdown-source-view.mod-cm6 :is(
+  .HyperMD-codeblock-bg,
+  .HyperMD-codeblock-begin-bg,
+  .HyperMD-codeblock-end-bg
+) {
+  --code-background: rgb(var(--ctp-crust));
+
+  border-color: rgb(var(--ctp-surface0));
+  background-color: rgb(var(--ctp-crust));
+}
+/* stylelint-enable selector-class-pattern */
+
+.markdown-rendered pre code {
+  background-color: transparent;
+}

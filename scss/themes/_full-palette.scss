@@ -4,7 +4,7 @@
   --blockquote-border-color: rgb(var(--ctp-lavender));
   --ctp-accent: var(--ctp-lavender);
   --divider-color-hover: rgb(var(--ctp-blue));
-  --hr-color: rgb(var(--ctp-blue));
+  --hr-color: rgb(var(--ctp-surface2));
   --indentation-guide-color: rgb(var(--ctp-surface1));
   --indentation-guide-color-active: rgb(var(--ctp-sapphire), 70%);
   --indentation-guide-width: 2px;
@@ -122,14 +122,15 @@
   * Checkboxes
   */
   input[type="checkbox"]:not(:checked) {
-    border-color: rgb(var(--ctp-maroon));
-    background-color: rgb(var(--ctp-red));
-    box-shadow:
-      inset 2px 2px 24px rgb(var(--ctp-mantle)),
-      inset -2px -2px 24px rgb(var(--ctp-mantle));
+    border-color: rgb(var(--ctp-surface2));
+    background-color: transparent;
+    box-shadow: none;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       border-width: 2px;
+      border-color: rgb(var(--ctp-lavender));
+      background-color: rgb(var(--ctp-surface0), 50%);
     }
   }
 

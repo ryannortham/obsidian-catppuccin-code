@@ -62,7 +62,7 @@ body {
   --callout-summary: var(--color-cyan);
   --callout-tip: var(--color-cyan);
   --callout-todo: var(--color-blue);
-  --callout-warning: var(--color-orange);
+  --callout-warning: var(--color-yellow);
   --callout-quote: rgb(var(--ctp-subtext0));
 
   /* Canvas */
@@ -91,16 +91,16 @@ body {
   --code-white-space: pre-wrap;
   --code-size: var(--font-smaller);
   --code-background: var(--background-primary-alt);
-  --code-normal: var(--text-muted);
-  --code-comment: var(--text-faint);
-  --code-function: var(--color-yellow);
+  --code-normal: var(--text-normal);
+  --code-comment: rgb(var(--ctp-overlay2));
+  --code-function: var(--color-blue);
   --code-important: var(--color-orange);
-  --code-keyword: var(--color-pink);
-  --code-property: var(--color-cyan);
-  --code-punctuation: var(--text-muted);
+  --code-keyword: var(--color-purple);
+  --code-property: var(--color-blue);
+  --code-punctuation: rgb(var(--ctp-overlay2));
   --code-string: var(--color-green);
   --code-tag: var(--color-red);
-  --code-value: var(--color-purple);
+  --code-value: var(--color-orange);
 
   /* Collapse icons */
   --collapse-icon-color: var(--text-faint);
@@ -235,7 +235,7 @@ body {
   --header-height: 40px;
 
   /* Horizontal rules */
-  --hr-color: var(--background-modifier-border);
+  --hr-color: rgb(var(--ctp-surface2));
   --hr-thickness: 2px;
 
   /* Icons */
@@ -307,8 +307,8 @@ body {
   --link-decoration: none;
   --link-decoration-hover: underline;
   --link-decoration-thickness: 2px;
-  --link-external-color: rgb(var(--ctp-teal));
-  --link-external-color-hover: rgb(var(--ctp-teal));
+  --link-external-color: rgb(var(--ctp-blue));
+  --link-external-color-hover: rgb(var(--ctp-blue));
   --link-external-decoration: none;
   --link-external-decoration-hover: underline;
   --link-external-filter: none;
@@ -522,8 +522,8 @@ body {
 
   /* Tags */
   --tag-size: max(var(--font-ui-medium), var(--font-small));
-  --tag-color: rgb(var(--ctp-tag-pill-color, var(--ctp-accent)));
-  --tag-color-hover: rgb(var(--ctp-tag-pill-color, var(--ctp-accent)));
+  --tag-color: rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
+  --tag-color-hover: rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
   --tag-decoration: none;
   --tag-decoration-hover: underline;
   --tag-background: transparent;

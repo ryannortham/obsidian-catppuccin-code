@@ -23,18 +23,19 @@ strong,
 .cm-strong,
 .cm-s-obsidian span.cm-formatting-strong,
 .cm-s-obsidian span.cm-strong {
-  --bold-color: rgb(var(--ctp-bold, var(--ctp-sapphire)));
-  color: rgb(var(--ctp-bold, var(--ctp-sapphire)));
+  --bold-color: rgb(var(--ctp-bold, var(--ctp-text)));
+
+  color: rgb(var(--ctp-bold, var(--ctp-text)));
 }
 
 em,
 .cm-em {
-  --italic-color: rgb(var(--ctp-italic, var(--ctp-green)));
+  --italic-color: rgb(var(--ctp-italic, var(--ctp-text)));
 }
 
 del,
 .cm-strikethrough {
-  color: rgb(var(--ctp-strikethrough, var(--ctp-maroon)));
+  color: rgb(var(--ctp-strikethrough, var(--ctp-overlay1)));
 }
 
 .cm-s-obsidian .cm-link.cm-strikethrough {
@@ -43,14 +44,14 @@ del,
 
 .markdown-rendered blockquote,
 .cm-s-obsidian span.cm-quote {
-  --blockquote-border-color: rgb(var(--ctp-blockquote, var(--ctp-accent)));
-  --blockquote-color: rgb(var(--ctp-blockquote, var(--ctp-rosewater)));
+  --blockquote-border-color: rgb(var(--ctp-blockquote, var(--ctp-lavender)));
+  --blockquote-color: rgb(var(--ctp-blockquote, var(--ctp-subtext1)));
 }
 
 .cm-em.cm-strong,
 strong > em,
 em > strong {
-  color: rgb(var(--ctp-teal));
+  color: rgb(var(--ctp-bold, var(--ctp-text)));
 }
 
 .markdown-source-view ol > li,
@@ -71,7 +72,7 @@ h1,
 .markdown-rendered h1,
 .HyperMD-header-1,
 .HyperMD-list-line .cm-header-1 {
-  --h1-color: rgb(var(--ctp-h1, var(--ctp-accent)));
+  --h1-color: rgb(var(--ctp-h1, var(--ctp-text)));
 
   line-height: var(--h1-line-height);
 }
@@ -80,7 +81,7 @@ h2,
 .markdown-rendered h2,
 .HyperMD-header-2,
 .HyperMD-list-line .cm-header-2 {
-  --h2-color: rgb(var(--ctp-h2, var(--ctp-accent)));
+  --h2-color: rgb(var(--ctp-h2, var(--ctp-lavender)));
 
   line-height: var(--h2-line-height);
 }
@@ -89,7 +90,7 @@ h3,
 .markdown-rendered h3,
 .HyperMD-header-3,
 .HyperMD-list-line .cm-header-3 {
-  --h3-color: rgb(var(--ctp-h3, var(--ctp-accent)));
+  --h3-color: rgb(var(--ctp-h3, var(--ctp-blue)));
 
   line-height: var(--h3-line-height);
 }
@@ -98,7 +99,7 @@ h4,
 .markdown-rendered h4,
 .HyperMD-header-4,
 .HyperMD-list-line .cm-header-4 {
-  --h4-color: rgb(var(--ctp-h4, var(--ctp-accent)));
+  --h4-color: rgb(var(--ctp-h4, var(--ctp-sapphire)));
 
   line-height: var(--h4-line-height);
 }
@@ -107,7 +108,7 @@ h5,
 .markdown-rendered h5,
 .HyperMD-header-5,
 .HyperMD-list-line .cm-header-5 {
-  --h5-color: rgb(var(--ctp-h5, var(--ctp-accent)));
+  --h5-color: rgb(var(--ctp-h5, var(--ctp-subtext1)));
 
   line-height: var(--line-height-normal);
 }
@@ -116,7 +117,7 @@ h6,
 .markdown-rendered h6,
 .HyperMD-header-6,
 .HyperMD-list-line .cm-header-6 {
-  --h6-color: rgb(var(--ctp-h6, var(--ctp-accent)));
+  --h6-color: rgb(var(--ctp-h6, var(--ctp-subtext0)));
 
   line-height: var(--line-height-normal);
 }
@@ -134,41 +135,25 @@ h6,
 .markdown-rendered mark,
 .cm-s-obsidian span.cm-formatting-highlight,
 .cm-s-obsidian span.cm-highlight {
-  background-color: rgb(var(--ctp-rosewater));
-  color: var(--text-on-accent);
+  background-color: rgb(var(--ctp-yellow), 28%);
+  color: var(--text-normal);
 
   &.cm-em,
   em {
-    background-image:
-      linear-gradient(
-        rgb(var(--ctp-green), 40%),
-        rgb(var(--ctp-green), 60%),
-        rgb(var(--ctp-green), 60%),
-      );
-    color: var(--text-on-accent);
-    text-align: left;
+    background-image: none;
+    color: inherit;
   }
 
   &.cm-strong,
   strong {
-    background-image:
-      linear-gradient(
-        rgb(var(--ctp-sapphire), 40%),
-        rgb(var(--ctp-sapphire), 60%),
-        rgb(var(--ctp-sapphire), 40%)
-      );
-    color: var(--text-on-accent);
+    background-image: none;
+    color: inherit;
   }
 
   &.cm-strikethrough,
   del {
-    background-image:
-      linear-gradient(
-        rgb(var(--ctp-red), 40%),
-        rgb(var(--ctp-red), 60%),
-        rgb(var(--ctp-red), 40%)
-      );
-    color: var(--text-on-accent);
+    background-image: none;
+    color: inherit;
   }
 }
 

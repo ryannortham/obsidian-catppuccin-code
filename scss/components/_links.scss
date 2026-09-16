@@ -30,12 +30,12 @@ body:not(.ctp-tag-pill) {
   }
 
   .cm-hashtag.cm-hashtag-end:hover {
-    text-decoration: underline 1px rgb(var(--ctp-tag-pill-color, var(--ctp-accent)));
+    text-decoration: underline 1px rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
     text-underline-offset: 1px;
   }
 
   .cm-hashtag::selection {
-    text-shadow: 0.4px 0 0 rgb(var(--ctp-tag-pill-color, var(--ctp-accent)));
+    text-shadow: 0.4px 0 0 rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
   }
 }
 
@@ -78,7 +78,7 @@ body:not(.ctp-tag-pill) {
 .cm-s-obsidian .cm-formatting-link.cm-hmd-barelink,
 .cm-s-obsidian .cm-formatting-link.cm-formatting-link-start,
 .cm-s-obsidian .cm-formatting-link.cm-formatting-link-end {
-  color: rgb(var(--ctp-accent));
+  color: var(--link-color);
 }
 
 .empty-state-action {

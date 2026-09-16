@@ -106,7 +106,7 @@ settings:
     description: Select your bold font color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-sapphire)
+    default: var(--ctp-text)
     options:
       -
         label: Rosewater
@@ -162,7 +162,7 @@ settings:
     description: Select your italic font color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-green)
+    default: var(--ctp-text)
     options:
       -
         label: Accent
@@ -221,7 +221,7 @@ settings:
     description: Select your strikethrough color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-maroon)
+    default: var(--ctp-overlay1)
     options:
       -
         label: Accent
@@ -280,7 +280,7 @@ settings:
     description: Select your blockquote text color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-rosewater)
+    default: var(--ctp-subtext1)
     options:
       -
         label: Accent
@@ -405,7 +405,7 @@ settings:
     description: Select your H1 color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-text)
     options:
       -
         label: Accent
@@ -464,7 +464,7 @@ settings:
     description: Select your H2 color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-lavender)
     options:
       -
         label: Accent
@@ -523,7 +523,7 @@ settings:
     description: Select your H3 color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-blue)
     options:
       -
         label: Accent
@@ -582,7 +582,7 @@ settings:
     description: Select your H4 color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-sapphire)
     options:
       -
         label: Accent
@@ -641,7 +641,7 @@ settings:
     description: Select your H5 color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-subtext1)
     options:
       -
         label: Accent
@@ -700,7 +700,7 @@ settings:
     description: Select your H6 color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-subtext0)
     options:
       -
         label: Accent
@@ -791,7 +791,7 @@ settings:
     description: Select your tag text color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-blue)
     options:
       -
         label: Accent

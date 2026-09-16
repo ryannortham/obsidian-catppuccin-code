@@ -9,7 +9,7 @@ Obsidian workbench interaction states as a coherent theme baseline.
   `1316e03af5c31964116661ab08e7784bfa1d00b3`.
 - Upstream and installed Obsidian manifest version: `0.4.49`.
 - Baseline review build: `pnpm exec sass scss/main.scss:theme.css`.
-- Current build SHA-256: `995612864888ca0340321d0e63ee4e4fd9b255b397fa02ed9b7301fdaa0d7abe`.
+- Current build SHA-256: `75ef309ede9d80e8b7c209875d100d0e94bf9a518c61a2321a1fb4dedd8aa85c`.
 - pnpm 11 requires the locked `@parcel/watcher` build to be explicitly allowed;
   `pnpm-workspace.yaml` records that reviewed dependency.
 
@@ -43,6 +43,34 @@ partial. Its component-local selectors use the normal cascade and contain no
 | Editor-tab hover | `--ctp-surface0` |
 | Active editor-tab foreground | `--ctp-mauve` |
 | Close-button hover | `--ctp-surface1` (distinct from editor-tab hover) |
+
+## Markdown presentation roles
+
+`scss/components/_markdown.scss` owns document-only surfaces so prose styling
+does not leak into workbench controls. Typography and link partials provide the
+semantic fallbacks; Style Settings variables remain the user override boundary.
+
+| Document role | Default token |
+| --- | --- |
+| Body, bold, italic, bold-italic, H1 | `--ctp-text` |
+| H2 / H3 / H4 | `--ctp-lavender` / `--ctp-blue` / `--ctp-sapphire` |
+| H5 / H6 | `--ctp-subtext1` / `--ctp-subtext0` |
+| Links, bare URLs, tags | `--ctp-blue` |
+| Blockquote text / border | `--ctp-subtext1` / `--ctp-lavender` |
+| Strikethrough / highlight | `--ctp-overlay1` / 28% `--ctp-yellow` |
+| Horizontal rule | `--ctp-surface2` |
+| Unchecked task | transparent + `--ctp-surface2` border |
+| Unchecked hover/focus | 50% `--ctp-surface0` + `--ctp-lavender` border |
+| Completed task / warning | `--ctp-green` / `--ctp-yellow` |
+| Inline code / fenced code | `--ctp-mantle` / `--ctp-crust` |
+| Fenced-code edge | `--ctp-surface0` border |
+
+Fenced-code syntax variables follow the Catppuccin editor guidance where
+Obsidian exposes a matching role. Unclassified code remains Text; Markdown
+syntax selectors are scoped to Reading View and Live Preview code surfaces.
+The generated artifact is installed at
+`.obsidian/themes/Catppuccin Workbench/theme.css` and is byte-identical to the
+reviewed build.
 
 Every workbench role resolves to a token in the active Catppuccin palette.
 Style Settings selects the flavor and accent classes; it does not disable the

@@ -57,7 +57,7 @@ body {
   --callout-summary: var(--color-cyan);
   --callout-tip: var(--color-cyan);
   --callout-todo: var(--color-blue);
-  --callout-warning: var(--color-orange);
+  --callout-warning: var(--color-yellow);
   --callout-quote: rgb(var(--ctp-subtext0));
   /* Canvas */
   --canvas-background: var(--background-primary);
@@ -83,16 +83,16 @@ body {
   --code-white-space: pre-wrap;
   --code-size: var(--font-smaller);
   --code-background: var(--background-primary-alt);
-  --code-normal: var(--text-muted);
-  --code-comment: var(--text-faint);
-  --code-function: var(--color-yellow);
+  --code-normal: var(--text-normal);
+  --code-comment: rgb(var(--ctp-overlay2));
+  --code-function: var(--color-blue);
   --code-important: var(--color-orange);
-  --code-keyword: var(--color-pink);
-  --code-property: var(--color-cyan);
-  --code-punctuation: var(--text-muted);
+  --code-keyword: var(--color-purple);
+  --code-property: var(--color-blue);
+  --code-punctuation: rgb(var(--ctp-overlay2));
   --code-string: var(--color-green);
   --code-tag: var(--color-red);
-  --code-value: var(--color-purple);
+  --code-value: var(--color-orange);
   /* Collapse icons */
   --collapse-icon-color: var(--text-faint);
   --collapse-icon-color-collapsed: var(--text-muted);
@@ -211,7 +211,7 @@ body {
   /* View header */
   --header-height: 40px;
   /* Horizontal rules */
-  --hr-color: var(--background-modifier-border);
+  --hr-color: rgb(var(--ctp-surface2));
   --hr-thickness: 2px;
   /* Icons */
   --icon-size: var(--icon-m);
@@ -275,8 +275,8 @@ body {
   --link-decoration: none;
   --link-decoration-hover: underline;
   --link-decoration-thickness: 2px;
-  --link-external-color: rgb(var(--ctp-teal));
-  --link-external-color-hover: rgb(var(--ctp-teal));
+  --link-external-color: rgb(var(--ctp-blue));
+  --link-external-color-hover: rgb(var(--ctp-blue));
   --link-external-decoration: none;
   --link-external-decoration-hover: underline;
   --link-external-filter: none;
@@ -471,8 +471,8 @@ body {
   --table-row-last-border-width: var(--table-border-width);
   /* Tags */
   --tag-size: max(var(--font-ui-medium), var(--font-small));
-  --tag-color: rgb(var(--ctp-tag-pill-color, var(--ctp-accent)));
-  --tag-color-hover: rgb(var(--ctp-tag-pill-color, var(--ctp-accent)));
+  --tag-color: rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
+  --tag-color-hover: rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
   --tag-decoration: none;
   --tag-decoration-hover: underline;
   --tag-background: transparent;
@@ -654,7 +654,7 @@ settings:
     description: Select your bold font color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-sapphire)
+    default: var(--ctp-text)
     options:
       -
         label: Rosewater
@@ -710,7 +710,7 @@ settings:
     description: Select your italic font color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-green)
+    default: var(--ctp-text)
     options:
       -
         label: Accent
@@ -769,7 +769,7 @@ settings:
     description: Select your strikethrough color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-maroon)
+    default: var(--ctp-overlay1)
     options:
       -
         label: Accent
@@ -828,7 +828,7 @@ settings:
     description: Select your blockquote text color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-rosewater)
+    default: var(--ctp-subtext1)
     options:
       -
         label: Accent
@@ -952,7 +952,7 @@ settings:
     description: Select your H1 color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-text)
     options:
       -
         label: Accent
@@ -1011,7 +1011,7 @@ settings:
     description: Select your H2 color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-lavender)
     options:
       -
         label: Accent
@@ -1070,7 +1070,7 @@ settings:
     description: Select your H3 color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-blue)
     options:
       -
         label: Accent
@@ -1129,7 +1129,7 @@ settings:
     description: Select your H4 color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-sapphire)
     options:
       -
         label: Accent
@@ -1188,7 +1188,7 @@ settings:
     description: Select your H5 color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-subtext1)
     options:
       -
         label: Accent
@@ -1247,7 +1247,7 @@ settings:
     description: Select your H6 color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-subtext0)
     options:
       -
         label: Accent
@@ -1336,7 +1336,7 @@ settings:
     description: Select your tag text color
     type: variable-select
     allowEmpty: false
-    default: var(--ctp-accent)
+    default: var(--ctp-blue)
     options:
       -
         label: Accent
@@ -1764,18 +1764,18 @@ strong,
 .cm-strong,
 .cm-s-obsidian span.cm-formatting-strong,
 .cm-s-obsidian span.cm-strong {
-  --bold-color: rgb(var(--ctp-bold, var(--ctp-sapphire)));
-  color: rgb(var(--ctp-bold, var(--ctp-sapphire)));
+  --bold-color: rgb(var(--ctp-bold, var(--ctp-text)));
+  color: rgb(var(--ctp-bold, var(--ctp-text)));
 }
 
 em,
 .cm-em {
-  --italic-color: rgb(var(--ctp-italic, var(--ctp-green)));
+  --italic-color: rgb(var(--ctp-italic, var(--ctp-text)));
 }
 
 del,
 .cm-strikethrough {
-  color: rgb(var(--ctp-strikethrough, var(--ctp-maroon)));
+  color: rgb(var(--ctp-strikethrough, var(--ctp-overlay1)));
 }
 
 .cm-s-obsidian .cm-link.cm-strikethrough {
@@ -1784,14 +1784,14 @@ del,
 
 .markdown-rendered blockquote,
 .cm-s-obsidian span.cm-quote {
-  --blockquote-border-color: rgb(var(--ctp-blockquote, var(--ctp-accent)));
-  --blockquote-color: rgb(var(--ctp-blockquote, var(--ctp-rosewater)));
+  --blockquote-border-color: rgb(var(--ctp-blockquote, var(--ctp-lavender)));
+  --blockquote-color: rgb(var(--ctp-blockquote, var(--ctp-subtext1)));
 }
 
 .cm-em.cm-strong,
 strong > em,
 em > strong {
-  color: rgb(var(--ctp-teal));
+  color: rgb(var(--ctp-bold, var(--ctp-text)));
 }
 
 .markdown-source-view ol > li,
@@ -1812,7 +1812,7 @@ h1,
 .markdown-rendered h1,
 .HyperMD-header-1,
 .HyperMD-list-line .cm-header-1 {
-  --h1-color: rgb(var(--ctp-h1, var(--ctp-accent)));
+  --h1-color: rgb(var(--ctp-h1, var(--ctp-text)));
   line-height: var(--h1-line-height);
 }
 
@@ -1820,7 +1820,7 @@ h2,
 .markdown-rendered h2,
 .HyperMD-header-2,
 .HyperMD-list-line .cm-header-2 {
-  --h2-color: rgb(var(--ctp-h2, var(--ctp-accent)));
+  --h2-color: rgb(var(--ctp-h2, var(--ctp-lavender)));
   line-height: var(--h2-line-height);
 }
 
@@ -1828,7 +1828,7 @@ h3,
 .markdown-rendered h3,
 .HyperMD-header-3,
 .HyperMD-list-line .cm-header-3 {
-  --h3-color: rgb(var(--ctp-h3, var(--ctp-accent)));
+  --h3-color: rgb(var(--ctp-h3, var(--ctp-blue)));
   line-height: var(--h3-line-height);
 }
 
@@ -1836,7 +1836,7 @@ h4,
 .markdown-rendered h4,
 .HyperMD-header-4,
 .HyperMD-list-line .cm-header-4 {
-  --h4-color: rgb(var(--ctp-h4, var(--ctp-accent)));
+  --h4-color: rgb(var(--ctp-h4, var(--ctp-sapphire)));
   line-height: var(--h4-line-height);
 }
 
@@ -1844,7 +1844,7 @@ h5,
 .markdown-rendered h5,
 .HyperMD-header-5,
 .HyperMD-list-line .cm-header-5 {
-  --h5-color: rgb(var(--ctp-h5, var(--ctp-accent)));
+  --h5-color: rgb(var(--ctp-h5, var(--ctp-subtext1)));
   line-height: var(--line-height-normal);
 }
 
@@ -1852,7 +1852,7 @@ h6,
 .markdown-rendered h6,
 .HyperMD-header-6,
 .HyperMD-list-line .cm-header-6 {
-  --h6-color: rgb(var(--ctp-h6, var(--ctp-accent)));
+  --h6-color: rgb(var(--ctp-h6, var(--ctp-subtext0)));
   line-height: var(--line-height-normal);
 }
 
@@ -1869,8 +1869,8 @@ h6,
 .markdown-rendered mark,
 .cm-s-obsidian span.cm-formatting-highlight,
 .cm-s-obsidian span.cm-highlight {
-  background-color: rgb(var(--ctp-rosewater));
-  color: var(--text-on-accent);
+  background-color: rgb(var(--ctp-yellow), 28%);
+  color: var(--text-normal);
 }
 .markdown-rendered mark.cm-em,
 .markdown-rendered mark em,
@@ -1878,9 +1878,8 @@ h6,
 .cm-s-obsidian span.cm-formatting-highlight em,
 .cm-s-obsidian span.cm-highlight.cm-em,
 .cm-s-obsidian span.cm-highlight em {
-  background-image: linear-gradient(rgb(var(--ctp-green), 40%), rgb(var(--ctp-green), 60%), rgb(var(--ctp-green), 60%));
-  color: var(--text-on-accent);
-  text-align: left;
+  background-image: none;
+  color: inherit;
 }
 .markdown-rendered mark.cm-strong,
 .markdown-rendered mark strong,
@@ -1888,8 +1887,8 @@ h6,
 .cm-s-obsidian span.cm-formatting-highlight strong,
 .cm-s-obsidian span.cm-highlight.cm-strong,
 .cm-s-obsidian span.cm-highlight strong {
-  background-image: linear-gradient(rgb(var(--ctp-sapphire), 40%), rgb(var(--ctp-sapphire), 60%), rgb(var(--ctp-sapphire), 40%));
-  color: var(--text-on-accent);
+  background-image: none;
+  color: inherit;
 }
 .markdown-rendered mark.cm-strikethrough,
 .markdown-rendered mark del,
@@ -1897,8 +1896,8 @@ h6,
 .cm-s-obsidian span.cm-formatting-highlight del,
 .cm-s-obsidian span.cm-highlight.cm-strikethrough,
 .cm-s-obsidian span.cm-highlight del {
-  background-image: linear-gradient(rgb(var(--ctp-red), 40%), rgb(var(--ctp-red), 60%), rgb(var(--ctp-red), 40%));
-  color: var(--text-on-accent);
+  background-image: none;
+  color: inherit;
 }
 
 .cm-s-obsidian span.cm-error {
@@ -2320,11 +2319,11 @@ body:not(.ctp-tag-pill) .cm-hashtag.cm-hashtag-end {
   text-decoration-style: solid;
 }
 body:not(.ctp-tag-pill) .cm-hashtag.cm-hashtag-end:hover {
-  text-decoration: underline 1px rgb(var(--ctp-tag-pill-color, var(--ctp-accent)));
+  text-decoration: underline 1px rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
   text-underline-offset: 1px;
 }
 body:not(.ctp-tag-pill) .cm-hashtag::selection {
-  text-shadow: 0.4px 0 0 rgb(var(--ctp-tag-pill-color, var(--ctp-accent)));
+  text-shadow: 0.4px 0 0 rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
 }
 
 /**
@@ -2361,7 +2360,7 @@ body:not(.ctp-tag-pill) .cm-hashtag::selection {
 .cm-s-obsidian .cm-formatting-link.cm-hmd-barelink,
 .cm-s-obsidian .cm-formatting-link.cm-formatting-link-start,
 .cm-s-obsidian .cm-formatting-link.cm-formatting-link-end {
-  color: rgb(var(--ctp-accent));
+  color: var(--link-color);
 }
 
 .empty-state-action {
@@ -2389,6 +2388,28 @@ body:not(.ctp-tag-pill) .cm-hashtag::selection {
 .cm-s-obsidian .cm-highlight.cm-link:hover,
 .cm-s-obsidian .cm-highlight.cm-url:hover {
   color: var(--text-on-accent);
+}
+
+/* Document-focused Markdown surfaces. Keep these separate from workbench UI. */
+.markdown-rendered :not(pre) > code,
+.markdown-source-view.mod-cm6 :is(.cm-inline-code, .cm-hmd-indented-code) {
+  background-color: rgb(var(--ctp-mantle));
+}
+
+/* Obsidian's CodeMirror classes intentionally retain their upstream casing. */
+/* stylelint-disable selector-class-pattern */
+.markdown-rendered pre,
+.markdown-source-view.mod-cm6 :is(.HyperMD-codeblock-bg,
+.HyperMD-codeblock-begin-bg,
+.HyperMD-codeblock-end-bg) {
+  --code-background: rgb(var(--ctp-crust));
+  border-color: rgb(var(--ctp-surface0));
+  background-color: rgb(var(--ctp-crust));
+}
+
+/* stylelint-enable selector-class-pattern */
+.markdown-rendered pre code {
+  background-color: transparent;
 }
 
 /**
@@ -2756,7 +2777,7 @@ button.mod-cta:hover {
   --blockquote-border-color: rgb(var(--ctp-lavender));
   --ctp-accent: var(--ctp-lavender);
   --divider-color-hover: rgb(var(--ctp-blue));
-  --hr-color: rgb(var(--ctp-blue));
+  --hr-color: rgb(var(--ctp-surface2));
   --indentation-guide-color: rgb(var(--ctp-surface1));
   --indentation-guide-color-active: rgb(var(--ctp-sapphire), 70%);
   --indentation-guide-width: 2px;
@@ -2987,14 +3008,18 @@ button.mod-cta:hover {
 .theme-dark:not(.css-settings-manager) input[type=checkbox]:not(:checked),
 .theme-light:not(.css-settings-manager) input[type=checkbox]:not(:checked),
 .ctp-full-palette input[type=checkbox]:not(:checked) {
-  border-color: rgb(var(--ctp-maroon));
-  background-color: rgb(var(--ctp-red));
-  box-shadow: inset 2px 2px 24px rgb(var(--ctp-mantle)), inset -2px -2px 24px rgb(var(--ctp-mantle));
+  border-color: rgb(var(--ctp-surface2));
+  background-color: transparent;
+  box-shadow: none;
 }
-.theme-dark:not(.css-settings-manager) input[type=checkbox]:not(:checked):hover,
+.theme-dark:not(.css-settings-manager) input[type=checkbox]:not(:checked):hover, .theme-dark:not(.css-settings-manager) input[type=checkbox]:not(:checked):focus-visible,
 .theme-light:not(.css-settings-manager) input[type=checkbox]:not(:checked):hover,
-.ctp-full-palette input[type=checkbox]:not(:checked):hover {
+.theme-light:not(.css-settings-manager) input[type=checkbox]:not(:checked):focus-visible,
+.ctp-full-palette input[type=checkbox]:not(:checked):hover,
+.ctp-full-palette input[type=checkbox]:not(:checked):focus-visible {
   border-width: 2px;
+  border-color: rgb(var(--ctp-lavender));
+  background-color: rgb(var(--ctp-surface0), 50%);
 }
 .theme-dark:not(.css-settings-manager) input[type=checkbox]:not([data-task=">"],
 [data-task="!"],

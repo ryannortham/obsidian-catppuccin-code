@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Catppuccin Markdown presentation</title>
+    <link rel="stylesheet" href="../../theme.css" />
+    <link rel="stylesheet" href="markdown-fixture.css" />
+  </head>
+  <body class="theme-dark css-settings-manager ctp-mocha ctp-full-palette">
+    <script>
+      const scenarios = {
+        latte: ["theme-light", "ctp-latte", "ctp-full-palette"],
+        frappe: ["theme-dark", "ctp-frappe", "ctp-full-palette"],
+        macchiato: ["theme-dark", "ctp-macchiato", "ctp-full-palette"],
+        mocha: ["theme-dark", "ctp-mocha", "ctp-full-palette"],
+        mochaBlue: ["theme-dark", "ctp-mocha", "ctp-accent-blue"],
+      };
+      const scenario = new URLSearchParams(location.search).get("scenario") || "mocha";
+      document.body.className = ["css-settings-manager", ...(scenarios[scenario] || scenarios.mocha)].join(" ");
+    </script>
+    <main>
+      <article class="markdown-rendered">
+        <p><strong>Catppuccin Workbench document sample</strong> · <em>calm semantic styling</em></p>
+        <h1>Document heading</h1>
+        <h2>Section heading</h2>
+        <h3>Subsection heading</h3>
+        <h4>Detail heading</h4>
+        <h5>Small heading</h5>
+        <h6>Quiet heading</h6>
+        <p>Body copy with <strong>bold emphasis</strong>, <em>italic emphasis</em>, and <strong><em>combined emphasis</em></strong>. Visit <a class="internal-link" href="#section">an internal link</a> or <a class="external-link" href="https://example.com">an external link</a>. Bare URL: <a class="external-link" href="https://catppuccin.com">https://catppuccin.com</a>.</p>
+        <blockquote><p>A readable blockquote should support the prose rather than shout over it.</p></blockquote>
+        <p><del>Struck-through text is muted, not alarming.</del> <mark>Highlighted text is a quiet attention cue.</mark></p>
+        <hr />
+        <div class="task-grid">
+          <label><input type="checkbox" /> Unchecked task</label>
+          <label><input type="checkbox" checked /> Completed task</label>
+          <label><input type="checkbox" /> Hover/focus the unchecked box</label>
+          <span>#document-style</span>
+        </div>
+        <pre class="sample-code"><code><span class="cm-keyword">const</span> <span class="cm-def">linkColor</span> = <span class="cm-string">"#89b4fa"</span>;
+<span class="cm-comment">// Fenced code uses a darker Crust surface.</span>
+<span class="cm-variable">console</span>.<span class="cm-property">log</span>(linkColor);</code></pre>
+        <div class="cm-preview markdown-source-view mod-cm6"><span class="HyperMD-codeblock-bg">Live Preview fenced-code surface</span></div>
+      </article>
+    </main>
+  </body>
+</html>
