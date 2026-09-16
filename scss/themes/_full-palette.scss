@@ -11,10 +11,6 @@
   --list-marker-color: rgb(var(--ctp-sapphire));
   --checklist-done-color: rgb(var(--ctp-green));
 
-  .workspace-tab-header-inner-close-button:hover {
-    box-shadow: none;
-  }
-
   /*
   * Nav bar
   */
@@ -68,40 +64,12 @@
 
     &:hover {
       background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
-      color: var(--text-normal);
+      color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
     }
 
     &:hover svg {
       color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
     }
-  }
-
-  .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
-    --background-modifier-hover: transparent;
-  }
-
-  .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container .workspace-tab-header-inner-icon:hover {
-    background-color: transparent;
-  }
-
-  .mod-vertical .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner svg {
-    color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
-  }
-
-  .mod-vertical .workspace-tabs.mod-stacked .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button:hover svg {
-    color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
-  }
-
-  /*
-  * Tabs
-  */
-
-  .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-header-inner:hover .workspace-tab-header-inner-title {
-    color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
-  }
-
-  .mod-vertical .workspace-tabs.mod-stacked .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner .workspace-tab-header-inner-title {
-    color: var(--ctp-workbench-icon-foreground, rgb(var(--ctp-mauve)));
   }
 
   /*

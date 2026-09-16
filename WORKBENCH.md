@@ -42,7 +42,7 @@ partial. Its component-local selectors use the normal cascade and contain no
 | Inactive editor tab | `#181825` |
 | Editor-tab hover | `#313244` (Surface0) |
 | Active editor-tab foreground | `#cba6f7` |
-| Close-button hover | `#313244` |
+| Close-button hover | `#45475a` (Surface1, distinct from Surface0 editor-tab hover) |
 
 Every workbench role resolves to a token in the Catppuccin Mocha palette. Keep
 component-state choices in semantic role variables; do not introduce

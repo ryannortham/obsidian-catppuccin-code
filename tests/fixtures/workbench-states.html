@@ -17,12 +17,24 @@
 
       <section>
         <h2>File tree and guides</h2>
-        <div class="workspace-split mod-sidedock panel nav-files-container">
-          <div class="tree-item-self is-clickable"><span class="collapse-icon">⌄</span>Inactive folder</div>
-          <div class="tree-item-children">
-            <div class="tree-item-self is-clickable fixture-hover">Hovered file</div>
+        <div class="grid-two">
+          <div class="workspace-split mod-sidedock panel nav-files-container">
+            <div class="tree-item-self is-clickable"><span class="tree-item-icon collapse-icon">⌄</span>Inactive folder</div>
             <div class="tree-item-children">
-              <div class="tree-item-self is-clickable is-selected">Selected nested file</div>
+              <div class="tree-item-self is-clickable fixture-hover">Hovered file</div>
+              <div class="tree-item-children">
+                <div class="tree-item-self is-clickable is-selected">Selected nested file</div>
+              </div>
+            </div>
+          </div>
+          <div class="workspace-split mod-sidedock workspace-leaf-content panel" data-type="outline">
+            <div class="tree-item-self is-clickable">Objective</div>
+            <div class="tree-item-children">
+              <div class="tree-item-self is-clickable fixture-hover"><span class="tree-item-icon collapse-icon">⌄</span>Scope</div>
+              <div class="tree-item-children">
+                <div class="tree-item-self is-clickable is-selected">In Scope</div>
+                <div class="tree-item-self is-clickable">Out of Scope</div>
+              </div>
             </div>
           </div>
         </div>
@@ -53,10 +65,19 @@
       <section>
         <h2>Utility controls and sidebar tabs</h2>
         <div class="row workspace-split mod-sidedock panel">
-          <button class="sidebar-toggle-button">◫ <span>Hover</span></button>
+          <button class="sidebar-toggle-button fixture-hover">◫ <span>Hover</span></button>
           <button class="sidebar-toggle-button is-active">◆ <span>Active</span></button>
           <div class="workspace-tab-header is-active"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">▤</div><div class="workspace-tab-header-inner-title">Files · active</div></div></div>
           <div class="workspace-tab-header fixture-hover"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">⌕</div><div class="workspace-tab-header-inner-title">Search · hover</div></div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Status bar controls</h2>
+        <div class="status-bar panel">
+          <button class="status-bar-item mod-clickable">? Help</button>
+          <button class="status-bar-item mod-clickable">☷ Tasks</button>
+          <button class="status-bar-item mod-clickable fixture-hover">⚙ Settings</button>
         </div>
       </section>
 
@@ -70,7 +91,7 @@
             <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive</div><div class="workspace-tab-header-inner-close-button">×</div></div>
           </div>
           <div class="workspace-tab-header fixture-hover">
-            <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive hover</div><div class="workspace-tab-header-inner-close-button">×</div></div>
+            <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive hover</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
           </div>
           <div class="workspace-tab-header fixture-hover fixture-close-hover">
             <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Close hover</div><div class="workspace-tab-header-inner-close-button">×</div></div>

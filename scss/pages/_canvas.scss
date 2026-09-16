@@ -9,20 +9,8 @@
   color: var(--canvas-color);
 }
 
-.canvas-controls button:hover {
-  --interactive-hover: rgb(var(--ctp-accent));
-  --text-normal: var(--text-on-accent);
-}
-
 .canvas-controls button:disabled:hover {
   opacity: 40%;
-}
-
-@media (hover: hover) {
-  .canvas-control-item:hover {
-    background-color: var(--ctp-workbench-list-hover-background, rgb(var(--ctp-surface0), 50%));
-    color: var(--text-normal);
-  }
 }
 
 .canvas-node-container {

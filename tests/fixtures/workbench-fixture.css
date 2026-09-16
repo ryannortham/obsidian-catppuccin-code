@@ -160,25 +160,45 @@ section {
   white-space: nowrap;
 }
 
-.workspace-split.mod-sidedock .workspace-tab-header.fixture-hover,
-.workspace-split.mod-sidedock .workspace-tab-header.fixture-hover .workspace-tab-header-inner {
-  background: transparent;
+body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
+  .workspace-split.mod-sidedock
+  .workspace-tab-header.fixture-hover:not(.is-active),
+body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
+  .workspace-split.mod-sidedock
+  .workspace-tab-header.fixture-hover:not(.is-active)
+  .workspace-tab-header-inner {
+  background: var(--ctp-workbench-list-hover-background);
   color: var(--ctp-workbench-icon-foreground);
 }
 
-.workspace-split.mod-root .workspace-tab-header.fixture-hover,
-.workspace-split.mod-root .workspace-tab-header.fixture-hover .workspace-tab-header-inner {
-  background: var(--ctp-workbench-tab-hover-background);
+body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
+  .workspace-split.mod-root
+  .workspace-tab-header.fixture-hover:not(.is-active),
+body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
+  .workspace-split.mod-root
+  .workspace-tab-header.fixture-hover:not(.is-active)
+  .workspace-tab-header-inner {
+  background-color: var(--ctp-workbench-tab-hover-background);
   color: var(--ctp-workbench-icon-foreground);
 }
 
-.workspace-split.mod-root .fixture-hover .workspace-tab-header-inner-close-button {
+body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
+  .workspace-split.mod-root
+  .workspace-tab-header.fixture-hover:not(.is-active)
+  .workspace-tab-header-inner-close-button {
   visibility: visible;
 }
 
-.workspace-split.mod-root .fixture-close-hover .workspace-tab-header-inner-close-button {
+body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato)
+  .workspace-split.mod-root
+  .workspace-tab-header.fixture-close-hover:not(.is-active)
+  .workspace-tab-header-inner-close-button {
+  display: flex;
+  visibility: visible;
   padding: 1px 5px;
-  background: var(--ctp-workbench-close-hover-background);
+  background-color: var(--ctp-workbench-close-hover-background);
+  box-shadow: none;
+  color: var(--text-normal);
 }
 
 button {
@@ -191,6 +211,26 @@ button {
 
 button.is-active {
   background: var(--ctp-workbench-tab-active-background);
+}
+
+.status-bar {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 8px;
+  background: rgb(var(--ctp-base));
+}
+
+.status-bar-item {
+  padding: 0 9px;
+  border-radius: var(--radius-s);
+}
+
+.fixture-hover:is(.sidebar-toggle-button, .status-bar-item.mod-clickable) {
+  background: var(--ctp-workbench-list-hover-background);
+  color: var(--ctp-workbench-icon-foreground);
 }
 
 .token-grid {

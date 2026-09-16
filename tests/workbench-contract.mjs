@@ -17,6 +17,10 @@ const paletteSource = readFileSync(
 );
 const compiledCss = readFileSync(join(root, "theme.css"), "utf8");
 const searchSource = readFileSync(join(root, "scss/components/_search.scss"), "utf8");
+const coreControlSources = [
+  "scss/components/_icons.scss",
+  "scss/pages/_canvas.scss",
+].map((path) => readFileSync(join(root, path), "utf8"));
 const interactionSources = [
   "scss/components/_icons.scss",
   "scss/themes/_full-palette.scss",
@@ -70,6 +74,7 @@ const expectedRoles = {
   "ctp-workbench-tab-inactive-background": "#181825",
   "ctp-workbench-tab-hover-background": "#313244",
   "ctp-workbench-tab-active-foreground": "#cba6f7",
+  "ctp-workbench-close-hover-background": "#45475a",
 };
 
 const resolved = {};
@@ -84,13 +89,48 @@ assert(
   "Selections must use Mocha Surface0",
 );
 assert(
-  resolveRole("ctp-workbench-close-hover-background") === "#313244",
-  "Close-button hover must use Surface0",
+  resolveRole("ctp-workbench-close-hover-background") !==
+    resolveRole("ctp-workbench-tab-hover-background"),
+  "Close-button hover must be distinguishable from the hovered editor tab",
 );
 assert(
   declaration(workbenchSource, "ctp-workbench-list-secondary-foreground") ===
     "var(--text-muted)",
   "Selected-row icons and counts must use muted text",
+);
+assert(
+  workbenchSource.includes(".status-bar-item.mod-clickable") &&
+    workbenchSource.includes(".clickable-icon:not("),
+  "Status-bar and icon controls must share the core workbench control selectors",
+);
+assert(
+  workbenchSource.includes('.workspace-leaf-content[data-type="outline"]'),
+  "Files and Outline must share the core nested-tree guide contract",
+);
+assert(
+  /:is\(\.collapse-icon, \.collapse-icon svg\)\s*\{\s*--icon-color: var\(--ctp-workbench-icon-foreground\);\s*color: var\(--ctp-workbench-icon-foreground\);/s.test(
+    workbenchSource,
+  ),
+  "Files and Outline disclosure chevrons must use the shared Mauve icon role",
+);
+assert(
+  workbenchSource.includes(
+    "--background-modifier-hover: var(--ctp-workbench-list-hover-background)",
+  ),
+  "Core button hover must use the shared subtle workbench surface",
+);
+assert(
+  coreControlSources.every(
+    (source) =>
+      !/(?:--background-modifier-hover|--interactive-hover)\s*:\s*rgb\(var\(--ctp-accent\)\)/.test(
+        source,
+      ),
+  ),
+  "Core controls must not define one-off accent hover fills",
+);
+assert(
+  /\.clickable-icon:not\([^)]*\.modal-close-button[^)]*\.mod-close/.test(workbenchSource),
+  "Shared control hover must leave close and destructive buttons to their semantic rules",
 );
 assert(!workbenchSource.includes("!important"), "Core workbench rules must not use !important");
 assert(
@@ -100,6 +140,29 @@ assert(
 assert(
   /agent-client-session-manager/.test(pluginSource) && /metadata-menu/.test(pluginSource),
   "Plugin compatibility selectors are missing from the vendor boundary",
+);
+assert(
+  /\.workspace-tab-header \.metadata-menu\.fileclass-icon,[\s\S]*?\.workspace-tab-header \.metadata-menu\.fileclass-icon svg\s*\{\s*color: rgb\(var\(--ctp-blue\)\);/.test(
+    pluginSource,
+  ),
+  "Metadata Menu file-class icons must retain their dedicated Blue role",
+);
+assert(
+  !/\.mod-vertical \.workspace-tab-header:not\(\.is-active\):hover/.test(compiledCss),
+  "Legacy vertical tab hover rules must not override the workbench tab contract",
+);
+assert(
+  !/\.workspace-tab-header-inner-close-button:hover\s*\{\s*background-color:\s*rgb\(var\(--ctp-red\)/s.test(
+    compiledCss,
+  ),
+  "Legacy red tab-close hover must not override the shared close-surface role",
+);
+assert(
+  workbenchSource.includes(".workspace-tab-header-inner-close-button:hover") &&
+    workbenchSource.includes(
+      "background-color: var(--ctp-workbench-close-hover-background)",
+    ),
+  "Root tab close-button hover must use the shared close-surface role",
 );
 assert(
   !/background(?:-color)?:[^;]*(?:ctp-pink|ctp-red)/.test(workbenchSource),
@@ -116,9 +179,10 @@ assert(
 
 const requiredCompiledFragments = [
   "--ctp-workbench-tab-hover-background: rgb(var(--ctp-surface0))",
+  ".status-bar-item.mod-clickable",
   ".workspace-split.mod-sidedock .tree-item-self",
   ".tree-item-self:is(.is-active, .is-selected) :is(.tree-item-icon",
-  ".nav-files-container .tree-item-children:has(",
+  ".workspace-leaf-content[data-type=outline]",
   ".workspace-split.mod-root .workspace-tab-header",
   ".workspace-leaf-content[data-type=backlink]",
   ".agent-client-session-manager .tree-item-self",

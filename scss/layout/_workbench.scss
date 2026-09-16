@@ -1,3 +1,14 @@
+$ctp-workbench-control-selectors: (
+  ".clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label='Clear search history'])",
+  ".status-bar-item.mod-clickable",
+  ".workspace-tab-header-tab-list",
+  ".workspace-tab-header-new-tab",
+  ".sidebar-toggle-button",
+  ".canvas-control-item",
+  ".canvas-controls button",
+  ".markdown-source-view.mod-cm6 .pdf-embed .edit-block-button"
+);
+
 /*
  * Catppuccin Workbench defines Obsidian's Mocha interaction states. Palette
  * values remain in Style Settings;
@@ -15,7 +26,7 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
   --ctp-workbench-tab-inactive-background: rgb(var(--ctp-mantle));
   --ctp-workbench-tab-hover-background: rgb(var(--ctp-surface0));
   --ctp-workbench-tab-active-foreground: rgb(var(--ctp-mauve));
-  --ctp-workbench-close-hover-background: rgb(var(--ctp-surface0));
+  --ctp-workbench-close-hover-background: rgb(var(--ctp-surface1));
 
   /* Core tree lists in either sidebar. */
   .workspace-split.mod-sidedock .tree-item-self {
@@ -82,9 +93,10 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
   /*
    * Obsidian paints native tree guides below descendant row backgrounds.
    * Repaint the one-pixel guide above rows, and use :has() so every guide in
-   * the hovered or selected branch receives the active guide color.
+   * the hovered or selected branch receives the active guide color. Files and
+   * Outline share this nested tree structure and guide contract.
    */
-  .nav-files-container {
+  :is(.nav-files-container, .workspace-leaf-content[data-type="outline"]) {
     --indentation-guide-color: var(--ctp-workbench-tree-guide-inactive);
     --indentation-guide-color-active: var(--ctp-workbench-tree-guide-active);
     --indentation-guide-width: 1px;
@@ -115,22 +127,14 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
     }
 
     :is(.collapse-icon, .collapse-icon svg) {
+      --icon-color: var(--ctp-workbench-icon-foreground);
+
       color: var(--ctp-workbench-icon-foreground);
     }
   }
 
-  /* Core utility controls; modal and destructive controls keep their semantics. */
-  :is(
-    .workspace-ribbon .clickable-icon,
-    .nav-header .clickable-icon,
-    .view-header .clickable-icon,
-    .workspace-tab-header-tab-list,
-    .workspace-tab-header-new-tab,
-    .sidebar-toggle-button,
-    .canvas-control-item,
-    .canvas-controls button,
-    .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button
-  ) {
+  /* Core controls share one hover treatment; close and destructive controls are excluded. */
+  :where(:is(#{$ctp-workbench-control-selectors})) {
     &:is(.is-active, .is-selected, [aria-pressed="true"]) {
       --background-modifier-active-hover: var(--ctp-workbench-tab-active-background);
       --icon-color-active: var(--ctp-workbench-icon-foreground);
@@ -151,21 +155,17 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
   }
 
   @media (hover: hover) {
-    :is(
-      .workspace-ribbon .clickable-icon,
-      .nav-header .clickable-icon,
-      .view-header .clickable-icon,
-      .workspace-tab-header-tab-list,
-      .workspace-tab-header-new-tab,
-      .sidebar-toggle-button,
-      .canvas-control-item,
-      .canvas-controls button,
-      .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button
-    ):not(.is-active, .is-selected, [aria-pressed="true"], [aria-disabled="true"]):hover {
-      --background-modifier-hover: transparent;
+    :where(:is(#{$ctp-workbench-control-selectors})):not(
+        .is-active,
+        .is-selected,
+        [aria-pressed="true"],
+        [aria-disabled="true"],
+        :disabled
+      ):hover {
+      --background-modifier-hover: var(--ctp-workbench-list-hover-background);
       --icon-color-hover: var(--ctp-workbench-icon-foreground);
 
-      background-color: transparent;
+      background-color: var(--ctp-workbench-list-hover-background);
       color: var(--ctp-workbench-icon-foreground);
 
       svg {
@@ -174,17 +174,11 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
       }
     }
 
-    :is(
-      .workspace-ribbon .clickable-icon,
-      .nav-header .clickable-icon,
-      .view-header .clickable-icon,
-      .workspace-tab-header-tab-list,
-      .workspace-tab-header-new-tab,
-      .sidebar-toggle-button,
-      .canvas-control-item,
-      .canvas-controls button,
-      .markdown-source-view.mod-cm6 .pdf-embed .edit-block-button
-    ):is(.is-active, .is-selected, [aria-pressed="true"]):hover {
+    :where(:is(#{$ctp-workbench-control-selectors})):is(
+        .is-active,
+        .is-selected,
+        [aria-pressed="true"]
+      ):not([aria-disabled="true"], :disabled):hover {
       --background-modifier-hover: var(--ctp-workbench-tab-active-background);
       --background-modifier-active-hover: var(--ctp-workbench-tab-active-background);
 
@@ -193,6 +187,11 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
         inset 0 0 4px rgb(var(--ctp-crust)),
         inset 0 0 6px rgb(var(--ctp-base));
       color: var(--ctp-workbench-icon-foreground);
+
+      svg {
+        background-color: transparent;
+        color: var(--ctp-workbench-icon-foreground);
+      }
     }
   }
 
@@ -229,11 +228,11 @@ body.theme-dark:not(.css-settings-manager, .ctp-frappe, .ctp-macchiato) {
     .workspace-split.mod-sidedock .workspace-tab-header {
       &:not(.is-active):hover,
       &:not(.is-active):hover .workspace-tab-header-inner {
-        --background-modifier-hover: transparent;
-        --background-modifier-active-hover: transparent;
+        --background-modifier-hover: var(--ctp-workbench-list-hover-background);
+        --background-modifier-active-hover: var(--ctp-workbench-list-hover-background);
         --tab-text-color-hover: var(--ctp-workbench-icon-foreground);
 
-        background-color: transparent;
+        background-color: var(--ctp-workbench-list-hover-background);
         color: var(--ctp-workbench-icon-foreground);
       }
 
