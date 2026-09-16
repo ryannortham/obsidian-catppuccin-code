@@ -162,6 +162,13 @@ assert(
   "Ribbon vertical seam must match the panel surface",
 );
 assert(
+  workbenchSource.includes("is-translucent:not(.is-fullscreen)") &&
+    workbenchSource.includes("--divider-color: transparent") &&
+    workbenchSource.includes("--tab-outline-color: transparent") &&
+    workbenchSource.includes("border-right-color: transparent"),
+  "Translucent workspaces must hide divider strokes",
+);
+assert(
   workbenchSource.includes(".status-bar-item.mod-clickable") &&
     workbenchSource.includes(".clickable-icon:not("),
   "Status-bar and icon controls must share the core workbench control selectors",
@@ -283,6 +290,8 @@ const requiredCompiledFragments = [
   ".workspace-tab-header .metadata-menu.fileclass-icon",
   "body.theme-dark .workspace-ribbon",
   "border-right-color: var(--background-secondary)",
+  "--divider-color: transparent",
+  "border-right-color: transparent",
 ];
 for (const fragment of requiredCompiledFragments) {
   assert(compiledCss.includes(fragment), `Compiled theme is missing: ${fragment}`);

@@ -3197,6 +3197,20 @@ body.theme-light .workspace-ribbon {
 }
 body.theme-dark,
 body.theme-light {
+  /* Translucent windows expose the backdrop, so divider strokes must disappear. */
+}
+body.theme-dark.is-translucent:not(.is-fullscreen),
+body.theme-light.is-translucent:not(.is-fullscreen) {
+  --divider-color: transparent;
+  --tab-divider-color: transparent;
+  --tab-outline-color: transparent;
+}
+body.theme-dark.is-translucent:not(.is-fullscreen) .workspace-ribbon,
+body.theme-light.is-translucent:not(.is-fullscreen) .workspace-ribbon {
+  border-right-color: transparent;
+}
+body.theme-dark,
+body.theme-light {
   /* Tree rows and Settings navigation share one selection and hover contract. */
 }
 body.theme-dark :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item),
