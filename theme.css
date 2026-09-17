@@ -2322,8 +2322,9 @@ body.theme-dark .is-popout-modal .titlebar,
 body.theme-light .is-popout-modal .titlebar {
   background-color: var(--background-primary);
 }
-body.theme-dark .nav-footer,
-body.theme-light .nav-footer {
+body.theme-dark .nav-footer, body.theme-dark:not(.is-mobile) .workspace-split.mod-sidedock .workspace-sidedock-vault-profile,
+body.theme-light .nav-footer,
+body.theme-light:not(.is-mobile) .workspace-split.mod-sidedock .workspace-sidedock-vault-profile {
   border-top: 0;
 }
 body.theme-dark :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab),

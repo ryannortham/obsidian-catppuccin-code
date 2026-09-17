@@ -45,7 +45,8 @@ body.theme-light {
     background-color: var(--background-primary);
   }
 
-  .nav-footer {
+  .nav-footer,
+  &:not(.is-mobile) .workspace-split.mod-sidedock .workspace-sidedock-vault-profile {
     border-top: 0;
   }
 
