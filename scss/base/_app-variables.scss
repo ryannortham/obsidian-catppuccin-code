@@ -261,11 +261,6 @@ body {
   --icon-opacity-active: 1;
   --clickable-icon-radius: var(--radius-s);
 
-  /* Indentation guide */
-  --indentation-guide-color: rgba(var(--ctp-surface1));
-  --indentation-guide-color-active: rgb(var(--ctp-accent), 70%);
-  --indentation-guide-width: 2px;
-
   /* Inline title */
   --inline-title-color: var(--h1-color);
   --inline-title-font: var(--h1-font);
@@ -300,7 +295,6 @@ body {
 
   /* Line heights */
   --line-height-normal: 1.5;
-  --line-height-tight: 1.25;
 
   /* Links */
   --link-color: rgb(var(--ctp-blue));
@@ -344,14 +338,9 @@ body {
   --nav-item-padding: var(--size-4-1) var(--size-4-2) var(--size-4-1)
     var(--size-4-6);
   --nav-item-parent-padding: var(--nav-item-padding);
-  --nav-item-children-padding-left: var(--size-2-2);
-  --nav-item-children-margin-left: var(--size-4-3);
   --nav-item-weight: inherit;
   --nav-item-weight-hover: inherit;
   --nav-item-weight-active: inherit;
-  --nav-item-white-space: nowrap;
-  --nav-indentation-guide-width: var(--indentation-guide-width);
-  --nav-indentation-guide-color: var(--indentation-guide-color);
   --nav-collapse-icon-color: var(--collapse-icon-color);
   --nav-collapse-icon-color-collapsed: var(--text-faint);
 

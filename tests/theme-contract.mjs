@@ -9,6 +9,7 @@ const appVariableSource = read("scss/base/_app-variables.scss");
 const semanticSource = read("scss/base/_semantic-roles.scss");
 const interfaceSource = read("scss/layout/_interface.scss");
 const iconsSource = read("scss/components/_icons.scss");
+const pluginSource = read("scss/vendors/_plugins.scss");
 const searchSource = read("scss/components/_search.scss");
 const linksSource = read("scss/components/_links.scss");
 const inputsSource = read("scss/components/_inputs.scss");
@@ -148,6 +149,20 @@ assert(!interfaceSource.includes(".nav-header"), "Theme must not override Obsidi
 assert(!interfaceSource.includes(".nav-buttons-container"), "Theme must not override Obsidian stock nav-button layout");
 assert(!interfaceSource.includes(".nav-action-button"), "Theme must not override Obsidian stock nav-action sizing");
 assert(!/\.clickable-icon,[\s\S]*?margin: 0 2px/.test(iconsSource), "Generic clickable icons must retain Obsidian stock margin ownership");
+assert(!paletteSource.includes("catppuccin-icon-styles"), "Obsolete Icon Styles settings must be removed");
+assert(!paletteSource.includes("ctp-icon-hide"), "Obsolete folder-icon setting must be removed");
+assert(!iconsSource.includes("nav-folder-title-content::before"), "Generated folder icons must be removed");
+assert(!interfaceSource.includes(".tree-item-children"), "Custom tree-guide overlay must be removed");
+assert(!interfaceSource.includes("--nav-indentation-guide"), "Theme must not override native tree-guide geometry");
+assert(!appVariableSource.includes("--nav-item-white-space"), "Native tree whitespace must remain stock-owned");
+assert(!appVariableSource.includes("--nav-item-children-padding-left"), "Native tree child spacing must remain stock-owned");
+assert(!appVariableSource.includes("--line-height-tight:"), "Native tree line-height must remain stock-owned");
+assert(/--nav-collapse-icon-color: var\(--ctp-icon-foreground\)/.test(interfaceSource), "Native tree chevrons must retain Catppuccin foreground colour");
+assert(/--nav-collapse-icon-color-collapsed: var\(--ctp-icon-foreground\)/.test(interfaceSource), "Collapsed tree chevrons must retain Catppuccin foreground colour");
+for (const unused of ["better-command-palette", "git-commit-msg", "another-quick-switcher", "omnisearch", "mk-", "fn-is-active", "svelte-q3wqg9", "EA-shortcode"]) {
+  assert(!pluginSource.includes(unused), "Unused plugin adapter remains: " + unused);
+}
+assert(pluginSource.includes(".dataview.inline-field"), "Enabled Dataview compatibility must remain");
 assert(
   /:is\(\.workspace-tab-header-tab-list, \.workspace-tab-header-new-tab\)[\s\S]*?block-size: var\(--ctp-control-size\)/.test(interfaceSource),
   "Custom 30px control sizing must remain scoped to root tab-bar actions",

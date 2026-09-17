@@ -90,10 +90,8 @@ body.theme-light {
 
   /* Tree rows and Settings navigation share one selection and hover contract. */
   :is(#{$ctp-list-row-selectors}) {
-    --nav-item-radius: 0;
     --nav-item-color: var(--text-normal);
 
-    border-radius: 0;
     color: var(--text-normal);
 
     &:is(.is-active, .is-selected) {
@@ -152,41 +150,10 @@ body.theme-light {
     }
   }
 
-  /*
-   * Obsidian paints native tree guides below descendant row backgrounds.
-   * Repaint the one-pixel guide above rows, and use :has() so every guide in
-   * the hovered or selected branch receives the active guide color. Files and
-   * Outline share this nested tree structure and guide contract.
-   */
+  /* Keep Obsidian tree geometry native while retaining Catppuccin chevron colours. */
   :is(.nav-files-container, .workspace-leaf-content[data-type="outline"]) {
-    --indentation-guide-color: var(--ctp-tree-guide-inactive);
-    --indentation-guide-color-active: var(--ctp-tree-guide-active);
-    --indentation-guide-width: 1px;
     --nav-collapse-icon-color: var(--ctp-icon-foreground);
     --nav-collapse-icon-color-collapsed: var(--ctp-icon-foreground);
-    --nav-indentation-guide-color: var(--ctp-tree-guide-inactive);
-    --nav-indentation-guide-width: 1px;
-    --nav-item-radius: 0;
-
-    .tree-item-children {
-      position: relative;
-      border-inline-start-color: transparent;
-
-      &::before {
-        position: absolute;
-        z-index: 1;
-        width: var(--nav-indentation-guide-width);
-        background-color: var(--ctp-tree-guide-inactive);
-        content: "";
-        inset-block: 0;
-        inset-inline-start: calc(-1 * var(--nav-indentation-guide-width));
-        pointer-events: none;
-      }
-
-      &:has(.tree-item-self:is(:hover, .is-active, .is-selected))::before {
-        background-color: var(--ctp-tree-guide-active);
-      }
-    }
 
     :is(.collapse-icon, .collapse-icon svg) {
       --icon-color: var(--ctp-icon-foreground);

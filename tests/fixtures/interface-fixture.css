@@ -225,18 +225,11 @@ section {
   color: inherit;
 }
 
-.inactive-guide,
-.active-guide,
 .token-grid span {
   display: inline-block;
   width: 22px;
   height: 10px;
   margin: 0 7px 0 16px;
-  background: var(--ctp-tree-guide-inactive);
-}
-
-.active-guide {
-  background: var(--ctp-tree-guide-active);
 }
 
 .workspace-tab-header {
