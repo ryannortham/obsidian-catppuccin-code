@@ -3090,6 +3090,10 @@ body.theme-dark,
 body.theme-light {
   /* Sidebar tabs share one boundary for the left and right sidedocks. */
 }
+body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header-container,
+body.theme-light .workspace-split.mod-sidedock .workspace-tab-header-container {
+  background-color: var(--background-secondary);
+}
 body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active), body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active) .workspace-tab-header-inner,
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active),
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active) .workspace-tab-header-inner {
@@ -3147,11 +3151,22 @@ body.theme-light {
 body.theme-dark .workspace-split.mod-root .workspace-tab-header-container,
 body.theme-light .workspace-split.mod-root .workspace-tab-header-container {
   background-color: var(--ctp-tab-strip-background);
+  padding-inline-start: 0;
+}
+body.theme-dark .workspace-split.mod-root .workspace-tab-header-container-inner,
+body.theme-light .workspace-split.mod-root .workspace-tab-header-container-inner {
+  margin-inline-start: 0;
+  padding-inline-start: 0;
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header, body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner,
 body.theme-light .workspace-split.mod-root .workspace-tab-header,
 body.theme-light .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner {
   border-radius: 0;
+}
+body.theme-dark .workspace-split.mod-root .workspace-tab-header::before, body.theme-dark .workspace-split.mod-root .workspace-tab-header::after,
+body.theme-light .workspace-split.mod-root .workspace-tab-header::before,
+body.theme-light .workspace-split.mod-root .workspace-tab-header::after {
+  display: none;
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner::after,
 body.theme-light .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner::after {

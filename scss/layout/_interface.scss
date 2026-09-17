@@ -263,6 +263,10 @@ body.theme-light {
   }
 
   /* Sidebar tabs share one boundary for the left and right sidedocks. */
+  .workspace-split.mod-sidedock .workspace-tab-header-container {
+    background-color: var(--background-secondary);
+  }
+
   .workspace-split.mod-sidedock .workspace-tab-header {
     &:not(.is-active),
     &:not(.is-active) .workspace-tab-header-inner {
@@ -327,11 +331,22 @@ body.theme-light {
   /* Root editor tabs use stable surfaces regardless of pane focus. */
   .workspace-split.mod-root .workspace-tab-header-container {
     background-color: var(--ctp-tab-strip-background);
+    padding-inline-start: 0;
+  }
+
+  .workspace-split.mod-root .workspace-tab-header-container-inner {
+    margin-inline-start: 0;
+    padding-inline-start: 0;
   }
 
   .workspace-split.mod-root .workspace-tab-header {
     &, .workspace-tab-header-inner {
       border-radius: 0;
+    }
+
+    &::before,
+    &::after {
+      display: none;
     }
 
     .workspace-tab-header-inner::after {

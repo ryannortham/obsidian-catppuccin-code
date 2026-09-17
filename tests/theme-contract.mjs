@@ -124,6 +124,22 @@ assert(/--ctp-tab-active-background:\s*rgb\(var\(--ctp-base\)\)/.test(interfaceS
 assert(/--ctp-tab-inactive-foreground:\s*rgb\(var\(--ctp-overlay0\)\)/.test(interfaceSource), "Inactive tabs must use Overlay0");
 assert(/\.workspace-ribbon[\s\S]*?background-color: rgb\(var\(--ctp-crust\)\)/.test(interfaceSource), "Ribbon must use Crust");
 assert(/box-shadow: inset 2px 0 0 var\(--ctp-focus-border\)/.test(interfaceSource), "Active ribbon controls must use an accent indicator");
+assert(
+  /\.workspace-split\.mod-sidedock \.workspace-tab-header-container[\s\S]*?background-color: var\(--background-secondary\)/.test(interfaceSource),
+  "Sidedock header controls must continue the Mantle sidebar surface",
+);
+assert(
+  /\.workspace-split\.mod-root \.workspace-tab-header-container[\s\S]*?padding-inline-start: 0/.test(interfaceSource),
+  "Root tabs must start flush with the tab strip",
+);
+assert(
+  /\.workspace-split\.mod-root \.workspace-tab-header-container-inner[\s\S]*?margin-inline-start: 0[\s\S]*?padding-inline-start: 0/.test(interfaceSource),
+  "Root tab inner container must not reintroduce a leading inset",
+);
+assert(
+  /\.workspace-split\.mod-root \.workspace-tab-header[\s\S]*?&::before,[\s\S]*?&::after[\s\S]*?display: none/.test(interfaceSource),
+  "Root tabs must disable Obsidian's curved bottom-corner pseudo-elements",
+);
 assert(!/background-color:\s*rgb\(var\(--ctp-accent\)\)/.test(searchSource), "Search rows must not use a solid accent fill");
 assert(searchSource.includes("var(--ctp-search-match-background)"), "Search matches must use the search semantic role");
 assert(/cm-highlight\.cm-link[\s\S]*?color: var\(--text-normal\)/.test(linksSource), "Highlighted links must remain readable");

@@ -72,8 +72,7 @@ section {
 
 .grid-three,
 .grid-two,
-.row,
-.tab-strip {
+.row {
   display: grid;
   gap: 10px;
 }
@@ -92,12 +91,23 @@ section {
 }
 
 .tab-strip {
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
   padding: 0;
   background: var(--ctp-tab-strip-background);
 }
 
+.tab-strip .workspace-tab-header-container-inner {
+  display: grid;
+  flex: 4;
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .fixture-tab-strip-empty {
+  flex: 1;
+  background: var(--ctp-tab-strip-background);
+}
+
+.sidebar-header-fixture {
   background: var(--ctp-tab-strip-background);
 }
 

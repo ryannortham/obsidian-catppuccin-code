@@ -108,11 +108,13 @@
 
       <section>
         <h2>Utility controls and sidebar tabs</h2>
-        <div class="row workspace-split mod-sidedock panel">
-          <button class="sidebar-toggle-button fixture-hover">◫ <span>Hover</span></button>
-          <button class="sidebar-toggle-button is-active">◆ <span>Active</span></button>
-          <div class="workspace-tab-header is-active"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">▤</div><div class="workspace-tab-header-inner-title">Files · active</div></div></div>
-          <div class="workspace-tab-header fixture-hover"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">⌕</div><div class="workspace-tab-header-inner-title">Search · hover</div></div></div>
+        <div class="workspace-split mod-sidedock panel sidebar-header-fixture">
+          <div class="workspace-tab-header-container row">
+            <button class="sidebar-toggle-button fixture-hover">◫ <span>Hover</span></button>
+            <button class="sidebar-toggle-button is-active">◆ <span>Active</span></button>
+            <div class="workspace-tab-header is-active"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">▤</div><div class="workspace-tab-header-inner-title">Files · active</div></div></div>
+            <div class="workspace-tab-header fixture-hover"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">⌕</div><div class="workspace-tab-header-inner-title">Search · hover</div></div></div>
+          </div>
         </div>
       </section>
 
@@ -131,17 +133,19 @@
           <div class="workspace-split mod-root panel">
             <div class="workspace-tabs">
               <div class="workspace-tab-header-container tab-strip">
-                <div class="workspace-tab-header is-active">
-                  <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Active</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
-                </div>
-                <div class="workspace-tab-header">
-                  <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
-                </div>
-                <div class="workspace-tab-header fixture-hover">
-                  <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive hover</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
-                </div>
-                <div class="workspace-tab-header fixture-hover fixture-close-hover">
-                  <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Close hover</div><div class="workspace-tab-header-inner-close-button">×</div></div>
+                <div class="workspace-tab-header-container-inner">
+                  <div class="workspace-tab-header is-active">
+                    <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Active</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
+                  </div>
+                  <div class="workspace-tab-header">
+                    <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
+                  </div>
+                  <div class="workspace-tab-header fixture-hover">
+                    <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Inactive hover</div><a class="metadata-menu fileclass-icon">☷</a><div class="workspace-tab-header-inner-close-button">×</div></div>
+                  </div>
+                  <div class="workspace-tab-header fixture-hover fixture-close-hover">
+                    <div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div><div class="workspace-tab-header-inner-title">Close hover</div><div class="workspace-tab-header-inner-close-button">×</div></div>
+                  </div>
                 </div>
                 <div class="fixture-tab-strip-empty" aria-label="Empty tab strip"></div>
               </div>
