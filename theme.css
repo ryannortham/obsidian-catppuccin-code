@@ -425,7 +425,7 @@ settings:
   -
     id: ctp-vscode-layout
     title: Visual Studio Code layout
-    description: Use compact tabs and Visual Studio Code-style activity indicators
+    description: Use compact tabs and a Visual Studio Code-inspired workspace
     type: class-toggle
     default: true
   -
@@ -2735,12 +2735,6 @@ body.theme-light.ctp-vscode-layout.is-popout-modal .titlebar {
 body.theme-dark.ctp-vscode-layout .workspace-split.mod-root,
 body.theme-light.ctp-vscode-layout .workspace-split.mod-root {
   --header-height: 32px;
-}
-body.theme-dark.ctp-vscode-layout .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed=true]),
-body.theme-light.ctp-vscode-layout .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed=true]) {
-  border-radius: 0;
-  background-color: transparent;
-  box-shadow: inset 2px 0 0 var(--ctp-focus-border);
 }
 body.theme-dark.ctp-vscode-layout .workspace-tab-header-container,
 body.theme-light.ctp-vscode-layout .workspace-tab-header-container {

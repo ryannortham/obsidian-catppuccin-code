@@ -77,8 +77,12 @@ assert(
 assert(!themeSettingsBlock?.includes("id: ctp-vscode-layout"), "Visual Studio Code layout must not live under Themes");
 assert(
   workspaceSettingsBlock?.includes("title: Visual Studio Code layout") &&
-    workspaceSettingsBlock?.includes("description: Use compact tabs and Visual Studio Code-style activity indicators"),
+    workspaceSettingsBlock?.includes("description: Use compact tabs and a Visual Studio Code-inspired workspace"),
   "Visual Studio Code layout text must be explicit and describe its visible changes",
+);
+assert(
+  !layoutSource.includes(".workspace-ribbon"),
+  "Visual Studio Code layout must not add a custom workspace ribbon indicator",
 );
 assert(
   pluginSettingsBlock?.includes("id: ctp-base-board-customisations") &&
@@ -313,7 +317,6 @@ assert(/--ctp-tab-inactive-background:\s*rgb\(var\(--ctp-mantle\)\)/.test(semant
 assert(/--ctp-tab-active-background:\s*rgb\(var\(--ctp-base\)\)/.test(semanticSource), "Active tabs must use Base");
 assert(/--ctp-tab-inactive-foreground:\s*rgb\(var\(--ctp-overlay0\)\)/.test(semanticSource), "Inactive tabs must use Overlay0");
 assert(/\.workspace-ribbon[\s\S]*?background-color: rgb\(var\(--ctp-crust\)\)/.test(interfaceSource), "Ribbon must use Crust");
-assert(/box-shadow: inset 2px 0 0 var\(--ctp-focus-border\)/.test(layoutSource), "Active ribbon controls must use an accent indicator");
 assert(
   /\.workspace-tab-header-container[\s\S]*?border-bottom-color: transparent[\s\S]*?box-shadow: none/.test(layoutSource),
   "VS Code mode must remove the sidebar header seam",

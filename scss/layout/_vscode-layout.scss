@@ -12,12 +12,6 @@ body.theme-light.ctp-vscode-layout {
     --header-height: 32px;
   }
 
-  .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed="true"]) {
-    border-radius: 0;
-    background-color: transparent;
-    box-shadow: inset 2px 0 0 var(--ctp-focus-border);
-  }
-
   .workspace-tab-header-container {
     border-bottom-color: transparent;
     box-shadow: none;

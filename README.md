@@ -11,12 +11,14 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-a6da95?style=for-the-badge&labelColor=363a4f" alt="MIT license"></a>
 </p>
 
-Catppuccin Code is an Obsidian theme inspired by
-[Catppuccin for VS Code](https://github.com/catppuccin/vscode).
+Catppuccin Code is a fork of
+[Catppuccin for Obsidian](https://github.com/catppuccin/obsidian) for anyone who
+wants Obsidian to match
+[Catppuccin for Visual Studio Code](https://github.com/catppuccin/vscode).
 
-It includes all four Catppuccin flavors, configurable accents, and Style
-Settings support. The theme inherits Obsidian's configured interface, text, and
-monospace fonts; it does not bundle or force a typeface.
+It keeps all four flavors and uses the fonts already set in Obsidian. The
+compact tab layout is optional, Obsidian's accent color is supported, and Base
+Board and Metadata Menu have theme-specific styling.
 
 <p align="center">
   <img src="assets/screenshot-hq.png" alt="Catppuccin Code in Obsidian"/>
@@ -46,21 +48,27 @@ monospace fonts; it does not bundle or force a typeface.
 
 ## Installation
 
-### Community themes
+Open **Settings → Appearance → Themes → Manage**, search for **Catppuccin
+Code**, then select **Install and use**.
 
-Once published, install **Catppuccin Code** from **Settings → Appearance →
-Themes → Manage** in Obsidian.
+Obsidian uses Latte in light mode and Mocha in dark mode by default.
 
-### Manual installation
+## Recommended plugins
 
-1. Download `manifest.json` and `theme.css` from the latest release.
-2. Create `.obsidian/themes/Catppuccin Code/` inside your vault.
-3. Copy both files into that directory.
-4. Reload Obsidian and select **Catppuccin Code** under **Appearance → Themes**.
-
-Obsidian uses Latte in light mode and Mocha in dark mode by default. Install the
-[Style Settings plugin](https://github.com/mgmeyers/obsidian-style-settings) to
-select Frappé or Macchiato and customize the accent and interface options.
+- **[Style Settings](https://github.com/community-archive/obsidian-style-settings)
+  — theme controls.** Choose a dark flavor and accent, customize font colors,
+  and toggle the workspace, editor, and plugin options.
+- **[Shiki Highlighter](https://github.com/mProjectsCode/obsidian-shiki-plugin)
+  — syntax highlighting.** Use `catppuccin-latte` for its light theme and your
+  preferred `catppuccin-frappe`, `catppuccin-macchiato`, or
+  `catppuccin-mocha` flavor for its dark theme.
+- **[Base Board](https://github.com/mderazon/obsidian-base-board) — Kanban
+  styling.** The theme compacts cards and columns, maps the default tag colors
+  to Catppuccin, and restyles filters and icons. This integration is enabled by
+  default and can be toggled under **Catppuccin: Plugins** in Style Settings.
+- **[Metadata Menu](https://github.com/mdelobelle/metadatamenu) — file-class
+  badges.** The theme sizes, aligns, and colors its icons like native Obsidian
+  file badges, including in compact tabs.
 
 ## Development
 
@@ -76,9 +84,11 @@ compatibility boundaries, and visual regression workflow.
 
 ## Credits
 
-Catppuccin Code uses the
+Catppuccin Code began as a fork of
+[Catppuccin for Obsidian](https://github.com/catppuccin/obsidian). It uses the
 [Catppuccin palette](https://github.com/catppuccin/catppuccin) and follows the
-interface language of [Catppuccin for VS Code](https://github.com/catppuccin/vscode).
+interface language of
+[Catppuccin for Visual Studio Code](https://github.com/catppuccin/vscode).
 
 Released under the [MIT License](LICENSE).
 
