@@ -14,7 +14,7 @@ body {
 
   /* Blockquotes */
   --blockquote-border-thickness: 2px;
-  --blockquote-border-color: rgb(var(--ctp-accent));
+  --blockquote-border-color: var(--ctp-accent-color);
   --blockquote-font-style: normal;
   --blockquote-color: inherit;
   --blockquote-background-color: transparent;
@@ -72,7 +72,7 @@ body {
   --checkbox-border-color: var(--text-faint);
   --checkbox-border-color-hover: var(--text-muted);
   --checklist-done-decoration: line-through;
-  --checklist-done-color: rgb(var(--ctp-accent));
+  --checklist-done-color: var(--ctp-accent-color);
 
   /* Code */
   --code-white-space: pre-wrap;
@@ -287,7 +287,7 @@ body {
   /* Lists */
   --list-indent: 2em;
   --list-spacing: 0.1em;
-  --list-marker-color: rgb(var(--ctp-accent));
+  --list-marker-color: var(--ctp-accent-color);
   --list-marker-color-hover: var(--text-muted);
   --list-marker-color-collapsed: var(--text-accent);
   --list-bullet-border: none;
@@ -341,7 +341,7 @@ body {
   --slider-thumb-radius: var(--slider-thumb-height);
   --slider-s-thumb-size: 15px;
   --slider-s-thumb-position: -5px;
-  --slider-fill-background: rgb(var(--ctp-accent));
+  --slider-fill-background: var(--ctp-accent-color);
   --slider-track-background: var(--background-modifier-border);
   --slider-track-height: 3px;
 

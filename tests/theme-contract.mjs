@@ -7,6 +7,7 @@ const read = (path) => readFileSync(join(root, path), "utf8");
 const paletteSource = read("scss/base/_ctp-style-settings.scss");
 const appVariableSource = read("scss/base/_app-variables.scss");
 const semanticSource = read("scss/base/_semantic-roles.scss");
+const typographySource = read("scss/base/_typography.scss");
 const interfaceSource = read("scss/layout/_interface.scss");
 const layoutSource = read("scss/layout/_vscode-layout.scss");
 const iconsSource = read("scss/components/_icons.scss");
@@ -37,6 +38,16 @@ function declaration(source, name) {
   const match = source.match(new RegExp(`--${name}:\\s*([^;]+);`));
   assert(match, `Missing --${name}`);
   return match[1].trim();
+}
+
+function setting(source, id) {
+  const match = source?.match(new RegExp(`\\n    id: ${id}\\n[\\s\\S]*?(?=\\n  -\\n    id:|\\n\\*/)`));
+  assert(match, `Missing Style Settings entry ${id}`);
+  return match[0];
+}
+
+function optionLabels(source) {
+  return [...source.matchAll(/^\s+label: (.+)$/gm)].map((match) => match[1]);
 }
 
 function rgbToHex(value) {
@@ -72,6 +83,20 @@ assert(fontColorsBlock?.includes("id: ctp-page-title"), "File name settings must
 assert(fontColorsBlock?.includes("id: ctp-h6"), "Heading settings must live under Font Colors");
 assert(fontColorsBlock?.includes("id: ctp-bold"), "Bold color must live under Font Colors");
 assert(fontColorsBlock?.includes("id: ctp-blockquote"), "Blockquote color must live under Font Colors");
+assert(fontColorsBlock?.includes("value: var(--ctp-obsidian-accent-color)"), "Font Colors must expose the native Obsidian accent");
+assert(!/default: var\(--ctp-/.test(fontColorsBlock ?? ""), "Font Color defaults must be complete CSS colors");
+assert(
+  !/value: var\(--ctp-(?!obsidian-accent-color)/.test(fontColorsBlock ?? ""),
+  "Font Color palette options must be complete CSS colors",
+);
+const paletteOptionLabels = [
+  "Mauve", "Lavender", "Blue", "Sapphire", "Sky", "Teal", "Green", "Yellow",
+  "Peach", "Maroon", "Red", "Pink", "Flamingo", "Rosewater", "Obsidian accent",
+];
+assert(
+  JSON.stringify(optionLabels(setting(themeSettingsBlock, "catppuccin-theme-accents"))) === JSON.stringify(paletteOptionLabels),
+  "Theme accents must use the canonical picker order",
+);
 const fontColorOrder = [
   "ctp-page-title",
   "ctp-h1",
@@ -84,9 +109,21 @@ const fontColorOrder = [
   "ctp-italic",
   "ctp-strikethrough",
   "ctp-blockquote",
-].map((id) => fontColorsBlock?.indexOf(`id: ${id}`) ?? -1);
+];
+const fontColorOptionLabels = [
+  ...paletteOptionLabels.slice(0, -1),
+  "Text", "Subtext 1", "Subtext 0", "Overlay 1", "Obsidian accent",
+];
+for (const id of fontColorOrder) {
+  assert(fontColorsBlock?.includes(`  -\n    id: ${id}\n`), `Font Colors entry ${id} must start as a distinct YAML list item`);
+  assert(
+    JSON.stringify(optionLabels(setting(fontColorsBlock, id))) === JSON.stringify(fontColorOptionLabels),
+    `Font Colors entry ${id} must use the canonical picker order`,
+  );
+}
+const fontColorPositions = fontColorOrder.map((id) => fontColorsBlock?.indexOf(`id: ${id}`) ?? -1);
 assert(
-  fontColorOrder.every((position, index) => position >= 0 && (index === 0 || position > fontColorOrder[index - 1])),
+  fontColorPositions.every((position, index) => position >= 0 && (index === 0 || position > fontColorPositions[index - 1])),
   "Font Colors must list file and heading colors before inline text colors",
 );
 assert(!paletteSource.includes("catppuccin-heading-settings"), "File name and heading settings must remain consolidated in Font Colors");
@@ -135,6 +172,12 @@ const markers = {
   macchiato: ".theme-dark.ctp-macchiato",
   mocha: ".theme-dark,\n.theme-dark.ctp-mocha",
 };
+const mauveAccentHsl = {
+  latte: ["266.04", "85.05%", "58.04%"],
+  frappe: ["276.67", "59.02%", "76.08%"],
+  macchiato: ["266.51", "82.69%", "79.61%"],
+  mocha: ["267.41", "83.51%", "80.98%"],
+};
 
 const palettes = {};
 for (const [flavor, marker] of Object.entries(markers)) {
@@ -146,6 +189,11 @@ for (const [flavor, marker] of Object.entries(markers)) {
     assert(actual === expected[index], `${flavor} ${name} is ${actual}; expected ${expected[index]}`);
     palettes[flavor][name] = `#${actual}`;
   });
+  const actualAccentHsl = ["h", "s", "l"].map((channel) => declaration(flavorBlock, `accent-${channel}`));
+  assert(
+    actualAccentHsl.every((value, index) => value === mauveAccentHsl[flavor][index]),
+    `${flavor} native accent default must match its Mauve palette color`,
+  );
 }
 
 for (const [alias, token] of Object.entries({
@@ -168,8 +216,8 @@ const semanticRoles = {
   "text-normal": "rgb(var(--ctp-text))",
   "text-muted": "rgb(var(--ctp-subtext0))",
   "text-faint": "rgb(var(--ctp-overlay1))",
-  "color-accent-2": "hsl(from rgb(var(--ctp-accent)) h s calc(l + 7))",
-  "text-accent": "rgb(var(--ctp-accent))",
+  "color-accent-2": "hsl(from var(--ctp-accent-color) h s calc(l + 7))",
+  "text-accent": "var(--ctp-accent-color)",
   "text-accent-hover": "var(--color-accent-2)",
   "text-highlight-bg": "rgb(var(--ctp-yellow), 28%)",
   "caret-color": "rgb(var(--ctp-rosewater))",
@@ -179,24 +227,40 @@ for (const [role, expected] of Object.entries(semanticRoles)) {
 }
 
 const accents = [
-  "rosewater", "flamingo", "pink", "mauve", "red", "maroon", "peach", "yellow",
-  "green", "teal", "sky", "sapphire", "blue", "lavender",
+  "mauve", "lavender", "blue", "sapphire", "sky", "teal", "green", "yellow",
+  "peach", "maroon", "red", "pink", "flamingo", "rosewater",
 ];
 for (const accent of accents) {
   assert(
-    declaration(block(paletteSource, `.ctp-accent-${accent}`), "ctp-accent") === `var(--ctp-${accent})`,
-    `${accent} accent class must update --ctp-accent`,
+    declaration(block(compiledCss, `.ctp-accent-${accent}`), "ctp-accent-color") === `rgb(var(--ctp-${accent}))`,
+    `${accent} accent class must update --ctp-accent-color`,
   );
 }
-assert(/id: catppuccin-theme-accents[\s\S]*?default: ctp-accent-mauve/.test(paletteSource), "Theme accent must default to Mauve");
+assert(/\$ctp-accents:[^;]+;[\s\S]*?@each \$accent in \$ctp-accents/.test(paletteSource), "Catppuccin accent classes must be generated from one Sass list");
+assert(
+  declaration(block(paletteSource, ".ctp-accent-obsidian"), "ctp-accent-color") ===
+    "var(--ctp-obsidian-accent-color)",
+  "Obsidian accent must derive from the native Appearance variables",
+);
+assert(
+  /id: catppuccin-theme-accents[\s\S]*?default: ctp-accent-mauve[\s\S]*?label: Mauve/.test(paletteSource),
+  "Theme accent must default to Mauve",
+);
 assert(!paletteSource.includes("Full palette"), "The redundant Full palette option must be removed");
 assert(!paletteSource.includes(".ctp-full-palette"), "The obsolete Full palette class must be removed");
 assert(
-  /\.theme-light:not\(\[class\*="ctp-accent-"\]\),\s*\.theme-dark:not\(\[class\*="ctp-accent-"\]\)[\s\S]*?--ctp-accent: var\(--ctp-mauve\)/.test(semanticSource),
-  "Missing or stale accent classes must safely fall back to Mauve",
+  declaration(semanticSource, "ctp-obsidian-accent-color") === "hsl(var(--accent-h), var(--accent-s), var(--accent-l))" &&
+    /\.theme-light:not\(\[class\*="ctp-accent-"\]\),\s*\.theme-dark:not\(\[class\*="ctp-accent-"\]\)[\s\S]*?--ctp-accent-color: var\(--ctp-obsidian-accent-color\)/.test(semanticSource),
+  "Missing or stale accent classes must safely fall back to the native Obsidian accent",
 );
 for (const role of ["color-accent", "interactive-accent", "ctp-focus-border", "ctp-icon-foreground"]) {
-  assert(declaration(semanticSource, role).includes("ctp-accent") || declaration(semanticSource, role).includes("color-accent"), `--${role} must derive from --ctp-accent`);
+  assert(declaration(semanticSource, role).includes("ctp-accent-color") || declaration(semanticSource, role).includes("color-accent"), `--${role} must derive from --ctp-accent-color`);
+}
+for (const variable of ["bold", "italic", "strikethrough", "blockquote", "page-title", "h1", "h2", "h3", "h4", "h5", "h6"]) {
+  assert(
+    new RegExp(`var\\(--ctp-${variable}, rgb\\(var\\(--ctp-`).test(typographySource),
+    `--ctp-${variable} must accept complete CSS colors`,
+  );
 }
 
 assert(/--ctp-tab-strip-background:\s*rgb\(var\(--ctp-crust\)\)/.test(semanticSource), "Editor tab strip must use Crust");
@@ -388,14 +452,14 @@ assert(
   /workspace-tab-header is-active fixture-hover/.test(interfaceFixture),
   "Visual coverage must include the active sidebar hover state",
 );
-assert(!/background-color:\s*rgb\(var\(--ctp-accent\)\)/.test(searchSource), "Search rows must not use a solid accent fill");
+assert(!/background-color:\s*var\(--ctp-accent-color\)/.test(searchSource), "Search rows must not use a solid accent fill");
 assert(searchSource.includes("var(--ctp-search-match-background)"), "Search matches must use the search semantic role");
 assert(/cm-highlight\.cm-link[\s\S]*?color: var\(--text-normal\)/.test(linksSource), "Highlighted links must remain readable");
 assert(declaration(appVariableSource, "link-color") === "rgb(var(--ctp-blue))", "Links must use Blue");
 assert(declaration(appVariableSource, "link-color-hover") === "rgb(var(--ctp-sky))", "Link hover must use Sky");
 assert(declaration(appVariableSource, "link-external-color-hover") === "rgb(var(--ctp-sky))", "External link hover must use Sky");
 assert(declaration(appVariableSource, "callout-warning") === "var(--color-orange)", "Warnings must use Peach through the orange alias");
-assert(!inputsSource.includes("rgb(var(--ctp-accent), 70%)"), "Input focus borders must use the full accent color");
+assert(!inputsSource.includes("ctp-accent-color"), "Input focus borders must remain stock-owned");
 assert(/box-shadow: 0 0 0 2px var\(--ctp-focus-border\)/.test(inputsSource), "Input focus must use the focus-border role");
 assert(!/input\[type="search"\]:/.test(inputsSource), "Search focus styling must remain stock-owned");
 assert(

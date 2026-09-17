@@ -64,25 +64,25 @@ const defaults = {
 for (const [name, token] of Object.entries(defaults)) {
   has(
     settings,
-    new RegExp(`id: ctp-${name}[\\s\\S]*?default: var\\(--ctp-${token}\\)`),
+    new RegExp(`id: ctp-${name}[\\s\\S]*?default: rgb\\(var\\(--ctp-${token}\\)\\)`),
     `Style Settings default ctp-${name} must be ctp-${token}`,
   );
   const settingBlock = settings.match(
     new RegExp(`\\n    id: ctp-${name}\\s[\\s\\S]*?(?=\\n  -\\n    id:|\\n\\s*\\*/)`),
   )?.[0];
   assert(
-    settingBlock?.includes(`value: var(--ctp-${token})`),
+    settingBlock?.includes(`value: rgb(var(--ctp-${token}))`),
     `Style Settings ctp-${name} must expose its default as an option`,
   );
 }
 assert(!/label: (?:White|Gray|Frappe)\b/.test(settings), "Style Settings must use canonical Catppuccin names");
 
-has(typography, /--bold-color: rgb\(var\(--ctp-bold, var\(--ctp-text\)\)\)/, "Bold prose must default to Text");
-has(typography, /--italic-color: rgb\(var\(--ctp-italic, var\(--ctp-text\)\)\)/, "Italic prose must default to Text");
-has(typography, /color: rgb\(var\(--ctp-strikethrough, var\(--ctp-overlay1\)\)\)/, "Strikethrough must default to Overlay1");
-has(typography, /--blockquote-color: rgb\(var\(--ctp-blockquote, var\(--ctp-subtext1\)\)\)/, "Blockquotes must default to Subtext1");
+has(typography, /--bold-color: var\(--ctp-bold, rgb\(var\(--ctp-text\)\)\)/, "Bold prose must default to Text");
+has(typography, /--italic-color: var\(--ctp-italic, rgb\(var\(--ctp-text\)\)\)/, "Italic prose must default to Text");
+has(typography, /color: var\(--ctp-strikethrough, rgb\(var\(--ctp-overlay1\)\)\)/, "Strikethrough must default to Overlay1");
+has(typography, /--blockquote-color: var\(--ctp-blockquote, rgb\(var\(--ctp-subtext1\)\)\)/, "Blockquotes must default to Subtext1");
 for (const [heading, token] of Object.entries({ h1: "text", h2: "lavender", h3: "blue", h4: "sapphire", h5: "subtext1", h6: "subtext0" })) {
-  has(typography, new RegExp(`--${heading}-color: rgb\\(var\\(--ctp-${heading}, var\\(--ctp-${token}\\)\\)\\)`), `${heading} must default to ctp-${token}`);
+  has(typography, new RegExp(`--${heading}-color: var\\(--ctp-${heading}, rgb\\(var\\(--ctp-${token}\\)\\)\\)`), `${heading} must default to ctp-${token}`);
 }
 has(typography, /background-color: rgb\(var\(--ctp-yellow\), 28%\)/, "Highlights must use translucent Yellow");
 has(typography, /background-image: none;\s*color: inherit;/, "Highlighted emphasis must not reintroduce rainbow prose colors");

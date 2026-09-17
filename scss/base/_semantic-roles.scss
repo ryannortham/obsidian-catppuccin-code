@@ -6,6 +6,8 @@
 
 .theme-light,
 .theme-dark {
+  --ctp-obsidian-accent-color: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+
   /* Obsidian compatibility aliases. Complete colours and RGB channels agree. */
   --color-red-rgb: var(--ctp-red);
   --color-red: rgb(var(--color-red-rgb));
@@ -44,18 +46,17 @@
   --background-modifier-error-hover: rgb(var(--ctp-red));
 
   /* Accent-dependent roles all derive from the selected accent channels. */
-  --color-accent: rgb(var(--ctp-accent));
-  --color-accent-1: rgb(var(--ctp-accent));
+  --color-accent: var(--ctp-accent-color);
+  --color-accent-1: var(--ctp-accent-color);
   /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's lighten(accent, 0.07). */
-  --color-accent-2: hsl(from rgb(var(--ctp-accent)) h s calc(l + 7));
+  --color-accent-2: hsl(from var(--ctp-accent-color) h s calc(l + 7));
   --interactive-accent: var(--color-accent);
-  --interactive-accent-rgb: var(--ctp-accent);
   --interactive-accent-hover: var(--color-accent-2);
   --interactive-success: rgb(var(--ctp-green));
 
   /* Solid accents are indicators. Text-bearing selections use neutral surfaces. */
-  --ctp-focus-border: rgb(var(--ctp-accent));
-  --ctp-icon-foreground: rgb(var(--ctp-accent));
+  --ctp-focus-border: var(--ctp-accent-color);
+  --ctp-icon-foreground: var(--ctp-accent-color);
   --ctp-on-accent: rgb(var(--ctp-crust));
   --ctp-control-background: rgb(var(--ctp-surface0));
   --ctp-control-foreground: rgb(var(--ctp-text));
@@ -69,7 +70,7 @@
   --text-muted: rgb(var(--ctp-subtext0));
   --text-muted-rgb: var(--ctp-subtext0);
   --text-faint: rgb(var(--ctp-overlay1));
-  --text-accent: rgb(var(--ctp-accent));
+  --text-accent: var(--ctp-accent-color);
   --text-accent-hover: var(--color-accent-2);
   --text-error: rgb(var(--ctp-red));
   --text-error-hover: rgb(var(--ctp-red), 80%);
@@ -91,7 +92,7 @@
   --tab-outline-color: rgb(var(--ctp-crust));
   --ctp-tab-active-background: rgb(var(--ctp-base));
   --ctp-tab-inactive-background: rgb(var(--ctp-mantle));
-  --ctp-tab-active-foreground: rgb(var(--ctp-accent));
+  --ctp-tab-active-foreground: var(--ctp-accent-color);
   --ctp-tab-inactive-foreground: rgb(var(--ctp-overlay0));
   --ctp-close-hover-background: rgb(var(--ctp-surface1));
   --scrollbar-bg: transparent;
@@ -114,7 +115,7 @@
 
 .theme-light:not([class*="ctp-accent-"]),
 .theme-dark:not([class*="ctp-accent-"]) {
-  --ctp-accent: var(--ctp-mauve);
+  --ctp-accent-color: var(--ctp-obsidian-accent-color);
 }
 
 .theme-light {
