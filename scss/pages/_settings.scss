@@ -45,6 +45,19 @@ button.mod-cta {
 }
 
 //Style settings customisation
+//Keep Style Settings controls in Obsidian's stock single-row layout.
+.theme-dark,
+.theme-light {
+  .view-content .style-settings-container .setting-item:not(.setting-item-heading) {
+    flex-direction: row;
+    align-items: center;
+
+    .setting-item-control {
+      padding-top: 0;
+    }
+  }
+}
+
 //Remove collapse option from catppuccin credits header
 .style-settings-heading[data-id="catppuccin-theme-credits-link"] {
   + .style-settings-container,

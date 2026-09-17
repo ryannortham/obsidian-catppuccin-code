@@ -48,15 +48,33 @@ function rgbToHex(value) {
 const fontSettingsBlock = paletteSource.match(
   /\/\* @settings\nname: "Catppuccin: Font Styles"[\s\S]*?\*\//,
 )?.[0];
+const fontColorsBlock = paletteSource.match(
+  /\/\* @settings\nname: "Catppuccin: Font Colors"[\s\S]*?\*\//,
+)?.[0];
 assert(paletteSource.includes('name: "Catppuccin: Themes"'), "Theme settings section must be named Themes");
 assert(!paletteSource.includes("Catppuccin: Catppuccin Accents"), "Duplicated Catppuccin accent label must be removed");
 assert(!paletteSource.includes("catppuccin-interface-styles"), "Empty Interface Styles section must be removed");
 assert(fontSettingsBlock?.includes("id: ctp-bold-folder-title"), "Bold folder title must live under Font Styles");
-assert(fontSettingsBlock?.includes("id: ctp-page-title"), "File name settings must live under Font Styles");
-assert(fontSettingsBlock?.includes("id: ctp-h6"), "Heading settings must live under Font Styles");
+assert(fontColorsBlock?.includes("id: ctp-page-title"), "File name settings must live under Font Colors");
+assert(fontColorsBlock?.includes("id: ctp-h6"), "Heading settings must live under Font Colors");
+assert(fontColorsBlock?.includes("id: ctp-bold"), "Bold color must live under Font Colors");
+assert(fontColorsBlock?.includes("id: ctp-blockquote"), "Blockquote color must live under Font Colors");
+assert(
+  (fontSettingsBlock?.indexOf("id: ctp-editor-monospace") ?? -1) <
+    (fontSettingsBlock?.indexOf("id: ctp-bold-folder-title") ?? -1),
+  "Monospace editor must be first and bold folder title second under Font Styles",
+);
+assert(
+  !/id: ctp-bold-folder-title[\s\S]*?default: true/.test(fontSettingsBlock ?? ""),
+  "Bold folder title must be disabled by default",
+);
 assert(!paletteSource.includes("catppuccin-heading-settings"), "File Name and Headings section must be merged into Font Styles");
 assert(!paletteSource.includes("source-code"), "Credits and Source Code section must be removed");
 assert(!paletteSource.includes("PDF Settings"), "PDF settings must be removed");
+assert(
+  /\.view-content \.style-settings-container \.setting-item:not\(\.setting-item-heading\)[\s\S]*?flex-direction: row[\s\S]*?align-items: center/.test(settingsPageSource),
+  "Style Settings controls must remain right-aligned in a single row",
+);
 assert(
   /id: ctp-editor-monospace[\s\S]*?type: class-toggle[\s\S]*?default: true/.test(fontSettingsBlock ?? ""),
   "Editor monospace must be a default-on Font Styles toggle",

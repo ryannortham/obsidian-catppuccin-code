@@ -535,16 +535,21 @@ name: "Catppuccin: Font Styles"
 id: catppuccin-font-styles
 settings:
   -
-    id: ctp-bold-folder-title
-    title: Bold folder title
-    description: Show folder title in bold
-    type: class-toggle
-  -
     id: ctp-editor-monospace
     title: Monospace editor
     description: Use the monospace font for source editing
     type: class-toggle
     default: true
+  -
+    id: ctp-bold-folder-title
+    title: Bold folder title
+    description: Show folder title in bold
+    type: class-toggle
+*/
+/* @settings
+name: "Catppuccin: Font Colors"
+id: catppuccin-font-colors
+settings:
   -
     id: ctp-bold
     title: Bold font color
@@ -2380,6 +2385,16 @@ button.mod-cta:hover {
 
 .modal {
   border-color: rgb(var(--ctp-surface1));
+}
+
+.theme-dark .view-content .style-settings-container .setting-item:not(.setting-item-heading),
+.theme-light .view-content .style-settings-container .setting-item:not(.setting-item-heading) {
+  flex-direction: row;
+  align-items: center;
+}
+.theme-dark .view-content .style-settings-container .setting-item:not(.setting-item-heading) .setting-item-control,
+.theme-light .view-content .style-settings-container .setting-item:not(.setting-item-heading) .setting-item-control {
+  padding-top: 0;
 }
 
 .style-settings-heading[data-id=catppuccin-theme-credits-link] + .style-settings-container,
