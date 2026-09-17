@@ -71,7 +71,7 @@ for (const [name, token] of Object.entries(defaults)) {
     `Style Settings default ctp-${name} must be ctp-${token}`,
   );
   const settingBlock = settings.match(
-    new RegExp(`\\n    id: ctp-${name}\\s[\\s\\S]*?(?=\\n  -\\n    id:|\\n  \\*/)`),
+    new RegExp(`\\n    id: ctp-${name}\\s[\\s\\S]*?(?=\\n  -\\n    id:|\\n\\s*\\*/)`),
   )?.[0];
   assert(
     settingBlock?.includes(`value: var(--ctp-${token})`),

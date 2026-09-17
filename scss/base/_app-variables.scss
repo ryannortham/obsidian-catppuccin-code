@@ -358,20 +358,10 @@ body {
   --modal-radius: var(--radius-l);
   --modal-community-sidebar-width: 280px;
 
-  /* PDF view */
-  --pdf-background: var(--background-primary);
-  --pdf-shadow: 0 0 0 1px rgb(var(--ctp-crust), 5%), 0 2px 8px rgb(var(--ctp-crust), 10%);
-  --pdf-spread-shadow: 0 0 0 1px rgb(var(--ctp-crust), 5%);
-  --pdf-sidebar-background: var(--background-primary);
-  --pdf-thumbnail-shadow:
-    0 0 0 1px rgb(var(--ctp-crust), 15%), 0 2px 8px rgb(var(--ctp-crust), 20%);
-
   /* Popovers - file previews */
   --popover-width: 450px;
   --popover-height: 400px;
   --popover-max-height: 70vh;
-  --popover-pdf-width: 600px;
-  --popover-pdf-height: 800px;
   --popover-font-size: var(--font-text-size);
 
   /* Prompts - e.g. quick switcher, command palette */

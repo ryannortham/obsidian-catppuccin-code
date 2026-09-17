@@ -5,8 +5,7 @@ $ctp-control-selectors: (
   ".workspace-tab-header-new-tab",
   ".sidebar-toggle-button",
   ".canvas-control-item",
-  ".canvas-controls button",
-  ".markdown-source-view.mod-cm6 .pdf-embed .edit-block-button"
+  ".canvas-controls button"
 );
 $ctp-list-row-selectors: (
   ":is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self",

@@ -48,10 +48,23 @@ function rgbToHex(value) {
 const fontSettingsBlock = paletteSource.match(
   /\/\* @settings\nname: "Catppuccin: Font Styles"[\s\S]*?\*\//,
 )?.[0];
-assert(paletteSource.includes('name: "Catppuccin: Accents"'), "Accent settings section must use the concise name");
+assert(paletteSource.includes('name: "Catppuccin: Themes"'), "Theme settings section must be named Themes");
 assert(!paletteSource.includes("Catppuccin: Catppuccin Accents"), "Duplicated Catppuccin accent label must be removed");
 assert(!paletteSource.includes("catppuccin-interface-styles"), "Empty Interface Styles section must be removed");
 assert(fontSettingsBlock?.includes("id: ctp-bold-folder-title"), "Bold folder title must live under Font Styles");
+assert(fontSettingsBlock?.includes("id: ctp-page-title"), "File name settings must live under Font Styles");
+assert(fontSettingsBlock?.includes("id: ctp-h6"), "Heading settings must live under Font Styles");
+assert(!paletteSource.includes("catppuccin-heading-settings"), "File Name and Headings section must be merged into Font Styles");
+assert(!paletteSource.includes("source-code"), "Credits and Source Code section must be removed");
+assert(!paletteSource.includes("PDF Settings"), "PDF settings must be removed");
+assert(
+  /id: ctp-editor-monospace[\s\S]*?type: class-toggle[\s\S]*?default: true/.test(fontSettingsBlock ?? ""),
+  "Editor monospace must be a default-on Font Styles toggle",
+);
+assert(
+  /\.ctp-editor-monospace \.markdown-source-view \.cm-editor[\s\S]*?font-family: var\(--font-monospace\)/.test(paletteSource),
+  "Editor monospace toggle must apply the monospace font to source editing",
+);
 
 const canonical = {
   latte: "dc8a78 dd7878 ea76cb 8839ef d20f39 e64553 fe640b df8e1d 40a02b 179299 04a5e5 209fb5 1e66f5 7287fd 4c4f69 5c5f77 6c6f85 7c7f93 8c8fa1 9ca0b0 acb0be bcc0cc ccd0da eff1f5 e6e9ef dce0e8",
@@ -328,6 +341,10 @@ assert(!existsSync(join(root, "obsidian.css")), "Legacy font-bundled artifact mu
 assert(!/@font-face|data:font|Vollkorn|Nunito Sans/i.test(compiledCss), "Compiled theme must not bundle or force fonts");
 assert(Buffer.byteLength(compiledCss) < 250_000, "Compiled theme unexpectedly exceeds 250 KB");
 assert(!/%2311111b/i.test(read("scss/vendors/_checklists.scss")), "Checklist SVGs must not bake in Mocha Crust");
+assert(!mainSource.includes('components/pdfs'), "PDF component partial must not be compiled");
+assert(!existsSync(join(root, "scss/components/_pdfs.scss")), "PDF component source must be removed");
+assert(!/\bpdf\b/i.test(`${appVariableSource}\n${iconsSource}\n${interfaceSource}`), "PDF-specific theme code must be removed");
+assert(!/\bpdf\b/i.test(compiledCss), "Compiled theme must not contain PDF-specific code");
 
 const manifest = JSON.parse(read("manifest.json"));
 assert(existsSync(join(root, "screenshot.png")), "Theme package needs screenshot.png");

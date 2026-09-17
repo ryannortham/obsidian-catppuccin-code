@@ -1,5 +1,5 @@
 /* @settings
-name: "Catppuccin: Accents"
+name: "Catppuccin: Themes"
 id: catppuccin-theme-settings
 settings:
   -
@@ -80,6 +80,12 @@ settings:
     title: Bold folder title
     description: Show folder title in bold
     type: class-toggle
+  -
+    id: ctp-editor-monospace
+    title: Monospace editor
+    description: Use the monospace font for source editing
+    type: class-toggle
+    default: true
   -
     id: ctp-bold
     title: Bold font color
@@ -319,13 +325,6 @@ settings:
       -
         label: Subtext 0
         value: var(--ctp-subtext0)
-  -
-  */
-
-/* @settings
-name: "Catppuccin: File Name and Headings"
-id: catppuccin-heading-settings
-settings:
   -
     id: ctp-page-title
     title: File name color
@@ -744,41 +743,6 @@ settings:
         value: var(--ctp-subtext0)
 */
 
-/* @settings
-name: "Catppuccin: PDF Settings"
-id: catppuccin-pdf
-settings:
-  -
-    id: ctp-seamless-pdf
-    title: Remove borders around PDF pages
-    description: View PDFs without borders, akin to the Minimal theme's "seamless" setting
-    type: class-toggle
-  -
-    id: ctp-pdf-darken
-    title: Darken PDF background
-    description: When using a dark flavor, inverts a PDF's background color. This might be helpful when using a PDF with a light background in dark mode Obsidian, depending on your preferences and the colors present in the PDF
-    type: class-toggle
-  -
-    id: ctp-pdf-blend
-    title: Blend PDF background
-    description: When using light mode, attempts to blend the theme's background color into the PDF
-    type: class-toggle
-*/
-
-/* @settings
-
-name: "Catppuccin: Credits and Source Code"
-id: source-code
-settings:
-  -
-    id: catppuccin-theme-credits-link
-    title: Credits and Source Code
-    type: heading
-    level: 1
-    collapsed: false
-    description: 💎 View and contribute at github.com/ryannortham/obsidian-catppuccin-code
-*/
-
 .theme-light,
 .theme-light.ctp-latte {
   --ctp-rosewater: 220, 138, 120;
@@ -1015,4 +979,11 @@ settings:
 
 .ctp-bold-folder-title .nav-folder-title-content {
   font-weight: var(--font-bold);
+}
+
+.ctp-editor-monospace .markdown-source-view .cm-editor,
+.ctp-editor-monospace .markdown-source-view .cm-scroller,
+.ctp-editor-monospace .markdown-source-view .cm-content,
+.ctp-editor-monospace .markdown-source-view .cm-line {
+  font-family: var(--font-monospace);
 }
