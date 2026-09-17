@@ -57,7 +57,7 @@ body {
   --callout-summary: var(--color-cyan);
   --callout-tip: var(--color-cyan);
   --callout-todo: var(--color-blue);
-  --callout-warning: var(--color-yellow);
+  --callout-warning: var(--color-orange);
   --callout-quote: rgb(var(--ctp-subtext0));
   /* Canvas */
   --canvas-background: var(--background-primary);
@@ -272,12 +272,12 @@ body {
   --line-height-tight: 1.25;
   /* Links */
   --link-color: rgb(var(--ctp-blue));
-  --link-color-hover: rgb(var(--ctp-blue));
+  --link-color-hover: rgb(var(--ctp-sky));
   --link-decoration: none;
   --link-decoration-hover: underline;
   --link-decoration-thickness: 2px;
   --link-external-color: rgb(var(--ctp-blue));
-  --link-external-color-hover: rgb(var(--ctp-blue));
+  --link-external-color-hover: rgb(var(--ctp-sky));
   --link-external-decoration: none;
   --link-external-decoration-hover: underline;
   --link-external-filter: none;
@@ -541,11 +541,8 @@ settings:
     description: Select your preferred accent
     type: class-select
     allowEmpty: false
-    default: ctp-full-palette
+    default: ctp-accent-mauve
     options:
-      -
-        label: Full palette
-        value: ctp-full-palette
       -
         label: Rosewater
         value: ctp-accent-rosewater
@@ -1535,10 +1532,6 @@ settings:
 }
 
 /* ------------------Selecting Accents------------------- */
-.ctp-full-palette {
-  --ctp-accent: var(--ctp-mauve);
-}
-
 .ctp-accent-rosewater {
   --ctp-accent: var(--ctp-rosewater);
 }
@@ -1655,7 +1648,8 @@ settings:
   /* Accent-dependent roles all derive from the selected accent channels. */
   --color-accent: rgb(var(--ctp-accent));
   --color-accent-1: rgb(var(--ctp-accent));
-  --color-accent-2: color-mix(in srgb, rgb(var(--ctp-accent)) 90%, rgb(var(--ctp-base)));
+  /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's lighten(accent, 0.07). */
+  --color-accent-2: hsl(from rgb(var(--ctp-accent)) h s calc(l + 7));
   --interactive-accent: var(--color-accent);
   --interactive-accent-rgb: var(--ctp-accent);
   --interactive-accent-hover: var(--color-accent-2);
@@ -1678,8 +1672,8 @@ settings:
   --text-muted: rgb(var(--ctp-subtext0));
   --text-muted-rgb: var(--ctp-subtext0);
   --text-faint: rgb(var(--ctp-overlay1));
-  --text-accent: rgb(var(--ctp-blue));
-  --text-accent-hover: rgb(var(--ctp-sky));
+  --text-accent: rgb(var(--ctp-accent));
+  --text-accent-hover: var(--color-accent-2);
   --text-error: rgb(var(--ctp-red));
   --text-error-hover: rgb(var(--ctp-red), 80%);
   --text-success: rgb(var(--ctp-green));
@@ -1709,8 +1703,8 @@ settings:
   --color-base-100: rgb(var(--ctp-text));
 }
 
-.theme-light:not([class*=ctp-accent-], .ctp-full-palette),
-.theme-dark:not([class*=ctp-accent-], .ctp-full-palette) {
+.theme-light:not([class*=ctp-accent-]),
+.theme-dark:not([class*=ctp-accent-]) {
   --ctp-accent: var(--ctp-mauve);
 }
 
@@ -2053,18 +2047,10 @@ body {
   color: var(--text-muted);
 }
 
-.clickable-icon.is-active,
-.mod-left-split .workspace-tab-header.has-active-menu,
-.mod-right-split .workspace-tab-header.has-active-menu,
-.mod-left-split .workspace-tab-header.is-active,
-.mod-right-split .workspace-tab-header.is-active {
+.clickable-icon.is-active {
   background-color: var(--ctp-list-selection-background);
 }
-.clickable-icon.is-active svg,
-.mod-left-split .workspace-tab-header.has-active-menu svg,
-.mod-right-split .workspace-tab-header.has-active-menu svg,
-.mod-left-split .workspace-tab-header.is-active svg,
-.mod-right-split .workspace-tab-header.is-active svg {
+.clickable-icon.is-active svg {
   color: var(--ctp-icon-foreground);
 }
 
@@ -2171,7 +2157,7 @@ body {
 
 select:focus,
 .dropdown:focus {
-  box-shadow: 0 0 0 2px rgb(var(--ctp-accent), 70%);
+  box-shadow: 0 0 0 2px var(--ctp-focus-border);
 }
 
 textarea:active,
@@ -2192,7 +2178,7 @@ input[type=search]:focus-visible,
 input[type=email]:focus-visible,
 input[type=password]:focus-visible,
 input[type=number]:focus-visible {
-  box-shadow: 0 0 0 2px rgb(var(--ctp-accent), 70%);
+  box-shadow: 0 0 0 2px var(--ctp-focus-border);
 }
 
 .checkbox-container {
@@ -2688,10 +2674,12 @@ button.mod-cta {
   white-space: nowrap;
 }
 button.mod-cta:not(.clickable-icon) {
-  background-color: var(--interactive-normal);
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
 }
 button.mod-cta:hover {
-  background-color: var(--interactive-hover);
+  background-color: var(--interactive-accent-hover);
+  color: var(--text-on-accent);
 }
 
 .modal {
@@ -2890,8 +2878,8 @@ body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-t
   align-items: center;
   justify-content: center;
   padding: 0;
-  margin: 0 2px;
   border-radius: var(--clickable-icon-radius);
+  margin: 0 2px;
   block-size: var(--ctp-control-size);
   inline-size: var(--ctp-control-size);
   min-block-size: var(--ctp-control-size);
@@ -3108,7 +3096,7 @@ body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active, b
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active,
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active .workspace-tab-header-inner {
   --tab-text-color-active: var(--ctp-icon-foreground);
-  background-color: var(--ctp-tab-active-background);
+  background-color: transparent;
   color: var(--ctp-icon-foreground);
 }
 body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active svg,
@@ -3122,28 +3110,19 @@ body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:focus-visib
   outline-offset: -1px;
 }
 @media (hover: hover) {
-  body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover, body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner,
-  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover,
-  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
+  body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:hover, body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:hover .workspace-tab-header-inner,
+  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:hover,
+  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:hover .workspace-tab-header-inner {
     --background-modifier-hover: var(--ctp-hover-background);
     --background-modifier-active-hover: var(--ctp-hover-background);
     --tab-text-color-hover: var(--ctp-icon-foreground);
     background-color: var(--ctp-hover-background);
     color: var(--ctp-icon-foreground);
   }
-  body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-title, .workspace-tab-header-inner-icon, svg), body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg),
-  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active):hover :is(.workspace-tab-header-inner-title, .workspace-tab-header-inner-icon, svg),
-  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
+  body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:hover :is(.workspace-tab-header-inner-title, .workspace-tab-header-inner-icon, svg),
+  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:hover :is(.workspace-tab-header-inner-title, .workspace-tab-header-inner-icon, svg) {
     --icon-color-hover: var(--ctp-icon-foreground);
     background-color: transparent;
-    color: var(--ctp-icon-foreground);
-  }
-  body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover, body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover .workspace-tab-header-inner,
-  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover,
-  body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active:hover .workspace-tab-header-inner {
-    --background-modifier-hover: var(--ctp-tab-active-background);
-    --background-modifier-active-hover: var(--ctp-tab-active-background);
-    background-color: var(--ctp-tab-active-background);
     color: var(--ctp-icon-foreground);
   }
 }

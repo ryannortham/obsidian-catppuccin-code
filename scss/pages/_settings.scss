@@ -30,12 +30,13 @@ button.mod-cta {
   white-space: nowrap;
 
   &:not(.clickable-icon) {
-    background-color: var(--interactive-normal);
-
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent);
   }
 
   &:hover {
-    background-color: var(--interactive-hover);
+    background-color: var(--interactive-accent-hover);
+    color: var(--text-on-accent);
   }
 }
 

@@ -25,11 +25,8 @@ settings:
     description: Select your preferred accent
     type: class-select
     allowEmpty: false
-    default: ctp-full-palette
+    default: ctp-accent-mauve
     options:
-      -
-        label: Full palette
-        value: ctp-full-palette
       -
         label: Rosewater
         value: ctp-accent-rosewater
@@ -1026,10 +1023,6 @@ settings:
 }
 
 /* ------------------Selecting Accents------------------- */
-
-.ctp-full-palette {
-  --ctp-accent: var(--ctp-mauve);
-}
 
 .ctp-accent-rosewater {
   --ctp-accent: var(--ctp-rosewater);

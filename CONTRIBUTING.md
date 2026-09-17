@@ -23,34 +23,25 @@ There are two files that might be helpful to investigate before contributing:
 `_ctp-style-settings.scss` defines the Catppuccin colors for the theme. This
 file provides the names of the colors being used elsewhere in the theme. Color
 usage unique to the default user experience can be found in
-[_full-palette.scss](scss/themes/_full-palette.scss).
+[_document-palette.scss](scss/themes/_document-palette.scss), while shared
+interface roles live in
+[_semantic-roles.scss](scss/base/_semantic-roles.scss).
 
 ## What colors go where?
 
 Obsidian has a few selectors to keep in mind when modifying its CSS. Three of the more important ones: `.is-selected`, `.is-active`, and `:hover`.
 
-The full palette aims to use colors in the following ways:
+The theme aims to use colors in the following ways:
 
 + `.is-active`
-  + `var(--ctp-mauve)` is used for active files in the file explorer sidebar, the active page in the settings sidebar, and so on
-  + `var(--ctp-pink)` is used for active button icons
-  + An inset box-shadow is used for many active items, such as buttons or the file type label for items in the file explorer sidebar, indicating they have been "pressed down":
-
-    ```scss
-    .workspace-tab-header.is-active {
-      box-shadow:
-      inset 0 0 4px rgb(var(--ctp-crust)), 
-      inset 0 0 6px rgb(var(--ctp-base));
-    }
-    ```
-
-  + Items in this category will often need their `color` changed from something like `var(--text-normal)` to `var(--text-on-accent)`
+  + Selected list rows use the neutral `--ctp-list-selection-background` role.
+  + Active sidebar tabs remain transparent and use the selected accent for their icon.
+  + Active editor tabs use Base with a selected-accent indicator.
 + `.is-selected`
-  + `var(--ctp-accent)` is used when items in the command palette are selected, when items in the search results sidebar are selected, and so on
-  + Items in this category will often need their `color` changed from something like `var(--text-normal)` to `var(--text-on-accent)`
+  + Selected rows use the same neutral selection role as active rows so their text remains readable.
 + `:hover`
-  + `var(--ctp-accent)` is used when hovering over the file explorer sidebar, settings sidebar, and most other "UI links"
-  + `var(--ctp-pink)` is used when hovering over buttons and other "interactive" UI elements
+  + Controls and sidebar tabs use `--ctp-hover-background`, whether or not the control is active.
+  + The selected accent is reserved for foreground emphasis, indicators, CTA buttons, and focus borders.
   + Hovering over highlighted text should usually cause the highlighted color to become somewhat transparent (e.g. `(rgb(var(--ctp-rosewater), 60%))` for highlighted search results).
   + Hovering over an item should cause either some part of it to get brighter or its text to become underlined
   + Items in this category will often need their `color` changed from something like `var(--text-normal)` to `var(--text-on-accent)`

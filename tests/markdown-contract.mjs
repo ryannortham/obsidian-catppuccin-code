@@ -9,7 +9,7 @@ const settings = read("scss/base/_ctp-style-settings.scss");
 const typography = read("scss/base/_typography.scss");
 const links = read("scss/components/_links.scss");
 const markdown = read("scss/components/_markdown.scss");
-const palette = read("scss/themes/_full-palette.scss");
+const documentPalette = read("scss/themes/_document-palette.scss");
 const main = read("scss/main.scss");
 const compiled = read("theme.css");
 
@@ -22,7 +22,7 @@ function has(source, expression, message) {
 }
 
 const appRoles = {
-  "callout-warning": "var(--color-yellow)",
+  "callout-warning": "var(--color-orange)",
   "code-normal": "var(--text-normal)",
   "code-comment": "rgb(var(--ctp-overlay2))",
   "code-function": "var(--color-blue)",
@@ -37,7 +37,7 @@ const appRoles = {
   "divider-color": "var(--background-secondary)",
   "hr-color": "rgb(var(--ctp-surface2))",
   "link-external-color": "rgb(var(--ctp-blue))",
-  "link-external-color-hover": "rgb(var(--ctp-blue))",
+  "link-external-color-hover": "rgb(var(--ctp-sky))",
   "tag-color": "rgb(var(--ctp-tag-pill-color, var(--ctp-blue)))",
   "tag-color-hover": "rgb(var(--ctp-tag-pill-color, var(--ctp-blue)))",
   "tab-divider-color": "rgb(var(--ctp-crust))",
@@ -97,10 +97,10 @@ assert(!/var\(--ctp-teal\)/.test(typography), "Document typography must not use 
 has(links, /color: var\(--link-color\);/, "Markdown link formatting must follow the Blue link role");
 assert(!/var\(--ctp-tag-pill-color, var\(--ctp-accent\)\)/.test(links), "Tag formatting must not fall back to the Lavender accent");
 
-has(palette, /--hr-color: rgb\(var\(--ctp-surface2\)\)/, "Full palette must use Surface2 for rules");
-has(palette, /input\[type="checkbox"\]:not\(:checked\)\s*\{[\s\S]*?border-color: rgb\(var\(--ctp-surface2\)\);[\s\S]*?background-color: transparent;[\s\S]*?box-shadow: none;/, "Unchecked tasks must use a neutral Surface2 outline");
-has(palette, /&:hover,\s*&:focus-visible\s*\{[\s\S]*?border-color: var\(--ctp-focus-border\);[\s\S]*?background-color: var\(--ctp-list-hover-background\);/, "Unchecked task hover/focus must use the selected accent and neutral hover role");
-assert(!/background-color: rgb\(var\(--ctp-red\)\)/.test(palette), "Unchecked tasks must not use a Red fill");
+has(documentPalette, /--hr-color: rgb\(var\(--ctp-surface2\)\)/, "Document palette must use Surface2 for rules");
+has(documentPalette, /input\[type="checkbox"\]:not\(:checked\)\s*\{[\s\S]*?border-color: rgb\(var\(--ctp-surface2\)\);[\s\S]*?background-color: transparent;[\s\S]*?box-shadow: none;/, "Unchecked tasks must use a neutral Surface2 outline");
+has(documentPalette, /&:hover,\s*&:focus-visible\s*\{[\s\S]*?border-color: var\(--ctp-focus-border\);[\s\S]*?background-color: var\(--ctp-list-hover-background\);/, "Unchecked task hover/focus must use the selected accent and neutral hover role");
+assert(!/background-color: rgb\(var\(--ctp-red\)\)/.test(documentPalette), "Unchecked tasks must not use a Red fill");
 
 assert(main.includes('@use "components/markdown";'), "Markdown component partial must be part of the build");
 has(markdown, /:not\(pre\) > code/, "Inline code selector must not repaint fenced code");
@@ -112,6 +112,7 @@ has(markdown, /\.markdown-rendered pre code\s*\{\s*background-color: transparent
 
 for (const fragment of [
   "--link-external-color: rgb(var(--ctp-blue))",
+  "--link-external-color-hover: rgb(var(--ctp-sky))",
   "--code-keyword: rgb(var(--ctp-mauve))",
   "--code-operator: rgb(var(--ctp-sky))",
   "--code-function: var(--color-blue)",

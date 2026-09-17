@@ -11,7 +11,10 @@ const interfaceSource = read("scss/layout/_interface.scss");
 const iconsSource = read("scss/components/_icons.scss");
 const searchSource = read("scss/components/_search.scss");
 const linksSource = read("scss/components/_links.scss");
+const inputsSource = read("scss/components/_inputs.scss");
+const settingsPageSource = read("scss/pages/_settings.scss");
 const mainSource = read("scss/main.scss");
+const interfaceFixture = read("tests/fixtures/interface-states.html");
 const compiledCss = read("theme.css");
 
 function assert(condition, message) {
@@ -97,7 +100,9 @@ const semanticRoles = {
   "text-normal": "rgb(var(--ctp-text))",
   "text-muted": "rgb(var(--ctp-subtext0))",
   "text-faint": "rgb(var(--ctp-overlay1))",
-  "text-accent": "rgb(var(--ctp-blue))",
+  "color-accent-2": "hsl(from rgb(var(--ctp-accent)) h s calc(l + 7))",
+  "text-accent": "rgb(var(--ctp-accent))",
+  "text-accent-hover": "var(--color-accent-2)",
   "text-highlight-bg": "rgb(var(--ctp-yellow), 28%)",
   "caret-color": "rgb(var(--ctp-rosewater))",
 };
@@ -115,7 +120,13 @@ for (const accent of accents) {
     `${accent} accent class must update --ctp-accent`,
   );
 }
-assert(declaration(block(paletteSource, ".ctp-full-palette"), "ctp-accent") === "var(--ctp-mauve)", "Full palette must default to Mauve");
+assert(/id: catppuccin-theme-accents[\s\S]*?default: ctp-accent-mauve/.test(paletteSource), "Theme accent must default to Mauve");
+assert(!paletteSource.includes("Full palette"), "The redundant Full palette option must be removed");
+assert(!paletteSource.includes(".ctp-full-palette"), "The obsolete Full palette class must be removed");
+assert(
+  /\.theme-light:not\(\[class\*="ctp-accent-"\]\),\s*\.theme-dark:not\(\[class\*="ctp-accent-"\]\)[\s\S]*?--ctp-accent: var\(--ctp-mauve\)/.test(semanticSource),
+  "Missing or stale accent classes must safely fall back to Mauve",
+);
 for (const role of ["color-accent", "interactive-accent", "ctp-focus-border", "ctp-icon-foreground"]) {
   assert(declaration(semanticSource, role).includes("ctp-accent") || declaration(semanticSource, role).includes("color-accent"), `--${role} must derive from --ctp-accent`);
 }
@@ -157,12 +168,41 @@ assert(
   /\.workspace-split\.mod-root \.workspace-tab-header[\s\S]*?&::before,[\s\S]*?&::after[\s\S]*?display: none/.test(interfaceSource),
   "Root tabs must disable Obsidian's curved bottom-corner pseudo-elements",
 );
+assert(
+  /&\.is-active,\s*&\.is-active \.workspace-tab-header-inner \{[\s\S]*?background-color: transparent;/.test(interfaceSource),
+  "Active sidebar tabs must be transparent at rest",
+);
+assert(
+  /\.workspace-split\.mod-sidedock \.workspace-tab-header \{[\s\S]*?&:hover,\s*&:hover \.workspace-tab-header-inner \{[\s\S]*?background-color: var\(--ctp-hover-background\)/.test(interfaceSource),
+  "Active and inactive sidebar tabs must share the hover background",
+);
+assert(
+  !/\.mod-(?:left|right)-split \.workspace-tab-header\.(?:is-active|has-active-menu)/.test(iconsSource),
+  "Sidebar tab state backgrounds must have one owner in the interface partial",
+);
+assert(interfaceFixture.includes("mod-left-split") && interfaceFixture.includes("mod-right-split"), "Visual coverage must include both sidebars");
+assert(
+  /workspace-tab-header is-active fixture-hover/.test(interfaceFixture),
+  "Visual coverage must include the active sidebar hover state",
+);
 assert(!/background-color:\s*rgb\(var\(--ctp-accent\)\)/.test(searchSource), "Search rows must not use a solid accent fill");
 assert(searchSource.includes("var(--ctp-search-match-background)"), "Search matches must use the search semantic role");
 assert(/cm-highlight\.cm-link[\s\S]*?color: var\(--text-normal\)/.test(linksSource), "Highlighted links must remain readable");
+assert(declaration(appVariableSource, "link-color") === "rgb(var(--ctp-blue))", "Links must use Blue");
+assert(declaration(appVariableSource, "link-color-hover") === "rgb(var(--ctp-sky))", "Link hover must use Sky");
+assert(declaration(appVariableSource, "link-external-color-hover") === "rgb(var(--ctp-sky))", "External link hover must use Sky");
+assert(declaration(appVariableSource, "callout-warning") === "var(--color-orange)", "Warnings must use Peach through the orange alias");
+assert(!inputsSource.includes("rgb(var(--ctp-accent), 70%)"), "Input focus borders must use the full accent color");
+assert(/box-shadow: 0 0 0 2px var\(--ctp-focus-border\)/.test(inputsSource), "Input focus must use the focus-border role");
+assert(
+  /button\.mod-cta[\s\S]*?&:not\(\.clickable-icon\)[\s\S]*?background-color: var\(--interactive-accent\)[\s\S]*?color: var\(--text-on-accent\)[\s\S]*?&:hover[\s\S]*?background-color: var\(--interactive-accent-hover\)/.test(settingsPageSource),
+  "Settings CTA buttons must use the selected accent and its hover role",
+);
 
 assert(mainSource.includes('@use "base/semantic-roles";'), "Semantic role layer must be compiled");
 assert(mainSource.includes('@use "components/syntax";'), "Syntax role layer must be compiled");
+assert(mainSource.includes('@use "themes/document-palette";'), "Document palette layer must be compiled");
+assert(!mainSource.includes("full-palette"), "The obsolete Full palette partial must not be compiled");
 assert(!mainSource.includes('vendors/fonts'), "Font vendor must not be compiled");
 assert(!existsSync(join(root, "scss/vendors/_fonts.scss")), "Bundled font source must be removed");
 assert(!existsSync(join(root, "obsidian.css")), "Legacy font-bundled artifact must be removed");

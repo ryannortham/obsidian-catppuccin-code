@@ -62,7 +62,7 @@ body {
   --callout-summary: var(--color-cyan);
   --callout-tip: var(--color-cyan);
   --callout-todo: var(--color-blue);
-  --callout-warning: var(--color-yellow);
+  --callout-warning: var(--color-orange);
   --callout-quote: rgb(var(--ctp-subtext0));
 
   /* Canvas */
@@ -304,12 +304,12 @@ body {
 
   /* Links */
   --link-color: rgb(var(--ctp-blue));
-  --link-color-hover: rgb(var(--ctp-blue));
+  --link-color-hover: rgb(var(--ctp-sky));
   --link-decoration: none;
   --link-decoration-hover: underline;
   --link-decoration-thickness: 2px;
   --link-external-color: rgb(var(--ctp-blue));
-  --link-external-color-hover: rgb(var(--ctp-blue));
+  --link-external-color-hover: rgb(var(--ctp-sky));
   --link-external-decoration: none;
   --link-external-decoration-hover: underline;
   --link-external-filter: none;

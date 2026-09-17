@@ -19,13 +19,13 @@ Obsidian interface interaction states as a coherent theme baseline.
 | Palette data and Style Settings | `scss/base/_ctp-style-settings.scss` | Canonical Catppuccin names and RGB values only |
 | Shared color roles | `scss/base/_semantic-roles.scss` | Single owner for Obsidian aliases, surfaces, text, accents, search, controls, and selection |
 | App defaults | `scss/base/_app-variables.scss` | Geometry and component variables that consume semantic roles |
-| Clickable and close icons | `scss/components/_icons.scss`, `scss/themes/_full-palette.scss` | `scss/layout/_interface.scss` |
-| Tree rows and navigation states | `scss/layout/_sidebar.scss`, `scss/themes/_full-palette.scss` | `scss/layout/_interface.scss` |
+| Clickable and close icons | `scss/components/_icons.scss` | `scss/layout/_interface.scss` |
+| Tree rows and navigation states | `scss/layout/_sidebar.scss` | `scss/layout/_interface.scss` |
 | Backlinks context matches | `scss/components/_search.scss` | `scss/layout/_interface.scss` |
-| Sidebar and editor tabs | `scss/layout/_tabs.scss`, `scss/themes/_full-palette.scss` | `scss/layout/_interface.scss` |
+| Sidebar and editor tabs | `scss/layout/_tabs.scss` | `scss/layout/_interface.scss` |
 | Metadata Menu and Agent Client | External plugin DOM | `scss/vendors/_plugin-compatibility.scss` compatibility boundary |
 
-`scss/layout/_interface.scss` is intentionally loaded after the full-palette
+`scss/layout/_interface.scss` is intentionally loaded after the document-palette
 partial. Its component-local selectors use the normal cascade and contain no
 `!important` declarations. Generated CSS is never the edit target. Theme code
 inherits Obsidian's font settings; no font files, `@font-face` rules, or global
@@ -37,9 +37,11 @@ font stacks are shipped.
 | --- | --- |
 | Icon foreground | selected `--ctp-accent` |
 | Focus border | selected `--ctp-accent` |
-| Active/inactive selection | `--ctp-surface0` |
+| Active/inactive list selection | `--ctp-surface0` |
 | List hover | `--ctp-surface0` at 50% |
 | Shared control/editor-tab hover | `--ctp-base` lightened 5% |
+| Active sidebar tab at rest | transparent with selected-accent foreground |
+| Sidebar tab hover, active or inactive | `--ctp-base` lightened 5% |
 | Active tree guide | `--ctp-overlay2` |
 | Inactive tree guide | `--ctp-surface1` |
 | Empty editor tab strip and ribbon | `--ctp-crust` |
@@ -66,7 +68,7 @@ semantic fallbacks; Style Settings variables remain the user override boundary.
 | Horizontal rule | `--ctp-surface2` |
 | Unchecked task | transparent + `--ctp-surface2` border |
 | Unchecked hover/focus | 50% `--ctp-surface0` + `--ctp-lavender` border |
-| Completed task / warning | `--ctp-green` / `--ctp-yellow` |
+| Completed task / warning | `--ctp-green` / `--ctp-peach` |
 | Inline code / fenced code | `--ctp-mantle` / `--ctp-crust` |
 | Fenced-code edge | `--ctp-surface0` border |
 
@@ -98,19 +100,21 @@ The scoped rule removes the titlebar bottom border and shadow so opaque mode
 cannot reintroduce a horizontal seam.
 
 Every interface role resolves to a token in the active Catppuccin palette.
-Style Settings selects the flavor and accent classes; it does not disable the
-interface contract. Keep component-state choices in semantic role variables and
-do not introduce flavor-specific color literals.
+Style Settings selects the flavor and accent classes; Mauve is the default when
+no accent class is present. It does not disable the interface contract. Keep
+component-state choices in semantic role variables and do not introduce
+flavor-specific color literals.
 
 Interface chrome uses one panel surface in both focus states: the focused
 titlebar now shares `var(--background-secondary)` with the tabs, ribbon, and
 status bar, and its border is transparent. Translucent mode only changes the
 divider strokes to transparent so the surface contract does not branch by focus.
-Ordinary clickable controls, status-bar actions, sidebar tabs, and inactive
-editor tabs consume one `--ctp-hover-background` role. It matches
+Ordinary clickable controls, status-bar actions, every sidebar-tab hover, and
+inactive editor tabs consume one `--ctp-hover-background` role. It matches
 Catppuccin VS Code's Base-lightened-by-5% tab hover and is painted on normalized
-30px inner hit targets where Obsidian uses top-bar wrappers. Active, close, and
-destructive states retain their separate semantic treatments.
+30px inner hit targets where Obsidian uses top-bar wrappers. Active sidebar tabs
+remain transparent at rest, with the selected accent identifying the active
+icon. Close and destructive states retain their separate semantic treatments.
 Root editor tabs use Crust for the empty strip, Mantle for inactive tabs, Base
 for the active tab, and Base lightened by 5% for inactive hover. These roles do not
 change when translucency is toggled. Inactive close buttons remain in layout

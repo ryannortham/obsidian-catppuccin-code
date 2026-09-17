@@ -263,10 +263,10 @@ section {
 
 body:is(.theme-dark, .theme-light)
   .workspace-split.mod-sidedock
-  .workspace-tab-header.fixture-hover:not(.is-active),
+  .workspace-tab-header.fixture-hover,
 body:is(.theme-dark, .theme-light)
   .workspace-split.mod-sidedock
-  .workspace-tab-header.fixture-hover:not(.is-active)
+  .workspace-tab-header.fixture-hover
   .workspace-tab-header-inner {
   background: var(--ctp-hover-background);
   color: var(--ctp-icon-foreground);

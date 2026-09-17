@@ -5,7 +5,7 @@
   "scripts": {
     "build": "sass scss/main.scss:dist/catppuccin.css",
     "build:theme": "sass scss/main.scss:theme.css",
-    "lint": "stylelint scss/base/_semantic-roles.scss scss/components/_cmd-palette.scss scss/components/_inputs.scss scss/components/_links.scss scss/components/_search.scss scss/components/_syntax.scss scss/layout/_interface.scss scss/pages/_settings.scss scss/themes/_full-palette.scss scss/vendors/_plugin-compatibility.scss scss/vendors/_plugins.scss",
+    "lint": "stylelint scss/base/_semantic-roles.scss scss/components/_cmd-palette.scss scss/components/_inputs.scss scss/components/_links.scss scss/components/_search.scss scss/components/_syntax.scss scss/layout/_interface.scss scss/pages/_settings.scss scss/themes/_document-palette.scss scss/vendors/_plugin-compatibility.scss scss/vendors/_plugins.scss",
     "test": "node tests/theme-contract.mjs && node tests/markdown-contract.mjs",
     "test:visual": "node tests/render-interface-fixture.mjs",
     "test:visual:check": "node tests/render-interface-fixture.mjs --check",

@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="../../theme.css" />
     <link rel="stylesheet" href="interface-fixture.css" />
   </head>
-  <body class="theme-dark css-settings-manager ctp-mocha ctp-full-palette">
+  <body class="theme-dark css-settings-manager ctp-mocha ctp-accent-mauve">
     <script>
       const scenarios = {
-        latte: ["theme-light", "ctp-latte", "ctp-full-palette"],
-        frappe: ["theme-dark", "ctp-frappe", "ctp-full-palette"],
-        macchiato: ["theme-dark", "ctp-macchiato", "ctp-full-palette"],
-        mocha: ["theme-dark", "ctp-mocha", "ctp-full-palette"],
+        latte: ["theme-light", "ctp-latte", "ctp-accent-mauve"],
+        frappe: ["theme-dark", "ctp-frappe", "ctp-accent-mauve"],
+        macchiato: ["theme-dark", "ctp-macchiato", "ctp-accent-mauve"],
+        mocha: ["theme-dark", "ctp-mocha", "ctp-accent-mauve"],
         mochaBlue: ["theme-dark", "ctp-mocha", "ctp-accent-blue"],
       };
       const scenario = new URLSearchParams(location.search).get("scenario") || "mocha";
@@ -108,21 +108,46 @@
 
       <section>
         <h2>Utility controls and sidebar tabs</h2>
-        <div class="workspace-split mod-sidedock panel sidebar-header-fixture">
-          <div class="workspace-tab-header-container">
-            <div class="workspace-tab-header-container-inner">
-              <div class="workspace-tab-header is-active" aria-label="Files"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">▤</div></div></div>
-              <div class="workspace-tab-header fixture-hover" aria-label="Search"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">⌕</div></div></div>
-              <div class="workspace-tab-header" aria-label="Bookmarks"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div></div></div>
+        <div class="grid-two">
+          <div class="sidebar-state-example">
+            <h3>Left sidebar</h3>
+            <div class="workspace-split mod-sidedock mod-left-split panel sidebar-header-fixture">
+              <div class="workspace-tab-header-container">
+                <div class="workspace-tab-header-container-inner">
+                  <div class="workspace-tab-header is-active" aria-label="Files active"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">▤</div></div></div>
+                  <div class="workspace-tab-header is-active fixture-hover" aria-label="Search active hover"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">⌕</div></div></div>
+                  <div class="workspace-tab-header fixture-hover" aria-label="Bookmarks inactive hover"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div></div></div>
+                </div>
+                <div class="sidebar-toggle-button"><button class="clickable-icon" aria-label="Collapse left sidebar">◫</button></div>
+              </div>
+              <div class="nav-header">
+                <div class="nav-buttons-container">
+                  <button class="clickable-icon nav-action-button" aria-label="New note">＋</button>
+                  <button class="clickable-icon nav-action-button fixture-hover" aria-label="New folder">▱</button>
+                  <button class="clickable-icon nav-action-button" aria-label="Sort">↕</button>
+                  <button class="clickable-icon nav-action-button" aria-label="Collapse all">⌃</button>
+                </div>
+              </div>
             </div>
-            <div class="sidebar-toggle-button"><button class="clickable-icon" aria-label="Collapse sidebar">◫</button></div>
           </div>
-          <div class="nav-header">
-            <div class="nav-buttons-container">
-              <button class="clickable-icon nav-action-button" aria-label="New note">＋</button>
-              <button class="clickable-icon nav-action-button fixture-hover" aria-label="New folder">▱</button>
-              <button class="clickable-icon nav-action-button" aria-label="Sort">↕</button>
-              <button class="clickable-icon nav-action-button" aria-label="Collapse all">⌃</button>
+          <div class="sidebar-state-example">
+            <h3>Right sidebar</h3>
+            <div class="workspace-split mod-sidedock mod-right-split panel sidebar-header-fixture">
+              <div class="workspace-tab-header-container">
+                <div class="workspace-tab-header-container-inner">
+                  <div class="workspace-tab-header is-active" aria-label="Properties active"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">☷</div></div></div>
+                  <div class="workspace-tab-header is-active fixture-hover" aria-label="Links active hover"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">⌘</div></div></div>
+                  <div class="workspace-tab-header fixture-hover" aria-label="Outline inactive hover"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">≡</div></div></div>
+                </div>
+                <div class="sidebar-toggle-button"><button class="clickable-icon" aria-label="Collapse right sidebar">◫</button></div>
+              </div>
+              <div class="nav-header">
+                <div class="nav-buttons-container">
+                  <button class="clickable-icon nav-action-button" aria-label="Refresh">↻</button>
+                  <button class="clickable-icon nav-action-button fixture-hover" aria-label="Filter">⌕</button>
+                  <button class="clickable-icon nav-action-button" aria-label="More options">•••</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -162,7 +187,7 @@
             </div>
           </div>
         </div>
-        <p class="focus-note">Opaque and translucent tabs use Crust for the strip, Mantle for inactive tabs, and Base for the active tab.</p>
+        <p class="focus-note">Sidebar tabs are transparent at rest and share one hover background. Editor tabs use Crust for the strip, Mantle for inactive tabs, and Base for the active tab.</p>
       </section>
 
       <section>

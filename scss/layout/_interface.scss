@@ -290,7 +290,7 @@ body.theme-light {
     &.is-active .workspace-tab-header-inner {
       --tab-text-color-active: var(--ctp-icon-foreground);
 
-      background-color: var(--ctp-tab-active-background);
+      background-color: transparent;
       color: var(--ctp-icon-foreground);
     }
 
@@ -307,8 +307,8 @@ body.theme-light {
 
   @media (hover: hover) {
     .workspace-split.mod-sidedock .workspace-tab-header {
-      &:not(.is-active):hover,
-      &:not(.is-active):hover .workspace-tab-header-inner {
+      &:hover,
+      &:hover .workspace-tab-header-inner {
         --background-modifier-hover: var(--ctp-hover-background);
         --background-modifier-active-hover: var(--ctp-hover-background);
         --tab-text-color-hover: var(--ctp-icon-foreground);
@@ -317,22 +317,11 @@ body.theme-light {
         color: var(--ctp-icon-foreground);
       }
 
-      &:not(.is-active):hover
-        :is(.workspace-tab-header-inner-title, .workspace-tab-header-inner-icon, svg),
-      &.is-active:hover
-        :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
+      &:hover
+        :is(.workspace-tab-header-inner-title, .workspace-tab-header-inner-icon, svg) {
         --icon-color-hover: var(--ctp-icon-foreground);
 
         background-color: transparent;
-        color: var(--ctp-icon-foreground);
-      }
-
-      &.is-active:hover,
-      &.is-active:hover .workspace-tab-header-inner {
-        --background-modifier-hover: var(--ctp-tab-active-background);
-        --background-modifier-active-hover: var(--ctp-tab-active-background);
-
-        background-color: var(--ctp-tab-active-background);
         color: var(--ctp-icon-foreground);
       }
     }
