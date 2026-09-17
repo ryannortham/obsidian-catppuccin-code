@@ -72,7 +72,24 @@ assert(fontColorsBlock?.includes("id: ctp-page-title"), "File name settings must
 assert(fontColorsBlock?.includes("id: ctp-h6"), "Heading settings must live under Font Colors");
 assert(fontColorsBlock?.includes("id: ctp-bold"), "Bold color must live under Font Colors");
 assert(fontColorsBlock?.includes("id: ctp-blockquote"), "Blockquote color must live under Font Colors");
-assert(!paletteSource.includes("catppuccin-heading-settings"), "File Name and Headings section must be merged into Font Styles");
+const fontColorOrder = [
+  "ctp-page-title",
+  "ctp-h1",
+  "ctp-h2",
+  "ctp-h3",
+  "ctp-h4",
+  "ctp-h5",
+  "ctp-h6",
+  "ctp-bold",
+  "ctp-italic",
+  "ctp-strikethrough",
+  "ctp-blockquote",
+].map((id) => fontColorsBlock?.indexOf(`id: ${id}`) ?? -1);
+assert(
+  fontColorOrder.every((position, index) => position >= 0 && (index === 0 || position > fontColorOrder[index - 1])),
+  "Font Colors must list file and heading colors before inline text colors",
+);
+assert(!paletteSource.includes("catppuccin-heading-settings"), "File name and heading settings must remain consolidated in Font Colors");
 assert(!paletteSource.includes("source-code"), "Credits and Source Code section must be removed");
 assert(!paletteSource.includes("PDF Settings"), "PDF settings must be removed");
 assert(

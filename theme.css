@@ -437,245 +437,6 @@ name: "Catppuccin: Font Colors"
 id: catppuccin-font-colors
 settings:
   -
-    id: ctp-bold
-    title: Bold font color
-    description: Select your bold font color
-    type: variable-select
-    allowEmpty: false
-    default: var(--ctp-text)
-    options:
-      -
-        label: Rosewater
-        value: var(--ctp-rosewater)
-      -
-        label: Flamingo
-        value: var(--ctp-flamingo)
-      -
-        label: Pink
-        value: var(--ctp-pink)
-      -
-        label: Mauve
-        value: var(--ctp-mauve)
-      -
-        label: Red
-        value: var(--ctp-red)
-      -
-        label: Maroon
-        value: var(--ctp-maroon)
-      -
-        label: Peach
-        value: var(--ctp-peach)
-      -
-        label: Yellow
-        value: var(--ctp-yellow)
-      -
-        label: Green
-        value: var(--ctp-green)
-      -
-        label: Teal
-        value: var(--ctp-teal)
-      -
-        label: Sky
-        value: var(--ctp-sky)
-      -
-        label: Sapphire
-        value: var(--ctp-sapphire)
-      -
-        label: Blue
-        value: var(--ctp-blue)
-      -
-        label: Lavender
-        value: var(--ctp-lavender)
-      -
-        label: Text
-        value: var(--ctp-text)
-      -
-        label: Subtext 0
-        value: var(--ctp-subtext0)
-  -
-    id: ctp-italic
-    title: Italic font color
-    description: Select your italic font color
-    type: variable-select
-    allowEmpty: false
-    default: var(--ctp-text)
-    options:
-      -
-        label: Accent
-        value: var(--ctp-accent)
-      -
-        label: Rosewater
-        value: var(--ctp-rosewater)
-      -
-        label: Flamingo
-        value: var(--ctp-flamingo)
-      -
-        label: Pink
-        value: var(--ctp-pink)
-      -
-        label: Mauve
-        value: var(--ctp-mauve)
-      -
-        label: Red
-        value: var(--ctp-red)
-      -
-        label: Maroon
-        value: var(--ctp-maroon)
-      -
-        label: Peach
-        value: var(--ctp-peach)
-      -
-        label: Yellow
-        value: var(--ctp-yellow)
-      -
-        label: Green
-        value: var(--ctp-green)
-      -
-        label: Teal
-        value: var(--ctp-teal)
-      -
-        label: Sky
-        value: var(--ctp-sky)
-      -
-        label: Sapphire
-        value: var(--ctp-sapphire)
-      -
-        label: Blue
-        value: var(--ctp-blue)
-      -
-        label: Lavender
-        value: var(--ctp-lavender)
-      -
-        label: Text
-        value: var(--ctp-text)
-      -
-        label: Subtext 0
-        value: var(--ctp-subtext0)
-  -
-    id: ctp-strikethrough
-    title: Strikethrough color
-    description: Select your strikethrough color
-    type: variable-select
-    allowEmpty: false
-    default: var(--ctp-overlay1)
-    options:
-      -
-        label: Accent
-        value: var(--ctp-accent)
-      -
-        label: Rosewater
-        value: var(--ctp-rosewater)
-      -
-        label: Flamingo
-        value: var(--ctp-flamingo)
-      -
-        label: Pink
-        value: var(--ctp-pink)
-      -
-        label: Mauve
-        value: var(--ctp-mauve)
-      -
-        label: Red
-        value: var(--ctp-red)
-      -
-        label: Maroon
-        value: var(--ctp-maroon)
-      -
-        label: Peach
-        value: var(--ctp-peach)
-      -
-        label: Yellow
-        value: var(--ctp-yellow)
-      -
-        label: Green
-        value: var(--ctp-green)
-      -
-        label: Teal
-        value: var(--ctp-teal)
-      -
-        label: Sky
-        value: var(--ctp-sky)
-      -
-        label: Sapphire
-        value: var(--ctp-sapphire)
-      -
-        label: Blue
-        value: var(--ctp-blue)
-      -
-        label: Lavender
-        value: var(--ctp-lavender)
-      -
-        label: Overlay 1
-        value: var(--ctp-overlay1)
-      -
-        label: Text
-        value: var(--ctp-text)
-      -
-        label: Subtext 0
-        value: var(--ctp-subtext0)
-  -
-    id: ctp-blockquote
-    title: Blockquote color
-    description: Select your blockquote text color
-    type: variable-select
-    allowEmpty: false
-    default: var(--ctp-subtext1)
-    options:
-      -
-        label: Accent
-        value: var(--ctp-accent)
-      -
-        label: Rosewater
-        value: var(--ctp-rosewater)
-      -
-        label: Flamingo
-        value: var(--ctp-flamingo)
-      -
-        label: Pink
-        value: var(--ctp-pink)
-      -
-        label: Mauve
-        value: var(--ctp-mauve)
-      -
-        label: Red
-        value: var(--ctp-red)
-      -
-        label: Maroon
-        value: var(--ctp-maroon)
-      -
-        label: Peach
-        value: var(--ctp-peach)
-      -
-        label: Yellow
-        value: var(--ctp-yellow)
-      -
-        label: Green
-        value: var(--ctp-green)
-      -
-        label: Teal
-        value: var(--ctp-teal)
-      -
-        label: Sky
-        value: var(--ctp-sky)
-      -
-        label: Sapphire
-        value: var(--ctp-sapphire)
-      -
-        label: Blue
-        value: var(--ctp-blue)
-      -
-        label: Lavender
-        value: var(--ctp-lavender)
-      -
-        label: Subtext 1
-        value: var(--ctp-subtext1)
-      -
-        label: Text
-        value: var(--ctp-text)
-      -
-        label: Subtext 0
-        value: var(--ctp-subtext0)
-  -
     id: ctp-page-title
     title: File name color
     description: Select your file name color
@@ -1090,7 +851,246 @@ settings:
         value: var(--ctp-text)
       -
         label: Subtext 0
+        value: var(--ctp-subtext0)  -
+    id: ctp-bold
+    title: Bold font color
+    description: Select your bold font color
+    type: variable-select
+    allowEmpty: false
+    default: var(--ctp-text)
+    options:
+      -
+        label: Rosewater
+        value: var(--ctp-rosewater)
+      -
+        label: Flamingo
+        value: var(--ctp-flamingo)
+      -
+        label: Pink
+        value: var(--ctp-pink)
+      -
+        label: Mauve
+        value: var(--ctp-mauve)
+      -
+        label: Red
+        value: var(--ctp-red)
+      -
+        label: Maroon
+        value: var(--ctp-maroon)
+      -
+        label: Peach
+        value: var(--ctp-peach)
+      -
+        label: Yellow
+        value: var(--ctp-yellow)
+      -
+        label: Green
+        value: var(--ctp-green)
+      -
+        label: Teal
+        value: var(--ctp-teal)
+      -
+        label: Sky
+        value: var(--ctp-sky)
+      -
+        label: Sapphire
+        value: var(--ctp-sapphire)
+      -
+        label: Blue
+        value: var(--ctp-blue)
+      -
+        label: Lavender
+        value: var(--ctp-lavender)
+      -
+        label: Text
+        value: var(--ctp-text)
+      -
+        label: Subtext 0
         value: var(--ctp-subtext0)
+  -
+    id: ctp-italic
+    title: Italic font color
+    description: Select your italic font color
+    type: variable-select
+    allowEmpty: false
+    default: var(--ctp-text)
+    options:
+      -
+        label: Accent
+        value: var(--ctp-accent)
+      -
+        label: Rosewater
+        value: var(--ctp-rosewater)
+      -
+        label: Flamingo
+        value: var(--ctp-flamingo)
+      -
+        label: Pink
+        value: var(--ctp-pink)
+      -
+        label: Mauve
+        value: var(--ctp-mauve)
+      -
+        label: Red
+        value: var(--ctp-red)
+      -
+        label: Maroon
+        value: var(--ctp-maroon)
+      -
+        label: Peach
+        value: var(--ctp-peach)
+      -
+        label: Yellow
+        value: var(--ctp-yellow)
+      -
+        label: Green
+        value: var(--ctp-green)
+      -
+        label: Teal
+        value: var(--ctp-teal)
+      -
+        label: Sky
+        value: var(--ctp-sky)
+      -
+        label: Sapphire
+        value: var(--ctp-sapphire)
+      -
+        label: Blue
+        value: var(--ctp-blue)
+      -
+        label: Lavender
+        value: var(--ctp-lavender)
+      -
+        label: Text
+        value: var(--ctp-text)
+      -
+        label: Subtext 0
+        value: var(--ctp-subtext0)
+  -
+    id: ctp-strikethrough
+    title: Strikethrough color
+    description: Select your strikethrough color
+    type: variable-select
+    allowEmpty: false
+    default: var(--ctp-overlay1)
+    options:
+      -
+        label: Accent
+        value: var(--ctp-accent)
+      -
+        label: Rosewater
+        value: var(--ctp-rosewater)
+      -
+        label: Flamingo
+        value: var(--ctp-flamingo)
+      -
+        label: Pink
+        value: var(--ctp-pink)
+      -
+        label: Mauve
+        value: var(--ctp-mauve)
+      -
+        label: Red
+        value: var(--ctp-red)
+      -
+        label: Maroon
+        value: var(--ctp-maroon)
+      -
+        label: Peach
+        value: var(--ctp-peach)
+      -
+        label: Yellow
+        value: var(--ctp-yellow)
+      -
+        label: Green
+        value: var(--ctp-green)
+      -
+        label: Teal
+        value: var(--ctp-teal)
+      -
+        label: Sky
+        value: var(--ctp-sky)
+      -
+        label: Sapphire
+        value: var(--ctp-sapphire)
+      -
+        label: Blue
+        value: var(--ctp-blue)
+      -
+        label: Lavender
+        value: var(--ctp-lavender)
+      -
+        label: Overlay 1
+        value: var(--ctp-overlay1)
+      -
+        label: Text
+        value: var(--ctp-text)
+      -
+        label: Subtext 0
+        value: var(--ctp-subtext0)
+  -
+    id: ctp-blockquote
+    title: Blockquote color
+    description: Select your blockquote text color
+    type: variable-select
+    allowEmpty: false
+    default: var(--ctp-subtext1)
+    options:
+      -
+        label: Accent
+        value: var(--ctp-accent)
+      -
+        label: Rosewater
+        value: var(--ctp-rosewater)
+      -
+        label: Flamingo
+        value: var(--ctp-flamingo)
+      -
+        label: Pink
+        value: var(--ctp-pink)
+      -
+        label: Mauve
+        value: var(--ctp-mauve)
+      -
+        label: Red
+        value: var(--ctp-red)
+      -
+        label: Maroon
+        value: var(--ctp-maroon)
+      -
+        label: Peach
+        value: var(--ctp-peach)
+      -
+        label: Yellow
+        value: var(--ctp-yellow)
+      -
+        label: Green
+        value: var(--ctp-green)
+      -
+        label: Teal
+        value: var(--ctp-teal)
+      -
+        label: Sky
+        value: var(--ctp-sky)
+      -
+        label: Sapphire
+        value: var(--ctp-sapphire)
+      -
+        label: Blue
+        value: var(--ctp-blue)
+      -
+        label: Lavender
+        value: var(--ctp-lavender)
+      -
+        label: Subtext 1
+        value: var(--ctp-subtext1)
+      -
+        label: Text
+        value: var(--ctp-text)
+      -
+        label: Subtext 0
+        value: var(--ctp-subtext0)
+
 */
 .theme-light,
 .theme-light.ctp-latte {
