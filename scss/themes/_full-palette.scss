@@ -167,19 +167,10 @@
     font-size: 75% !important;
   }
 
-  /*
-  *  settings slider
-  */
-  .mod-settings {
-    & input.slider {
-      --slider-track-background: rgb(var(--ctp-green));
-    }
-
-    & input[type="color"]::-webkit-color-swatch:hover {
-      box-shadow:
-        inset 0 0 0 1px rgb(var(--mono-rgb-100), 25%),
-        0 0 0 2px rgb(var(--ctp-surface1));
-    }
+  .mod-settings input[type="color"]::-webkit-color-swatch:hover {
+    box-shadow:
+      inset 0 0 0 1px rgb(var(--mono-rgb-100), 25%),
+      0 0 0 2px rgb(var(--ctp-surface1));
   }
 
   /*

@@ -67,9 +67,9 @@ body.theme-light {
     border-inline-color: transparent;
   }
 
-  /* A detached Settings window must use the same Base surface above and below
-     the macOS traffic lights, regardless of the global translucency setting. */
-  &:has(.mod-settings) .titlebar {
+  /* Detached modal windows share the same Base surface above and below the
+     macOS traffic lights, regardless of the global translucency setting. */
+  &.is-popout-modal .titlebar {
     border-bottom: 0;
     background-color: var(--background-primary);
     box-shadow: none;

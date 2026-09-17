@@ -279,11 +279,13 @@ assert(
   "Settings navigation edges must not draw a contrasting seam",
 );
 assert(
-  /&:has\(\.mod-settings\) \.titlebar\s*\{\s*border-bottom: 0;\s*background-color: var\(--background-primary\);\s*box-shadow: none;/s.test(
+  /&\.is-popout-modal \.titlebar\s*\{\s*border-bottom: 0;\s*background-color: var\(--background-primary\);\s*box-shadow: none;/s.test(
     interfaceSource,
   ) &&
-    fixtureSource.includes("Settings window titlebar · stable Base surface"),
-  "Settings titlebar must share the Settings Base surface without a separator in every translucency state",
+    fixtureSource.includes('"is-popout-modal"') &&
+    fixtureSource.includes("Settings window titlebar · shared Base surface") &&
+    fixtureSource.includes("Community Themes titlebar · shared Base surface"),
+  "Detached modal titlebars must share the Settings Base surface without a separator in every translucency state",
 );
 assert(
   interfaceSource.includes(".status-bar-item.mod-clickable") &&
@@ -433,10 +435,12 @@ const requiredCompiledFragments = [
   "--divider-color: transparent",
   "border-right-color: transparent",
   ".mod-settings :is(.vertical-tab-header, .vertical-tab-content)",
-  "body.theme-dark:has(.mod-settings) .titlebar",
+  "body.theme-dark.is-popout-modal .titlebar",
   "background-color: var(--background-primary)",
   "inline-size: var(--ctp-control-size)",
   "--slider-thumb-radius: var(--slider-thumb-height)",
+  "--slider-fill-background: rgb(var(--ctp-green))",
+  "--slider-track-background: var(--background-modifier-border)",
 ];
 for (const fragment of requiredCompiledFragments) {
   assert(compiledCss.includes(fragment), `Compiled theme is missing: ${fragment}`);
@@ -493,6 +497,10 @@ assert(
 assert(
   /--slider-thumb-radius:\s*var\(--slider-thumb-height\);/.test(appVariables),
   "Slider thumb radius must preserve Obsidian's pill geometry",
+);
+assert(
+  /--slider-fill-background:\s*rgb\(var\(--ctp-green\)\);/.test(appVariables),
+  "Slider fill must use Catppuccin Green",
 );
 assert(paletteLiteralUses.length > 0, "Expected palette-valued SVG literals for checklist glyphs");
 
