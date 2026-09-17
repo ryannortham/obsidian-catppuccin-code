@@ -369,6 +369,7 @@ assert(declaration(appVariableSource, "link-external-color-hover") === "rgb(var(
 assert(declaration(appVariableSource, "callout-warning") === "var(--color-orange)", "Warnings must use Peach through the orange alias");
 assert(!inputsSource.includes("rgb(var(--ctp-accent), 70%)"), "Input focus borders must use the full accent color");
 assert(/box-shadow: 0 0 0 2px var\(--ctp-focus-border\)/.test(inputsSource), "Input focus must use the focus-border role");
+assert(!/input\[type="search"\]:/.test(inputsSource), "Search focus styling must remain stock-owned");
 assert(
   /\.callout\s*\{[\s\S]*?--table-header-border-color:\s*var\(--table-border-color\);/.test(calloutsSource),
   "Callout table headers must inherit Obsidian's callout-aware table border role",
