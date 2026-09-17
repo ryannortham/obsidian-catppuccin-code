@@ -3110,6 +3110,18 @@ body.theme-light .base-board-filter-bar {
   border: var(--code-border-width) solid var(--code-border-color);
   border-radius: var(--code-radius);
 }
+body.theme-dark :where(.base-board-column,
+.base-board-column-header,
+.base-board-card),
+body.theme-light :where(.base-board-column,
+.base-board-column-header,
+.base-board-card) {
+  border-color: transparent;
+}
+body.theme-dark .base-board-cards,
+body.theme-light .base-board-cards {
+  padding-block-start: 0;
+}
 body.theme-dark :is(.base-board-filter-pill,
 .base-board-card-tag,
 .base-board-tag-chip),

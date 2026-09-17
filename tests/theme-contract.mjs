@@ -232,6 +232,14 @@ assert(
   /\.base-board-filter-bar[\s\S]*?border: var\(--code-border-width\) solid var\(--code-border-color\)[\s\S]*?border-radius: var\(--code-radius\)/.test(pluginCompatibilitySource),
   "Base Board filter bars must use the code-block border and radius treatment",
 );
+assert(
+  /:where\([\s\S]*?\.base-board-column,[\s\S]*?\.base-board-column-header,[\s\S]*?\.base-board-card[\s\S]*?border-color: transparent/.test(pluginCompatibilitySource),
+  "Base Board columns, headers, and cards must use flat borderless surfaces",
+);
+assert(
+  /\.base-board-cards[\s\S]*?padding-block-start: 0/.test(pluginCompatibilitySource),
+  "Base Board first card must sit directly beneath its flat column header",
+);
 assert(!sidebarSource.includes(".nav-file-tag"), "Obsidian must retain ownership of stock file extension badges");
 for (const [name, source] of Object.entries({
   "app variables": appVariableSource,

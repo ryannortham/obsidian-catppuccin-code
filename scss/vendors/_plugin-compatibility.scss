@@ -110,6 +110,23 @@ body.theme-light {
     border-radius: var(--code-radius);
   }
 
+  // The column and card surfaces already provide enough separation. Retain
+  // transparent border boxes so plugin sizing remains stable without grey
+  // rings or a divider beneath the column header.
+  :where(
+    .base-board-column,
+    .base-board-column-header,
+    .base-board-card
+  ) {
+    border-color: transparent;
+  }
+
+  // Remove the dead strip between the flat header and the first card while
+  // retaining the plugin's spacing between subsequent cards.
+  .base-board-cards {
+    padding-block-start: 0;
+  }
+
   // Base Board uses --tag-color as a solid background. Reinterpret it as the
   // foreground for Obsidian's stock translucent tag treatment while retaining
   // the plugin's per-tag colour picker.
