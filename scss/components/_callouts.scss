@@ -1,5 +1,6 @@
 .callout {
   --callout-icon: lucide-pencil;
+  --table-header-border-color: var(--table-border-color);
 
   border-color: color-mix(in srgb, var(--callout-color) 60%, transparent);
   background-color: color-mix(in srgb, var(--callout-color) 10%, transparent);

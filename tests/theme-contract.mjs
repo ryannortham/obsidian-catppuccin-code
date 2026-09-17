@@ -15,6 +15,7 @@ const pluginCompatibilitySource = read("scss/vendors/_plugin-compatibility.scss"
 const searchSource = read("scss/components/_search.scss");
 const linksSource = read("scss/components/_links.scss");
 const inputsSource = read("scss/components/_inputs.scss");
+const calloutsSource = read("scss/components/_callouts.scss");
 const settingsPageSource = read("scss/pages/_settings.scss");
 const mainSource = read("scss/main.scss");
 const interfaceFixture = read("tests/fixtures/interface-states.html");
@@ -307,6 +308,11 @@ assert(declaration(appVariableSource, "link-external-color-hover") === "rgb(var(
 assert(declaration(appVariableSource, "callout-warning") === "var(--color-orange)", "Warnings must use Peach through the orange alias");
 assert(!inputsSource.includes("rgb(var(--ctp-accent), 70%)"), "Input focus borders must use the full accent color");
 assert(/box-shadow: 0 0 0 2px var\(--ctp-focus-border\)/.test(inputsSource), "Input focus must use the focus-border role");
+assert(
+  /\.callout\s*\{[\s\S]*?--table-header-border-color:\s*var\(--table-border-color\);/.test(calloutsSource),
+  "Callout table headers must inherit Obsidian's callout-aware table border role",
+);
+assert(!/--table-/.test(appVariableSource), "Obsidian must retain ownership of its stock table variables");
 assert(
   /button\.mod-cta[\s\S]*?&:not\(\.clickable-icon\)[\s\S]*?background-color: var\(--interactive-accent\)[\s\S]*?color: var\(--text-on-accent\)[\s\S]*?&:hover[\s\S]*?background-color: var\(--interactive-accent-hover\)/.test(settingsPageSource),
   "Settings CTA buttons must use the selected accent and its hover role",

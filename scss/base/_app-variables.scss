@@ -487,29 +487,6 @@ body {
   --tab-stacked-text-writing-mode: vertical-lr;
   --tab-stacked-shadow: -8px 0 8px 0 rgb(var(--ctp-crust), 5%);
 
-  /* Tables */
-  --table-background: transparent;
-  --table-border-width: 1px;
-  --table-border-color: var(--background-modifier-border);
-  --table-white-space: normal;
-  --table-header-background: var(--table-background);
-  --table-header-background-hover: inherit;
-  --table-header-border-width: var(--table-border-width);
-  --table-header-border-color: var(--table-border-color);
-  --table-header-font: inherit;
-  --table-header-size: var(--font-smaller);
-  --table-header-weight: var(--font-normal);
-  --table-header-color: var(--text-muted);
-  --table-text-size: inherit;
-  --table-text-color: inherit;
-  --table-column-max-width: none;
-  --table-column-alt-background: var(--table-background);
-  --table-column-first-border-width: var(--table-border-width);
-  --table-column-last-border-width: var(--table-border-width);
-  --table-row-background-hover: var(--table-background);
-  --table-row-alt-background: var(--table-background);
-  --table-row-last-border-width: var(--table-border-width);
-
   /* Window frame */
   --titlebar-background: rgb(var(--ctp-crust));
   --titlebar-background-focused: rgb(var(--ctp-crust));
