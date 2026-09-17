@@ -217,8 +217,12 @@ assert(
   "Metadata Menu file-tree icons must align with native file badges",
 );
 assert(
-  /\.workspace-tab-header[\s\S]*?\.metadata-menu\.fileclass-icon:not\([\s\S]*?--icon-size: var\(--icon-s\)[\s\S]*?align-self: center[\s\S]*?color: var\(--nav-tag-color\)[\s\S]*?transform: translateY\(1px\)/.test(pluginCompatibilitySource),
-  "Metadata Menu tab icons must match native badge color, icon sizing, and optical alignment",
+  /\.workspace-tab-header[\s\S]*?\.metadata-menu\.fileclass-icon:not\([\s\S]*?--icon-size: var\(--icon-s\)[\s\S]*?align-self: center[\s\S]*?color: var\(--nav-tag-color\)/.test(pluginCompatibilitySource),
+  "Metadata Menu tab icons must match native badge color, icon sizing, and alignment",
+);
+assert(
+  /body\.theme-dark\.ctp-vscode-layout,[\s\S]*?\.metadata-menu\.fileclass-icon:not\([\s\S]*?padding: 0;/.test(pluginCompatibilitySource),
+  "Metadata Menu tab icons must preserve native padding in VS Code mode",
 );
 assert(pluginCompatibilitySource.includes("color: var(--nav-tag-color-hover)"), "Metadata Menu tree icons must follow native badge hover color");
 assert(pluginCompatibilitySource.includes("color: var(--nav-tag-color-active)"), "Metadata Menu tree icons must follow native badge active color");
@@ -334,6 +338,10 @@ assert(
 assert(
   /\.workspace-split\.mod-root \.workspace-tab-header[\s\S]*?&::before,[\s\S]*?&::after[\s\S]*?display: none/.test(layoutSource),
   "Root tabs must disable Obsidian's curved bottom-corner pseudo-elements",
+);
+assert(
+  /&\.is-active\s*\{[\s\S]*?box-shadow: inset 0 1px 0 var\(--ctp-focus-border\);[\s\S]*?\.workspace-tab-header-inner\s*\{[\s\S]*?box-shadow: inherit;/.test(layoutSource),
+  "Active root tab indicators must remain visible across the inner tab surface",
 );
 assert(
   /&\.is-active,\s*&\.is-active \.workspace-tab-header-inner \{[\s\S]*?background-color: transparent;/.test(interfaceSource),

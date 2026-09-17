@@ -2678,6 +2678,10 @@ body.theme-dark.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-heade
 body.theme-light.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header.is-active {
   box-shadow: inset 0 1px 0 var(--ctp-focus-border);
 }
+body.theme-dark.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner,
+body.theme-light.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner {
+  box-shadow: inherit;
+}
 body.theme-dark.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header:focus-visible,
 body.theme-light.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header:focus-visible {
   outline: 1px solid var(--ctp-focus-border);
@@ -3056,7 +3060,7 @@ body.theme-light.ctp-vscode-layout .agent-client-session-manager .tree-item-self
 }
 body.theme-dark.ctp-vscode-layout,
 body.theme-light.ctp-vscode-layout {
-  /* The compact editor tab geometry needs the plugin badge's optical offset. */
+  /* Keep the plugin badge centered in the compact tab's flex row. */
 }
 body.theme-dark.ctp-vscode-layout .workspace-tab-header .metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
 .field-status-changed,
@@ -3064,7 +3068,7 @@ body.theme-dark.ctp-vscode-layout .workspace-tab-header .metadata-menu.fileclass
 body.theme-light.ctp-vscode-layout .workspace-tab-header .metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
 .field-status-changed,
 .field-status-error) {
-  transform: translateY(1px);
+  padding: 0;
 }
 
 /* stylelint-enable selector-class-pattern */

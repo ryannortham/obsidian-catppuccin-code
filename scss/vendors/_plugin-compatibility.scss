@@ -335,14 +335,14 @@ body.theme-light.ctp-vscode-layout {
     border-radius: 0;
   }
 
-  /* The compact editor tab geometry needs the plugin badge's optical offset. */
+  /* Keep the plugin badge centered in the compact tab's flex row. */
   .workspace-tab-header
     .metadata-menu.fileclass-icon:not(
       .field-status-may-have-changed,
       .field-status-changed,
       .field-status-error
     ) {
-    transform: translateY(1px);
+    padding: 0;
   }
 }
 /* stylelint-enable selector-class-pattern */
