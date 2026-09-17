@@ -3032,6 +3032,79 @@ body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-s
  * These selectors are plugin DOM contracts, not Obsidian core theme APIs.
  */
 /* stylelint-disable selector-class-pattern -- third-party plugins own these class names. */
+body.theme-dark .markdown-reading-view .bases-embed,
+body.theme-light .markdown-reading-view .bases-embed {
+  font-size: var(--font-ui-medium);
+}
+body.theme-dark .bases-embed .bases-view[data-view-type=kanban],
+body.theme-light .bases-embed .bases-view[data-view-type=kanban] {
+  scrollbar-gutter: auto;
+}
+body.theme-dark .bases-embed .base-board-container,
+body.theme-light .bases-embed .base-board-container {
+  height: auto;
+  min-height: 0;
+}
+body.theme-dark .bases-embed .base-board-board,
+body.theme-light .bases-embed .base-board-board {
+  min-height: 0;
+  flex: 0 0 auto;
+  justify-content: safe center;
+}
+body.theme-dark .bases-embed .base-board-column,
+body.theme-light .bases-embed .base-board-column {
+  max-height: 400px;
+  flex-basis: 210px;
+}
+body.theme-dark .bases-embed .base-board-cards,
+body.theme-light .bases-embed .base-board-cards {
+  padding-inline-end: var(--size-4-1);
+}
+body.theme-dark .bases-embed .base-board-column-placeholder,
+body.theme-light .bases-embed .base-board-column-placeholder {
+  flex-basis: 210px;
+}
+body.theme-dark .bases-embed .base-board-column--collapsed.base-board-column--drag-expanded,
+body.theme-light .bases-embed .base-board-column--collapsed.base-board-column--drag-expanded {
+  min-width: 210px;
+  max-width: 210px;
+  flex-basis: 210px;
+}
+body.theme-dark .bases-embed .base-board-column-title,
+body.theme-light .bases-embed .base-board-column-title {
+  max-width: 160px;
+}
+body.theme-dark .bases-embed .base-board-add-column-btn,
+body.theme-light .bases-embed .base-board-add-column-btn {
+  display: none;
+}
+body.theme-dark .bases-embed .base-board-card-chip:is([data-property-id="formula.project_scope"],
+[data-property-id="formula.company_link"]) .base-board-chip-label,
+body.theme-light .bases-embed .base-board-card-chip:is([data-property-id="formula.project_scope"],
+[data-property-id="formula.company_link"]) .base-board-chip-label {
+  display: none;
+}
+body.theme-dark .base-board-card,
+body.theme-light .base-board-card {
+  display: flex;
+  flex-direction: column;
+}
+body.theme-dark .base-board-card-title,
+body.theme-light .base-board-card-title {
+  order: 1;
+}
+body.theme-dark .base-board-tag-container,
+body.theme-light .base-board-tag-container {
+  order: 2;
+}
+body.theme-dark .base-board-tag-container:empty,
+body.theme-light .base-board-tag-container:empty {
+  display: none;
+}
+body.theme-dark .base-board-card-props,
+body.theme-light .base-board-card-props {
+  order: 3;
+}
 body.theme-dark :is(.base-board-filter-pill,
 .base-board-card-tag,
 .base-board-tag-chip),

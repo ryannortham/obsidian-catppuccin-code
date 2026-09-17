@@ -204,6 +204,30 @@ assert(
   "Base Board generated inline colours must be remapped without replacing arbitrary picker colours",
 );
 assert(!pluginCompatibilitySource.includes("--tag-color: inherit"), "Base Board custom picker colours must not be reset to the global tag colour");
+assert(
+  /\.markdown-reading-view \.bases-embed[\s\S]*?font-size: var\(--font-ui-medium\)/.test(pluginCompatibilitySource),
+  "Embedded Base views in Reading View must retain Obsidian's UI font size",
+);
+assert(
+  /\.bases-embed[\s\S]*?\.bases-view\[data-view-type="kanban"\][\s\S]*?scrollbar-gutter: auto[\s\S]*?\.base-board-board[\s\S]*?flex: 0 0 auto[\s\S]*?justify-content: safe center[\s\S]*?\.base-board-column[\s\S]*?max-height: 400px[\s\S]*?flex-basis: 210px/.test(pluginCompatibilitySource),
+  "Embedded Base Board views must use their full width and safely centre compact columns",
+);
+assert(
+  /\.base-board-card-chip:is\([\s\S]*?formula\.project_scope[\s\S]*?formula\.company_link[\s\S]*?\.base-board-chip-label[\s\S]*?display: none/.test(pluginCompatibilitySource),
+  "Embedded Base Board scope and company chips must hide their redundant labels",
+);
+assert(
+  /\.base-board-add-column-btn[\s\S]*?display: none/.test(pluginCompatibilitySource),
+  "Embedded Base Board views must hide the add-column control",
+);
+assert(
+  /\.bases-embed[\s\S]*?\.base-board-cards[\s\S]*?padding-inline-end: var\(--size-4-1\)/.test(pluginCompatibilitySource),
+  "Embedded Base Board cards must visually balance their start inset and scrollbar gap",
+);
+assert(
+  /\.base-board-card[\s\S]*?display: flex[\s\S]*?flex-direction: column[\s\S]*?\.base-board-card-title[\s\S]*?order: 1[\s\S]*?\.base-board-tag-container[\s\S]*?order: 2[\s\S]*?&:empty[\s\S]*?display: none[\s\S]*?\.base-board-card-props[\s\S]*?order: 3/.test(pluginCompatibilitySource),
+  "Base Board cards must present titles before non-empty tags and properties",
+);
 assert(!sidebarSource.includes(".nav-file-tag"), "Obsidian must retain ownership of stock file extension badges");
 for (const [name, source] of Object.entries({
   "app variables": appVariableSource,

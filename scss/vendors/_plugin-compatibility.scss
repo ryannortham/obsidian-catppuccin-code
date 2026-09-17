@@ -18,6 +18,91 @@ $base-board-tag-colors: (
 
 body.theme-dark,
 body.theme-light {
+  .markdown-reading-view .bases-embed {
+    font-size: var(--font-ui-medium);
+  }
+
+  // Keep embedded Base Board views usable within document-width dashboards.
+  // Release Obsidian's reserved scrollbar gutter so the filter reaches the
+  // content edge, and centre columns only while they fit without overflowing.
+  .bases-embed {
+    .bases-view[data-view-type="kanban"] {
+      scrollbar-gutter: auto;
+    }
+
+    .base-board-container {
+      height: auto;
+      min-height: 0;
+    }
+
+    .base-board-board {
+      min-height: 0;
+      flex: 0 0 auto;
+      justify-content: safe center;
+    }
+
+    .base-board-column {
+      max-height: 400px;
+      flex-basis: 210px;
+    }
+
+    // The native scrollbar thumb is inset within its gutter. Halve the end
+    // padding so its visible distance from cards matches the 8px start inset.
+    .base-board-cards {
+      padding-inline-end: var(--size-4-1);
+    }
+
+    .base-board-column-placeholder {
+      flex-basis: 210px;
+    }
+
+    .base-board-column--collapsed.base-board-column--drag-expanded {
+      min-width: 210px;
+      max-width: 210px;
+      flex-basis: 210px;
+    }
+
+    .base-board-column-title {
+      max-width: 160px;
+    }
+
+    .base-board-add-column-btn {
+      display: none;
+    }
+
+    .base-board-card-chip:is(
+      [data-property-id="formula.project_scope"],
+      [data-property-id="formula.company_link"]
+    )
+      .base-board-chip-label {
+      display: none;
+    }
+  }
+
+  // Base Board emits tags before the title in the DOM. Present card metadata
+  // in the more natural title, tags, properties sequence without changing the
+  // plugin's data or interaction model.
+  .base-board-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .base-board-card-title {
+    order: 1;
+  }
+
+  .base-board-tag-container {
+    order: 2;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .base-board-card-props {
+    order: 3;
+  }
+
   // Base Board uses --tag-color as a solid background. Reinterpret it as the
   // foreground for Obsidian's stock translucent tag treatment while retaining
   // the plugin's per-tag colour picker.

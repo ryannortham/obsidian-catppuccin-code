@@ -124,7 +124,7 @@ the close control.
 ## Compatibility boundary
 
 Metadata Menu file-class icons, Agent Client session rows, and Base Board tags
-are supported as isolated plugin contracts in
+and embedded-board layout are supported as isolated plugin contracts in
 `scss/vendors/_plugin-compatibility.scss`. Their selectors must not move into
 the core interface partial. If any plugin changes its DOM, core Obsidian
 controls must continue to work without those selectors.
