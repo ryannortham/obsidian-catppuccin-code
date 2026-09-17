@@ -62,6 +62,9 @@ const themeSettingsBlock = paletteSource.match(
 const workspaceSettingsBlock = paletteSource.match(
   /\/\* @settings\nname: "Catppuccin: Workspace"[\s\S]*?\*\//,
 )?.[0];
+const pluginSettingsBlock = paletteSource.match(
+  /\/\* @settings\nname: "Catppuccin: Plugins"[\s\S]*?\*\//,
+)?.[0];
 const fontColorsBlock = paletteSource.match(
   /\/\* @settings\nname: "Catppuccin: Font Colors"[\s\S]*?\*\//,
 )?.[0];
@@ -76,6 +79,16 @@ assert(
   workspaceSettingsBlock?.includes("title: Visual Studio Code layout") &&
     workspaceSettingsBlock?.includes("description: Use compact tabs and Visual Studio Code-style activity indicators"),
   "Visual Studio Code layout text must be explicit and describe its visible changes",
+);
+assert(
+  pluginSettingsBlock?.includes("id: ctp-base-board-customisations") &&
+    /type: class-toggle[\s\S]*?default: true/.test(pluginSettingsBlock),
+  "Base Board customisations must be a default-on Plugins toggle",
+);
+assert(
+  pluginSettingsBlock?.includes("title: Base Board customisations") &&
+    pluginSettingsBlock?.includes("description: Apply Catppuccin styling to Base Board views"),
+  "Base Board customisations text must describe its scope",
 );
 assert(!paletteSource.includes("Catppuccin: Catppuccin Accents"), "Duplicated Catppuccin accent label must be removed");
 assert(!paletteSource.includes("catppuccin-interface-styles"), "Empty Interface Styles section must be removed");
@@ -333,6 +346,14 @@ assert(!mainSource.includes('vendors/plugins'), "Dataview compatibility partial 
 assert(!existsSync(join(root, "scss/vendors/_plugins.scss")), "Dataview compatibility source must be removed");
 assert(!/\.dataview\.inline-field/.test(compiledCss), "Compiled theme must not contain Dataview compatibility rules");
 assert(!pluginCompatibilitySource.includes("agent-client"), "Agent Client compatibility must be removed");
+const baseBoardCompatibilityBlock = pluginCompatibilitySource.match(
+  /body\.theme-dark\.ctp-base-board-customisations,\nbody\.theme-light\.ctp-base-board-customisations \{([\s\S]*?)\n\}\n\nbody\.theme-dark,\nbody\.theme-light \{/,
+)?.[1] ?? "";
+assert(
+  baseBoardCompatibilityBlock.includes(".bases-embed") && baseBoardCompatibilityBlock.includes(".base-board-card"),
+  "Base Board compatibility must be behind its Plugins toggle",
+);
+assert(!baseBoardCompatibilityBlock.includes(".metadata-menu"), "Metadata Menu compatibility must remain independently gated");
 assert(
   /\.tree-item-self[\s\S]*?> :is\([\s\S]*?\.metadata-menu\.fileclass-icon:not\([\s\S]*?\.fileClass-add-button[\s\S]*?align-self: center;[\s\S]*?color: var\(--nav-tag-color\)/.test(pluginCompatibilitySource),
   "Metadata Menu file-tree icons must align with native file badges",

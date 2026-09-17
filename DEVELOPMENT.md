@@ -53,6 +53,11 @@ restores Obsidian's native interface geometry while keeping the selected flavor,
 accent, document palette, and font settings active. If Style Settings is not
 available, the class is absent and native layout is the intentional fallback.
 
+The `ctp-base-board-customisations` Plugins class-toggle defaults on and gates
+the Base Board compatibility rules independently from Metadata Menu styling.
+Turning it off restores the plugin's native board layout, controls, icons, and
+tag treatment without affecting Base Board functionality.
+
 ## Color and state roles
 
 Use semantic variables instead of flavor-specific color literals. The active

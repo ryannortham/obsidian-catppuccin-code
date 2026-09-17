@@ -93,6 +93,18 @@ settings:
 */
 
 /* @settings
+name: "Catppuccin: Plugins"
+id: catppuccin-plugins
+settings:
+  -
+    id: ctp-base-board-customisations
+    title: Base Board customisations
+    description: Apply Catppuccin styling to Base Board views
+    type: class-toggle
+    default: true
+*/
+
+/* @settings
 name: "Catppuccin: Font Colors"
 id: catppuccin-font-colors
 settings:

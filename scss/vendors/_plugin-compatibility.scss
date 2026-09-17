@@ -16,8 +16,8 @@ $base-board-tag-colors: (
   "#6f42c1": lavender,
 );
 
-body.theme-dark,
-body.theme-light {
+body.theme-dark.ctp-base-board-customisations,
+body.theme-light.ctp-base-board-customisations {
   .markdown-reading-view .bases-embed {
     font-size: var(--font-ui-medium);
   }
@@ -245,7 +245,10 @@ body.theme-light {
       transform: none;
     }
   }
+}
 
+body.theme-dark,
+body.theme-light {
   // Obsidian baseline-aligns tree-row children. Metadata Menu inserts its
   // flex-wrapped SVGs directly into those rows, so center the wrappers. Use
   // the native file-badge foreground roles while preserving status colours.
