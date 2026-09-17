@@ -246,30 +246,6 @@ body.theme-light {
     }
   }
 
-  .agent-client-session-manager .tree-item-self {
-    &:is(.is-active, .is-selected) {
-      --nav-item-background-active: var(--ctp-list-selection-background);
-      --nav-item-background-selected: var(--ctp-list-selection-background);
-      --nav-item-color-active: var(--text-normal);
-      --nav-item-color-selected: var(--text-normal);
-
-      background-color: var(--ctp-list-selection-background);
-      color: var(--text-normal);
-    }
-  }
-
-  @media (hover: hover) {
-    &:not(.is-grabbing)
-      .agent-client-session-manager
-      .tree-item-self.is-clickable:not(.is-active, .is-selected):hover {
-      --nav-item-background-hover: var(--ctp-list-hover-background);
-      --nav-item-color-hover: var(--text-normal);
-
-      background-color: var(--ctp-list-hover-background);
-      color: var(--text-normal);
-    }
-  }
-
   // Obsidian baseline-aligns tree-row children. Metadata Menu inserts its
   // flex-wrapped SVGs directly into those rows, so center the wrappers. Use
   // the native file-badge foreground roles while preserving status colours.
@@ -330,11 +306,6 @@ body.theme-light {
 
 body.theme-dark.ctp-vscode-layout,
 body.theme-light.ctp-vscode-layout {
-  /* VS Code mode flattens Agent Client rows to match the editor chrome. */
-  .agent-client-session-manager .tree-item-self {
-    border-radius: 0;
-  }
-
   /* Keep the plugin badge centered in the compact tab's flex row. */
   .workspace-tab-header
     .metadata-menu.fileclass-icon:not(

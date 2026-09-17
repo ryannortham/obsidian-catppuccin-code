@@ -11,7 +11,6 @@ const interfaceSource = read("scss/layout/_interface.scss");
 const layoutSource = read("scss/layout/_vscode-layout.scss");
 const iconsSource = read("scss/components/_icons.scss");
 const sidebarSource = read("scss/layout/_sidebar.scss");
-const pluginSource = read("scss/vendors/_plugins.scss");
 const pluginCompatibilitySource = read("scss/vendors/_plugin-compatibility.scss");
 const searchSource = read("scss/components/_search.scss");
 const linksSource = read("scss/components/_links.scss");
@@ -71,20 +70,10 @@ assert(
 );
 assert(!paletteSource.includes("Catppuccin: Catppuccin Accents"), "Duplicated Catppuccin accent label must be removed");
 assert(!paletteSource.includes("catppuccin-interface-styles"), "Empty Interface Styles section must be removed");
-assert(fontSettingsBlock?.includes("id: ctp-bold-folder-title"), "Bold folder title must live under Font Styles");
 assert(fontColorsBlock?.includes("id: ctp-page-title"), "File name settings must live under Font Colors");
 assert(fontColorsBlock?.includes("id: ctp-h6"), "Heading settings must live under Font Colors");
 assert(fontColorsBlock?.includes("id: ctp-bold"), "Bold color must live under Font Colors");
 assert(fontColorsBlock?.includes("id: ctp-blockquote"), "Blockquote color must live under Font Colors");
-assert(
-  (fontSettingsBlock?.indexOf("id: ctp-editor-monospace") ?? -1) <
-    (fontSettingsBlock?.indexOf("id: ctp-bold-folder-title") ?? -1),
-  "Monospace editor must be first and bold folder title second under Font Styles",
-);
-assert(
-  !/id: ctp-bold-folder-title[\s\S]*?default: true/.test(fontSettingsBlock ?? ""),
-  "Bold folder title must be disabled by default",
-);
 assert(!paletteSource.includes("catppuccin-heading-settings"), "File Name and Headings section must be merged into Font Styles");
 assert(!paletteSource.includes("source-code"), "Credits and Source Code section must be removed");
 assert(!paletteSource.includes("PDF Settings"), "PDF settings must be removed");
@@ -232,10 +221,10 @@ assert(!appVariableSource.includes("--nav-item-children-padding-left"), "Native 
 assert(!appVariableSource.includes("--line-height-tight:"), "Native tree line-height must remain stock-owned");
 assert(/--nav-collapse-icon-color: var\(--ctp-icon-foreground\)/.test(interfaceSource), "Native tree chevrons must retain Catppuccin foreground colour");
 assert(/--nav-collapse-icon-color-collapsed: var\(--ctp-icon-foreground\)/.test(interfaceSource), "Collapsed tree chevrons must retain Catppuccin foreground colour");
-for (const unused of ["better-command-palette", "git-commit-msg", "another-quick-switcher", "omnisearch", "mk-", "fn-is-active", "svelte-q3wqg9", "EA-shortcode"]) {
-  assert(!pluginSource.includes(unused), "Unused plugin adapter remains: " + unused);
-}
-assert(pluginSource.includes(".dataview.inline-field"), "Enabled Dataview compatibility must remain");
+assert(!mainSource.includes('vendors/plugins'), "Dataview compatibility partial must not be compiled");
+assert(!existsSync(join(root, "scss/vendors/_plugins.scss")), "Dataview compatibility source must be removed");
+assert(!/\.dataview\.inline-field/.test(compiledCss), "Compiled theme must not contain Dataview compatibility rules");
+assert(!pluginCompatibilitySource.includes("agent-client"), "Agent Client compatibility must be removed");
 assert(
   /\.tree-item-self[\s\S]*?> :is\([\s\S]*?\.metadata-menu\.fileclass-icon:not\([\s\S]*?\.fileClass-add-button[\s\S]*?align-self: center;[\s\S]*?color: var\(--nav-tag-color\)/.test(pluginCompatibilitySource),
   "Metadata Menu file-tree icons must align with native file badges",

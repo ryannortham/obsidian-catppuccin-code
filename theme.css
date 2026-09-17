@@ -436,11 +436,6 @@ settings:
     description: Use the monospace font for source editing
     type: class-toggle
     default: true
-  -
-    id: ctp-bold-folder-title
-    title: Bold folder title
-    description: Show folder title in bold
-    type: class-toggle
 */
 /* @settings
 name: "Catppuccin: Font Colors"
@@ -1332,10 +1327,6 @@ settings:
 }
 
 /* ------------------CSS Snippets------------------ */
-.ctp-bold-folder-title .nav-folder-title-content {
-  font-weight: var(--font-bold);
-}
-
 .ctp-editor-monospace .markdown-source-view .cm-editor,
 .ctp-editor-monospace .markdown-source-view .cm-scroller,
 .ctp-editor-monospace .markdown-source-view .cm-content,
@@ -2617,19 +2608,6 @@ body.theme-light.ctp-vscode-layout .workspace .workspace-split.mod-root .workspa
   visibility: visible;
 }
 
-/* Compatibility for enabled Dataview inline fields. */
-.dataview.inline-field-standalone-value {
-  --nav-item-color-selected: var(--text-normal);
-  background-color: var(--background-primary);
-  font-size: var(--font-smaller);
-}
-
-.dataview.inline-field-key,
-.dataview.inline-field-value {
-  --nav-item-color-selected: var(--text-normal);
-  font-size: var(--font-smaller);
-}
-
 /*
  * Catppuccin Code compatibility boundary.
  * These selectors are plugin DOM contracts, not Obsidian core theme APIs.
@@ -2902,24 +2880,6 @@ body.theme-light :is(.base-board-filter-pill,
     transform: none;
   }
 }
-body.theme-dark .agent-client-session-manager .tree-item-self:is(.is-active, .is-selected),
-body.theme-light .agent-client-session-manager .tree-item-self:is(.is-active, .is-selected) {
-  --nav-item-background-active: var(--ctp-list-selection-background);
-  --nav-item-background-selected: var(--ctp-list-selection-background);
-  --nav-item-color-active: var(--text-normal);
-  --nav-item-color-selected: var(--text-normal);
-  background-color: var(--ctp-list-selection-background);
-  color: var(--text-normal);
-}
-@media (hover: hover) {
-  body.theme-dark:not(.is-grabbing) .agent-client-session-manager .tree-item-self.is-clickable:not(.is-active, .is-selected):hover,
-  body.theme-light:not(.is-grabbing) .agent-client-session-manager .tree-item-self.is-clickable:not(.is-active, .is-selected):hover {
-    --nav-item-background-hover: var(--ctp-list-hover-background);
-    --nav-item-color-hover: var(--text-normal);
-    background-color: var(--ctp-list-hover-background);
-    color: var(--text-normal);
-  }
-}
 body.theme-dark .tree-item-self > :is(.metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
 .field-status-changed,
 .field-status-error),
@@ -2964,14 +2924,6 @@ body.theme-light .workspace-tab-header .metadata-menu.fileclass-icon:not(.field-
   color: var(--nav-tag-color);
 }
 
-body.theme-dark.ctp-vscode-layout,
-body.theme-light.ctp-vscode-layout {
-  /* VS Code mode flattens Agent Client rows to match the editor chrome. */
-}
-body.theme-dark.ctp-vscode-layout .agent-client-session-manager .tree-item-self,
-body.theme-light.ctp-vscode-layout .agent-client-session-manager .tree-item-self {
-  border-radius: 0;
-}
 body.theme-dark.ctp-vscode-layout,
 body.theme-light.ctp-vscode-layout {
   /* Keep the plugin badge centered in the compact tab's flex row. */

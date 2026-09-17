@@ -93,11 +93,6 @@ settings:
     description: Use the monospace font for source editing
     type: class-toggle
     default: true
-  -
-    id: ctp-bold-folder-title
-    title: Bold folder title
-    description: Show folder title in bold
-    type: class-toggle
 */
 
 /* @settings
@@ -994,10 +989,6 @@ settings:
 }
 
 /* ------------------CSS Snippets------------------ */
-
-.ctp-bold-folder-title .nav-folder-title-content {
-  font-weight: var(--font-bold);
-}
 
 .ctp-editor-monospace .markdown-source-view .cm-editor,
 .ctp-editor-monospace .markdown-source-view .cm-scroller,

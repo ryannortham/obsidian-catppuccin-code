@@ -214,8 +214,7 @@ section {
 
 .fixture-hover.tree-item-self,
 .fixture-hover:is(.vertical-tab-nav-item, .horizontal-tab-nav-item),
-.fixture-hover.search-result-file-match,
-.agent-client-session-manager .fixture-hover.tree-item-self {
+.fixture-hover.search-result-file-match {
   background: var(--ctp-list-hover-background);
   color: var(--text-normal);
 }
