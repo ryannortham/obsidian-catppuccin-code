@@ -3,8 +3,6 @@
    turned off, allowing Obsidian's native layout to apply. */
 body.theme-dark.ctp-vscode-layout,
 body.theme-light.ctp-vscode-layout {
-  --ctp-control-size: 30px;
-
   &.is-popout-modal .titlebar {
     border-bottom: 0;
     box-shadow: none;
@@ -12,19 +10,6 @@ body.theme-light.ctp-vscode-layout {
 
   .workspace-split.mod-root {
     --header-height: 32px;
-  }
-
-  :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab)
-    .clickable-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    margin: 0 2px;
-    block-size: var(--ctp-control-size);
-    inline-size: var(--ctp-control-size);
-    min-block-size: var(--ctp-control-size);
-    min-inline-size: var(--ctp-control-size);
   }
 
   .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed="true"]) {

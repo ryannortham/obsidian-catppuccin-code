@@ -173,7 +173,7 @@ for (const role of ["color-accent", "interactive-accent", "ctp-focus-border", "c
 
 assert(/--ctp-tab-strip-background:\s*rgb\(var\(--ctp-crust\)\)/.test(semanticSource), "Editor tab strip must use Crust");
 assert(!/\n\s*--header-height:/.test(appVariableSource), "Global view header geometry must remain stock-owned");
-assert(declaration(layoutSource, "ctp-control-size") === "30px", "Root tab-bar actions must retain their 30px hit area");
+assert(!layoutSource.includes("--ctp-control-size"), "Root tab-bar actions must retain Obsidian's stock hit-area sizing");
 assert(/\.workspace-split\.mod-root[\s\S]*?--header-height: 32px/.test(layoutSource), "Root editor tabs must retain their 32px geometry when enabled");
 assert(/--ctp-tab-inactive-background:\s*rgb\(var\(--ctp-mantle\)\)/.test(semanticSource), "Inactive tabs must use Mantle");
 assert(/--ctp-tab-active-background:\s*rgb\(var\(--ctp-base\)\)/.test(semanticSource), "Active tabs must use Base");
@@ -312,8 +312,8 @@ for (const [name, source] of Object.entries({
   assert(!/--tag-/.test(source), `${name} must not override Obsidian's stock tag variables`);
 }
 assert(
-  /:is\(\.workspace-tab-header-tab-list, \.workspace-tab-header-new-tab\)[\s\S]*?block-size: var\(--ctp-control-size\)/.test(layoutSource),
-  "Custom 30px control sizing must remain scoped to VS Code mode",
+  !layoutSource.includes("block-size: var(--ctp-control-size)"),
+  "VS Code mode must not replace the stock root tab action sizing",
 );
 assert(
   /\.workspace-tab-header-container[\s\S]*?background-color: var\(--background-secondary\)/.test(interfaceSource),

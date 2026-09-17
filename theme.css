@@ -2597,10 +2597,6 @@ body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active :is(.
 /* Optional VS Code-inspired interface geometry. The positive class is supplied
    by Style Settings and is absent when the plugin is disabled or the setting is
    turned off, allowing Obsidian's native layout to apply. */
-body.theme-dark.ctp-vscode-layout,
-body.theme-light.ctp-vscode-layout {
-  --ctp-control-size: 30px;
-}
 body.theme-dark.ctp-vscode-layout.is-popout-modal .titlebar,
 body.theme-light.ctp-vscode-layout.is-popout-modal .titlebar {
   border-bottom: 0;
@@ -2609,18 +2605,6 @@ body.theme-light.ctp-vscode-layout.is-popout-modal .titlebar {
 body.theme-dark.ctp-vscode-layout .workspace-split.mod-root,
 body.theme-light.ctp-vscode-layout .workspace-split.mod-root {
   --header-height: 32px;
-}
-body.theme-dark.ctp-vscode-layout :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) .clickable-icon,
-body.theme-light.ctp-vscode-layout :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) .clickable-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0 2px;
-  block-size: var(--ctp-control-size);
-  inline-size: var(--ctp-control-size);
-  min-block-size: var(--ctp-control-size);
-  min-inline-size: var(--ctp-control-size);
 }
 body.theme-dark.ctp-vscode-layout .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed=true]),
 body.theme-light.ctp-vscode-layout .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed=true]) {
