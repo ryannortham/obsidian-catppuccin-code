@@ -8,6 +8,7 @@ const paletteSource = read("scss/base/_ctp-style-settings.scss");
 const appVariableSource = read("scss/base/_app-variables.scss");
 const semanticSource = read("scss/base/_semantic-roles.scss");
 const interfaceSource = read("scss/layout/_interface.scss");
+const iconsSource = read("scss/components/_icons.scss");
 const searchSource = read("scss/components/_search.scss");
 const linksSource = read("scss/components/_links.scss");
 const mainSource = read("scss/main.scss");
@@ -120,27 +121,25 @@ for (const role of ["color-accent", "interactive-accent", "ctp-focus-border", "c
 }
 
 assert(/--ctp-tab-strip-background:\s*rgb\(var\(--ctp-crust\)\)/.test(interfaceSource), "Editor tab strip must use Crust");
-assert(declaration(appVariableSource, "header-height") === "32px", "Workspace headers and tabs must use the standard 32px row height");
-assert(declaration(interfaceSource, "ctp-control-size") === "30px", "Compact headers must preserve the existing 30px control hit area");
-assert(declaration(interfaceSource, "ctp-toolbar-height") === "var(--header-height)", "Sidebar toolbars must share the workspace header height");
-assert(declaration(interfaceSource, "ctp-toolbar-inline-padding") === "8px", "Sidebar toolbars must share one inline inset");
-assert(declaration(interfaceSource, "ctp-control-gap") === "2px", "Sidebar controls must share one gap");
+assert(declaration(appVariableSource, "header-height") === "40px", "Global view headers must retain Obsidian stock 40px geometry");
+assert(declaration(interfaceSource, "ctp-control-size") === "30px", "Root tab-bar actions must retain their 30px hit area");
+assert(/\.workspace-split\.mod-root[\s\S]*?--header-height: 32px/.test(interfaceSource), "Root editor tabs must retain their 32px geometry");
 assert(/--ctp-tab-inactive-background:\s*rgb\(var\(--ctp-mantle\)\)/.test(interfaceSource), "Inactive tabs must use Mantle");
 assert(/--ctp-tab-active-background:\s*rgb\(var\(--ctp-base\)\)/.test(interfaceSource), "Active tabs must use Base");
 assert(/--ctp-tab-inactive-foreground:\s*rgb\(var\(--ctp-overlay0\)\)/.test(interfaceSource), "Inactive tabs must use Overlay0");
 assert(/\.workspace-ribbon[\s\S]*?background-color: rgb\(var\(--ctp-crust\)\)/.test(interfaceSource), "Ribbon must use Crust");
 assert(/box-shadow: inset 2px 0 0 var\(--ctp-focus-border\)/.test(interfaceSource), "Active ribbon controls must use an accent indicator");
 assert(
-  /\.workspace-tab-header-container[\s\S]*?border-bottom: 0[\s\S]*?box-shadow: none/.test(interfaceSource),
-  "Workspace headers must not draw a seam below their controls",
+  /\.workspace-tab-header-container[\s\S]*?border-bottom-color: transparent[\s\S]*?box-shadow: none/.test(interfaceSource),
+  "Sidebar headers must preserve stock border spacing without drawing a dark seam",
 );
+assert(!interfaceSource.includes(".nav-header"), "Theme must not override Obsidian stock nav-header geometry");
+assert(!interfaceSource.includes(".nav-buttons-container"), "Theme must not override Obsidian stock nav-button layout");
+assert(!interfaceSource.includes(".nav-action-button"), "Theme must not override Obsidian stock nav-action sizing");
+assert(!/\.clickable-icon,[\s\S]*?margin: 0 2px/.test(iconsSource), "Generic clickable icons must retain Obsidian stock margin ownership");
 assert(
-  /\.workspace-split\.mod-sidedock[\s\S]*?:is\(\.workspace-tab-header-container, \.nav-header, \.nav-buttons-container\)[\s\S]*?block-size: var\(--ctp-toolbar-height\)/.test(interfaceSource),
-  "Sidedock header rows must share one toolbar height",
-);
-assert(
-  /:is\(\.workspace-tab-header, \.nav-action-button\)[\s\S]*?padding: 0[\s\S]*?margin: 0[\s\S]*?block-size: var\(--ctp-control-size\)[\s\S]*?inline-size: var\(--ctp-control-size\)/.test(interfaceSource),
-  "Sidedock tab and action controls must share one square box model",
+  /:is\(\.workspace-tab-header-tab-list, \.workspace-tab-header-new-tab\)[\s\S]*?block-size: var\(--ctp-control-size\)/.test(interfaceSource),
+  "Custom 30px control sizing must remain scoped to root tab-bar actions",
 );
 assert(
   /\.workspace-tab-header-container[\s\S]*?background-color: var\(--background-secondary\)/.test(interfaceSource),

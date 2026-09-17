@@ -210,7 +210,7 @@ body {
   --h5-weight: 600;
   --h6-weight: 600;
   /* View header */
-  --header-height: 32px;
+  --header-height: 40px;
   /* Horizontal rules */
   --hr-color: rgb(var(--ctp-surface2));
   --hr-thickness: 2px;
@@ -2053,12 +2053,6 @@ body {
   color: var(--text-muted);
 }
 
-.clickable-icon,
-.mod-left-split .workspace-tab-header,
-.mod-right-split .workspace-tab-header {
-  margin: 0 2px;
-}
-
 .clickable-icon.is-active,
 .mod-left-split .workspace-tab-header.has-active-menu,
 .mod-right-split .workspace-tab-header.has-active-menu,
@@ -2832,12 +2826,9 @@ body.theme-dark,
 body.theme-light {
   /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
   --ctp-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
-  /* Preserve the existing control hit area while the workspace headers match
-     the 32px workspace tabs. */
+  /* Root tab-bar actions use one stable hit area. Sidebar toolbars retain
+     Obsidian stock geometry below. */
   --ctp-control-size: 30px;
-  --ctp-toolbar-height: var(--header-height);
-  --ctp-toolbar-inline-padding: 8px;
-  --ctp-control-gap: 2px;
   --ctp-tab-strip-background: rgb(var(--ctp-crust));
   --ctp-tab-active-background: rgb(var(--ctp-base));
   --ctp-tab-inactive-background: rgb(var(--ctp-mantle));
@@ -2886,19 +2877,20 @@ body.theme-light.is-popout-modal .titlebar {
 }
 body.theme-dark,
 body.theme-light {
-  /* Keep top-bar wrappers transparent; the inner controls own one shared
-     hit area so every toolbar hover has the same size and radius. */
+  /* Keep root tab-bar wrappers transparent and preserve their established
+     action spacing while sidebar controls retain Obsidian stock margins. */
 }
-body.theme-dark :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button),
-body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button) {
+body.theme-dark :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab),
+body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) {
   background-color: transparent;
 }
-body.theme-dark :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button) .clickable-icon,
-body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button) .clickable-icon {
+body.theme-dark :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) .clickable-icon,
+body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) .clickable-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  margin: 0 2px;
   border-radius: var(--clickable-icon-radius);
   block-size: var(--ctp-control-size);
   inline-size: var(--ctp-control-size);
@@ -3093,76 +3085,13 @@ body.theme-light .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed=
 }
 body.theme-dark,
 body.theme-light {
-  /* Editor and sidedock headers form one uninterrupted 32px row. The default
-     bottom border creates a dark seam below the sidebar controls. */
+  /* Preserve Obsidian stock sidebar spacing while hiding the dark outline.
+     The root tab strip removes the border entirely below. */
 }
 body.theme-dark .workspace-tab-header-container,
 body.theme-light .workspace-tab-header-container {
-  border-bottom: 0;
+  border-bottom-color: transparent;
   box-shadow: none;
-}
-body.theme-dark,
-body.theme-light {
-  /* Sidebar tab selectors, view actions, and collapse toggles share one box
-     model instead of inheriting three incompatible Obsidian defaults. */
-}
-body.theme-dark .workspace-split.mod-sidedock :is(.workspace-tab-header-container, .nav-header, .nav-buttons-container),
-body.theme-light .workspace-split.mod-sidedock :is(.workspace-tab-header-container, .nav-header, .nav-buttons-container) {
-  block-size: var(--ctp-toolbar-height);
-  min-block-size: var(--ctp-toolbar-height);
-}
-body.theme-dark .workspace-split.mod-sidedock :is(.workspace-tab-header-container, .nav-header),
-body.theme-light .workspace-split.mod-sidedock :is(.workspace-tab-header-container, .nav-header) {
-  padding-block: 0;
-  padding-inline: var(--ctp-toolbar-inline-padding);
-}
-body.theme-dark .workspace-split.mod-sidedock :is(.workspace-tab-header-container-inner, .nav-buttons-container),
-body.theme-light .workspace-split.mod-sidedock :is(.workspace-tab-header-container-inner, .nav-buttons-container) {
-  display: flex;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-  block-size: 100%;
-  gap: var(--ctp-control-gap);
-}
-body.theme-dark .workspace-split.mod-sidedock :is(.workspace-tab-header, .nav-action-button),
-body.theme-light .workspace-split.mod-sidedock :is(.workspace-tab-header, .nav-action-button) {
-  display: flex;
-  flex: 0 0 var(--ctp-control-size);
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  block-size: var(--ctp-control-size);
-  inline-size: var(--ctp-control-size);
-  max-block-size: var(--ctp-control-size);
-  max-inline-size: var(--ctp-control-size);
-  min-block-size: var(--ctp-control-size);
-  min-inline-size: var(--ctp-control-size);
-}
-body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header-inner,
-body.theme-light .workspace-split.mod-sidedock .workspace-tab-header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  block-size: 100%;
-  inline-size: 100%;
-}
-body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header-container > .sidebar-toggle-button,
-body.theme-light .workspace-split.mod-sidedock .workspace-tab-header-container > .sidebar-toggle-button {
-  display: flex;
-  flex: 0 0 var(--ctp-control-size);
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  block-size: var(--ctp-toolbar-height);
-  inline-size: var(--ctp-control-size);
-}
-body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header-container > .sidebar-toggle-button > .clickable-icon,
-body.theme-light .workspace-split.mod-sidedock .workspace-tab-header-container > .sidebar-toggle-button > .clickable-icon {
-  margin: 0;
 }
 body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header-container,
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header-container {
@@ -3220,10 +3149,16 @@ body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:focus-visib
 }
 body.theme-dark,
 body.theme-light {
-  /* Root editor tabs use stable surfaces regardless of pane focus. */
+  /* Root editor tabs keep their 32px geometry while sidebar headers retain
+     Obsidian stock 40px sizing and padding. */
+}
+body.theme-dark .workspace-split.mod-root,
+body.theme-light .workspace-split.mod-root {
+  --header-height: 32px;
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header-container,
 body.theme-light .workspace-split.mod-root .workspace-tab-header-container {
+  border-bottom: 0;
   background-color: var(--ctp-tab-strip-background);
   padding-inline-start: 0;
 }

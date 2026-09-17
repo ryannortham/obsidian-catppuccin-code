@@ -29,12 +29,9 @@ body.theme-light {
   /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
   --ctp-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
 
-  /* Preserve the existing control hit area while the workspace headers match
-     the 32px workspace tabs. */
+  /* Root tab-bar actions use one stable hit area. Sidebar toolbars retain
+     Obsidian stock geometry below. */
   --ctp-control-size: 30px;
-  --ctp-toolbar-height: var(--header-height);
-  --ctp-toolbar-inline-padding: 8px;
-  --ctp-control-gap: 2px;
   --ctp-tab-strip-background: rgb(var(--ctp-crust));
   --ctp-tab-active-background: rgb(var(--ctp-base));
   --ctp-tab-inactive-background: rgb(var(--ctp-mantle));
@@ -72,9 +69,9 @@ body.theme-light {
     box-shadow: none;
   }
 
-  /* Keep top-bar wrappers transparent; the inner controls own one shared
-     hit area so every toolbar hover has the same size and radius. */
-  :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button) {
+  /* Keep root tab-bar wrappers transparent and preserve their established
+     action spacing while sidebar controls retain Obsidian stock margins. */
+  :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) {
     background-color: transparent;
 
     .clickable-icon {
@@ -83,6 +80,7 @@ body.theme-light {
       justify-content: center;
       padding: 0;
       border-radius: var(--clickable-icon-radius);
+      margin: 0 2px;
       block-size: var(--ctp-control-size);
       inline-size: var(--ctp-control-size);
       min-block-size: var(--ctp-control-size);
@@ -268,77 +266,15 @@ body.theme-light {
     box-shadow: inset 2px 0 0 var(--ctp-focus-border);
   }
 
-  /* Editor and sidedock headers form one uninterrupted 32px row. The default
-     bottom border creates a dark seam below the sidebar controls. */
+  /* Preserve Obsidian stock sidebar spacing while hiding the dark outline.
+     The root tab strip removes the border entirely below. */
   .workspace-tab-header-container {
-    border-bottom: 0;
+    border-bottom-color: transparent;
     box-shadow: none;
   }
 
-  /* Sidebar tab selectors, view actions, and collapse toggles share one box
-     model instead of inheriting three incompatible Obsidian defaults. */
-  .workspace-split.mod-sidedock {
-    :is(.workspace-tab-header-container, .nav-header, .nav-buttons-container) {
-      block-size: var(--ctp-toolbar-height);
-      min-block-size: var(--ctp-toolbar-height);
-    }
-
-    :is(.workspace-tab-header-container, .nav-header) {
-      padding-block: 0;
-      padding-inline: var(--ctp-toolbar-inline-padding);
-    }
-
-    :is(.workspace-tab-header-container-inner, .nav-buttons-container) {
-      display: flex;
-      align-items: center;
-      padding: 0;
-      margin: 0;
-      block-size: 100%;
-      gap: var(--ctp-control-gap);
-    }
-
-    :is(.workspace-tab-header, .nav-action-button) {
-      display: flex;
-      flex: 0 0 var(--ctp-control-size);
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      margin: 0;
-      block-size: var(--ctp-control-size);
-      inline-size: var(--ctp-control-size);
-      max-block-size: var(--ctp-control-size);
-      max-inline-size: var(--ctp-control-size);
-      min-block-size: var(--ctp-control-size);
-      min-inline-size: var(--ctp-control-size);
-    }
-
-    .workspace-tab-header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      block-size: 100%;
-      inline-size: 100%;
-    }
-
-    .workspace-tab-header-container > .sidebar-toggle-button {
-      display: flex;
-      flex: 0 0 var(--ctp-control-size);
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      margin: 0;
-      block-size: var(--ctp-toolbar-height);
-      inline-size: var(--ctp-control-size);
-
-      > .clickable-icon {
-        margin: 0;
-      }
-    }
-
-    .workspace-tab-header-container {
-      background-color: var(--background-secondary);
-    }
+  .workspace-split.mod-sidedock .workspace-tab-header-container {
+    background-color: var(--background-secondary);
   }
 
   .workspace-split.mod-sidedock .workspace-tab-header {
@@ -402,8 +338,14 @@ body.theme-light {
     }
   }
 
-  /* Root editor tabs use stable surfaces regardless of pane focus. */
+  /* Root editor tabs keep their 32px geometry while sidebar headers retain
+     Obsidian stock 40px sizing and padding. */
+  .workspace-split.mod-root {
+    --header-height: 32px;
+  }
+
   .workspace-split.mod-root .workspace-tab-header-container {
+    border-bottom: 0;
     background-color: var(--ctp-tab-strip-background);
     padding-inline-start: 0;
   }
