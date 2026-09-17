@@ -38,10 +38,3 @@
   background-color: rgb(var(--ctp-red));
   color: var(--text-on-accent);
 }
-
-/* Fix for #141 */
-
-.mod-left-split .workspace-tab-header-container .workspace-tab-header-container-inner,
-.mod-right-split .workspace-tab-header-container .workspace-tab-header-container-inner {
-overflow: visible;
-}

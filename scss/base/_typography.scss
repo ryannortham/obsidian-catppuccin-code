@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern -- Obsidian and CodeMirror own these class names. */
 strong,
 .cm-strong,
 .cm-s-obsidian span.cm-formatting-strong,
@@ -131,13 +132,6 @@ h6,
   color: rgb(var(--ctp-red));
 }
 
-.tooltip {
-  border: 1px solid rgb(var(--ctp-rosewater), 60%);
-  background-color: var(--background-secondary);
-  box-shadow: 0 0 4px rgb(var(--ctp-mantle));
-  color: rgb(var(--ctp-rosewater), 80%);
-}
-
 .drag-ghost {
   --drag-ghost-background: var(--background-secondary);
   --drag-ghost-text-color: rgb(var(--ctp-rosewater), 80%);
@@ -145,72 +139,4 @@ h6,
   border: 1px solid rgb(var(--ctp-rosewater), 60%);
 }
 
-/**
-* 1. Not sure when or why I added this, but it became an issue in
-https://github.com/catppuccin/obsidian/issues/60. I have set it to the value it
-should have. Hopefully it doesn't break anything!
-*/
-
-.tree-item-self.is-clickable.nav-file-title.has-focus[style] {
-  --background-modifier-border-focus: var(--color-base-40);
-}
-
-/*
-* From app.css
-*/
-
-/*
-* TODO: Add border to popups that appear during plugin, theme, etc.
-* updates.
-*/
-
-/* Triangle hack to make tooltip look like a speech bubble */
-.tooltip .tooltip-arrow {
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  width: 0;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid rgb(var(--ctp-rosewater), 60%);
-  border-left: 5px solid transparent;
-  margin-left: -5px;
-  content: " ";
-  font-size: 0;
-  line-height: 0;
-}
-
-.tooltip.mod-right .tooltip-arrow {
-  top: calc(50% - 5px);
-  left: -5px;
-  border-top: 5px solid transparent;
-  border-right: 5px solid rgb(var(--ctp-rosewater), 60%);
-  border-bottom: 5px solid transparent;
-}
-
-.tooltip.mod-left .tooltip-arrow {
-  top: calc(50% - 5px);
-  left: calc(100% + 5px);
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 5px solid rgb(var(--ctp-rosewater), 60%);
-}
-
-.tooltip.mod-top .tooltip-arrow {
-  top: calc(100%);
-  border-top: 5px solid rgb(var(--ctp-rosewater), 60%);
-  border-bottom: 5px solid transparent;
-}
-
-.tooltip.mod-error .tooltip-arrow {
-  border-bottom-color: rgb(var(--ctp-red), 60%);
-}
-
-.tooltip.mod-error.mod-right .tooltip-arrow {
-  border-right-color: rgb(var(--ctp-red), 60%);
-  border-bottom: 5px solid transparent;
-}
-
-.tooltip.mod-error.mod-left .tooltip-arrow {
-  border-bottom: 5px solid transparent;
-  border-left-color: rgb(var(--ctp-red), 60%);
-}
+/* stylelint-enable selector-class-pattern */

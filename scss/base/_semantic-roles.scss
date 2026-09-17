@@ -82,6 +82,18 @@
   --caret-color: rgb(var(--ctp-rosewater));
   --interactive-normal: var(--ctp-control-background);
   --interactive-hover: var(--ctp-control-hover-background);
+
+  /* Shared interface colour roles. Layout geometry is gated separately. */
+  /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
+  --ctp-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
+  --ctp-tab-strip-background: rgb(var(--ctp-crust));
+  --tab-divider-color: rgb(var(--ctp-crust));
+  --tab-outline-color: rgb(var(--ctp-crust));
+  --ctp-tab-active-background: rgb(var(--ctp-base));
+  --ctp-tab-inactive-background: rgb(var(--ctp-mantle));
+  --ctp-tab-active-foreground: rgb(var(--ctp-accent));
+  --ctp-tab-inactive-foreground: rgb(var(--ctp-overlay0));
+  --ctp-close-hover-background: rgb(var(--ctp-surface1));
   --scrollbar-bg: transparent;
   --scrollbar-thumb-bg: rgb(var(--ctp-surface2), 50%);
   --scrollbar-active-thumb-bg: rgb(var(--ctp-surface0), 40%);

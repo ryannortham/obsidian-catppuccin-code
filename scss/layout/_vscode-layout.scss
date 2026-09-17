@@ -1,0 +1,102 @@
+/* Optional VS Code-inspired interface geometry. The positive class is supplied
+   by Style Settings and is absent when the plugin is disabled or the setting is
+   turned off, allowing Obsidian's native layout to apply. */
+body.theme-dark.ctp-vscode-layout,
+body.theme-light.ctp-vscode-layout {
+  --ctp-control-size: 30px;
+
+  &.is-popout-modal .titlebar {
+    border-bottom: 0;
+    box-shadow: none;
+  }
+
+  .workspace-split.mod-root {
+    --header-height: 32px;
+  }
+
+  :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab)
+    .clickable-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0 2px;
+    block-size: var(--ctp-control-size);
+    inline-size: var(--ctp-control-size);
+    min-block-size: var(--ctp-control-size);
+    min-inline-size: var(--ctp-control-size);
+  }
+
+  .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed="true"]) {
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: inset 2px 0 0 var(--ctp-focus-border);
+  }
+
+  .workspace-tab-header-container {
+    border-bottom-color: transparent;
+    box-shadow: none;
+  }
+
+  .workspace-split.mod-sidedock .workspace-tab-header:focus-visible {
+    outline: 1px solid var(--ctp-focus-border);
+    outline-offset: -1px;
+  }
+
+  .workspace-split.mod-root .workspace-tab-header-container {
+    border-bottom: 0;
+    padding-inline-start: 0;
+  }
+
+  .workspace-split.mod-root .workspace-tab-header-container-inner {
+    margin-block: 0;
+    margin-inline-start: 0;
+    padding-block-start: 0;
+    padding-inline-start: 0;
+  }
+
+  .workspace-split.mod-root .workspace-tab-header {
+    &,
+    .workspace-tab-header-inner {
+      border-radius: 0;
+    }
+
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    .workspace-tab-header-inner::after {
+      display: none;
+    }
+
+    &.is-active {
+      box-shadow: inset 0 1px 0 var(--ctp-focus-border);
+    }
+
+    &:focus-visible {
+      outline: 1px solid var(--ctp-focus-border);
+      outline-offset: -1px;
+    }
+  }
+
+  /* Preserve the inactive close-button slot for Metadata Menu badges. */
+  .workspace
+    .workspace-split.mod-root
+    .workspace-tabs:not(.mod-stacked)
+    .workspace-tab-header:not(.is-active)
+    .workspace-tab-header-inner-close-button {
+    display: flex;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .workspace
+    .workspace-split.mod-root
+    .workspace-tabs:not(.mod-stacked)
+    .workspace-tab-header:not(.is-active):hover
+    .workspace-tab-header-inner-close-button {
+    pointer-events: auto;
+    visibility: visible;
+  }
+}

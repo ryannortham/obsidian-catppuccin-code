@@ -38,10 +38,7 @@ const appRoles = {
   "hr-color": "rgb(var(--ctp-surface2))",
   "link-external-color": "rgb(var(--ctp-blue))",
   "link-external-color-hover": "rgb(var(--ctp-sky))",
-  "tab-divider-color": "rgb(var(--ctp-crust))",
-  "tab-outline-color": "rgb(var(--ctp-crust))",
   "titlebar-background-focused": "rgb(var(--ctp-crust))",
-  "titlebar-border-color": "transparent",
 };
 
 for (const [role, value] of Object.entries(appRoles)) {
@@ -98,7 +95,7 @@ assert(!links.includes(".ctp-tag-pill"), "Theme must not style an optional tag p
 assert(!links.includes(".cm-hashtag"), "Theme must not override Obsidian's tag rendering");
 
 has(documentPalette, /--hr-color: rgb\(var\(--ctp-surface2\)\)/, "Document palette must use Surface2 for rules");
-has(documentPalette, /input\[type="checkbox"\]:not\(:checked\)\s*\{[\s\S]*?border-color: rgb\(var\(--ctp-surface2\)\);[\s\S]*?background-color: transparent;[\s\S]*?box-shadow: none;/, "Unchecked tasks must use a neutral Surface2 outline");
+has(documentPalette, /\.task-list-item, \.markdown-source-view \.HyperMD-task-line\)[\s\S]*?input\[type="checkbox"\]:not\(:checked\)[\s\S]*?border-color: rgb\(var\(--ctp-surface2\)\);[\s\S]*?background-color: transparent;[\s\S]*?box-shadow: none;/, "Unchecked tasks must use a neutral Surface2 outline");
 has(documentPalette, /&:hover,\s*&:focus-visible\s*\{[\s\S]*?border-color: var\(--ctp-focus-border\);[\s\S]*?background-color: var\(--ctp-list-hover-background\);/, "Unchecked task hover/focus must use the selected accent and neutral hover role");
 assert(!/background-color: rgb\(var\(--ctp-red\)\)/.test(documentPalette), "Unchecked tasks must not use a Red fill");
 
@@ -121,7 +118,6 @@ for (const fragment of [
   "--tab-divider-color: rgb(var(--ctp-crust))",
   "--tab-outline-color: rgb(var(--ctp-crust))",
   "--titlebar-background-focused: rgb(var(--ctp-crust))",
-  "--titlebar-border-color: transparent",
   "background-color: rgb(var(--ctp-crust))",
   "background-color: rgb(var(--ctp-mantle))",
   "border-color: rgb(var(--ctp-surface2))",

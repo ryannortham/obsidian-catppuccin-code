@@ -18,33 +18,15 @@ $ctp-list-hover-selectors: (
   ".mod-settings .horizontal-tab-nav-item:not(.is-active, .is-selected):hover"
 );
 
-/*
- * Catppuccin Code defines palette-relative interaction states. Style
- * Settings supplies the active flavor's palette values; these variables
- * describe component roles rather than new palette colors.
- */
+/* Shared Catppuccin colour adapters. Geometry that makes the interface look
+   like VS Code lives in _vscode-layout.scss and is independently gated. */
 body.theme-dark,
 body.theme-light {
-  /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
-  --ctp-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
-
-  /* Root tab-bar actions use one stable hit area. Sidebar toolbars retain
-     Obsidian stock geometry below. */
-  --ctp-control-size: 30px;
-  --ctp-tab-strip-background: rgb(var(--ctp-crust));
-  --ctp-tab-active-background: rgb(var(--ctp-base));
-  --ctp-tab-inactive-background: rgb(var(--ctp-mantle));
-  --ctp-tab-active-foreground: rgb(var(--ctp-accent));
-  --ctp-tab-inactive-foreground: rgb(var(--ctp-overlay0));
-  --ctp-close-hover-background: rgb(var(--ctp-surface1));
-
-  /* The activity ribbon and title chrome use Crust like the VS Code reference. */
   .workspace-ribbon {
     border-right-color: rgb(var(--ctp-crust));
     background-color: rgb(var(--ctp-crust));
   }
 
-  /* Translucent windows expose the backdrop, so divider strokes must disappear. */
   &.is-translucent:not(.is-fullscreen) {
     --divider-color: transparent;
     --tab-divider-color: transparent;
@@ -55,39 +37,18 @@ body.theme-light {
     }
   }
 
-  /* Settings’ two-column navigation should not draw a contrasting seam. */
   .mod-settings :is(.vertical-tab-header, .vertical-tab-content) {
     border-inline-color: transparent;
   }
 
-  /* Detached modal windows share the same Base surface above and below the
-     macOS traffic lights, regardless of the global translucency setting. */
-  &.is-popout-modal .titlebar {
-    border-bottom: 0;
+  .is-popout-modal .titlebar {
     background-color: var(--background-primary);
-    box-shadow: none;
   }
 
-  /* Keep root tab-bar wrappers transparent and preserve their established
-     action spacing while sidebar controls retain Obsidian stock margins. */
   :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) {
     background-color: transparent;
-
-    .clickable-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      border-radius: var(--clickable-icon-radius);
-      margin: 0 2px;
-      block-size: var(--ctp-control-size);
-      inline-size: var(--ctp-control-size);
-      min-block-size: var(--ctp-control-size);
-      min-inline-size: var(--ctp-control-size);
-    }
   }
 
-  /* Tree rows and Settings navigation share one selection and hover contract. */
   :is(#{$ctp-list-row-selectors}) {
     --nav-item-color: var(--text-normal);
 
@@ -101,7 +62,6 @@ body.theme-light {
 
       background-color: var(--ctp-list-selection-background);
       color: var(--text-normal);
-
     }
   }
 
@@ -149,7 +109,7 @@ body.theme-light {
     }
   }
 
-  /* Keep Obsidian tree geometry native while retaining Catppuccin chevron colours. */
+  /* Keep native tree geometry while retaining Catppuccin chevron colours. */
   :is(.nav-files-container, .workspace-leaf-content[data-type="outline"]) {
     --nav-collapse-icon-color: var(--ctp-icon-foreground);
     --nav-collapse-icon-color-collapsed: var(--ctp-icon-foreground);
@@ -161,7 +121,6 @@ body.theme-light {
     }
   }
 
-  /* Core controls share one hover treatment; close and destructive controls are excluded. */
   :where(:is(#{$ctp-control-selectors})) {
     &:is(.is-active, .is-selected, [aria-pressed="true"]) {
       --background-modifier-active-hover: var(--ctp-tab-active-background);
@@ -174,11 +133,6 @@ body.theme-light {
         background-color: transparent;
         color: var(--ctp-icon-foreground);
       }
-    }
-
-    &:focus-visible {
-      outline: 1px solid var(--ctp-focus-border);
-      outline-offset: -1px;
     }
   }
 
@@ -215,7 +169,6 @@ body.theme-light {
       --background-modifier-active-hover: var(--ctp-list-selection-background);
 
       background-color: var(--ctp-list-selection-background);
-      box-shadow: none;
       color: var(--ctp-icon-foreground);
 
       svg {
@@ -223,20 +176,6 @@ body.theme-light {
         color: var(--ctp-icon-foreground);
       }
     }
-  }
-
-  /* Activity controls use a compact accent indicator instead of an outlined tile. */
-  .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed="true"]) {
-    border-radius: 0;
-    background-color: transparent;
-    box-shadow: inset 2px 0 0 var(--ctp-focus-border);
-  }
-
-  /* Preserve Obsidian stock sidebar spacing while hiding the dark outline.
-     The root tab strip removes the border entirely below. */
-  .workspace-tab-header-container {
-    border-bottom-color: transparent;
-    box-shadow: none;
   }
 
   .workspace-split.mod-sidedock .workspace-tab-header-container {
@@ -264,11 +203,6 @@ body.theme-light {
       background-color: transparent;
       color: var(--ctp-icon-foreground);
     }
-
-    &:focus-visible {
-      outline: 1px solid var(--ctp-focus-border);
-      outline-offset: -1px;
-    }
   }
 
   @media (hover: hover) {
@@ -293,39 +227,12 @@ body.theme-light {
     }
   }
 
-  /* Root editor tabs keep their 32px geometry while sidebar headers retain
-     Obsidian stock 40px sizing and padding. */
-  .workspace-split.mod-root {
-    --header-height: 32px;
-  }
-
+  /* Root editor tabs retain their Catppuccin surfaces in both layout modes. */
   .workspace-split.mod-root .workspace-tab-header-container {
-    border-bottom: 0;
     background-color: var(--ctp-tab-strip-background);
-    padding-inline-start: 0;
-  }
-
-  .workspace-split.mod-root .workspace-tab-header-container-inner {
-    margin-block: 0;
-    margin-inline-start: 0;
-    padding-block-start: 0;
-    padding-inline-start: 0;
   }
 
   .workspace-split.mod-root .workspace-tab-header {
-    &, .workspace-tab-header-inner {
-      border-radius: 0;
-    }
-
-    &::before,
-    &::after {
-      display: none;
-    }
-
-    .workspace-tab-header-inner::after {
-      display: none;
-    }
-
     &:not(.is-active) {
       --tab-text-color: var(--ctp-tab-inactive-foreground);
       --tab-text-color-active: var(--ctp-tab-inactive-foreground);
@@ -333,7 +240,6 @@ body.theme-light {
       --tab-text-color-focused-active: var(--ctp-tab-inactive-foreground);
 
       background-color: var(--ctp-tab-inactive-background);
-      box-shadow: none;
       color: var(--ctp-tab-inactive-foreground);
 
       .workspace-tab-header-inner {
@@ -354,8 +260,6 @@ body.theme-light {
     }
 
     &.is-active {
-      box-shadow: inset 0 1px 0 var(--ctp-focus-border);
-
       :is(
         .workspace-tab-header-inner-title,
         .workspace-tab-header-inner-close-button,
@@ -368,33 +272,6 @@ body.theme-light {
         color: var(--text-normal);
       }
     }
-
-    &:focus-visible {
-      outline: 1px solid var(--ctp-focus-border);
-      outline-offset: -1px;
-    }
-
-  }
-
-  /* Obsidian hides inactive close buttons with a later, highly specific rule.
-     Keep its slot in flow so Metadata Menu icons do not shift when hover reveals it. */
-  .workspace
-    .workspace-split.mod-root
-    .workspace-tabs:not(.mod-stacked)
-    .workspace-tab-header:not(.is-active)
-    .workspace-tab-header-inner-close-button {
-    display: flex;
-    pointer-events: none;
-    visibility: hidden;
-  }
-
-  .workspace
-    .workspace-split.mod-root
-    .workspace-tabs:not(.mod-stacked)
-    .workspace-tab-header:not(.is-active):hover
-    .workspace-tab-header-inner-close-button {
-    pointer-events: auto;
-    visibility: visible;
   }
 
   @media (hover: hover) {
@@ -412,22 +289,18 @@ body.theme-light {
       .workspace-tab-header-inner {
         background-color: transparent;
       }
-    }
 
-    .workspace-split.mod-root
-      .workspace-tab-header:not(.is-active):hover
       :is(
         .workspace-tab-header-inner-title,
         .workspace-tab-header-inner-close-button,
         .workspace-tab-header-inner-close-button svg
       ) {
-      color: var(--ctp-icon-foreground);
-    }
+        color: var(--ctp-icon-foreground);
+      }
 
-    .workspace-split.mod-root
-      .workspace-tab-header:not(.is-active):hover
       :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
-      color: var(--text-normal);
+        color: var(--text-normal);
+      }
     }
 
     .workspace-split.mod-root
@@ -436,7 +309,6 @@ body.theme-light {
       --background-modifier-hover: var(--ctp-close-hover-background);
 
       background-color: var(--ctp-close-hover-background);
-      box-shadow: none;
       color: var(--text-normal);
 
       svg {

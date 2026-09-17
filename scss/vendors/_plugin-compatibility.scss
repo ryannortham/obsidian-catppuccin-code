@@ -247,8 +247,6 @@ body.theme-light {
   }
 
   .agent-client-session-manager .tree-item-self {
-    border-radius: 0;
-
     &:is(.is-active, .is-selected) {
       --nav-item-background-active: var(--ctp-list-selection-background);
       --nav-item-background-selected: var(--ctp-list-selection-background);
@@ -327,6 +325,23 @@ body.theme-light {
 
     align-self: center;
     color: var(--nav-tag-color);
+  }
+}
+
+body.theme-dark.ctp-vscode-layout,
+body.theme-light.ctp-vscode-layout {
+  /* VS Code mode flattens Agent Client rows to match the editor chrome. */
+  .agent-client-session-manager .tree-item-self {
+    border-radius: 0;
+  }
+
+  /* The compact editor tab geometry needs the plugin badge's optical offset. */
+  .workspace-tab-header
+    .metadata-menu.fileclass-icon:not(
+      .field-status-may-have-changed,
+      .field-status-changed,
+      .field-status-error
+    ) {
     transform: translateY(1px);
   }
 }

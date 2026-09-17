@@ -69,6 +69,12 @@ settings:
       -
         label: Lavender
         value: ctp-accent-lavender
+  -
+    id: ctp-vscode-layout
+    title: VS Code layout
+    description: Use compact, flat tabs and VS Code-style activity indicators. Turn off for native Obsidian interface layout.
+    type: class-toggle
+    default: true
 */
 
 /* @settings

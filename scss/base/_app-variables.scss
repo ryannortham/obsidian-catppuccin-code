@@ -37,7 +37,6 @@ body {
   --border-width: 1px;
 
   /* Buttons */
-  --button-radius: var(--input-radius);
 
   /* Callouts */
   --callout-border-width: 0.25px;
@@ -77,8 +76,6 @@ body {
   --canvas-dot-pattern: var(--color-base-30);
 
   /* Checkboxes */
-  --checkbox-radius: var(--radius-s);
-  --checkbox-size: var(--font-text-size);
   --checkbox-marker-color: var(--background-primary);
   --checkbox-color: var(--interactive-accent);
   --checkbox-color-hover: var(--interactive-accent-hover);
@@ -110,11 +107,6 @@ body {
   /* Cursor */
   --cursor: default;
   --cursor-link: pointer;
-
-  /* Dialogs - e.g. small modals, confirmations */
-  --dialog-width: 560px;
-  --dialog-max-width: 80vw;
-  --dialog-max-height: 85vh;
 
   /* Dividers â€” between panes */
   --divider-color: var(--background-secondary);
@@ -232,9 +224,6 @@ body {
   --h5-weight: 600;
   --h6-weight: 600;
 
-  /* View header */
-  --header-height: 40px;
-
   /* Horizontal rules */
   --hr-color: rgb(var(--ctp-surface2));
   --hr-thickness: 2px;
@@ -258,7 +247,6 @@ body {
   --icon-opacity: 1;
   --icon-opacity-hover: 1;
   --icon-opacity-active: 1;
-  --clickable-icon-radius: var(--radius-s);
 
   /* Inline title */
   --inline-title-color: var(--h1-color);
@@ -269,12 +257,6 @@ body {
   --inline-title-variant: var(--h1-variant);
   --inline-title-weight: var(--h1-weight);
   --inline-title-margin-bottom: 0.5em;
-
-  /* Inputs */
-  --input-height: 30px;
-  --input-radius: 5px;
-  --input-font-weight: var(--font-normal);
-  --input-border-width: 1px;
 
   /* Italic */
   --italic-color: inherit;
@@ -334,57 +316,15 @@ body {
   --nav-item-background-hover: var(--background-modifier-hover);
   --nav-item-background-active: var(--background-modifier-hover);
   --nav-item-background-selected: var(--ctp-list-selection-background);
-  --nav-item-padding: var(--size-4-1) var(--size-4-2) var(--size-4-1)
-    var(--size-4-6);
-  --nav-item-parent-padding: var(--nav-item-padding);
   --nav-item-weight: inherit;
   --nav-item-weight-hover: inherit;
   --nav-item-weight-active: inherit;
   --nav-collapse-icon-color: var(--collapse-icon-color);
   --nav-collapse-icon-color-collapsed: var(--text-faint);
 
-  /* Modals - e.g. settings, community themes, community plugins */
-  --modal-background: var(--background-primary);
-  --modal-width: 90vw;
-  --modal-height: 85vh;
-  --modal-max-width: 1100px;
-  --modal-max-height: 1000px;
-  --modal-max-width-narrow: 800px;
-  --modal-border-width: var(--border-width);
-  --modal-border-color: var(
-    --color-base-40,
-    var(--background-modifier-border-focus)
-  );
-  --modal-radius: var(--radius-l);
-  --modal-community-sidebar-width: 280px;
-
-  /* Popovers - file previews */
-  --popover-width: 450px;
-  --popover-height: 400px;
-  --popover-max-height: 70vh;
-  --popover-font-size: var(--font-text-size);
-
-  /* Prompts - e.g. quick switcher, command palette */
-  --prompt-width: 700px;
-  --prompt-max-width: 80vw;
-  --prompt-max-height: 70vh;
-  --prompt-border-width: var(--border-width);
-  --prompt-border-color: var(
-    --color-base-40,
-    var(--background-modifier-border-focus)
-  );
-
-  /* Radiuses */
-  --radius-s: 4px;
-  --radius-m: 8px;
-  --radius-l: 10px;
-  --radius-xl: 16px;
-
   /* Ribbon */
   --ribbon-background: rgb(var(--ctp-crust));
   --ribbon-background-collapsed: rgb(var(--ctp-crust));
-  --ribbon-width: 44px;
-  --ribbon-padding: var(--size-4-2) var(--size-4-1) var(--size-4-3);
 
   /* Scrollbars */
   --scrollbar-active-thumb-bg: rgb(var(--mono-rgb-100), 20%);
@@ -397,22 +337,6 @@ body {
   --search-icon-color: var(--text-muted);
   --search-icon-size: 18px;
   --search-result-background: var(--background-primary);
-
-  /* Layout sizing - for padding and margins */
-  --size-2-1: 2px;
-  --size-2-2: 4px;
-  --size-2-3: 6px;
-  --size-4-1: 4px;
-  --size-4-2: 8px;
-  --size-4-3: 12px;
-  --size-4-4: 16px;
-  --size-4-5: 20px;
-  --size-4-6: 24px;
-  --size-4-8: 32px;
-  --size-4-9: 36px;
-  --size-4-12: 48px;
-  --size-4-16: 64px;
-  --size-4-18: 72px;
 
   /* Sidebar */
   --sidebar-markdown-font-size: calc(var(--font-text-size) * 0.9);
@@ -434,12 +358,8 @@ body {
   /* Status bar */
   --status-bar-background: rgb(var(--ctp-crust));
   --status-bar-border-color: var(--divider-color);
-  --status-bar-border-width: 1px 0 0 1px;
   --status-bar-font-size: var(--font-ui-smaller);
   --status-bar-text-color: var(--text-muted);
-  --status-bar-position: fixed;
-  --status-bar-radius: var(--radius-m) 0 0 0;
-  --status-bar-scroll-padding: calc(var(--status-bar-font-size) + 18px);
 
   /* Swatch for color inputs */
   --swatch-radius: 14px;
@@ -455,33 +375,11 @@ body {
   --tab-text-color-focused-active: var(--text-normal);
   --tab-text-color-focused-highlighted: var(--text-accent);
   --tab-text-color-focused-active-current: var(--text-normal);
-  --tab-font-size: var(--font-ui-small);
-  --tab-font-weight: inherit;
   --tab-container-background: rgb(var(--ctp-crust));
-  --tab-divider-color: rgb(var(--ctp-crust));
-  --tab-outline-color: rgb(var(--ctp-crust));
-  --tab-outline-width: 1px;
-  --tab-curve: 6px;
-  --tab-radius: var(--radius-s);
-  --tab-radius-active: 6px 6px 0 0;
-  --tab-width: 200px;
-  --tab-max-width: 320px;
-
-  /* Stacked tabs */
-  --tab-stacked-pane-width: 700px;
-  --tab-stacked-header-width: var(--header-height);
-  --tab-stacked-font-size: var(--font-ui-small);
-  --tab-stacked-font-weight: 400;
-  --tab-stacked-text-align: left;
-  --tab-stacked-text-transform: rotate(0deg);
-  --tab-stacked-text-writing-mode: vertical-lr;
-  --tab-stacked-shadow: -8px 0 8px 0 rgb(var(--ctp-crust), 5%);
 
   /* Window frame */
   --titlebar-background: rgb(var(--ctp-crust));
   --titlebar-background-focused: rgb(var(--ctp-crust));
-  --titlebar-border-width: 0;
-  --titlebar-border-color: transparent;
   --titlebar-text-color: var(--text-muted);
   --titlebar-text-color-focused: var(--text-normal);
   --titlebar-text-color-highlighted: var(--text-accent-hover);

@@ -7,7 +7,9 @@
   --list-marker-color: rgb(var(--ctp-sapphire));
   --checklist-done-color: rgb(var(--ctp-green));
 
-  input[type="checkbox"]:not(:checked) {
+  /* stylelint-disable selector-class-pattern -- Obsidian owns the Live Preview class name. */
+  :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line)
+    > input[type="checkbox"]:not(:checked) {
     border-color: rgb(var(--ctp-surface2));
     background-color: transparent;
     box-shadow: none;
@@ -20,7 +22,8 @@
     }
   }
 
-  input[type="checkbox"]:not(
+  :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line)
+    > input[type="checkbox"]:not(
     [data-task=">"],
     [data-task="!"],
     [data-task="-"],
@@ -45,6 +48,7 @@
       background-color: rgb(var(--ctp-green), 85%);
     }
   }
+  /* stylelint-enable selector-class-pattern */
 
   /* Required to override Obsidian's app stylesheet. */
   /* stylelint-disable-next-line selector-class-pattern -- Obsidian owns this class name. */

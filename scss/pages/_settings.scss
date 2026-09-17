@@ -13,18 +13,6 @@
 }
 
 button.mod-cta {
-  border: 0;
-  border-radius: var(--button-radius);
-  -webkit-app-region: no-drag;
-  color: var(--text-normal);
-  cursor: var(--cursor);
-  font-family: inherit;
-  font-size: var(--font-ui-small);
-  font-weight: var(--input-font-weight);
-  outline: none;
-  user-select: none;
-  white-space: nowrap;
-
   &:not(.clickable-icon) {
     background-color: var(--interactive-accent);
     color: var(--text-on-accent);
@@ -51,17 +39,5 @@ button.mod-cta {
     .setting-item-control {
       padding-top: 0;
     }
-  }
-}
-
-//Remove collapse option from catppuccin credits header
-.style-settings-heading[data-id="catppuccin-theme-credits-link"] {
-  + .style-settings-container,
-  .style-settings-collapse-indicator {
-    display: none;
-  }
-
-  &:not(.is-collapsed) {
-    margin-bottom: 0;
   }
 }

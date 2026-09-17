@@ -33,7 +33,6 @@ body {
   /* Borders */
   --border-width: 1px;
   /* Buttons */
-  --button-radius: var(--input-radius);
   /* Callouts */
   --callout-border-width: 0.25px;
   --callout-border-opacity: 0.2;
@@ -70,8 +69,6 @@ body {
   --canvas-color-6: var(--color-purple);
   --canvas-dot-pattern: var(--color-base-30);
   /* Checkboxes */
-  --checkbox-radius: var(--radius-s);
-  --checkbox-size: var(--font-text-size);
   --checkbox-marker-color: var(--background-primary);
   --checkbox-color: var(--interactive-accent);
   --checkbox-color-hover: var(--interactive-accent-hover);
@@ -100,10 +97,6 @@ body {
   /* Cursor */
   --cursor: default;
   --cursor-link: pointer;
-  /* Dialogs - e.g. small modals, confirmations */
-  --dialog-width: 560px;
-  --dialog-max-width: 80vw;
-  --dialog-max-height: 85vh;
   /* Dividers â€” between panes */
   --divider-color: var(--background-secondary);
   --divider-color-hover: var(--interactive-accent);
@@ -209,8 +202,6 @@ body {
   --h4-weight: 600;
   --h5-weight: 600;
   --h6-weight: 600;
-  /* View header */
-  --header-height: 40px;
   /* Horizontal rules */
   --hr-color: rgb(var(--ctp-surface2));
   --hr-thickness: 2px;
@@ -233,7 +224,6 @@ body {
   --icon-opacity: 1;
   --icon-opacity-hover: 1;
   --icon-opacity-active: 1;
-  --clickable-icon-radius: var(--radius-s);
   /* Inline title */
   --inline-title-color: var(--h1-color);
   --inline-title-font: var(--h1-font);
@@ -243,11 +233,6 @@ body {
   --inline-title-variant: var(--h1-variant);
   --inline-title-weight: var(--h1-weight);
   --inline-title-margin-bottom: 0.5em;
-  /* Inputs */
-  --input-height: 30px;
-  --input-radius: 5px;
-  --input-font-weight: var(--font-normal);
-  --input-border-width: 1px;
   /* Italic */
   --italic-color: inherit;
   --italic-weight: inherit;
@@ -301,52 +286,14 @@ body {
   --nav-item-background-hover: var(--background-modifier-hover);
   --nav-item-background-active: var(--background-modifier-hover);
   --nav-item-background-selected: var(--ctp-list-selection-background);
-  --nav-item-padding: var(--size-4-1) var(--size-4-2) var(--size-4-1)
-    var(--size-4-6);
-  --nav-item-parent-padding: var(--nav-item-padding);
   --nav-item-weight: inherit;
   --nav-item-weight-hover: inherit;
   --nav-item-weight-active: inherit;
   --nav-collapse-icon-color: var(--collapse-icon-color);
   --nav-collapse-icon-color-collapsed: var(--text-faint);
-  /* Modals - e.g. settings, community themes, community plugins */
-  --modal-background: var(--background-primary);
-  --modal-width: 90vw;
-  --modal-height: 85vh;
-  --modal-max-width: 1100px;
-  --modal-max-height: 1000px;
-  --modal-max-width-narrow: 800px;
-  --modal-border-width: var(--border-width);
-  --modal-border-color: var(
-    --color-base-40,
-    var(--background-modifier-border-focus)
-  );
-  --modal-radius: var(--radius-l);
-  --modal-community-sidebar-width: 280px;
-  /* Popovers - file previews */
-  --popover-width: 450px;
-  --popover-height: 400px;
-  --popover-max-height: 70vh;
-  --popover-font-size: var(--font-text-size);
-  /* Prompts - e.g. quick switcher, command palette */
-  --prompt-width: 700px;
-  --prompt-max-width: 80vw;
-  --prompt-max-height: 70vh;
-  --prompt-border-width: var(--border-width);
-  --prompt-border-color: var(
-    --color-base-40,
-    var(--background-modifier-border-focus)
-  );
-  /* Radiuses */
-  --radius-s: 4px;
-  --radius-m: 8px;
-  --radius-l: 10px;
-  --radius-xl: 16px;
   /* Ribbon */
   --ribbon-background: rgb(var(--ctp-crust));
   --ribbon-background-collapsed: rgb(var(--ctp-crust));
-  --ribbon-width: 44px;
-  --ribbon-padding: var(--size-4-2) var(--size-4-1) var(--size-4-3);
   /* Scrollbars */
   --scrollbar-active-thumb-bg: rgb(var(--mono-rgb-100), 20%);
   --scrollbar-bg: rgb(var(--mono-rgb-100), 5%);
@@ -357,21 +304,6 @@ body {
   --search-icon-color: var(--text-muted);
   --search-icon-size: 18px;
   --search-result-background: var(--background-primary);
-  /* Layout sizing - for padding and margins */
-  --size-2-1: 2px;
-  --size-2-2: 4px;
-  --size-2-3: 6px;
-  --size-4-1: 4px;
-  --size-4-2: 8px;
-  --size-4-3: 12px;
-  --size-4-4: 16px;
-  --size-4-5: 20px;
-  --size-4-6: 24px;
-  --size-4-8: 32px;
-  --size-4-9: 36px;
-  --size-4-12: 48px;
-  --size-4-16: 64px;
-  --size-4-18: 72px;
   /* Sidebar */
   --sidebar-markdown-font-size: calc(var(--font-text-size) * 0.9);
   --sidebar-tab-text-display: none;
@@ -390,12 +322,8 @@ body {
   /* Status bar */
   --status-bar-background: rgb(var(--ctp-crust));
   --status-bar-border-color: var(--divider-color);
-  --status-bar-border-width: 1px 0 0 1px;
   --status-bar-font-size: var(--font-ui-smaller);
   --status-bar-text-color: var(--text-muted);
-  --status-bar-position: fixed;
-  --status-bar-radius: var(--radius-m) 0 0 0;
-  --status-bar-scroll-padding: calc(var(--status-bar-font-size) + 18px);
   /* Swatch for color inputs */
   --swatch-radius: 14px;
   --swatch-height: 24px;
@@ -409,31 +337,10 @@ body {
   --tab-text-color-focused-active: var(--text-normal);
   --tab-text-color-focused-highlighted: var(--text-accent);
   --tab-text-color-focused-active-current: var(--text-normal);
-  --tab-font-size: var(--font-ui-small);
-  --tab-font-weight: inherit;
   --tab-container-background: rgb(var(--ctp-crust));
-  --tab-divider-color: rgb(var(--ctp-crust));
-  --tab-outline-color: rgb(var(--ctp-crust));
-  --tab-outline-width: 1px;
-  --tab-curve: 6px;
-  --tab-radius: var(--radius-s);
-  --tab-radius-active: 6px 6px 0 0;
-  --tab-width: 200px;
-  --tab-max-width: 320px;
-  /* Stacked tabs */
-  --tab-stacked-pane-width: 700px;
-  --tab-stacked-header-width: var(--header-height);
-  --tab-stacked-font-size: var(--font-ui-small);
-  --tab-stacked-font-weight: 400;
-  --tab-stacked-text-align: left;
-  --tab-stacked-text-transform: rotate(0deg);
-  --tab-stacked-text-writing-mode: vertical-lr;
-  --tab-stacked-shadow: -8px 0 8px 0 rgb(var(--ctp-crust), 5%);
   /* Window frame */
   --titlebar-background: rgb(var(--ctp-crust));
   --titlebar-background-focused: rgb(var(--ctp-crust));
-  --titlebar-border-width: 0;
-  --titlebar-border-color: transparent;
   --titlebar-text-color: var(--text-muted);
   --titlebar-text-color-focused: var(--text-normal);
   --titlebar-text-color-highlighted: var(--text-accent-hover);
@@ -517,6 +424,12 @@ settings:
       -
         label: Lavender
         value: ctp-accent-lavender
+  -
+    id: ctp-vscode-layout
+    title: VS Code layout
+    description: Use compact, flat tabs and VS Code-style activity indicators. Turn off for native Obsidian interface layout.
+    type: class-toggle
+    default: true
 */
 /* @settings
 name: "Catppuccin: Font Styles"
@@ -1515,6 +1428,17 @@ settings:
   --caret-color: rgb(var(--ctp-rosewater));
   --interactive-normal: var(--ctp-control-background);
   --interactive-hover: var(--ctp-control-hover-background);
+  /* Shared interface colour roles. Layout geometry is gated separately. */
+  /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
+  --ctp-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
+  --ctp-tab-strip-background: rgb(var(--ctp-crust));
+  --tab-divider-color: rgb(var(--ctp-crust));
+  --tab-outline-color: rgb(var(--ctp-crust));
+  --ctp-tab-active-background: rgb(var(--ctp-base));
+  --ctp-tab-inactive-background: rgb(var(--ctp-mantle));
+  --ctp-tab-active-foreground: rgb(var(--ctp-accent));
+  --ctp-tab-inactive-foreground: rgb(var(--ctp-overlay0));
+  --ctp-close-hover-background: rgb(var(--ctp-surface1));
   --scrollbar-bg: transparent;
   --scrollbar-thumb-bg: rgb(var(--ctp-surface2), 50%);
   --scrollbar-active-thumb-bg: rgb(var(--ctp-surface0), 40%);
@@ -1542,6 +1466,7 @@ settings:
   --text-selection: rgb(var(--ctp-overlay2), 30%);
 }
 
+/* stylelint-disable selector-class-pattern -- Obsidian and CodeMirror own these class names. */
 strong,
 .cm-strong,
 .cm-s-obsidian span.cm-formatting-strong,
@@ -1677,86 +1602,13 @@ h6,
   color: rgb(var(--ctp-red));
 }
 
-.tooltip {
-  border: 1px solid rgb(var(--ctp-rosewater), 60%);
-  background-color: var(--background-secondary);
-  box-shadow: 0 0 4px rgb(var(--ctp-mantle));
-  color: rgb(var(--ctp-rosewater), 80%);
-}
-
 .drag-ghost {
   --drag-ghost-background: var(--background-secondary);
   --drag-ghost-text-color: rgb(var(--ctp-rosewater), 80%);
   border: 1px solid rgb(var(--ctp-rosewater), 60%);
 }
 
-/**
-* 1. Not sure when or why I added this, but it became an issue in
-https://github.com/catppuccin/obsidian/issues/60. I have set it to the value it
-should have. Hopefully it doesn't break anything!
-*/
-.tree-item-self.is-clickable.nav-file-title.has-focus[style] {
-  --background-modifier-border-focus: var(--color-base-40);
-}
-
-/*
-* From app.css
-*/
-/*
-* TODO: Add border to popups that appear during plugin, theme, etc.
-* updates.
-*/
-/* Triangle hack to make tooltip look like a speech bubble */
-.tooltip .tooltip-arrow {
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  width: 0;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid rgb(var(--ctp-rosewater), 60%);
-  border-left: 5px solid transparent;
-  margin-left: -5px;
-  content: " ";
-  font-size: 0;
-  line-height: 0;
-}
-
-.tooltip.mod-right .tooltip-arrow {
-  top: calc(50% - 5px);
-  left: -5px;
-  border-top: 5px solid transparent;
-  border-right: 5px solid rgb(var(--ctp-rosewater), 60%);
-  border-bottom: 5px solid transparent;
-}
-
-.tooltip.mod-left .tooltip-arrow {
-  top: calc(50% - 5px);
-  left: calc(100% + 5px);
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 5px solid rgb(var(--ctp-rosewater), 60%);
-}
-
-.tooltip.mod-top .tooltip-arrow {
-  top: 100%;
-  border-top: 5px solid rgb(var(--ctp-rosewater), 60%);
-  border-bottom: 5px solid transparent;
-}
-
-.tooltip.mod-error .tooltip-arrow {
-  border-bottom-color: rgb(var(--ctp-red), 60%);
-}
-
-.tooltip.mod-error.mod-right .tooltip-arrow {
-  border-right-color: rgb(var(--ctp-red), 60%);
-  border-bottom: 5px solid transparent;
-}
-
-.tooltip.mod-error.mod-left .tooltip-arrow {
-  border-bottom: 5px solid transparent;
-  border-left-color: rgb(var(--ctp-red), 60%);
-}
-
+/* stylelint-enable selector-class-pattern */
 /* bezier from Josh Comeau's blog */
 body {
   --transition-hover-bg: background-color 0.3s cubic-bezier(0.44, 0.21, 0, 1);
@@ -1906,12 +1758,6 @@ body {
 .mod-windows .titlebar-button.mod-close:hover {
   background-color: rgb(var(--ctp-red));
   color: var(--text-on-accent);
-}
-
-/* Fix for #141 */
-.mod-left-split .workspace-tab-header-container .workspace-tab-header-container-inner,
-.mod-right-split .workspace-tab-header-container .workspace-tab-header-container-inner {
-  overflow: visible;
 }
 
 select:focus,
@@ -2206,15 +2052,6 @@ input[type=datetime-local]::-webkit-datetime-edit-second-field:focus {
   color: var(--text-accent);
 }
 
-.community-item:hover {
-  --background-modifier-border-hover: var(--ctp-focus-border);
-}
-
-.community-item.is-selected,
-.community-item.is-selected:hover {
-  --interactive-accent: var(--ctp-list-selection-background);
-}
-
 /* Catppuccin editor roles for Reading View and Live Preview code tokens. */
 /* stylelint-disable selector-class-pattern -- CodeMirror owns these class names. */
 .markdown-rendered :is(.token.operator, .cm-operator),
@@ -2333,19 +2170,6 @@ input[type=datetime-local]::-webkit-datetime-edit-second-field:focus {
   font-variant: all-small-caps;
 }
 
-button.mod-cta {
-  border: 0;
-  border-radius: var(--button-radius);
-  -webkit-app-region: no-drag;
-  color: var(--text-normal);
-  cursor: var(--cursor);
-  font-family: inherit;
-  font-size: var(--font-ui-small);
-  font-weight: var(--input-font-weight);
-  outline: none;
-  user-select: none;
-  white-space: nowrap;
-}
 button.mod-cta:not(.clickable-icon) {
   background-color: var(--interactive-accent);
   color: var(--text-on-accent);
@@ -2369,14 +2193,6 @@ button.mod-cta:hover {
   padding-top: 0;
 }
 
-.style-settings-heading[data-id=catppuccin-theme-credits-link] + .style-settings-container,
-.style-settings-heading[data-id=catppuccin-theme-credits-link] .style-settings-collapse-indicator {
-  display: none;
-}
-.style-settings-heading[data-id=catppuccin-theme-credits-link]:not(.is-collapsed) {
-  margin-bottom: 0;
-}
-
 /**
 * Some tweaks for the light/Catppuccin Latte theme.
 */
@@ -2388,21 +2204,22 @@ button.mod-cta:hover {
   --hr-color: rgb(var(--ctp-surface2));
   --list-marker-color: rgb(var(--ctp-sapphire));
   --checklist-done-color: rgb(var(--ctp-green));
+  /* stylelint-disable selector-class-pattern -- Obsidian owns the Live Preview class name. */
 }
-.theme-light input[type=checkbox]:not(:checked),
-.theme-dark input[type=checkbox]:not(:checked) {
+.theme-light :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line) > input[type=checkbox]:not(:checked),
+.theme-dark :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line) > input[type=checkbox]:not(:checked) {
   border-color: rgb(var(--ctp-surface2));
   background-color: transparent;
   box-shadow: none;
 }
-.theme-light input[type=checkbox]:not(:checked):hover, .theme-light input[type=checkbox]:not(:checked):focus-visible,
-.theme-dark input[type=checkbox]:not(:checked):hover,
-.theme-dark input[type=checkbox]:not(:checked):focus-visible {
+.theme-light :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line) > input[type=checkbox]:not(:checked):hover, .theme-light :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line) > input[type=checkbox]:not(:checked):focus-visible,
+.theme-dark :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line) > input[type=checkbox]:not(:checked):hover,
+.theme-dark :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line) > input[type=checkbox]:not(:checked):focus-visible {
   border-width: 2px;
   border-color: var(--ctp-focus-border);
   background-color: var(--ctp-list-hover-background);
 }
-.theme-light input[type=checkbox]:not([data-task=">"],
+.theme-light :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line) > input[type=checkbox]:not([data-task=">"],
 [data-task="!"],
 [data-task="-"],
 [data-task="<"],
@@ -2417,7 +2234,7 @@ button.mod-cta:hover {
 [data-task=c],
 [data-task=d],
 [data-task=b]):checked,
-.theme-dark input[type=checkbox]:not([data-task=">"],
+.theme-dark :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line) > input[type=checkbox]:not([data-task=">"],
 [data-task="!"],
 [data-task="-"],
 [data-task="<"],
@@ -2436,7 +2253,7 @@ button.mod-cta:hover {
   background-color: rgb(var(--ctp-green));
   box-shadow: 0 0 0 1px rgb(var(--ctp-green), 40%);
 }
-.theme-light input[type=checkbox]:not([data-task=">"],
+.theme-light :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line) > input[type=checkbox]:not([data-task=">"],
 [data-task="!"],
 [data-task="-"],
 [data-task="<"],
@@ -2451,7 +2268,7 @@ button.mod-cta:hover {
 [data-task=c],
 [data-task=d],
 [data-task=b]):checked:hover,
-.theme-dark input[type=checkbox]:not([data-task=">"],
+.theme-dark :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line) > input[type=checkbox]:not([data-task=">"],
 [data-task="!"],
 [data-task="-"],
 [data-task="<"],
@@ -2470,6 +2287,7 @@ button.mod-cta:hover {
 }
 .theme-light,
 .theme-dark {
+  /* stylelint-enable selector-class-pattern */
   /* Required to override Obsidian's app stylesheet. */
   /* stylelint-disable-next-line selector-class-pattern -- Obsidian owns this class name. */
 }
@@ -2479,34 +2297,12 @@ button.mod-cta:hover {
   font-size: 75% !important;
 }
 
-/*
- * Catppuccin Code defines palette-relative interaction states. Style
- * Settings supplies the active flavor's palette values; these variables
- * describe component roles rather than new palette colors.
- */
-body.theme-dark,
-body.theme-light {
-  /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
-  --ctp-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
-  /* Root tab-bar actions use one stable hit area. Sidebar toolbars retain
-     Obsidian stock geometry below. */
-  --ctp-control-size: 30px;
-  --ctp-tab-strip-background: rgb(var(--ctp-crust));
-  --ctp-tab-active-background: rgb(var(--ctp-base));
-  --ctp-tab-inactive-background: rgb(var(--ctp-mantle));
-  --ctp-tab-active-foreground: rgb(var(--ctp-accent));
-  --ctp-tab-inactive-foreground: rgb(var(--ctp-overlay0));
-  --ctp-close-hover-background: rgb(var(--ctp-surface1));
-  /* The activity ribbon and title chrome use Crust like the VS Code reference. */
-}
+/* Shared Catppuccin colour adapters. Geometry that makes the interface look
+   like VS Code lives in _vscode-layout.scss and is independently gated. */
 body.theme-dark .workspace-ribbon,
 body.theme-light .workspace-ribbon {
   border-right-color: rgb(var(--ctp-crust));
   background-color: rgb(var(--ctp-crust));
-}
-body.theme-dark,
-body.theme-light {
-  /* Translucent windows expose the backdrop, so divider strokes must disappear. */
 }
 body.theme-dark.is-translucent:not(.is-fullscreen),
 body.theme-light.is-translucent:not(.is-fullscreen) {
@@ -2518,50 +2314,17 @@ body.theme-dark.is-translucent:not(.is-fullscreen) .workspace-ribbon,
 body.theme-light.is-translucent:not(.is-fullscreen) .workspace-ribbon {
   border-right-color: transparent;
 }
-body.theme-dark,
-body.theme-light {
-  /* Settings’ two-column navigation should not draw a contrasting seam. */
-}
 body.theme-dark .mod-settings :is(.vertical-tab-header, .vertical-tab-content),
 body.theme-light .mod-settings :is(.vertical-tab-header, .vertical-tab-content) {
   border-inline-color: transparent;
 }
-body.theme-dark,
-body.theme-light {
-  /* Detached modal windows share the same Base surface above and below the
-     macOS traffic lights, regardless of the global translucency setting. */
-}
-body.theme-dark.is-popout-modal .titlebar,
-body.theme-light.is-popout-modal .titlebar {
-  border-bottom: 0;
+body.theme-dark .is-popout-modal .titlebar,
+body.theme-light .is-popout-modal .titlebar {
   background-color: var(--background-primary);
-  box-shadow: none;
-}
-body.theme-dark,
-body.theme-light {
-  /* Keep root tab-bar wrappers transparent and preserve their established
-     action spacing while sidebar controls retain Obsidian stock margins. */
 }
 body.theme-dark :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab),
 body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) {
   background-color: transparent;
-}
-body.theme-dark :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) .clickable-icon,
-body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) .clickable-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border-radius: var(--clickable-icon-radius);
-  margin: 0 2px;
-  block-size: var(--ctp-control-size);
-  inline-size: var(--ctp-control-size);
-  min-block-size: var(--ctp-control-size);
-  min-inline-size: var(--ctp-control-size);
-}
-body.theme-dark,
-body.theme-light {
-  /* Tree rows and Settings navigation share one selection and hover contract. */
 }
 body.theme-dark :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item),
 body.theme-light :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .tree-item-self, .mod-settings .vertical-tab-nav-item, .mod-settings .horizontal-tab-nav-item) {
@@ -2614,7 +2377,7 @@ body.theme-light :is(:is(.workspace-split.mod-sidedock, .nav-files-container) .t
 }
 body.theme-dark,
 body.theme-light {
-  /* Keep Obsidian tree geometry native while retaining Catppuccin chevron colours. */
+  /* Keep native tree geometry while retaining Catppuccin chevron colours. */
 }
 body.theme-dark :is(.nav-files-container, .workspace-leaf-content[data-type=outline]),
 body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) {
@@ -2625,10 +2388,6 @@ body.theme-dark :is(.nav-files-container, .workspace-leaf-content[data-type=outl
 body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=outline]) :is(.collapse-icon, .collapse-icon svg) {
   --icon-color: var(--ctp-icon-foreground);
   color: var(--ctp-icon-foreground);
-}
-body.theme-dark,
-body.theme-light {
-  /* Core controls share one hover treatment; close and destructive controls are excluded. */
 }
 body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):is(.is-active, .is-selected, [aria-pressed=true]),
 body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):is(.is-active, .is-selected, [aria-pressed=true]) {
@@ -2641,11 +2400,6 @@ body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-t
 body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):is(.is-active, .is-selected, [aria-pressed=true]) svg {
   background-color: transparent;
   color: var(--ctp-icon-foreground);
-}
-body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):focus-visible,
-body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):focus-visible {
-  outline: 1px solid var(--ctp-focus-border);
-  outline-offset: -1px;
 }
 @media (hover: hover) {
   body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):not(.is-active,
@@ -2689,7 +2443,6 @@ body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-
     --background-modifier-hover: var(--ctp-list-selection-background);
     --background-modifier-active-hover: var(--ctp-list-selection-background);
     background-color: var(--ctp-list-selection-background);
-    box-shadow: none;
     color: var(--ctp-icon-foreground);
   }
   body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):is(.is-active,
@@ -2701,26 +2454,6 @@ body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-
     background-color: transparent;
     color: var(--ctp-icon-foreground);
   }
-}
-body.theme-dark,
-body.theme-light {
-  /* Activity controls use a compact accent indicator instead of an outlined tile. */
-}
-body.theme-dark .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed=true]),
-body.theme-light .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed=true]) {
-  border-radius: 0;
-  background-color: transparent;
-  box-shadow: inset 2px 0 0 var(--ctp-focus-border);
-}
-body.theme-dark,
-body.theme-light {
-  /* Preserve Obsidian stock sidebar spacing while hiding the dark outline.
-     The root tab strip removes the border entirely below. */
-}
-body.theme-dark .workspace-tab-header-container,
-body.theme-light .workspace-tab-header-container {
-  border-bottom-color: transparent;
-  box-shadow: none;
 }
 body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header-container,
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header-container {
@@ -2745,11 +2478,6 @@ body.theme-light .workspace-split.mod-sidedock .workspace-tab-header.is-active s
   background-color: transparent;
   color: var(--ctp-icon-foreground);
 }
-body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:focus-visible,
-body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:focus-visible {
-  outline: 1px solid var(--ctp-focus-border);
-  outline-offset: -1px;
-}
 @media (hover: hover) {
   body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:hover, body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:hover .workspace-tab-header-inner,
   body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:hover,
@@ -2769,39 +2497,11 @@ body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:focus-visib
 }
 body.theme-dark,
 body.theme-light {
-  /* Root editor tabs keep their 32px geometry while sidebar headers retain
-     Obsidian stock 40px sizing and padding. */
-}
-body.theme-dark .workspace-split.mod-root,
-body.theme-light .workspace-split.mod-root {
-  --header-height: 32px;
+  /* Root editor tabs retain their Catppuccin surfaces in both layout modes. */
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header-container,
 body.theme-light .workspace-split.mod-root .workspace-tab-header-container {
-  border-bottom: 0;
   background-color: var(--ctp-tab-strip-background);
-  padding-inline-start: 0;
-}
-body.theme-dark .workspace-split.mod-root .workspace-tab-header-container-inner,
-body.theme-light .workspace-split.mod-root .workspace-tab-header-container-inner {
-  margin-block: 0;
-  margin-inline-start: 0;
-  padding-block-start: 0;
-  padding-inline-start: 0;
-}
-body.theme-dark .workspace-split.mod-root .workspace-tab-header, body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner,
-body.theme-light .workspace-split.mod-root .workspace-tab-header,
-body.theme-light .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner {
-  border-radius: 0;
-}
-body.theme-dark .workspace-split.mod-root .workspace-tab-header::before, body.theme-dark .workspace-split.mod-root .workspace-tab-header::after,
-body.theme-light .workspace-split.mod-root .workspace-tab-header::before,
-body.theme-light .workspace-split.mod-root .workspace-tab-header::after {
-  display: none;
-}
-body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner::after,
-body.theme-light .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner::after {
-  display: none;
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active),
 body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active) {
@@ -2810,7 +2510,6 @@ body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active)
   --tab-text-color-focused: var(--ctp-tab-inactive-foreground);
   --tab-text-color-focused-active: var(--ctp-tab-inactive-foreground);
   background-color: var(--ctp-tab-inactive-background);
-  box-shadow: none;
   color: var(--ctp-tab-inactive-foreground);
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner,
@@ -2828,10 +2527,6 @@ body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .work
   background-color: var(--ctp-tab-active-background);
   color: var(--ctp-tab-active-foreground);
 }
-body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active,
-body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active {
-  box-shadow: inset 0 1px 0 var(--ctp-focus-border);
-}
 body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-title,
 .workspace-tab-header-inner-close-button,
 .workspace-tab-header-inner-close-button svg),
@@ -2843,27 +2538,6 @@ body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active :is(.
 body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg),
 body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-icon svg) {
   color: var(--text-normal);
-}
-body.theme-dark .workspace-split.mod-root .workspace-tab-header:focus-visible,
-body.theme-light .workspace-split.mod-root .workspace-tab-header:focus-visible {
-  outline: 1px solid var(--ctp-focus-border);
-  outline-offset: -1px;
-}
-body.theme-dark,
-body.theme-light {
-  /* Obsidian hides inactive close buttons with a later, highly specific rule.
-     Keep its slot in flow so Metadata Menu icons do not shift when hover reveals it. */
-}
-body.theme-dark .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button,
-body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button {
-  display: flex;
-  pointer-events: none;
-  visibility: hidden;
-}
-body.theme-dark .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-close-button,
-body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-close-button {
-  pointer-events: auto;
-  visibility: visible;
 }
 @media (hover: hover) {
   body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover,
@@ -2896,7 +2570,6 @@ body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-s
   body.theme-light .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner-close-button:hover {
     --background-modifier-hover: var(--ctp-close-hover-background);
     background-color: var(--ctp-close-hover-background);
-    box-shadow: none;
     color: var(--text-normal);
   }
   body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner-close-button:hover svg,
@@ -2910,6 +2583,102 @@ body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-s
   body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-close-button:hover svg {
     color: var(--ctp-tab-active-foreground);
   }
+}
+
+/* Optional VS Code-inspired interface geometry. The positive class is supplied
+   by Style Settings and is absent when the plugin is disabled or the setting is
+   turned off, allowing Obsidian's native layout to apply. */
+body.theme-dark.ctp-vscode-layout,
+body.theme-light.ctp-vscode-layout {
+  --ctp-control-size: 30px;
+}
+body.theme-dark.ctp-vscode-layout.is-popout-modal .titlebar,
+body.theme-light.ctp-vscode-layout.is-popout-modal .titlebar {
+  border-bottom: 0;
+  box-shadow: none;
+}
+body.theme-dark.ctp-vscode-layout .workspace-split.mod-root,
+body.theme-light.ctp-vscode-layout .workspace-split.mod-root {
+  --header-height: 32px;
+}
+body.theme-dark.ctp-vscode-layout :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) .clickable-icon,
+body.theme-light.ctp-vscode-layout :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) .clickable-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0 2px;
+  block-size: var(--ctp-control-size);
+  inline-size: var(--ctp-control-size);
+  min-block-size: var(--ctp-control-size);
+  min-inline-size: var(--ctp-control-size);
+}
+body.theme-dark.ctp-vscode-layout .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed=true]),
+body.theme-light.ctp-vscode-layout .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed=true]) {
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: inset 2px 0 0 var(--ctp-focus-border);
+}
+body.theme-dark.ctp-vscode-layout .workspace-tab-header-container,
+body.theme-light.ctp-vscode-layout .workspace-tab-header-container {
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+body.theme-dark.ctp-vscode-layout .workspace-split.mod-sidedock .workspace-tab-header:focus-visible,
+body.theme-light.ctp-vscode-layout .workspace-split.mod-sidedock .workspace-tab-header:focus-visible {
+  outline: 1px solid var(--ctp-focus-border);
+  outline-offset: -1px;
+}
+body.theme-dark.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header-container,
+body.theme-light.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header-container {
+  border-bottom: 0;
+  padding-inline-start: 0;
+}
+body.theme-dark.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header-container-inner,
+body.theme-light.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header-container-inner {
+  margin-block: 0;
+  margin-inline-start: 0;
+  padding-block-start: 0;
+  padding-inline-start: 0;
+}
+body.theme-dark.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header,
+body.theme-dark.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner,
+body.theme-light.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header,
+body.theme-light.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner {
+  border-radius: 0;
+}
+body.theme-dark.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header::before, body.theme-dark.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header::after,
+body.theme-light.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header::before,
+body.theme-light.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header::after {
+  display: none;
+}
+body.theme-dark.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner::after,
+body.theme-light.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner::after {
+  display: none;
+}
+body.theme-dark.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header.is-active,
+body.theme-light.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header.is-active {
+  box-shadow: inset 0 1px 0 var(--ctp-focus-border);
+}
+body.theme-dark.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header:focus-visible,
+body.theme-light.ctp-vscode-layout .workspace-split.mod-root .workspace-tab-header:focus-visible {
+  outline: 1px solid var(--ctp-focus-border);
+  outline-offset: -1px;
+}
+body.theme-dark.ctp-vscode-layout,
+body.theme-light.ctp-vscode-layout {
+  /* Preserve the inactive close-button slot for Metadata Menu badges. */
+}
+body.theme-dark.ctp-vscode-layout .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button,
+body.theme-light.ctp-vscode-layout .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-close-button {
+  display: flex;
+  pointer-events: none;
+  visibility: hidden;
+}
+body.theme-dark.ctp-vscode-layout .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-close-button,
+body.theme-light.ctp-vscode-layout .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-close-button {
+  pointer-events: auto;
+  visibility: visible;
 }
 
 /* Compatibility for enabled Dataview inline fields. */
@@ -3197,10 +2966,6 @@ body.theme-light :is(.base-board-filter-pill,
     transform: none;
   }
 }
-body.theme-dark .agent-client-session-manager .tree-item-self,
-body.theme-light .agent-client-session-manager .tree-item-self {
-  border-radius: 0;
-}
 body.theme-dark .agent-client-session-manager .tree-item-self:is(.is-active, .is-selected),
 body.theme-light .agent-client-session-manager .tree-item-self:is(.is-active, .is-selected) {
   --nav-item-background-active: var(--ctp-list-selection-background);
@@ -3261,10 +3026,31 @@ body.theme-light .workspace-tab-header .metadata-menu.fileclass-icon:not(.field-
   --icon-size: var(--icon-s);
   align-self: center;
   color: var(--nav-tag-color);
+}
+
+body.theme-dark.ctp-vscode-layout,
+body.theme-light.ctp-vscode-layout {
+  /* VS Code mode flattens Agent Client rows to match the editor chrome. */
+}
+body.theme-dark.ctp-vscode-layout .agent-client-session-manager .tree-item-self,
+body.theme-light.ctp-vscode-layout .agent-client-session-manager .tree-item-self {
+  border-radius: 0;
+}
+body.theme-dark.ctp-vscode-layout,
+body.theme-light.ctp-vscode-layout {
+  /* The compact editor tab geometry needs the plugin badge's optical offset. */
+}
+body.theme-dark.ctp-vscode-layout .workspace-tab-header .metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
+.field-status-changed,
+.field-status-error),
+body.theme-light.ctp-vscode-layout .workspace-tab-header .metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
+.field-status-changed,
+.field-status-error) {
   transform: translateY(1px);
 }
 
 /* stylelint-enable selector-class-pattern */
+/* stylelint-disable property-no-vendor-prefix, selector-class-pattern, selector-pseudo-element-colon-notation -- Obsidian task DOM and legacy mask compatibility. */
 /**
 * 1. Checklist icons implemented for #91. This scss is from Kepano's Minimal Theme under its MIT License. Thanks Kepano!
 */
@@ -3320,10 +3106,10 @@ li[data-task=b] > p > input:checked {
   --checkbox-marker-color: transparent;
   border: none;
   border-radius: 0;
+  background-color: currentcolor;
   background-image: none;
-  background-color: currentColor;
-  -webkit-mask-size: var(--checkbox-icon);
   -webkit-mask-position: 50% 50%;
+  -webkit-mask-size: var(--checkbox-icon);
 }
 
 /* [>] Forwarded */
@@ -3331,9 +3117,9 @@ input[data-task=">"]:checked,
 li[data-task=">"] > input:checked,
 li[data-task=">"] > p > input:checked {
   color: var(--text-faint);
-  transform: rotate(90deg);
-  -webkit-mask-position: 50% 100%;
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z' /%3E%3C/svg%3E");
+  -webkit-mask-position: 50% 100%;
+  transform: rotate(90deg);
 }
 
 /* Embedded glyphs use SVG currentColor instead of one flavor's fixed Crust. */
@@ -3342,7 +3128,6 @@ input[data-task="<"]:checked,
 li[data-task="<"] > input:checked,
 li[data-task="<"] > p > input:checked {
   color: var(--text-faint);
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z' clip-rule='evenodd' /%3E%3C/svg%3E");
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z' clip-rule='evenodd' /%3E%3C/svg%3E");
 }
 
@@ -3351,11 +3136,11 @@ input[data-task="?"]:checked,
 li[data-task="?"] > input:checked,
 li[data-task="?"] > p > input:checked {
   --checkbox-marker-color: transparent;
-  background-color: var(--color-yellow);
   border-color: var(--color-yellow);
+  background-color: var(--color-yellow);
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"%3E%3Cpath fill="currentColor" fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215c0 1.344-.665 2.288-1.79 2.973c-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712c1.03-.632 1.397-1.135 1.397-2.028c0-.979-.758-1.698-1.926-1.698c-1.009 0-1.71.529-1.938 1.402c-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09c0-.618-.473-1.092-1.095-1.092c-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"%2F%3E%3C%2Fsvg%3E');
   background-position: 50% 50%;
   background-size: 200% 90%;
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"%3E%3Cpath fill="currentColor" fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215c0 1.344-.665 2.288-1.79 2.973c-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712c1.03-.632 1.397-1.135 1.397-2.028c0-.979-.758-1.698-1.926-1.698c-1.009 0-1.71.529-1.938 1.402c-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09c0-.618-.473-1.092-1.095-1.092c-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"%2F%3E%3C%2Fsvg%3E');
 }
 .theme-dark input[data-task="?"]:checked,
 .theme-dark li[data-task="?"] > input:checked,
@@ -3367,22 +3152,22 @@ li[data-task="?"] > p > input:checked {
 input[data-task="/"]:checked,
 li[data-task="/"] > input:checked,
 li[data-task="/"] > p > input:checked {
-  background-image: none;
-  background-color: transparent;
   position: relative;
   overflow: hidden;
+  background-color: transparent;
+  background-image: none;
 }
-input[data-task="/"]:checked:after,
-li[data-task="/"] > input:checked:after,
-li[data-task="/"] > p > input:checked:after {
+input[data-task="/"]:checked::after,
+li[data-task="/"] > input:checked::after,
+li[data-task="/"] > p > input:checked::after {
+  position: absolute;
   top: 0;
   left: 0;
-  content: " ";
   display: block;
-  position: absolute;
-  background-color: var(--background-modifier-accent);
   width: calc(50% - 0.5px);
   height: 100%;
+  background-color: var(--background-modifier-accent);
+  content: " ";
   -webkit-mask-image: none;
 }
 
@@ -3402,12 +3187,12 @@ input[data-task='"']:checked,
 li[data-task='"'] > input:checked,
 li[data-task='"'] > p > input:checked {
   --checkbox-marker-color: transparent;
-  background-position: 50% 50%;
-  background-color: var(--color-cyan);
   border-color: var(--color-cyan);
-  background-size: 75%;
-  background-repeat: no-repeat;
+  background-color: var(--color-cyan);
   background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M6.5 10c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.318.142-.686.238-1.028.466c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.945c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 6.5 10zm11 0c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.317.143-.686.238-1.028.467c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.944c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 17.5 10z"%2F%3E%3C%2Fsvg%3E');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 75%;
 }
 .theme-dark input[data-task=“]:checked,
 .theme-dark li[data-task=“] > input:checked,
@@ -3454,11 +3239,11 @@ input[data-task=i]:checked,
 li[data-task=i] > input:checked,
 li[data-task=i] > p > input:checked {
   --checkbox-marker-color: transparent;
-  background-color: var(--color-blue);
   border-color: var(--color-blue);
+  background-color: var(--color-blue);
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"%3E%3Cpath fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="40" d="M196 220h64v172"%2F%3E%3Cpath fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="40" d="M187 396h138"%2F%3E%3Cpath fill="currentColor" d="M256 160a32 32 0 1 1 32-32a32 32 0 0 1-32 32Z"%2F%3E%3C%2Fsvg%3E');
   background-position: 50%;
   background-size: 100%;
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"%3E%3Cpath fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="40" d="M196 220h64v172"%2F%3E%3Cpath fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="40" d="M187 396h138"%2F%3E%3Cpath fill="currentColor" d="M256 160a32 32 0 1 1 32-32a32 32 0 0 1-32 32Z"%2F%3E%3C%2Fsvg%3E');
 }
 .theme-dark input[data-task=i]:checked,
 .theme-dark li[data-task=i] > input:checked,
@@ -3473,8 +3258,8 @@ li[data-task=S] > p > input:checked {
   --checkbox-marker-color: transparent;
   border-color: var(--color-green);
   background-color: var(--color-green);
-  background-size: 100%;
   background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"%3E%3Cpath fill="currentColor" fill-rule="evenodd" d="M26 8a2 2 0 1 0-4 0v2a8 8 0 1 0 0 16v8a4.002 4.002 0 0 1-3.773-2.666a2 2 0 0 0-3.771 1.332A8.003 8.003 0 0 0 22 38v2a2 2 0 1 0 4 0v-2a8 8 0 1 0 0-16v-8a4.002 4.002 0 0 1 3.773 2.666a2 2 0 0 0 3.771-1.332A8.003 8.003 0 0 0 26 10V8Zm-4 6a4 4 0 0 0 0 8v-8Zm4 12v8a4 4 0 0 0 0-8Z" clip-rule="evenodd"%2F%3E%3C%2Fsvg%3E');
+  background-size: 100%;
 }
 .theme-dark input[data-task=S]:checked,
 .theme-dark li[data-task=S] > input:checked,

@@ -8,6 +8,7 @@ const paletteSource = read("scss/base/_ctp-style-settings.scss");
 const appVariableSource = read("scss/base/_app-variables.scss");
 const semanticSource = read("scss/base/_semantic-roles.scss");
 const interfaceSource = read("scss/layout/_interface.scss");
+const layoutSource = read("scss/layout/_vscode-layout.scss");
 const iconsSource = read("scss/components/_icons.scss");
 const sidebarSource = read("scss/layout/_sidebar.scss");
 const pluginSource = read("scss/vendors/_plugins.scss");
@@ -52,6 +53,10 @@ const fontColorsBlock = paletteSource.match(
   /\/\* @settings\nname: "Catppuccin: Font Colors"[\s\S]*?\*\//,
 )?.[0];
 assert(paletteSource.includes('name: "Catppuccin: Themes"'), "Theme settings section must be named Themes");
+assert(
+  /id: ctp-vscode-layout[\s\S]*?type: class-toggle[\s\S]*?default: true/.test(paletteSource),
+  "VS Code layout must be a default-on class toggle",
+);
 assert(!paletteSource.includes("Catppuccin: Catppuccin Accents"), "Duplicated Catppuccin accent label must be removed");
 assert(!paletteSource.includes("catppuccin-interface-styles"), "Empty Interface Styles section must be removed");
 assert(fontSettingsBlock?.includes("id: ctp-bold-folder-title"), "Bold folder title must live under Font Styles");
@@ -166,19 +171,22 @@ for (const role of ["color-accent", "interactive-accent", "ctp-focus-border", "c
   assert(declaration(semanticSource, role).includes("ctp-accent") || declaration(semanticSource, role).includes("color-accent"), `--${role} must derive from --ctp-accent`);
 }
 
-assert(/--ctp-tab-strip-background:\s*rgb\(var\(--ctp-crust\)\)/.test(interfaceSource), "Editor tab strip must use Crust");
-assert(declaration(appVariableSource, "header-height") === "40px", "Global view headers must retain Obsidian stock 40px geometry");
-assert(declaration(interfaceSource, "ctp-control-size") === "30px", "Root tab-bar actions must retain their 30px hit area");
-assert(/\.workspace-split\.mod-root[\s\S]*?--header-height: 32px/.test(interfaceSource), "Root editor tabs must retain their 32px geometry");
-assert(/--ctp-tab-inactive-background:\s*rgb\(var\(--ctp-mantle\)\)/.test(interfaceSource), "Inactive tabs must use Mantle");
-assert(/--ctp-tab-active-background:\s*rgb\(var\(--ctp-base\)\)/.test(interfaceSource), "Active tabs must use Base");
-assert(/--ctp-tab-inactive-foreground:\s*rgb\(var\(--ctp-overlay0\)\)/.test(interfaceSource), "Inactive tabs must use Overlay0");
+assert(/--ctp-tab-strip-background:\s*rgb\(var\(--ctp-crust\)\)/.test(semanticSource), "Editor tab strip must use Crust");
+assert(!/\n\s*--header-height:/.test(appVariableSource), "Global view header geometry must remain stock-owned");
+assert(declaration(layoutSource, "ctp-control-size") === "30px", "Root tab-bar actions must retain their 30px hit area");
+assert(/\.workspace-split\.mod-root[\s\S]*?--header-height: 32px/.test(layoutSource), "Root editor tabs must retain their 32px geometry when enabled");
+assert(/--ctp-tab-inactive-background:\s*rgb\(var\(--ctp-mantle\)\)/.test(semanticSource), "Inactive tabs must use Mantle");
+assert(/--ctp-tab-active-background:\s*rgb\(var\(--ctp-base\)\)/.test(semanticSource), "Active tabs must use Base");
+assert(/--ctp-tab-inactive-foreground:\s*rgb\(var\(--ctp-overlay0\)\)/.test(semanticSource), "Inactive tabs must use Overlay0");
 assert(/\.workspace-ribbon[\s\S]*?background-color: rgb\(var\(--ctp-crust\)\)/.test(interfaceSource), "Ribbon must use Crust");
-assert(/box-shadow: inset 2px 0 0 var\(--ctp-focus-border\)/.test(interfaceSource), "Active ribbon controls must use an accent indicator");
+assert(/box-shadow: inset 2px 0 0 var\(--ctp-focus-border\)/.test(layoutSource), "Active ribbon controls must use an accent indicator");
 assert(
-  /\.workspace-tab-header-container[\s\S]*?border-bottom-color: transparent[\s\S]*?box-shadow: none/.test(interfaceSource),
-  "Sidebar headers must preserve stock border spacing without drawing a dark seam",
+  /\.workspace-tab-header-container[\s\S]*?border-bottom-color: transparent[\s\S]*?box-shadow: none/.test(layoutSource),
+  "VS Code mode must remove the sidebar header seam",
 );
+assert(layoutSource.startsWith("/* Optional VS Code-inspired"), "Layout partial must have a clear boundary");
+assert(/body\.theme-dark\.ctp-vscode-layout,\s*body\.theme-light\.ctp-vscode-layout\s*\{/.test(layoutSource), "Layout rules must use the positive body gate");
+assert(!interfaceSource.includes("--ctp-control-size"), "Layout control sizing must not leak into stock mode");
 assert(!interfaceSource.includes(".nav-header"), "Theme must not override Obsidian stock nav-header geometry");
 assert(!interfaceSource.includes(".nav-buttons-container"), "Theme must not override Obsidian stock nav-button layout");
 assert(!interfaceSource.includes(".nav-action-button"), "Theme must not override Obsidian stock nav-action sizing");
@@ -300,23 +308,23 @@ for (const [name, source] of Object.entries({
   assert(!/--tag-/.test(source), `${name} must not override Obsidian's stock tag variables`);
 }
 assert(
-  /:is\(\.workspace-tab-header-tab-list, \.workspace-tab-header-new-tab\)[\s\S]*?block-size: var\(--ctp-control-size\)/.test(interfaceSource),
-  "Custom 30px control sizing must remain scoped to root tab-bar actions",
+  /:is\(\.workspace-tab-header-tab-list, \.workspace-tab-header-new-tab\)[\s\S]*?block-size: var\(--ctp-control-size\)/.test(layoutSource),
+  "Custom 30px control sizing must remain scoped to VS Code mode",
 );
 assert(
   /\.workspace-tab-header-container[\s\S]*?background-color: var\(--background-secondary\)/.test(interfaceSource),
   "Sidedock header controls must continue the Mantle sidebar surface",
 );
 assert(
-  /\.workspace-split\.mod-root \.workspace-tab-header-container[\s\S]*?padding-inline-start: 0/.test(interfaceSource),
+  /\.workspace-split\.mod-root \.workspace-tab-header-container[\s\S]*?padding-inline-start: 0/.test(layoutSource),
   "Root tabs must start flush with the tab strip",
 );
 assert(
-  /\.workspace-split\.mod-root \.workspace-tab-header-container-inner[\s\S]*?margin-block: 0[\s\S]*?margin-inline-start: 0[\s\S]*?padding-block-start: 0[\s\S]*?padding-inline-start: 0/.test(interfaceSource),
+  /\.workspace-split\.mod-root \.workspace-tab-header-container-inner[\s\S]*?margin-block: 0[\s\S]*?margin-inline-start: 0[\s\S]*?padding-block-start: 0[\s\S]*?padding-inline-start: 0/.test(layoutSource),
   "Root tab inner container must not reintroduce a leading or upper inset",
 );
 assert(
-  /\.workspace-split\.mod-root \.workspace-tab-header[\s\S]*?&::before,[\s\S]*?&::after[\s\S]*?display: none/.test(interfaceSource),
+  /\.workspace-split\.mod-root \.workspace-tab-header[\s\S]*?&::before,[\s\S]*?&::after[\s\S]*?display: none/.test(layoutSource),
   "Root tabs must disable Obsidian's curved bottom-corner pseudo-elements",
 );
 assert(

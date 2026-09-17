@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../theme.css" />
     <link rel="stylesheet" href="interface-fixture.css" />
   </head>
-  <body class="theme-dark css-settings-manager ctp-mocha ctp-accent-mauve">
+  <body class="theme-dark css-settings-manager ctp-mocha ctp-accent-mauve ctp-vscode-layout">
     <script>
       const scenarios = {
         latte: ["theme-light", "ctp-latte", "ctp-accent-mauve"],
@@ -20,6 +20,7 @@
       document.body.className = [
         "css-settings-manager",
         "is-popout-modal",
+        "ctp-vscode-layout",
         ...(scenarios[scenario] || scenarios.mocha),
       ].join(" ");
       document.addEventListener("DOMContentLoaded", () => {

@@ -1,7 +1,8 @@
 # Catppuccin Code
 
 This fork keeps Catppuccin's palette intact while defining flavor-relative
-Obsidian interface interaction states as a coherent theme baseline.
+Obsidian interface interaction states. Colour roles are always active; the
+optional VS Code layout is independently controlled by Style Settings.
 
 ## Baseline
 
@@ -18,18 +19,30 @@ Obsidian interface interaction states as a coherent theme baseline.
 | --- | --- | --- |
 | Palette data and Style Settings | `scss/base/_ctp-style-settings.scss` | Canonical Catppuccin names and RGB values only |
 | Shared color roles | `scss/base/_semantic-roles.scss` | Single owner for Obsidian aliases, surfaces, text, accents, search, controls, and selection |
-| App defaults | `scss/base/_app-variables.scss` | Geometry and component variables that consume semantic roles |
+| Native-compatible app roles | `scss/base/_app-variables.scss` | Intentional colour and document/font roles; stock geometry remains Obsidian-owned |
 | Clickable and close icons | `scss/components/_icons.scss` | `scss/layout/_interface.scss` |
 | Tree rows and navigation states | `scss/layout/_sidebar.scss` | `scss/layout/_interface.scss` |
 | Backlinks context matches | `scss/components/_search.scss` | `scss/layout/_interface.scss` |
 | Sidebar and editor tabs | `scss/layout/_tabs.scss` | `scss/layout/_interface.scss` |
+| Optional VS Code geometry | Obsidian layout DOM | `scss/layout/_vscode-layout.scss` |
 | Metadata Menu, Agent Client, and Base Board | External plugin DOM | `scss/vendors/_plugin-compatibility.scss` compatibility boundary |
 
 `scss/layout/_interface.scss` is intentionally loaded after the document-palette
-partial. Its component-local selectors use the normal cascade and contain no
-`!important` declarations. Generated CSS is never the edit target. Theme code
-inherits Obsidian's font settings; no font files, `@font-face` rules, or global
-font stacks are shipped.
+partial, followed immediately by `_vscode-layout.scss` and then the vendor
+boundary. The interface partial owns shared colour adapters; compact tabs,
+flat corners, activity indicators, and close-slot overrides are inside the
+positive `body.theme-*.ctp-vscode-layout` gate. Generated CSS is never the edit
+target. Theme code inherits Obsidian's font settings; no font files, `@font-face`
+rules, or global font stacks are shipped.
+
+## Layout mode
+
+The `ctp-vscode-layout` Style Settings class-toggle defaults on so existing users
+retain the compact VS Code-inspired tabs and indicators. Turning it off removes
+the class and restores Obsidian's native interface geometry while keeping the
+selected Catppuccin flavour, accent, document palette, and font settings active.
+If Style Settings is unavailable, the class is absent and native layout is the
+intentional fallback. Do not add a negative gate or JavaScript fallback.
 
 ## Flavor-relative interface roles
 
@@ -81,12 +94,9 @@ reviewed build. Every `variable-select` default is also present in its options
 list, so Style Settings can render and restore the default rather than showing a
 blank selector.
 
-Pane and tab seams match the standard panel surface: `--divider-color`,
-`--tab-divider-color`, and `--tab-outline-color` resolve to
-`var(--background-secondary)`, so the divider geometry remains available without
-introducing a contrasting rule.
-The ribbon edge uses `var(--background-secondary)` to blend into the standard
-panel surface. Vertical split handles retain Obsidian’s transparent native paint
+Pane and tab seams use the shared Catppuccin surface roles, so divider geometry
+remains available without introducing a contrasting rule.
+The ribbon edge uses the shared Crust/Mantle surface contract. Vertical split handles retain Obsidian’s transparent native paint
 so they do not cover adjacent scrollbars; resize hover remains accented.
 When Obsidian’s translucent window mode is active, divider and tab-outline
 variables (including the ribbon edge) switch to transparent so they do not draw
@@ -96,14 +106,14 @@ so the Settings pane does not inherit the darker global divider stroke.
 Detached Settings windows also paint their titlebar with
 `var(--background-primary)`, matching the Settings Base surface in focused,
 unfocused, opaque, and translucent states.
-The scoped rule removes the titlebar bottom border and shadow so opaque mode
-cannot reintroduce a horizontal seam.
+In VS Code layout mode, a scoped rule removes the titlebar bottom border and
+shadow so opaque mode cannot reintroduce a horizontal seam. Native mode leaves
+that geometry to Obsidian.
 
 Every interface role resolves to a token in the active Catppuccin palette.
-Style Settings selects the flavor and accent classes; Mauve is the default when
-no accent class is present. It does not disable the interface contract. Keep
-component-state choices in semantic role variables and do not introduce
-flavor-specific color literals.
+Style Settings selects the flavor, accent, and optional layout classes; Mauve is
+the default when no accent class is present. Keep component-state choices in
+semantic role variables and do not introduce flavor-specific color literals.
 
 Interface chrome uses one panel surface in both focus states: the focused
 titlebar now shares `var(--background-secondary)` with the tabs, ribbon, and
@@ -112,9 +122,10 @@ divider strokes to transparent so the surface contract does not branch by focus.
 Ordinary clickable controls, status-bar actions, every sidebar-tab hover, and
 inactive editor tabs consume one `--ctp-hover-background` role. It matches
 Catppuccin VS Code's Base-lightened-by-5% tab hover and is painted on normalized
-30px inner hit targets where Obsidian uses top-bar wrappers. Active sidebar tabs
-remain transparent at rest, with the selected accent identifying the active
-icon. Close and destructive states retain their separate semantic treatments.
+30px inner hit targets where Obsidian uses top-bar wrappers while VS Code layout
+is enabled. Active sidebar tabs remain transparent at rest, with the selected
+accent identifying the active icon. Close and destructive states retain their
+separate semantic treatments.
 Root editor tabs use Crust for the empty strip, Mantle for inactive tabs, Base
 for the active tab, and Base lightened by 5% for inactive hover. These roles do not
 change when translucency is toggled. Inactive close buttons remain in layout
@@ -143,7 +154,7 @@ pnpm run test:visual:check
 The contract test validates all 104 canonical palette values, 56 flavor/accent
 combinations, core surface and typography roles, readable selection contrast,
 and the absence of bundled fonts.
-The visual command renders the same fixture under Latte, Frappé, Macchiato,
+The visual command renders the same VS Code-layout fixture under Latte, Frappé, Macchiato,
 Mocha, and Mocha with the alternate Blue accent. It writes one deterministic
 baseline per scenario under `tests/visual/interface-states-*.png`.
 
@@ -152,9 +163,9 @@ baseline per scenario under `tests/visual/interface-states-*.png`.
 1. Build `theme.css` and copy it with `manifest.json` and `screenshot.png` into
    `.obsidian/themes/Catppuccin Code/`.
 2. Select **Catppuccin Code** and force reload Obsidian from the View menu.
-3. Disable `file-browser-neutral-states` and `ui-button-states`.
-4. Run the live state matrix in both sidebars and the root editor tabs.
+3. Run the live state matrix in both sidebars and the root editor tabs with
+   **VS Code layout** on and off.
 
-Rollback is non-destructive: select the upstream **Catppuccin** theme and
-re-enable both compatibility snippets. Do not use Cmd+R; in this vault it invokes
-the random-note command rather than an application reload.
+Rollback is non-destructive: select the upstream **Catppuccin** theme. Do not use
+Cmd+R; in this vault it invokes the random-note command rather than an
+application reload.
