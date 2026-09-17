@@ -1,2 +1,4 @@
 allowBuilds:
   "@parcel/watcher": true
+overrides:
+  "stylelint-config-idiomatic-order>stylelint-order": 8.1.1
