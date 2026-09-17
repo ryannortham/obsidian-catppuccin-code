@@ -10,6 +10,7 @@ const semanticSource = read("scss/base/_semantic-roles.scss");
 const interfaceSource = read("scss/layout/_interface.scss");
 const iconsSource = read("scss/components/_icons.scss");
 const pluginSource = read("scss/vendors/_plugins.scss");
+const pluginCompatibilitySource = read("scss/vendors/_plugin-compatibility.scss");
 const searchSource = read("scss/components/_search.scss");
 const linksSource = read("scss/components/_links.scss");
 const inputsSource = read("scss/components/_inputs.scss");
@@ -163,6 +164,14 @@ for (const unused of ["better-command-palette", "git-commit-msg", "another-quick
   assert(!pluginSource.includes(unused), "Unused plugin adapter remains: " + unused);
 }
 assert(pluginSource.includes(".dataview.inline-field"), "Enabled Dataview compatibility must remain");
+assert(
+  /\.tree-item-self[\s\S]*?> :is\(\.metadata-menu\.fileclass-icon, \.fileClass-add-button\)[\s\S]*?align-self: center/.test(pluginCompatibilitySource),
+  "Metadata Menu file-tree icons must opt out of Obsidian baseline alignment",
+);
+assert(
+  /\.workspace-tab-header \.metadata-menu\.fileclass-icon \{[\s\S]*?--icon-size: var\(--icon-s\)[\s\S]*?align-self: center[\s\S]*?transform: translateY\(1px\)/.test(pluginCompatibilitySource),
+  "Metadata Menu tab icons must match native icon sizing and optical alignment",
+);
 assert(
   /:is\(\.workspace-tab-header-tab-list, \.workspace-tab-header-new-tab\)[\s\S]*?block-size: var\(--ctp-control-size\)/.test(interfaceSource),
   "Custom 30px control sizing must remain scoped to root tab-bar actions",

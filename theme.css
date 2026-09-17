@@ -3166,6 +3166,7 @@ body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-s
  * Catppuccin Code compatibility boundary.
  * These selectors are plugin DOM contracts, not Obsidian core theme APIs.
  */
+/* stylelint-disable selector-class-pattern -- third-party plugins own these class names. */
 body.theme-dark .agent-client-session-manager .tree-item-self,
 body.theme-light .agent-client-session-manager .tree-item-self {
   border-radius: 0;
@@ -3188,13 +3189,23 @@ body.theme-light .agent-client-session-manager .tree-item-self:is(.is-active, .i
     color: var(--text-normal);
   }
 }
+body.theme-dark .tree-item-self > :is(.metadata-menu.fileclass-icon, .fileClass-add-button),
+body.theme-light .tree-item-self > :is(.metadata-menu.fileclass-icon, .fileClass-add-button) {
+  align-self: center;
+}
 body.theme-dark .workspace-tab-header .metadata-menu.fileclass-icon,
+body.theme-light .workspace-tab-header .metadata-menu.fileclass-icon {
+  --icon-size: var(--icon-s);
+  align-self: center;
+  color: rgb(var(--ctp-blue));
+  transform: translateY(1px);
+}
 body.theme-dark .workspace-tab-header .metadata-menu.fileclass-icon svg,
-body.theme-light .workspace-tab-header .metadata-menu.fileclass-icon,
 body.theme-light .workspace-tab-header .metadata-menu.fileclass-icon svg {
   color: rgb(var(--ctp-blue));
 }
 
+/* stylelint-enable selector-class-pattern */
 /**
 * 1. Checklist icons implemented for #91. This scss is from Kepano's Minimal Theme under its MIT License. Thanks Kepano!
 */

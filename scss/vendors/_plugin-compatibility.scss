@@ -2,6 +2,7 @@
  * Catppuccin Code compatibility boundary.
  * These selectors are plugin DOM contracts, not Obsidian core theme APIs.
  */
+/* stylelint-disable selector-class-pattern -- third-party plugins own these class names. */
 body.theme-dark,
 body.theme-light {
   .agent-client-session-manager .tree-item-self {
@@ -30,8 +31,26 @@ body.theme-light {
     }
   }
 
-  .workspace-tab-header .metadata-menu.fileclass-icon,
+  // Obsidian baseline-aligns tree-row children. Metadata Menu inserts its
+  // flex-wrapped SVGs directly into those rows, so center the wrappers.
+  .tree-item-self
+    > :is(.metadata-menu.fileclass-icon, .fileClass-add-button) {
+    align-self: center;
+  }
+
+  // Match native tab icon sizing and compensate for the file-class glyph's
+  // optical centre. The plugin's vertical-align targets a flex item, so it
+  // does not affect layout.
+  .workspace-tab-header .metadata-menu.fileclass-icon {
+    --icon-size: var(--icon-s);
+
+    align-self: center;
+    color: rgb(var(--ctp-blue));
+    transform: translateY(1px);
+  }
+
   .workspace-tab-header .metadata-menu.fileclass-icon svg {
     color: rgb(var(--ctp-blue));
   }
 }
+/* stylelint-enable selector-class-pattern */
