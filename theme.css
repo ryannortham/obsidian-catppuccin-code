@@ -2464,6 +2464,10 @@ body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header-container,
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header-container {
   background-color: var(--background-secondary);
 }
+body.theme-dark:not(.ctp-vscode-layout) .workspace-split.mod-sidedock .workspace-tab-header-container,
+body.theme-light:not(.ctp-vscode-layout) .workspace-split.mod-sidedock .workspace-tab-header-container {
+  background-color: var(--background-secondary-alt);
+}
 body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active), body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active) .workspace-tab-header-inner,
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active),
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header:not(.is-active) .workspace-tab-header-inner {

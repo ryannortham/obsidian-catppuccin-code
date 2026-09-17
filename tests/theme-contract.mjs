@@ -316,6 +316,10 @@ assert(
   "Sidedock header controls must continue the Mantle sidebar surface",
 );
 assert(
+  /&:not\(\.ctp-vscode-layout\)[\s\S]*?\.workspace-split\.mod-sidedock \.workspace-tab-header-container[\s\S]*?background-color: var\(--background-secondary-alt\)/.test(interfaceSource),
+  "Non-VS Code sidedock header controls must use the darker Crust surface",
+);
+assert(
   /\.workspace-split\.mod-root \.workspace-tab-header-container[\s\S]*?padding-inline-start: 0/.test(layoutSource),
   "Root tabs must start flush with the tab strip",
 );

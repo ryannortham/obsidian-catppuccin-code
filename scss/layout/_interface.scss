@@ -187,6 +187,12 @@ body.theme-light {
     background-color: var(--background-secondary);
   }
 
+  &:not(.ctp-vscode-layout) {
+    .workspace-split.mod-sidedock .workspace-tab-header-container {
+      background-color: var(--background-secondary-alt);
+    }
+  }
+
   .workspace-split.mod-sidedock .workspace-tab-header {
     &:not(.is-active),
     &:not(.is-active) .workspace-tab-header-inner {
