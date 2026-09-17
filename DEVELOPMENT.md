@@ -23,7 +23,7 @@ Obsidian interface interaction states as a coherent theme baseline.
 | Tree rows and navigation states | `scss/layout/_sidebar.scss` | `scss/layout/_interface.scss` |
 | Backlinks context matches | `scss/components/_search.scss` | `scss/layout/_interface.scss` |
 | Sidebar and editor tabs | `scss/layout/_tabs.scss` | `scss/layout/_interface.scss` |
-| Metadata Menu and Agent Client | External plugin DOM | `scss/vendors/_plugin-compatibility.scss` compatibility boundary |
+| Metadata Menu, Agent Client, and Base Board | External plugin DOM | `scss/vendors/_plugin-compatibility.scss` compatibility boundary |
 
 `scss/layout/_interface.scss` is intentionally loaded after the document-palette
 partial. Its component-local selectors use the normal cascade and contain no
@@ -123,11 +123,11 @@ the close control.
 
 ## Compatibility boundary
 
-Metadata Menu file-class icons and Agent Client session rows are supported as
-isolated plugin contracts in `scss/vendors/_plugin-compatibility.scss`. Their
-selectors must not move into the core interface partial. If either plugin
-changes its DOM, core Obsidian controls must continue to work without those
-selectors.
+Metadata Menu file-class icons, Agent Client session rows, and Base Board tags
+are supported as isolated plugin contracts in
+`scss/vendors/_plugin-compatibility.scss`. Their selectors must not move into
+the core interface partial. If any plugin changes its DOM, core Obsidian
+controls must continue to work without those selectors.
 
 ## Build and validation
 

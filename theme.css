@@ -3032,6 +3032,134 @@ body.theme-light .workspace .workspace-split.mod-root .workspace-tabs:not(.mod-s
  * These selectors are plugin DOM contracts, not Obsidian core theme APIs.
  */
 /* stylelint-disable selector-class-pattern -- third-party plugins own these class names. */
+body.theme-dark :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip),
+body.theme-light :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip) {
+  --tag-color-hover: var(--tag-color);
+  --tag-background: color-mix(
+    in oklch,
+    var(--tag-color) 10%,
+    transparent
+  );
+  --tag-background-hover: color-mix(
+    in oklch,
+    var(--tag-color) 20%,
+    transparent
+  );
+  --tag-border-color: color-mix(
+    in oklch,
+    var(--tag-color) 15%,
+    transparent
+  );
+  --tag-border-color-hover: var(--tag-border-color);
+  padding: var(--tag-padding-y) var(--tag-padding-x);
+  border: var(--tag-border-width) solid var(--tag-border-color);
+  border-radius: var(--tag-radius);
+  background-color: var(--tag-background);
+  color: var(--tag-color);
+  font-size: var(--font-ui-smaller);
+  line-height: 1;
+  text-shadow: none;
+}
+body.theme-dark .base-board-card-tag,
+body.theme-dark .base-board-tag-chip-text,
+body.theme-light .base-board-card-tag,
+body.theme-light .base-board-tag-chip-text {
+  font-weight: inherit;
+}
+body.theme-dark :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #f87168" i],
+body.theme-light :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #f87168" i] {
+  --tag-color: rgb(var(--ctp-flamingo)) !important;
+}
+body.theme-dark :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #fbbc04" i],
+body.theme-light :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #fbbc04" i] {
+  --tag-color: rgb(var(--ctp-rosewater)) !important;
+}
+body.theme-dark :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #fcc934" i],
+body.theme-light :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #fcc934" i] {
+  --tag-color: rgb(var(--ctp-yellow)) !important;
+}
+body.theme-dark :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #34a853" i],
+body.theme-light :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #34a853" i] {
+  --tag-color: rgb(var(--ctp-green)) !important;
+}
+body.theme-dark :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #4285f4" i],
+body.theme-light :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #4285f4" i] {
+  --tag-color: rgb(var(--ctp-blue)) !important;
+}
+body.theme-dark :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #a142f4" i],
+body.theme-light :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #a142f4" i] {
+  --tag-color: rgb(var(--ctp-mauve)) !important;
+}
+body.theme-dark :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #f442a1" i],
+body.theme-light :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #f442a1" i] {
+  --tag-color: rgb(var(--ctp-pink)) !important;
+}
+body.theme-dark :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #20c997" i],
+body.theme-light :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #20c997" i] {
+  --tag-color: rgb(var(--ctp-teal)) !important;
+}
+body.theme-dark :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #fd7e14" i],
+body.theme-light :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #fd7e14" i] {
+  --tag-color: rgb(var(--ctp-flamingo)) !important;
+}
+body.theme-dark :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #6f42c1" i],
+body.theme-light :is(.base-board-filter-pill,
+.base-board-card-tag,
+.base-board-tag-chip)[style*="--tag-color: #6f42c1" i] {
+  --tag-color: rgb(var(--ctp-lavender)) !important;
+}
+@media (hover: hover) {
+  body.theme-dark :is(.base-board-filter-pill, .base-board-tag-chip):hover,
+  body.theme-light :is(.base-board-filter-pill, .base-board-tag-chip):hover {
+    border-color: var(--tag-border-color-hover);
+    background-color: var(--tag-background-hover);
+    color: var(--tag-color-hover);
+    opacity: 100%;
+    transform: none;
+  }
+}
 body.theme-dark .agent-client-session-manager .tree-item-self,
 body.theme-light .agent-client-session-manager .tree-item-self {
   border-radius: 0;

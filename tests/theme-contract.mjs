@@ -178,6 +178,32 @@ assert(pluginCompatibilitySource.includes("color: var(--nav-tag-color-hover)"), 
 assert(pluginCompatibilitySource.includes("color: var(--nav-tag-color-active)"), "Metadata Menu tree icons must follow native badge active color");
 assert(!pluginCompatibilitySource.includes("rgb(var(--ctp-blue))"), "Metadata Menu icons must not hard-code Catppuccin Blue");
 assert(!pluginCompatibilitySource.includes(".metadata-menu .chip"), "Metadata Menu must retain ownership of its stock chips");
+for (const [source, target] of Object.entries({
+  f87168: "flamingo",
+  fbbc04: "rosewater",
+  fcc934: "yellow",
+  "34a853": "green",
+  "4285f4": "blue",
+  a142f4: "mauve",
+  f442a1: "pink",
+  "20c997": "teal",
+  fd7e14: "flamingo",
+  "6f42c1": "lavender",
+})) {
+  assert(
+    pluginCompatibilitySource.includes(`"#${source}": ${target}`),
+    `Base Board default #${source} must map to Catppuccin ${target}`,
+  );
+}
+assert(
+  /\.base-board-filter-pill,[\s\S]*?\.base-board-card-tag,[\s\S]*?\.base-board-tag-chip[\s\S]*?--tag-background: color-mix\([\s\S]*?var\(--tag-color\) 10%[\s\S]*?padding: var\(--tag-padding-y\) var\(--tag-padding-x\)[\s\S]*?border-radius: var\(--tag-radius\)[\s\S]*?color: var\(--tag-color\)[\s\S]*?text-shadow: none/.test(pluginCompatibilitySource),
+  "Base Board tags must use stock Obsidian tag geometry and translucent colour treatment",
+);
+assert(
+  /\[style\*="--tag-color: #\{\$source\}" i\][\s\S]*?--tag-color: rgb\(var\(--ctp-#\{\$target\}\)\) !important/.test(pluginCompatibilitySource),
+  "Base Board generated inline colours must be remapped without replacing arbitrary picker colours",
+);
+assert(!pluginCompatibilitySource.includes("--tag-color: inherit"), "Base Board custom picker colours must not be reset to the global tag colour");
 assert(!sidebarSource.includes(".nav-file-tag"), "Obsidian must retain ownership of stock file extension badges");
 for (const [name, source] of Object.entries({
   "app variables": appVariableSource,

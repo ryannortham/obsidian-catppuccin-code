@@ -3,8 +3,84 @@
  * These selectors are plugin DOM contracts, not Obsidian core theme APIs.
  */
 /* stylelint-disable selector-class-pattern -- third-party plugins own these class names. */
+$base-board-tag-colors: (
+  "#f87168": flamingo,
+  "#fbbc04": rosewater,
+  "#fcc934": yellow,
+  "#34a853": green,
+  "#4285f4": blue,
+  "#a142f4": mauve,
+  "#f442a1": pink,
+  "#20c997": teal,
+  "#fd7e14": flamingo,
+  "#6f42c1": lavender,
+);
+
 body.theme-dark,
 body.theme-light {
+  // Base Board uses --tag-color as a solid background. Reinterpret it as the
+  // foreground for Obsidian's stock translucent tag treatment while retaining
+  // the plugin's per-tag colour picker.
+  :is(
+    .base-board-filter-pill,
+    .base-board-card-tag,
+    .base-board-tag-chip
+  ) {
+    --tag-color-hover: var(--tag-color);
+    --tag-background: color-mix(
+      in oklch,
+      var(--tag-color) 10%,
+      transparent
+    );
+    --tag-background-hover: color-mix(
+      in oklch,
+      var(--tag-color) 20%,
+      transparent
+    );
+    --tag-border-color: color-mix(
+      in oklch,
+      var(--tag-color) 15%,
+      transparent
+    );
+    --tag-border-color-hover: var(--tag-border-color);
+
+    padding: var(--tag-padding-y) var(--tag-padding-x);
+    border: var(--tag-border-width) solid var(--tag-border-color);
+    border-radius: var(--tag-radius);
+    background-color: var(--tag-background);
+    color: var(--tag-color);
+    font-size: var(--font-ui-smaller);
+    line-height: 1;
+    text-shadow: none;
+  }
+
+  .base-board-card-tag,
+  .base-board-tag-chip-text {
+    font-weight: inherit;
+  }
+
+  // Base Board writes generated and chosen colours inline. Override only its
+  // ten generated defaults; arbitrary colours chosen in the UI pass through.
+  @each $source, $target in $base-board-tag-colors {
+    :is(
+      .base-board-filter-pill,
+      .base-board-card-tag,
+      .base-board-tag-chip
+    )[style*="--tag-color: #{$source}" i] {
+      --tag-color: rgb(var(--ctp-#{$target})) !important;
+    }
+  }
+
+  @media (hover: hover) {
+    :is(.base-board-filter-pill, .base-board-tag-chip):hover {
+      border-color: var(--tag-border-color-hover);
+      background-color: var(--tag-background-hover);
+      color: var(--tag-color-hover);
+      opacity: 100%;
+      transform: none;
+    }
+  }
+
   .agent-client-session-manager .tree-item-self {
     border-radius: 0;
 
