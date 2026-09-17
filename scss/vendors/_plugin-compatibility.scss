@@ -103,6 +103,13 @@ body.theme-light {
     order: 3;
   }
 
+  // Replace the plugin's bottom-only divider with the same flat, rounded
+  // boundary used by Obsidian code blocks. Keep the plugin's background fill.
+  .base-board-filter-bar {
+    border: var(--code-border-width) solid var(--code-border-color);
+    border-radius: var(--code-radius);
+  }
+
   // Base Board uses --tag-color as a solid background. Reinterpret it as the
   // foreground for Obsidian's stock translucent tag treatment while retaining
   // the plugin's per-tag colour picker.

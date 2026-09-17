@@ -228,6 +228,10 @@ assert(
   /\.base-board-card[\s\S]*?display: flex[\s\S]*?flex-direction: column[\s\S]*?\.base-board-card-title[\s\S]*?order: 1[\s\S]*?\.base-board-tag-container[\s\S]*?order: 2[\s\S]*?&:empty[\s\S]*?display: none[\s\S]*?\.base-board-card-props[\s\S]*?order: 3/.test(pluginCompatibilitySource),
   "Base Board cards must present titles before non-empty tags and properties",
 );
+assert(
+  /\.base-board-filter-bar[\s\S]*?border: var\(--code-border-width\) solid var\(--code-border-color\)[\s\S]*?border-radius: var\(--code-radius\)/.test(pluginCompatibilitySource),
+  "Base Board filter bars must use the code-block border and radius treatment",
+);
 assert(!sidebarSource.includes(".nav-file-tag"), "Obsidian must retain ownership of stock file extension badges");
 for (const [name, source] of Object.entries({
   "app variables": appVariableSource,

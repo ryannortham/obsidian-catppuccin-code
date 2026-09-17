@@ -3105,6 +3105,11 @@ body.theme-dark .base-board-card-props,
 body.theme-light .base-board-card-props {
   order: 3;
 }
+body.theme-dark .base-board-filter-bar,
+body.theme-light .base-board-filter-bar {
+  border: var(--code-border-width) solid var(--code-border-color);
+  border-radius: var(--code-radius);
+}
 body.theme-dark :is(.base-board-filter-pill,
 .base-board-card-tag,
 .base-board-tag-chip),
