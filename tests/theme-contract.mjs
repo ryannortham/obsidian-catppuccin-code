@@ -328,6 +328,10 @@ assert(
   "Root tab inner container must not reintroduce a leading or upper inset",
 );
 assert(
+  /\.workspace-split\.mod-root \{[\s\S]*?\.workspace-tab-header \{[\s\S]*?padding-block: 0;[\s\S]*?:is\(\.workspace-tab-header-new-tab, \.workspace-tab-header-tab-list\) \{[\s\S]*?align-self: stretch;[\s\S]*?padding-block: 0;/.test(layoutSource),
+  "Root tab labels and controls must share the tab strip's relative vertical alignment",
+);
+assert(
   /\.workspace-split\.mod-root \.workspace-tab-header[\s\S]*?&::before,[\s\S]*?&::after[\s\S]*?display: none/.test(layoutSource),
   "Root tabs must disable Obsidian's curved bottom-corner pseudo-elements",
 );

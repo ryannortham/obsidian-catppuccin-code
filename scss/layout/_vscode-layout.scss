@@ -55,6 +55,17 @@ body.theme-light.ctp-vscode-layout {
     padding-inline-start: 0;
   }
 
+  .workspace-split.mod-root {
+    .workspace-tab-header {
+      padding-block: 0;
+    }
+
+    :is(.workspace-tab-header-new-tab, .workspace-tab-header-tab-list) {
+      align-self: stretch;
+      padding-block: 0;
+    }
+  }
+
   .workspace-split.mod-root .workspace-tab-header {
     &,
     .workspace-tab-header-inner {
