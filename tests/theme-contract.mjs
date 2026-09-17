@@ -36,6 +36,14 @@ function rgbToHex(value) {
   return `#${channels.map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
 }
 
+const fontSettingsBlock = paletteSource.match(
+  /\/\* @settings\nname: "Catppuccin: Font Styles"[\s\S]*?\*\//,
+)?.[0];
+assert(paletteSource.includes('name: "Catppuccin: Accents"'), "Accent settings section must use the concise name");
+assert(!paletteSource.includes("Catppuccin: Catppuccin Accents"), "Duplicated Catppuccin accent label must be removed");
+assert(!paletteSource.includes("catppuccin-interface-styles"), "Empty Interface Styles section must be removed");
+assert(fontSettingsBlock?.includes("id: ctp-bold-folder-title"), "Bold folder title must live under Font Styles");
+
 const canonical = {
   latte: "dc8a78 dd7878 ea76cb 8839ef d20f39 e64553 fe640b df8e1d 40a02b 179299 04a5e5 209fb5 1e66f5 7287fd 4c4f69 5c5f77 6c6f85 7c7f93 8c8fa1 9ca0b0 acb0be bcc0cc ccd0da eff1f5 e6e9ef dce0e8",
   frappe: "f2d5cf eebebe f4b8e4 ca9ee6 e78284 ea999c ef9f76 e5c890 a6d189 81c8be 99d1db 85c1dc 8caaee babbf1 c6d0f5 b5bfe2 a5adce 949cbb 838ba7 737994 626880 51576d 414559 303446 292c3c 232634",

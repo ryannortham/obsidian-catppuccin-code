@@ -515,7 +515,7 @@ body {
 }
 
 /* @settings
-name: "Catppuccin: Catppuccin Accents"
+name: "Catppuccin: Accents"
 id: catppuccin-theme-settings
 settings:
   -
@@ -600,19 +600,14 @@ settings:
     type: class-toggle
 */
 /* @settings
-name: "Catppuccin: Interface Styles"
-id: catppuccin-interface-styles
+name: "Catppuccin: Font Styles"
+id: catppuccin-font-styles
 settings:
   -
     id: ctp-bold-folder-title
     title: Bold folder title
     description: Show folder title in bold
     type: class-toggle
-*/
-/* @settings
-name: "Catppuccin: Font Styles"
-id: catppuccin-font-styles
-settings:
   -
     id: ctp-bold
     title: Bold font color
