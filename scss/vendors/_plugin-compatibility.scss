@@ -127,6 +127,52 @@ body.theme-light {
     padding-block-start: 0;
   }
 
+  // Treat column disclosure as the same navigational control used by the file
+  // tree while retaining the plugin's larger click target.
+  .base-board-column-collapse-btn {
+    color: var(--ctp-icon-foreground);
+
+    &:hover {
+      color: var(--ctp-icon-foreground);
+    }
+
+    &::before {
+      width: 10px;
+      height: 10px;
+      flex: 0 0 auto;
+      background-color: currentcolor;
+      content: "";
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8L12 17L21 8'/%3E%3C/svg%3E") center / contain no-repeat;
+      transition: transform 100ms ease-in-out;
+    }
+
+    > :is(.lucide-chevron-down, .lucide-chevron-right) {
+      display: none;
+    }
+  }
+
+  .base-board-column--collapsed .base-board-column-collapse-btn::before {
+    transform: rotate(-90deg);
+  }
+
+  // Base Board hard-codes Lucide's funnel. Hide that SVG and reproduce the
+  // native Bases list-filter glyph as a currentColor mask. This intentionally
+  // depends on the plugin's icon class and DOM structure.
+  .base-board-filter-title {
+    &::before {
+      width: var(--icon-size);
+      height: var(--icon-size);
+      flex: 0 0 auto;
+      background-color: currentcolor;
+      content: "";
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 5h20'/%3E%3Cpath d='M6 12h12'/%3E%3Cpath d='M9 19h6'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+
+    > .lucide-filter {
+      display: none;
+    }
+  }
+
   // Base Board uses --tag-color as a solid background. Reinterpret it as the
   // foreground for Obsidian's stock translucent tag treatment while retaining
   // the plugin's per-tag colour picker.

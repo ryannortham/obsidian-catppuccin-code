@@ -240,6 +240,14 @@ assert(
   /\.base-board-cards[\s\S]*?padding-block-start: 0/.test(pluginCompatibilitySource),
   "Base Board first card must sit directly beneath its flat column header",
 );
+assert(
+  /\.base-board-column-collapse-btn[\s\S]*?color: var\(--ctp-icon-foreground\)[\s\S]*?&::before[\s\S]*?width: 10px[\s\S]*?height: 10px[\s\S]*?mask: url\("data:image\/svg\+xml,[\s\S]*?M3 8L12 17L21 8[\s\S]*?\.lucide-chevron-down, \.lucide-chevron-right[\s\S]*?display: none[\s\S]*?\.base-board-column--collapsed[\s\S]*?rotate\(-90deg\)/.test(pluginCompatibilitySource),
+  "Base Board column disclosure controls must use and rotate the native file-tree glyph",
+);
+assert(
+  /\.base-board-filter-title[\s\S]*?&::before[\s\S]*?mask: url\("data:image\/svg\+xml,[\s\S]*?M2 5h20[\s\S]*?> \.lucide-filter[\s\S]*?display: none/.test(pluginCompatibilitySource),
+  "Base Board filter title must replace the plugin funnel with the native Bases list-filter glyph",
+);
 assert(!sidebarSource.includes(".nav-file-tag"), "Obsidian must retain ownership of stock file extension badges");
 for (const [name, source] of Object.entries({
   "app variables": appVariableSource,

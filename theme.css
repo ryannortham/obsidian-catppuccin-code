@@ -3122,6 +3122,45 @@ body.theme-dark .base-board-cards,
 body.theme-light .base-board-cards {
   padding-block-start: 0;
 }
+body.theme-dark .base-board-column-collapse-btn,
+body.theme-light .base-board-column-collapse-btn {
+  color: var(--ctp-icon-foreground);
+}
+body.theme-dark .base-board-column-collapse-btn:hover,
+body.theme-light .base-board-column-collapse-btn:hover {
+  color: var(--ctp-icon-foreground);
+}
+body.theme-dark .base-board-column-collapse-btn::before,
+body.theme-light .base-board-column-collapse-btn::before {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  background-color: currentcolor;
+  content: "";
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8L12 17L21 8'/%3E%3C/svg%3E") center/contain no-repeat;
+  transition: transform 100ms ease-in-out;
+}
+body.theme-dark .base-board-column-collapse-btn > :is(.lucide-chevron-down, .lucide-chevron-right),
+body.theme-light .base-board-column-collapse-btn > :is(.lucide-chevron-down, .lucide-chevron-right) {
+  display: none;
+}
+body.theme-dark .base-board-column--collapsed .base-board-column-collapse-btn::before,
+body.theme-light .base-board-column--collapsed .base-board-column-collapse-btn::before {
+  transform: rotate(-90deg);
+}
+body.theme-dark .base-board-filter-title::before,
+body.theme-light .base-board-filter-title::before {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  flex: 0 0 auto;
+  background-color: currentcolor;
+  content: "";
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 5h20'/%3E%3Cpath d='M6 12h12'/%3E%3Cpath d='M9 19h6'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+body.theme-dark .base-board-filter-title > .lucide-filter,
+body.theme-light .base-board-filter-title > .lucide-filter {
+  display: none;
+}
 body.theme-dark :is(.base-board-filter-pill,
 .base-board-card-tag,
 .base-board-tag-chip),
