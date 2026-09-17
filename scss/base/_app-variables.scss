@@ -511,21 +511,6 @@ body {
   --table-row-alt-background: var(--table-background);
   --table-row-last-border-width: var(--table-border-width);
 
-  /* Tags */
-  --tag-size: max(var(--font-ui-medium), var(--font-small));
-  --tag-color: rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
-  --tag-color-hover: rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
-  --tag-decoration: none;
-  --tag-decoration-hover: underline;
-  --tag-background: transparent;
-  --tag-background-hover: transparent;
-  --tag-border-color: rgb(var(--ctp-accent), 10%);
-  --tag-border-color-hover: rgb(var(--ctp-accent), 15%);
-  --tag-border-width: 0;
-  --tag-padding-x: 0;
-  --tag-padding-y: 0;
-  --tag-radius: 0.8em;
-
   /* Window frame */
   --titlebar-background: rgb(var(--ctp-crust));
   --titlebar-background-focused: rgb(var(--ctp-crust));

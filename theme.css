@@ -461,20 +461,6 @@ body {
   --table-row-background-hover: var(--table-background);
   --table-row-alt-background: var(--table-background);
   --table-row-last-border-width: var(--table-border-width);
-  /* Tags */
-  --tag-size: max(var(--font-ui-medium), var(--font-small));
-  --tag-color: rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
-  --tag-color-hover: rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
-  --tag-decoration: none;
-  --tag-decoration-hover: underline;
-  --tag-background: transparent;
-  --tag-background-hover: transparent;
-  --tag-border-color: rgb(var(--ctp-accent), 10%);
-  --tag-border-color-hover: rgb(var(--ctp-accent), 15%);
-  --tag-border-width: 0;
-  --tag-padding-x: 0;
-  --tag-padding-y: 0;
-  --tag-radius: 0.8em;
   /* Window frame */
   --titlebar-background: rgb(var(--ctp-crust));
   --titlebar-background-focused: rgb(var(--ctp-crust));
@@ -1266,75 +1252,6 @@ settings:
     title: Blend PDF background
     description: When using light mode, attempts to blend the theme's background color into the PDF
     type: class-toggle
-*/
-/* @settings
-name: "Catppuccin: Tag Styles"
-id: catppuccin-tag-styles
-settings:
-  -
-    id: ctp-tag-pill
-    title: Pill-shaped tags
-    description: Make tags stand out with a pill-shaped appearance, reverts to Obsidian's default style
-    type: class-toggle
-  -
-    id: ctp-tag-pill-color
-    title: Tag text color
-    description: Select your tag text color
-    type: variable-select
-    allowEmpty: false
-    default: var(--ctp-blue)
-    options:
-      -
-        label: Accent
-        value: var(--ctp-accent)
-      -
-        label: Rosewater
-        value: var(--ctp-rosewater)
-      -
-        label: Flamingo
-        value: var(--ctp-flamingo)
-      -
-        label: Pink
-        value: var(--ctp-pink)
-      -
-        label: Mauve
-        value: var(--ctp-mauve)
-      -
-        label: Red
-        value: var(--ctp-red)
-      -
-        label: Maroon
-        value: var(--ctp-maroon)
-      -
-        label: Peach
-        value: var(--ctp-peach)
-      -
-        label: Yellow
-        value: var(--ctp-yellow)
-      -
-        label: Green
-        value: var(--ctp-green)
-      -
-        label: Teal
-        value: var(--ctp-teal)
-      -
-        label: Sky
-        value: var(--ctp-sky)
-      -
-        label: Sapphire
-        value: var(--ctp-sapphire)
-      -
-        label: Blue
-        value: var(--ctp-blue)
-      -
-        label: Lavender
-        value: var(--ctp-lavender)
-      -
-        label: Text
-        value: var(--ctp-text)
-      -
-        label: Subtext 0
-        value: var(--ctp-subtext0)
 */
 /* @settings
 
@@ -2163,40 +2080,6 @@ input[type=datetime-local]::-webkit-datetime-edit-second-field:focus {
   color: var(--link-color);
 }
 
-body:not(.ctp-tag-pill) .cm-hashtag.cm-hashtag-end {
-  text-decoration-color: transparent;
-  text-decoration-line: underline;
-  text-decoration-style: solid;
-}
-body:not(.ctp-tag-pill) .cm-hashtag.cm-hashtag-end:hover {
-  text-decoration: underline 1px rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
-  text-underline-offset: 1px;
-}
-body:not(.ctp-tag-pill) .cm-hashtag::selection {
-  text-shadow: 0.4px 0 0 rgb(var(--ctp-tag-pill-color, var(--ctp-blue)));
-}
-
-/**
-* 1. Restores default Obsidian settings to tags. See: #56
-*/
-.ctp-tag-pill {
-  --tag-size: var(--font-smaller);
-  --tag-decoration: none;
-  --tag-decoration-hover: none;
-  --tag-background: rgb(var(--ctp-tag-pill-color, var(--ctp-blue)), 10%);
-  --tag-background-hover: rgb(var(--ctp-tag-pill-color, var(--ctp-blue)), 20%);
-  --tag-border-color: rgb(var(--ctp-tag-pill-color, var(--ctp-blue)), 15%);
-  --tag-border-color-hover: rgb(var(--ctp-tag-pill-color, var(--ctp-blue)), 30%);
-  --tag-border-width: 0px;
-  --tag-padding-x: 0.65em;
-  --tag-padding-y: 0.25em;
-  --tag-radius: 2em;
-  --tag-weight: inherit;
-}
-
-/**
-* 1. Allow users to pick tag text color with Style Settings
-*/
 .markdown-source-view.mod-cm6 .is-unresolved .cm-underline {
   text-decoration-line: none;
 }
@@ -2417,7 +2300,6 @@ body:not(.ctp-tag-pill) .cm-hashtag::selection {
 
 .is-flashing,
 .cm-s-obsidian .is-flashing .cm-url {
-  --tag-color: var(--text-normal);
   background-color: var(--ctp-search-match-current-background);
   color: var(--text-normal);
 }
@@ -2493,16 +2375,6 @@ body:not(.ctp-tag-pill) .cm-hashtag::selection {
     color: var(--text-normal);
   }
 }
-.nav-file-tag {
-  background-color: rgb(var(--ctp-surface0));
-  color: var(--text-normal);
-  outline: 1px solid rgb(var(--ctp-surface1));
-}
-
-.is-active .nav-file-tag {
-  box-shadow: inset 0 0 2px rgb(var(--ctp-crust)), inset 0 0 4px rgb(var(--ctp-mantle));
-}
-
 /*
 * #TODO?
 * This is trying to minimize how jarring this weird thing
@@ -2606,12 +2478,6 @@ button.mod-cta:hover {
 }
 .style-settings-heading[data-id=catppuccin-theme-credits-link]:not(.is-collapsed) {
   margin-bottom: 0;
-}
-
-.community-item .flair:not(.mod-pop) {
-  --tag-background: var(--ctp-control-background);
-  --tag-color: var(--text-normal);
-  text-transform: lowercase;
 }
 
 /**

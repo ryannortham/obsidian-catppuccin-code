@@ -38,8 +38,6 @@ const appRoles = {
   "hr-color": "rgb(var(--ctp-surface2))",
   "link-external-color": "rgb(var(--ctp-blue))",
   "link-external-color-hover": "rgb(var(--ctp-sky))",
-  "tag-color": "rgb(var(--ctp-tag-pill-color, var(--ctp-blue)))",
-  "tag-color-hover": "rgb(var(--ctp-tag-pill-color, var(--ctp-blue)))",
   "tab-divider-color": "rgb(var(--ctp-crust))",
   "tab-outline-color": "rgb(var(--ctp-crust))",
   "titlebar-background-focused": "rgb(var(--ctp-crust))",
@@ -65,7 +63,6 @@ const defaults = {
   h4: "sapphire",
   h5: "subtext1",
   h6: "subtext0",
-  "tag-pill-color": "blue",
 };
 for (const [name, token] of Object.entries(defaults)) {
   has(
@@ -95,7 +92,10 @@ has(typography, /background-image: none;\s*color: inherit;/, "Highlighted emphas
 assert(!/var\(--ctp-teal\)/.test(typography), "Document typography must not use Teal as a hard-coded emphasis role");
 
 has(links, /color: var\(--link-color\);/, "Markdown link formatting must follow the Blue link role");
-assert(!/var\(--ctp-tag-pill-color, var\(--ctp-accent\)\)/.test(links), "Tag formatting must not fall back to the Lavender accent");
+assert(!/--tag-(?:size|color|color-hover|decoration|decoration-hover|background|background-hover|border-color|border-color-hover|border-width|padding-x|padding-y|radius):/.test(appVariables), "Obsidian must retain ownership of its stock tag variables");
+assert(!settings.includes("ctp-tag-pill"), "Theme must not expose custom tag pill settings");
+assert(!links.includes(".ctp-tag-pill"), "Theme must not style an optional tag pill mode");
+assert(!links.includes(".cm-hashtag"), "Theme must not override Obsidian's tag rendering");
 
 has(documentPalette, /--hr-color: rgb\(var\(--ctp-surface2\)\)/, "Document palette must use Surface2 for rules");
 has(documentPalette, /input\[type="checkbox"\]:not\(:checked\)\s*\{[\s\S]*?border-color: rgb\(var\(--ctp-surface2\)\);[\s\S]*?background-color: transparent;[\s\S]*?box-shadow: none;/, "Unchecked tasks must use a neutral Surface2 outline");

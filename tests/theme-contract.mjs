@@ -9,6 +9,7 @@ const appVariableSource = read("scss/base/_app-variables.scss");
 const semanticSource = read("scss/base/_semantic-roles.scss");
 const interfaceSource = read("scss/layout/_interface.scss");
 const iconsSource = read("scss/components/_icons.scss");
+const sidebarSource = read("scss/layout/_sidebar.scss");
 const pluginSource = read("scss/vendors/_plugins.scss");
 const pluginCompatibilitySource = read("scss/vendors/_plugin-compatibility.scss");
 const searchSource = read("scss/components/_search.scss");
@@ -172,6 +173,16 @@ assert(
   /\.workspace-tab-header \.metadata-menu\.fileclass-icon \{[\s\S]*?--icon-size: var\(--icon-s\)[\s\S]*?align-self: center[\s\S]*?transform: translateY\(1px\)/.test(pluginCompatibilitySource),
   "Metadata Menu tab icons must match native icon sizing and optical alignment",
 );
+assert(!pluginCompatibilitySource.includes(".metadata-menu .chip"), "Metadata Menu must retain ownership of its stock chips");
+assert(!sidebarSource.includes(".nav-file-tag"), "Obsidian must retain ownership of stock file extension badges");
+for (const [name, source] of Object.entries({
+  "app variables": appVariableSource,
+  links: linksSource,
+  search: searchSource,
+  settings: settingsPageSource,
+})) {
+  assert(!/--tag-/.test(source), `${name} must not override Obsidian's stock tag variables`);
+}
 assert(
   /:is\(\.workspace-tab-header-tab-list, \.workspace-tab-header-new-tab\)[\s\S]*?block-size: var\(--ctp-control-size\)/.test(interfaceSource),
   "Custom 30px control sizing must remain scoped to root tab-bar actions",

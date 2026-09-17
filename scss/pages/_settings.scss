@@ -56,10 +56,3 @@ button.mod-cta {
     margin-bottom: 0;
   }
 }
-
-.community-item .flair:not(.mod-pop) {
-  --tag-background: var(--ctp-control-background);
-  --tag-color: var(--text-normal);
-
-  text-transform: lowercase;
-}
