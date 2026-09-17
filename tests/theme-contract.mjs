@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (path) => readFileSync(join(root, path), "utf8");
 const paletteSource = read("scss/base/_ctp-style-settings.scss");
+const appVariableSource = read("scss/base/_app-variables.scss");
 const semanticSource = read("scss/base/_semantic-roles.scss");
 const interfaceSource = read("scss/layout/_interface.scss");
 const searchSource = read("scss/components/_search.scss");
@@ -119,11 +120,17 @@ for (const role of ["color-accent", "interactive-accent", "ctp-focus-border", "c
 }
 
 assert(/--ctp-tab-strip-background:\s*rgb\(var\(--ctp-crust\)\)/.test(interfaceSource), "Editor tab strip must use Crust");
+assert(declaration(appVariableSource, "header-height") === "33px", "Workspace headers must match the native 33px editor tab height");
+assert(declaration(interfaceSource, "ctp-control-size") === "30px", "Compact headers must preserve the existing 30px control hit area");
 assert(/--ctp-tab-inactive-background:\s*rgb\(var\(--ctp-mantle\)\)/.test(interfaceSource), "Inactive tabs must use Mantle");
 assert(/--ctp-tab-active-background:\s*rgb\(var\(--ctp-base\)\)/.test(interfaceSource), "Active tabs must use Base");
 assert(/--ctp-tab-inactive-foreground:\s*rgb\(var\(--ctp-overlay0\)\)/.test(interfaceSource), "Inactive tabs must use Overlay0");
 assert(/\.workspace-ribbon[\s\S]*?background-color: rgb\(var\(--ctp-crust\)\)/.test(interfaceSource), "Ribbon must use Crust");
 assert(/box-shadow: inset 2px 0 0 var\(--ctp-focus-border\)/.test(interfaceSource), "Active ribbon controls must use an accent indicator");
+assert(
+  /\.workspace-tab-header-container[\s\S]*?border-bottom: 0[\s\S]*?box-shadow: none/.test(interfaceSource),
+  "Workspace headers must not draw a seam below their controls",
+);
 assert(
   /\.workspace-split\.mod-sidedock \.workspace-tab-header-container[\s\S]*?background-color: var\(--background-secondary\)/.test(interfaceSource),
   "Sidedock header controls must continue the Mantle sidebar surface",
@@ -133,8 +140,8 @@ assert(
   "Root tabs must start flush with the tab strip",
 );
 assert(
-  /\.workspace-split\.mod-root \.workspace-tab-header-container-inner[\s\S]*?margin-inline-start: 0[\s\S]*?padding-inline-start: 0/.test(interfaceSource),
-  "Root tab inner container must not reintroduce a leading inset",
+  /\.workspace-split\.mod-root \.workspace-tab-header-container-inner[\s\S]*?margin-block: 0[\s\S]*?margin-inline-start: 0[\s\S]*?padding-block-start: 0[\s\S]*?padding-inline-start: 0/.test(interfaceSource),
+  "Root tab inner container must not reintroduce a leading or upper inset",
 );
 assert(
   /\.workspace-split\.mod-root \.workspace-tab-header[\s\S]*?&::before,[\s\S]*?&::after[\s\S]*?display: none/.test(interfaceSource),

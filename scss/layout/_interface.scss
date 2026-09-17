@@ -28,7 +28,10 @@ body.theme-dark,
 body.theme-light {
   /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
   --ctp-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
-  --ctp-control-size: calc(var(--header-height) - 10px);
+
+  /* Preserve the existing control hit area while the workspace headers match
+     the native 33px editor tabs. */
+  --ctp-control-size: 30px;
   --ctp-tab-strip-background: rgb(var(--ctp-crust));
   --ctp-tab-active-background: rgb(var(--ctp-base));
   --ctp-tab-inactive-background: rgb(var(--ctp-mantle));
@@ -262,6 +265,13 @@ body.theme-light {
     box-shadow: inset 2px 0 0 var(--ctp-focus-border);
   }
 
+  /* Editor and sidedock headers form one uninterrupted 33px row. The default
+     bottom border creates a dark seam below the sidebar controls. */
+  .workspace-tab-header-container {
+    border-bottom: 0;
+    box-shadow: none;
+  }
+
   /* Sidebar tabs share one boundary for the left and right sidedocks. */
   .workspace-split.mod-sidedock .workspace-tab-header-container {
     background-color: var(--background-secondary);
@@ -335,7 +345,9 @@ body.theme-light {
   }
 
   .workspace-split.mod-root .workspace-tab-header-container-inner {
+    margin-block: 0;
     margin-inline-start: 0;
+    padding-block-start: 0;
     padding-inline-start: 0;
   }
 

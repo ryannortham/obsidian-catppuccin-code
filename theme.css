@@ -210,7 +210,7 @@ body {
   --h5-weight: 600;
   --h6-weight: 600;
   /* View header */
-  --header-height: 40px;
+  --header-height: 33px;
   /* Horizontal rules */
   --hr-color: rgb(var(--ctp-surface2));
   --hr-thickness: 2px;
@@ -2832,7 +2832,9 @@ body.theme-dark,
 body.theme-light {
   /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
   --ctp-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
-  --ctp-control-size: calc(var(--header-height) - 10px);
+  /* Preserve the existing control hit area while the workspace headers match
+     the native 33px editor tabs. */
+  --ctp-control-size: 30px;
   --ctp-tab-strip-background: rgb(var(--ctp-crust));
   --ctp-tab-active-background: rgb(var(--ctp-base));
   --ctp-tab-inactive-background: rgb(var(--ctp-mantle));
@@ -3088,6 +3090,16 @@ body.theme-light .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed=
 }
 body.theme-dark,
 body.theme-light {
+  /* Editor and sidedock headers form one uninterrupted 33px row. The default
+     bottom border creates a dark seam below the sidebar controls. */
+}
+body.theme-dark .workspace-tab-header-container,
+body.theme-light .workspace-tab-header-container {
+  border-bottom: 0;
+  box-shadow: none;
+}
+body.theme-dark,
+body.theme-light {
   /* Sidebar tabs share one boundary for the left and right sidedocks. */
 }
 body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header-container,
@@ -3155,7 +3167,9 @@ body.theme-light .workspace-split.mod-root .workspace-tab-header-container {
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header-container-inner,
 body.theme-light .workspace-split.mod-root .workspace-tab-header-container-inner {
+  margin-block: 0;
   margin-inline-start: 0;
+  padding-block-start: 0;
   padding-inline-start: 0;
 }
 body.theme-dark .workspace-split.mod-root .workspace-tab-header, body.theme-dark .workspace-split.mod-root .workspace-tab-header .workspace-tab-header-inner,

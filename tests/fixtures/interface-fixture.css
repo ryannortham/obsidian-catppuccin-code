@@ -185,7 +185,7 @@ section {
 
 .workspace-tab-header-inner {
   display: flex;
-  min-height: 40px;
+  min-height: var(--header-height);
   align-items: center;
   gap: 8px;
   padding: 0 10px;
