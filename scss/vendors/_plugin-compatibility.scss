@@ -32,25 +32,61 @@ body.theme-light {
   }
 
   // Obsidian baseline-aligns tree-row children. Metadata Menu inserts its
-  // flex-wrapped SVGs directly into those rows, so center the wrappers.
+  // flex-wrapped SVGs directly into those rows, so center the wrappers. Use
+  // the native file-badge foreground roles while preserving status colours.
   .tree-item-self
-    > :is(.metadata-menu.fileclass-icon, .fileClass-add-button) {
+    > :is(
+      .metadata-menu.fileclass-icon:not(
+        .field-status-may-have-changed,
+        .field-status-changed,
+        .field-status-error
+      ),
+      .fileClass-add-button
+    ) {
     align-self: center;
+    color: var(--nav-tag-color);
+  }
+
+  .tree-item-self.is-active
+    > :is(
+      .metadata-menu.fileclass-icon:not(
+        .field-status-may-have-changed,
+        .field-status-changed,
+        .field-status-error
+      ),
+      .fileClass-add-button
+    ) {
+    color: var(--nav-tag-color-active);
+  }
+
+  @media (hover: hover) {
+    .tree-item-self:hover
+      > :is(
+        .metadata-menu.fileclass-icon:not(
+          .field-status-may-have-changed,
+          .field-status-changed,
+          .field-status-error
+        ),
+        .fileClass-add-button
+      ) {
+      color: var(--nav-tag-color-hover);
+    }
   }
 
   // Match native tab icon sizing and compensate for the file-class glyph's
   // optical centre. The plugin's vertical-align targets a flex item, so it
   // does not affect layout.
-  .workspace-tab-header .metadata-menu.fileclass-icon {
+  .workspace-tab-header
+    .metadata-menu.fileclass-icon:not(
+      .field-status-may-have-changed,
+      .field-status-changed,
+      .field-status-error
+    ) {
     --icon-size: var(--icon-s);
 
     align-self: center;
-    color: rgb(var(--ctp-blue));
+    color: var(--nav-tag-color);
     transform: translateY(1px);
-  }
-
-  .workspace-tab-header .metadata-menu.fileclass-icon svg {
-    color: rgb(var(--ctp-blue));
   }
 }
 /* stylelint-enable selector-class-pattern */

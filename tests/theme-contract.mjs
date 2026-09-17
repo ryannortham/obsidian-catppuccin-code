@@ -151,6 +151,7 @@ assert(!interfaceSource.includes(".nav-header"), "Theme must not override Obsidi
 assert(!interfaceSource.includes(".nav-buttons-container"), "Theme must not override Obsidian stock nav-button layout");
 assert(!interfaceSource.includes(".nav-action-button"), "Theme must not override Obsidian stock nav-action sizing");
 assert(!/\.clickable-icon,[\s\S]*?margin: 0 2px/.test(iconsSource), "Generic clickable icons must retain Obsidian stock margin ownership");
+assert(!appVariableSource.includes("--icon-color-hover:"), "Generic icon hover color must remain stock-owned");
 assert(!paletteSource.includes("catppuccin-icon-styles"), "Obsolete Icon Styles settings must be removed");
 assert(!paletteSource.includes("ctp-icon-hide"), "Obsolete folder-icon setting must be removed");
 assert(!iconsSource.includes("nav-folder-title-content::before"), "Generated folder icons must be removed");
@@ -166,13 +167,16 @@ for (const unused of ["better-command-palette", "git-commit-msg", "another-quick
 }
 assert(pluginSource.includes(".dataview.inline-field"), "Enabled Dataview compatibility must remain");
 assert(
-  /\.tree-item-self[\s\S]*?> :is\(\.metadata-menu\.fileclass-icon, \.fileClass-add-button\)[\s\S]*?align-self: center/.test(pluginCompatibilitySource),
-  "Metadata Menu file-tree icons must opt out of Obsidian baseline alignment",
+  /\.tree-item-self[\s\S]*?> :is\([\s\S]*?\.metadata-menu\.fileclass-icon:not\([\s\S]*?\.fileClass-add-button[\s\S]*?align-self: center;[\s\S]*?color: var\(--nav-tag-color\)/.test(pluginCompatibilitySource),
+  "Metadata Menu file-tree icons must align with native file badges",
 );
 assert(
-  /\.workspace-tab-header \.metadata-menu\.fileclass-icon \{[\s\S]*?--icon-size: var\(--icon-s\)[\s\S]*?align-self: center[\s\S]*?transform: translateY\(1px\)/.test(pluginCompatibilitySource),
-  "Metadata Menu tab icons must match native icon sizing and optical alignment",
+  /\.workspace-tab-header[\s\S]*?\.metadata-menu\.fileclass-icon:not\([\s\S]*?--icon-size: var\(--icon-s\)[\s\S]*?align-self: center[\s\S]*?color: var\(--nav-tag-color\)[\s\S]*?transform: translateY\(1px\)/.test(pluginCompatibilitySource),
+  "Metadata Menu tab icons must match native badge color, icon sizing, and optical alignment",
 );
+assert(pluginCompatibilitySource.includes("color: var(--nav-tag-color-hover)"), "Metadata Menu tree icons must follow native badge hover color");
+assert(pluginCompatibilitySource.includes("color: var(--nav-tag-color-active)"), "Metadata Menu tree icons must follow native badge active color");
+assert(!pluginCompatibilitySource.includes("rgb(var(--ctp-blue))"), "Metadata Menu icons must not hard-code Catppuccin Blue");
 assert(!pluginCompatibilitySource.includes(".metadata-menu .chip"), "Metadata Menu must retain ownership of its stock chips");
 assert(!sidebarSource.includes(".nav-file-tag"), "Obsidian must retain ownership of stock file extension badges");
 for (const [name, source] of Object.entries({

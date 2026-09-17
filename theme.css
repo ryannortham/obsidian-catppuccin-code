@@ -228,7 +228,6 @@ body {
   --icon-l-stroke-width: 1.75px;
   --icon-xl-stroke-width: 1.25px;
   --icon-color: var(--text-muted);
-  --icon-color-hover: var(--text-on-accent);
   --icon-color-active: var(--text-accent);
   --icon-color-focused: var(--text-normal);
   --icon-opacity: 1;
@@ -3055,20 +3054,49 @@ body.theme-light .agent-client-session-manager .tree-item-self:is(.is-active, .i
     color: var(--text-normal);
   }
 }
-body.theme-dark .tree-item-self > :is(.metadata-menu.fileclass-icon, .fileClass-add-button),
-body.theme-light .tree-item-self > :is(.metadata-menu.fileclass-icon, .fileClass-add-button) {
+body.theme-dark .tree-item-self > :is(.metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
+.field-status-changed,
+.field-status-error),
+.fileClass-add-button),
+body.theme-light .tree-item-self > :is(.metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
+.field-status-changed,
+.field-status-error),
+.fileClass-add-button) {
   align-self: center;
+  color: var(--nav-tag-color);
 }
-body.theme-dark .workspace-tab-header .metadata-menu.fileclass-icon,
-body.theme-light .workspace-tab-header .metadata-menu.fileclass-icon {
+body.theme-dark .tree-item-self.is-active > :is(.metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
+.field-status-changed,
+.field-status-error),
+.fileClass-add-button),
+body.theme-light .tree-item-self.is-active > :is(.metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
+.field-status-changed,
+.field-status-error),
+.fileClass-add-button) {
+  color: var(--nav-tag-color-active);
+}
+@media (hover: hover) {
+  body.theme-dark .tree-item-self:hover > :is(.metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
+  .field-status-changed,
+  .field-status-error),
+  .fileClass-add-button),
+  body.theme-light .tree-item-self:hover > :is(.metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
+  .field-status-changed,
+  .field-status-error),
+  .fileClass-add-button) {
+    color: var(--nav-tag-color-hover);
+  }
+}
+body.theme-dark .workspace-tab-header .metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
+.field-status-changed,
+.field-status-error),
+body.theme-light .workspace-tab-header .metadata-menu.fileclass-icon:not(.field-status-may-have-changed,
+.field-status-changed,
+.field-status-error) {
   --icon-size: var(--icon-s);
   align-self: center;
-  color: rgb(var(--ctp-blue));
+  color: var(--nav-tag-color);
   transform: translateY(1px);
-}
-body.theme-dark .workspace-tab-header .metadata-menu.fileclass-icon svg,
-body.theme-light .workspace-tab-header .metadata-menu.fileclass-icon svg {
-  color: rgb(var(--ctp-blue));
 }
 
 /* stylelint-enable selector-class-pattern */
