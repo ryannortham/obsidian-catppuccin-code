@@ -108,7 +108,24 @@ section {
 }
 
 .sidebar-header-fixture {
+  padding: 0;
   background: var(--ctp-tab-strip-background);
+}
+
+.sidebar-header-fixture .workspace-tab-header-container {
+  display: flex;
+}
+
+.sidebar-header-fixture .workspace-tab-header-container-inner {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-header-fixture button {
+  border: 0;
+  background: transparent;
+  color: inherit;
 }
 
 .tree-item-self,

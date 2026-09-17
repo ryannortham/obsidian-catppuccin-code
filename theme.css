@@ -210,7 +210,7 @@ body {
   --h5-weight: 600;
   --h6-weight: 600;
   /* View header */
-  --header-height: 33px;
+  --header-height: 32px;
   /* Horizontal rules */
   --hr-color: rgb(var(--ctp-surface2));
   --hr-thickness: 2px;
@@ -2833,8 +2833,11 @@ body.theme-light {
   /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
   --ctp-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
   /* Preserve the existing control hit area while the workspace headers match
-     the native 33px editor tabs. */
+     the 32px workspace tabs. */
   --ctp-control-size: 30px;
+  --ctp-toolbar-height: var(--header-height);
+  --ctp-toolbar-inline-padding: 8px;
+  --ctp-control-gap: 2px;
   --ctp-tab-strip-background: rgb(var(--ctp-crust));
   --ctp-tab-active-background: rgb(var(--ctp-base));
   --ctp-tab-inactive-background: rgb(var(--ctp-mantle));
@@ -3090,7 +3093,7 @@ body.theme-light .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed=
 }
 body.theme-dark,
 body.theme-light {
-  /* Editor and sidedock headers form one uninterrupted 33px row. The default
+  /* Editor and sidedock headers form one uninterrupted 32px row. The default
      bottom border creates a dark seam below the sidebar controls. */
 }
 body.theme-dark .workspace-tab-header-container,
@@ -3100,7 +3103,66 @@ body.theme-light .workspace-tab-header-container {
 }
 body.theme-dark,
 body.theme-light {
-  /* Sidebar tabs share one boundary for the left and right sidedocks. */
+  /* Sidebar tab selectors, view actions, and collapse toggles share one box
+     model instead of inheriting three incompatible Obsidian defaults. */
+}
+body.theme-dark .workspace-split.mod-sidedock :is(.workspace-tab-header-container, .nav-header, .nav-buttons-container),
+body.theme-light .workspace-split.mod-sidedock :is(.workspace-tab-header-container, .nav-header, .nav-buttons-container) {
+  block-size: var(--ctp-toolbar-height);
+  min-block-size: var(--ctp-toolbar-height);
+}
+body.theme-dark .workspace-split.mod-sidedock :is(.workspace-tab-header-container, .nav-header),
+body.theme-light .workspace-split.mod-sidedock :is(.workspace-tab-header-container, .nav-header) {
+  padding-block: 0;
+  padding-inline: var(--ctp-toolbar-inline-padding);
+}
+body.theme-dark .workspace-split.mod-sidedock :is(.workspace-tab-header-container-inner, .nav-buttons-container),
+body.theme-light .workspace-split.mod-sidedock :is(.workspace-tab-header-container-inner, .nav-buttons-container) {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  block-size: 100%;
+  gap: var(--ctp-control-gap);
+}
+body.theme-dark .workspace-split.mod-sidedock :is(.workspace-tab-header, .nav-action-button),
+body.theme-light .workspace-split.mod-sidedock :is(.workspace-tab-header, .nav-action-button) {
+  display: flex;
+  flex: 0 0 var(--ctp-control-size);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  block-size: var(--ctp-control-size);
+  inline-size: var(--ctp-control-size);
+  max-block-size: var(--ctp-control-size);
+  max-inline-size: var(--ctp-control-size);
+  min-block-size: var(--ctp-control-size);
+  min-inline-size: var(--ctp-control-size);
+}
+body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header-inner,
+body.theme-light .workspace-split.mod-sidedock .workspace-tab-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  block-size: 100%;
+  inline-size: 100%;
+}
+body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header-container > .sidebar-toggle-button,
+body.theme-light .workspace-split.mod-sidedock .workspace-tab-header-container > .sidebar-toggle-button {
+  display: flex;
+  flex: 0 0 var(--ctp-control-size);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  block-size: var(--ctp-toolbar-height);
+  inline-size: var(--ctp-control-size);
+}
+body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header-container > .sidebar-toggle-button > .clickable-icon,
+body.theme-light .workspace-split.mod-sidedock .workspace-tab-header-container > .sidebar-toggle-button > .clickable-icon {
+  margin: 0;
 }
 body.theme-dark .workspace-split.mod-sidedock .workspace-tab-header-container,
 body.theme-light .workspace-split.mod-sidedock .workspace-tab-header-container {

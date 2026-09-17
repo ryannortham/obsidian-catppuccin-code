@@ -120,8 +120,11 @@ for (const role of ["color-accent", "interactive-accent", "ctp-focus-border", "c
 }
 
 assert(/--ctp-tab-strip-background:\s*rgb\(var\(--ctp-crust\)\)/.test(interfaceSource), "Editor tab strip must use Crust");
-assert(declaration(appVariableSource, "header-height") === "33px", "Workspace headers must match the native 33px editor tab height");
+assert(declaration(appVariableSource, "header-height") === "32px", "Workspace headers and tabs must use the standard 32px row height");
 assert(declaration(interfaceSource, "ctp-control-size") === "30px", "Compact headers must preserve the existing 30px control hit area");
+assert(declaration(interfaceSource, "ctp-toolbar-height") === "var(--header-height)", "Sidebar toolbars must share the workspace header height");
+assert(declaration(interfaceSource, "ctp-toolbar-inline-padding") === "8px", "Sidebar toolbars must share one inline inset");
+assert(declaration(interfaceSource, "ctp-control-gap") === "2px", "Sidebar controls must share one gap");
 assert(/--ctp-tab-inactive-background:\s*rgb\(var\(--ctp-mantle\)\)/.test(interfaceSource), "Inactive tabs must use Mantle");
 assert(/--ctp-tab-active-background:\s*rgb\(var\(--ctp-base\)\)/.test(interfaceSource), "Active tabs must use Base");
 assert(/--ctp-tab-inactive-foreground:\s*rgb\(var\(--ctp-overlay0\)\)/.test(interfaceSource), "Inactive tabs must use Overlay0");
@@ -132,7 +135,15 @@ assert(
   "Workspace headers must not draw a seam below their controls",
 );
 assert(
-  /\.workspace-split\.mod-sidedock \.workspace-tab-header-container[\s\S]*?background-color: var\(--background-secondary\)/.test(interfaceSource),
+  /\.workspace-split\.mod-sidedock[\s\S]*?:is\(\.workspace-tab-header-container, \.nav-header, \.nav-buttons-container\)[\s\S]*?block-size: var\(--ctp-toolbar-height\)/.test(interfaceSource),
+  "Sidedock header rows must share one toolbar height",
+);
+assert(
+  /:is\(\.workspace-tab-header, \.nav-action-button\)[\s\S]*?padding: 0[\s\S]*?margin: 0[\s\S]*?block-size: var\(--ctp-control-size\)[\s\S]*?inline-size: var\(--ctp-control-size\)/.test(interfaceSource),
+  "Sidedock tab and action controls must share one square box model",
+);
+assert(
+  /\.workspace-tab-header-container[\s\S]*?background-color: var\(--background-secondary\)/.test(interfaceSource),
   "Sidedock header controls must continue the Mantle sidebar surface",
 );
 assert(

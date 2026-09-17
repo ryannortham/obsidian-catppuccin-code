@@ -109,11 +109,21 @@
       <section>
         <h2>Utility controls and sidebar tabs</h2>
         <div class="workspace-split mod-sidedock panel sidebar-header-fixture">
-          <div class="workspace-tab-header-container row">
-            <button class="sidebar-toggle-button fixture-hover">◫ <span>Hover</span></button>
-            <button class="sidebar-toggle-button is-active">◆ <span>Active</span></button>
-            <div class="workspace-tab-header is-active"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">▤</div><div class="workspace-tab-header-inner-title">Files · active</div></div></div>
-            <div class="workspace-tab-header fixture-hover"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">⌕</div><div class="workspace-tab-header-inner-title">Search · hover</div></div></div>
+          <div class="workspace-tab-header-container">
+            <div class="workspace-tab-header-container-inner">
+              <div class="workspace-tab-header is-active" aria-label="Files"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">▤</div></div></div>
+              <div class="workspace-tab-header fixture-hover" aria-label="Search"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">⌕</div></div></div>
+              <div class="workspace-tab-header" aria-label="Bookmarks"><div class="workspace-tab-header-inner"><div class="workspace-tab-header-inner-icon">◇</div></div></div>
+            </div>
+            <div class="sidebar-toggle-button"><button class="clickable-icon" aria-label="Collapse sidebar">◫</button></div>
+          </div>
+          <div class="nav-header">
+            <div class="nav-buttons-container">
+              <button class="clickable-icon nav-action-button" aria-label="New note">＋</button>
+              <button class="clickable-icon nav-action-button fixture-hover" aria-label="New folder">▱</button>
+              <button class="clickable-icon nav-action-button" aria-label="Sort">↕</button>
+              <button class="clickable-icon nav-action-button" aria-label="Collapse all">⌃</button>
+            </div>
           </div>
         </div>
       </section>
