@@ -416,20 +416,15 @@ settings:
         value: ctp-accent-lavender
 */
 /* @settings
-name: "Catppuccin: Layout"
-id: catppuccin-layout
+name: "Catppuccin: Workspace"
+id: catppuccin-workspace
 settings:
   -
     id: ctp-vscode-layout
-    title: VS Code layout
-    description: Use compact tabs and VS Code-style activity indicators
+    title: Visual Studio Code layout
+    description: Use compact tabs and Visual Studio Code-style activity indicators
     type: class-toggle
     default: true
-*/
-/* @settings
-name: "Catppuccin: Font Styles"
-id: catppuccin-font-styles
-settings:
   -
     id: ctp-editor-monospace
     title: Monospace editor

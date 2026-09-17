@@ -48,25 +48,23 @@ function rgbToHex(value) {
 const themeSettingsBlock = paletteSource.match(
   /\/\* @settings\nname: "Catppuccin: Themes"[\s\S]*?\*\//,
 )?.[0];
-const fontSettingsBlock = paletteSource.match(
-  /\/\* @settings\nname: "Catppuccin: Font Styles"[\s\S]*?\*\//,
-)?.[0];
-const layoutSettingsBlock = paletteSource.match(
-  /\/\* @settings\nname: "Catppuccin: Layout"[\s\S]*?\*\//,
+const workspaceSettingsBlock = paletteSource.match(
+  /\/\* @settings\nname: "Catppuccin: Workspace"[\s\S]*?\*\//,
 )?.[0];
 const fontColorsBlock = paletteSource.match(
   /\/\* @settings\nname: "Catppuccin: Font Colors"[\s\S]*?\*\//,
 )?.[0];
 assert(paletteSource.includes('name: "Catppuccin: Themes"'), "Theme settings section must be named Themes");
 assert(
-  layoutSettingsBlock?.includes("id: ctp-vscode-layout") &&
-    /type: class-toggle[\s\S]*?default: true/.test(layoutSettingsBlock),
-  "VS Code layout must be a default-on class toggle in its own Layout section",
+  workspaceSettingsBlock?.includes("id: ctp-vscode-layout") &&
+    /type: class-toggle[\s\S]*?default: true/.test(workspaceSettingsBlock),
+  "Visual Studio Code layout must be a default-on Workspace toggle",
 );
-assert(!themeSettingsBlock?.includes("id: ctp-vscode-layout"), "VS Code layout must not live under Themes");
+assert(!themeSettingsBlock?.includes("id: ctp-vscode-layout"), "Visual Studio Code layout must not live under Themes");
 assert(
-  layoutSettingsBlock?.includes("description: Use compact tabs and VS Code-style activity indicators"),
-  "VS Code layout description must be concise and describe its visible changes",
+  workspaceSettingsBlock?.includes("title: Visual Studio Code layout") &&
+    workspaceSettingsBlock?.includes("description: Use compact tabs and Visual Studio Code-style activity indicators"),
+  "Visual Studio Code layout text must be explicit and describe its visible changes",
 );
 assert(!paletteSource.includes("Catppuccin: Catppuccin Accents"), "Duplicated Catppuccin accent label must be removed");
 assert(!paletteSource.includes("catppuccin-interface-styles"), "Empty Interface Styles section must be removed");
@@ -94,8 +92,8 @@ assert(
   "Style Settings search focus styling must remain stock-owned",
 );
 assert(
-  /id: ctp-editor-monospace[\s\S]*?type: class-toggle[\s\S]*?default: true/.test(fontSettingsBlock ?? ""),
-  "Editor monospace must be a default-on Font Styles toggle",
+  /id: ctp-editor-monospace[\s\S]*?type: class-toggle[\s\S]*?default: true/.test(workspaceSettingsBlock ?? ""),
+  "Editor monospace must be a default-on Workspace toggle",
 );
 assert(
   /\.ctp-editor-monospace \.markdown-source-view \.cm-editor[\s\S]*?font-family: var\(--font-monospace\)/.test(paletteSource),
