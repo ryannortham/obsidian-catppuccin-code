@@ -26,29 +26,20 @@ $ctp-list-hover-selectors: (
  */
 body.theme-dark,
 body.theme-light {
-  --ctp-icon-foreground: rgb(var(--ctp-mauve));
-  --ctp-focus-border: rgb(var(--ctp-mauve));
-  --ctp-list-selection-background: rgb(var(--ctp-surface0));
-  --ctp-list-hover-background: rgb(var(--ctp-surface0), 50%);
   /* stylelint-disable-next-line color-function-notation -- relative HSL matches Catppuccin VS Code's shade(base, 0.05). */
   --ctp-hover-background: hsl(from rgb(var(--ctp-base)) h s calc(l + 5));
   --ctp-control-size: calc(var(--header-height) - 10px);
-  --ctp-list-secondary-foreground: var(--text-muted);
-  --ctp-tree-guide-active: rgb(var(--ctp-overlay2));
-  --ctp-tree-guide-inactive: rgb(var(--ctp-surface1));
-  --ctp-tab-strip-background: var(--background-secondary);
+  --ctp-tab-strip-background: rgb(var(--ctp-crust));
   --ctp-tab-active-background: rgb(var(--ctp-base));
-  --ctp-tab-inactive-background: color-mix(
-    in srgb,
-    var(--background-secondary) 50%,
-    rgb(var(--ctp-base)) 50%
-  );
-  --ctp-tab-active-foreground: rgb(var(--ctp-mauve));
+  --ctp-tab-inactive-background: rgb(var(--ctp-mantle));
+  --ctp-tab-active-foreground: rgb(var(--ctp-accent));
+  --ctp-tab-inactive-foreground: rgb(var(--ctp-overlay0));
   --ctp-close-hover-background: rgb(var(--ctp-surface1));
 
-  /* The ribbon edge blends into the standard panel surface. */
+  /* The activity ribbon and title chrome use Crust like the VS Code reference. */
   .workspace-ribbon {
-    border-right-color: var(--background-secondary);
+    border-right-color: rgb(var(--ctp-crust));
+    background-color: rgb(var(--ctp-crust));
   }
 
   /* Translucent windows expose the backdrop, so divider strokes must disappear. */
@@ -96,8 +87,10 @@ body.theme-light {
   /* Tree rows and Settings navigation share one selection and hover contract. */
   :is(#{$ctp-list-row-selectors}) {
     --nav-item-radius: 0;
+    --nav-item-color: var(--text-normal);
 
     border-radius: 0;
+    color: var(--text-normal);
 
     &:is(.is-active, .is-selected) {
       --nav-item-background-active: var(--ctp-list-selection-background);
@@ -204,7 +197,7 @@ body.theme-light {
       --background-modifier-active-hover: var(--ctp-tab-active-background);
       --icon-color-active: var(--ctp-icon-foreground);
 
-      background-color: var(--ctp-tab-active-background);
+      background-color: var(--ctp-list-selection-background);
       color: var(--ctp-icon-foreground);
 
       svg {
@@ -248,13 +241,11 @@ body.theme-light {
         .is-selected,
         [aria-pressed="true"]
       ):not([aria-disabled="true"], :disabled):hover {
-      --background-modifier-hover: var(--ctp-tab-active-background);
-      --background-modifier-active-hover: var(--ctp-tab-active-background);
+      --background-modifier-hover: var(--ctp-list-selection-background);
+      --background-modifier-active-hover: var(--ctp-list-selection-background);
 
-      background-color: var(--ctp-tab-active-background);
-      box-shadow:
-        inset 0 0 4px rgb(var(--ctp-crust)),
-        inset 0 0 6px rgb(var(--ctp-base));
+      background-color: var(--ctp-list-selection-background);
+      box-shadow: none;
       color: var(--ctp-icon-foreground);
 
       svg {
@@ -264,14 +255,21 @@ body.theme-light {
     }
   }
 
+  /* Activity controls use a compact accent indicator instead of an outlined tile. */
+  .workspace-ribbon .clickable-icon:is(.is-active, [aria-pressed="true"]) {
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: inset 2px 0 0 var(--ctp-focus-border);
+  }
+
   /* Sidebar tabs share one boundary for the left and right sidedocks. */
   .workspace-split.mod-sidedock .workspace-tab-header {
     &:not(.is-active),
     &:not(.is-active) .workspace-tab-header-inner {
-      --tab-text-color: var(--icon-color);
+      --tab-text-color: var(--ctp-tab-inactive-foreground);
 
       background-color: transparent;
-      color: var(--icon-color);
+      color: var(--ctp-tab-inactive-foreground);
     }
 
     &.is-active,
@@ -341,18 +339,18 @@ body.theme-light {
     }
 
     &:not(.is-active) {
-      --tab-text-color: var(--text-muted);
-      --tab-text-color-active: var(--text-muted);
-      --tab-text-color-focused: var(--text-muted);
-      --tab-text-color-focused-active: var(--text-muted);
+      --tab-text-color: var(--ctp-tab-inactive-foreground);
+      --tab-text-color-active: var(--ctp-tab-inactive-foreground);
+      --tab-text-color-focused: var(--ctp-tab-inactive-foreground);
+      --tab-text-color-focused-active: var(--ctp-tab-inactive-foreground);
 
       background-color: var(--ctp-tab-inactive-background);
       box-shadow: none;
-      color: var(--text-muted);
+      color: var(--ctp-tab-inactive-foreground);
 
       .workspace-tab-header-inner {
         background-color: transparent;
-        color: var(--text-muted);
+        color: var(--ctp-tab-inactive-foreground);
       }
     }
 

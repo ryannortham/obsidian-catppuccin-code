@@ -16,7 +16,9 @@ Obsidian interface interaction states as a coherent theme baseline.
 
 | Surface | Upstream source | Fork owner |
 | --- | --- | --- |
-| Palette and app variables | `scss/base/_ctp-style-settings.scss`, `scss/base/_app-variables.scss` | Palette remains unchanged; semantic roles live in `scss/layout/_interface.scss` |
+| Palette data and Style Settings | `scss/base/_ctp-style-settings.scss` | Canonical Catppuccin names and RGB values only |
+| Shared color roles | `scss/base/_semantic-roles.scss` | Single owner for Obsidian aliases, surfaces, text, accents, search, controls, and selection |
+| App defaults | `scss/base/_app-variables.scss` | Geometry and component variables that consume semantic roles |
 | Clickable and close icons | `scss/components/_icons.scss`, `scss/themes/_full-palette.scss` | `scss/layout/_interface.scss` |
 | Tree rows and navigation states | `scss/layout/_sidebar.scss`, `scss/themes/_full-palette.scss` | `scss/layout/_interface.scss` |
 | Backlinks context matches | `scss/components/_search.scss` | `scss/layout/_interface.scss` |
@@ -25,23 +27,26 @@ Obsidian interface interaction states as a coherent theme baseline.
 
 `scss/layout/_interface.scss` is intentionally loaded after the full-palette
 partial. Its component-local selectors use the normal cascade and contain no
-`!important` declarations. Generated CSS is never the edit target.
+`!important` declarations. Generated CSS is never the edit target. Theme code
+inherits Obsidian's font settings; no font files, `@font-face` rules, or global
+font stacks are shipped.
 
 ## Flavor-relative interface roles
 
 | Semantic role | Active palette token |
 | --- | --- |
-| Icon foreground | `--ctp-mauve` |
-| Focus border | `--ctp-mauve` |
+| Icon foreground | selected `--ctp-accent` |
+| Focus border | selected `--ctp-accent` |
 | Active/inactive selection | `--ctp-surface0` |
 | List hover | `--ctp-surface0` at 50% |
 | Shared control/editor-tab hover | `--ctp-base` lightened 5% |
 | Active tree guide | `--ctp-overlay2` |
 | Inactive tree guide | `--ctp-surface1` |
-| Empty editor tab strip | `--background-secondary` (`--ctp-mantle`) |
+| Empty editor tab strip and ribbon | `--ctp-crust` |
 | Active editor tab | `--ctp-base` |
-| Inactive editor tab | 50/50 `--ctp-mantle`/`--ctp-base` |
-| Active editor-tab foreground | `--ctp-mauve` |
+| Inactive editor tab | `--ctp-mantle` |
+| Active editor-tab foreground | selected `--ctp-accent` |
+| Inactive editor-tab foreground | `--ctp-overlay0` |
 | Close-button hover | `--ctp-surface1` (distinct from editor-tab hover) |
 
 ## Markdown presentation roles
@@ -106,9 +111,8 @@ editor tabs consume one `--ctp-hover-background` role. It matches
 Catppuccin VS Code's Base-lightened-by-5% tab hover and is painted on normalized
 30px inner hit targets where Obsidian uses top-bar wrappers. Active, close, and
 destructive states retain their separate semantic treatments.
-Root editor tabs use the standard secondary background (Mantle) for the empty
-strip, a 50/50 Mantle/Base midpoint for inactive tabs, unchanged Base for the
-active tab, and Base lightened by 5% for inactive hover. These roles do not
+Root editor tabs use Crust for the empty strip, Mantle for inactive tabs, Base
+for the active tab, and Base lightened by 5% for inactive hover. These roles do not
 change when translucency is toggled. Inactive close buttons remain in layout
 while hidden, so Metadata Menu file-class icons do not shift when hover reveals
 the close control.
@@ -132,9 +136,9 @@ pnpm run test:visual
 pnpm run test:visual:check
 ```
 
-The contract test validates the theme's declared interface roles against Latte,
-Frappé, Macchiato, and Mocha palette blocks directly, including the
-Style-Settings-enabled body classes.
+The contract test validates all 104 canonical palette values, 56 flavor/accent
+combinations, core surface and typography roles, readable selection contrast,
+and the absence of bundled fonts.
 The visual command renders the same fixture under Latte, Frappé, Macchiato,
 Mocha, and Mocha with the alternate Blue accent. It writes one deterministic
 baseline per scenario under `tests/visual/interface-states-*.png`.

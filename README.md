@@ -16,7 +16,8 @@ Catppuccin Code is a fork of
 match [Catppuccin for VS Code](https://github.com/catppuccin/vscode).
 
 It includes all four Catppuccin flavors, configurable accents, and Style
-Settings support.
+Settings support. The theme inherits Obsidian's configured interface, text, and
+monospace fonts; it does not bundle or force a typeface.
 
 <p align="center">
   <img src="assets/screenshot-hq.png" alt="Catppuccin Code in Obsidian"/>

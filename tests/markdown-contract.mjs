@@ -26,7 +26,9 @@ const appRoles = {
   "code-normal": "var(--text-normal)",
   "code-comment": "rgb(var(--ctp-overlay2))",
   "code-function": "var(--color-blue)",
-  "code-keyword": "var(--color-purple)",
+  "code-important": "rgb(var(--ctp-pink))",
+  "code-keyword": "rgb(var(--ctp-mauve))",
+  "code-operator": "rgb(var(--ctp-sky))",
   "code-property": "var(--color-blue)",
   "code-punctuation": "rgb(var(--ctp-overlay2))",
   "code-string": "var(--color-green)",
@@ -38,9 +40,9 @@ const appRoles = {
   "link-external-color-hover": "rgb(var(--ctp-blue))",
   "tag-color": "rgb(var(--ctp-tag-pill-color, var(--ctp-blue)))",
   "tag-color-hover": "rgb(var(--ctp-tag-pill-color, var(--ctp-blue)))",
-  "tab-divider-color": "var(--background-secondary)",
-  "tab-outline-color": "var(--background-secondary)",
-  "titlebar-background-focused": "var(--background-secondary)",
+  "tab-divider-color": "rgb(var(--ctp-crust))",
+  "tab-outline-color": "rgb(var(--ctp-crust))",
+  "titlebar-background-focused": "rgb(var(--ctp-crust))",
   "titlebar-border-color": "transparent",
 };
 
@@ -79,6 +81,7 @@ for (const [name, token] of Object.entries(defaults)) {
     `Style Settings ctp-${name} must expose its default as an option`,
   );
 }
+assert(!/label: (?:White|Gray|Frappe)\b/.test(settings), "Style Settings must use canonical Catppuccin names");
 
 has(typography, /--bold-color: rgb\(var\(--ctp-bold, var\(--ctp-text\)\)\)/, "Bold prose must default to Text");
 has(typography, /--italic-color: rgb\(var\(--ctp-italic, var\(--ctp-text\)\)\)/, "Italic prose must default to Text");
@@ -96,7 +99,7 @@ assert(!/var\(--ctp-tag-pill-color, var\(--ctp-accent\)\)/.test(links), "Tag for
 
 has(palette, /--hr-color: rgb\(var\(--ctp-surface2\)\)/, "Full palette must use Surface2 for rules");
 has(palette, /input\[type="checkbox"\]:not\(:checked\)\s*\{[\s\S]*?border-color: rgb\(var\(--ctp-surface2\)\);[\s\S]*?background-color: transparent;[\s\S]*?box-shadow: none;/, "Unchecked tasks must use a neutral Surface2 outline");
-has(palette, /&:hover,\s*&:focus-visible\s*\{[\s\S]*?border-color: rgb\(var\(--ctp-lavender\)\);[\s\S]*?background-color: rgb\(var\(--ctp-surface0\), 50%\);/, "Unchecked task hover/focus must use Surface0 and Lavender");
+has(palette, /&:hover,\s*&:focus-visible\s*\{[\s\S]*?border-color: var\(--ctp-focus-border\);[\s\S]*?background-color: var\(--ctp-list-hover-background\);/, "Unchecked task hover/focus must use the selected accent and neutral hover role");
 assert(!/background-color: rgb\(var\(--ctp-red\)\)/.test(palette), "Unchecked tasks must not use a Red fill");
 
 assert(main.includes('@use "components/markdown";'), "Markdown component partial must be part of the build");
@@ -109,13 +112,14 @@ has(markdown, /\.markdown-rendered pre code\s*\{\s*background-color: transparent
 
 for (const fragment of [
   "--link-external-color: rgb(var(--ctp-blue))",
-  "--code-keyword: var(--color-purple)",
+  "--code-keyword: rgb(var(--ctp-mauve))",
+  "--code-operator: rgb(var(--ctp-sky))",
   "--code-function: var(--color-blue)",
   "--hr-color: rgb(var(--ctp-surface2))",
   "--divider-color: var(--background-secondary)",
-  "--tab-divider-color: var(--background-secondary)",
-  "--tab-outline-color: var(--background-secondary)",
-  "--titlebar-background-focused: var(--background-secondary)",
+  "--tab-divider-color: rgb(var(--ctp-crust))",
+  "--tab-outline-color: rgb(var(--ctp-crust))",
+  "--titlebar-background-focused: rgb(var(--ctp-crust))",
   "--titlebar-border-color: transparent",
   "background-color: rgb(var(--ctp-crust))",
   "background-color: rgb(var(--ctp-mantle))",

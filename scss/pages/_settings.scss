@@ -5,22 +5,6 @@
       0 0 0 2px rgb(var(--ctp-surface1));
   }
 
-  .checkbox-container {
-    --background-modifier-border-hover: rgb(var(--ctp-red));
-
-    box-shadow: 0 0 2px inset rgb(var(--ctp-base));
-  }
-
-  .checkbox-container::after {
-    --toggle-thumb-color: var(--text-on-accent);
-
-    box-shadow: 0 0 4px rgb(var(--ctp-base));
-  }
-
-  .checkbox-container:hover {
-    box-shadow: none;
-  }
-
   .vertical-tab-header-group-title {
     color: var(--text-muted);
     font-size: var(--font-ui-medium);
@@ -29,7 +13,7 @@
 }
 
 .checkbox-container.is-enabled {
-  background-color: rgb(var(--ctp-green));
+  background-color: var(--interactive-accent);
 }
 
 button.mod-cta {
@@ -73,8 +57,8 @@ button.mod-cta {
 }
 
 .community-item .flair:not(.mod-pop) {
-  --tag-background: rgb(var(--ctp-accent));
-  --tag-color: var(--text-on-accent);
+  --tag-background: var(--ctp-control-background);
+  --tag-color: var(--text-normal);
 
   text-transform: lowercase;
 }

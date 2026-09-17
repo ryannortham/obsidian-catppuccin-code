@@ -94,8 +94,9 @@ body {
   --code-normal: var(--text-normal);
   --code-comment: rgb(var(--ctp-overlay2));
   --code-function: var(--color-blue);
-  --code-important: var(--color-orange);
-  --code-keyword: var(--color-purple);
+  --code-important: rgb(var(--ctp-pink));
+  --code-keyword: rgb(var(--ctp-mauve));
+  --code-operator: rgb(var(--ctp-sky));
   --code-property: var(--color-blue);
   --code-punctuation: rgb(var(--ctp-overlay2));
   --code-string: var(--color-green);
@@ -332,14 +333,14 @@ body {
 
   /* File navigator */
   --nav-item-size: var(--font-ui-small);
-  --nav-item-color: var(--text-muted);
-  --nav-item-color-hover: var(--text-on-accent);
-  --nav-item-color-active: var(--text-on-accent);
-  --nav-item-color-selected: var(--text-on-accent);
+  --nav-item-color: var(--text-normal);
+  --nav-item-color-hover: var(--text-normal);
+  --nav-item-color-active: var(--text-normal);
+  --nav-item-color-selected: var(--text-normal);
   --nav-item-color-highlighted: var(--text-accent-hover);
   --nav-item-background-hover: var(--background-modifier-hover);
   --nav-item-background-active: var(--background-modifier-hover);
-  --nav-item-background-selected: hsl(var(--color-accent-hsl), 20%);
+  --nav-item-background-selected: var(--ctp-list-selection-background);
   --nav-item-padding: var(--size-4-1) var(--size-4-2) var(--size-4-1)
     var(--size-4-6);
   --nav-item-parent-padding: var(--nav-item-padding);
@@ -402,8 +403,8 @@ body {
   --radius-xl: 16px;
 
   /* Ribbon */
-  --ribbon-background: var(--background-secondary);
-  --ribbon-background-collapsed: var(--background-primary);
+  --ribbon-background: rgb(var(--ctp-crust));
+  --ribbon-background-collapsed: rgb(var(--ctp-crust));
   --ribbon-width: 44px;
   --ribbon-padding: var(--size-4-2) var(--size-4-1) var(--size-4-3);
 
@@ -448,12 +449,12 @@ body {
   --slider-thumb-radius: var(--slider-thumb-height);
   --slider-s-thumb-size: 15px;
   --slider-s-thumb-position: -5px;
-  --slider-fill-background: rgb(var(--ctp-green));
+  --slider-fill-background: rgb(var(--ctp-accent));
   --slider-track-background: var(--background-modifier-border);
   --slider-track-height: 3px;
 
   /* Status bar */
-  --status-bar-background: var(--background-secondary);
+  --status-bar-background: rgb(var(--ctp-crust));
   --status-bar-border-color: var(--divider-color);
   --status-bar-border-width: 1px 0 0 1px;
   --status-bar-font-size: var(--font-ui-smaller);
@@ -470,7 +471,7 @@ body {
 
   /* Tabs */
   --tab-background-active: var(--background-primary);
-  --tab-text-color: var(--text-faint);
+  --tab-text-color: rgb(var(--ctp-overlay0));
   --tab-text-color-active: var(--text-muted);
   --tab-text-color-focused: var(--text-muted);
   --tab-text-color-focused-active: var(--text-normal);
@@ -478,9 +479,9 @@ body {
   --tab-text-color-focused-active-current: var(--text-normal);
   --tab-font-size: var(--font-ui-small);
   --tab-font-weight: inherit;
-  --tab-container-background: var(--background-secondary);
-  --tab-divider-color: var(--background-secondary);
-  --tab-outline-color: var(--background-secondary);
+  --tab-container-background: rgb(var(--ctp-crust));
+  --tab-divider-color: rgb(var(--ctp-crust));
+  --tab-outline-color: rgb(var(--ctp-crust));
   --tab-outline-width: 1px;
   --tab-curve: 6px;
   --tab-radius: var(--radius-s);
@@ -528,17 +529,17 @@ body {
   --tag-decoration: none;
   --tag-decoration-hover: underline;
   --tag-background: transparent;
-  --tag-background-hover: 0;
-  --tag-border-color: hsl(var(--interactive-accent-hsl), 10%);
-  --tag-border-color-hover: hsl(var(--interactive-accent-hsl), 15%);
+  --tag-background-hover: transparent;
+  --tag-border-color: rgb(var(--ctp-accent), 10%);
+  --tag-border-color-hover: rgb(var(--ctp-accent), 15%);
   --tag-border-width: 0;
   --tag-padding-x: 0;
   --tag-padding-y: 0;
   --tag-radius: 0.8em;
 
   /* Window frame */
-  --titlebar-background: var(--background-secondary);
-  --titlebar-background-focused: var(--background-secondary);
+  --titlebar-background: rgb(var(--ctp-crust));
+  --titlebar-background-focused: rgb(var(--ctp-crust));
   --titlebar-border-width: 0;
   --titlebar-border-color: transparent;
   --titlebar-text-color: var(--text-muted);
@@ -567,45 +568,4 @@ body {
   /* Workspace */
   --workspace-background-translucent: rgb(var(--mono-rgb-0), 60%);
 
-  /* Color mappings ------------------------ */
-
-  /* Accent HSL values: overridden by each Catppuccin flavor block. */
-  --accent-h: 267;
-  --accent-s: 84%;
-  --accent-l: 81%;
-
-  /* Backgrounds */
-  --background-primary: var(--color-base-00);
-  --background-primary-alt: var(--color-base-10);
-  --background-secondary: var(--color-base-20);
-  --background-modifier-hover: rgb(var(--mono-rgb-100), 7.5%);
-  --background-modifier-active-hover: hsl(var(--interactive-accent-hsl), 15%);
-  --background-modifier-border: var(--color-base-30);
-  --background-modifier-border-hover: var(--color-base-35);
-  --background-modifier-border-focus: var(--color-base-40);
-  --background-modifier-error-rgb: var(--color-red-rgb);
-  --background-modifier-error: var(--color-red);
-  --background-modifier-error-hover: var(--color-red);
-  --background-modifier-success-rgb: var(--color-green-rgb);
-  --background-modifier-success: var(--color-green);
-  --background-modifier-message: rgb(var(--ctp-crust), 90%);
-
-  /* Inputs */
-  --background-modifier-form-field: var(--color-base-00);
-
-  /* Text */
-  --text-normal: var(--color-base-100);
-  --text-muted: var(--color-base-70);
-  --text-faint: var(--color-base-50);
-  --text-on-accent: var(--text-normal);
-  --text-error: var(--color-red);
-  --text-success: var(--color-green);
-  --text-selection: hsla(var(--color-accent-hsl), 2%);
-  --text-accent: var(--color-accent);
-  --text-accent-hover: var(--color-accent-2);
-  --interactive-normal: var(--color-base-00);
-  --interactive-hover: var(--color-base-10);
-  --interactive-accent-hsl: var(--color-accent-hsl);
-  --interactive-accent: var(--color-accent-1);
-  --interactive-accent-hover: var(--color-accent-2);
 }

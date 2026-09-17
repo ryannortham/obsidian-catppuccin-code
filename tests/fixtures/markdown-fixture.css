@@ -7,7 +7,7 @@ body {
   margin: 0;
   background: rgb(var(--ctp-crust));
   color: rgb(var(--ctp-text));
-  font-family: Vollkorn, Georgia, serif;
+  font-family: system-ui, sans-serif;
 }
 
 main {

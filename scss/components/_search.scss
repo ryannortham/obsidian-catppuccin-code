@@ -1,45 +1,37 @@
 .cm-s-obsidian span.obsidian-search-match-highlight {
-  background-color: rgb(var(--ctp-rosewater));
-  box-shadow: 0 0 0 3px rgb(var(--ctp-accent));
-  color: var(--text-on-accent);
-}
-
-.search-result-file-matches {
-  background-color: rgb(var(--background-secondary));
+  background-color: var(--ctp-search-match-current-background);
+  box-shadow: 0 0 0 2px var(--ctp-focus-border);
   color: var(--text-normal);
 }
 
-/*
-* Prevents super strong box-shadow when using arrow keys to highlight searches
-*/
+.search-result-file-matches {
+  background-color: var(--background-secondary);
+  color: var(--text-normal);
+}
+
 .workspace-leaf.mod-active .search-result.has-focus .tree-item-self,
 .workspace-leaf.mod-active .search-result-file-match.has-focus {
-  box-shadow: inset 0 0 0 1px rgb(var(--ctp-accent));
+  box-shadow: inset 2px 0 0 var(--ctp-focus-border);
 }
 
 @media (hover: hover) {
+  .search-result-file-match:hover,
   .search-result-file-match:hover .search-result-file-match-destination-file {
-    background-color: var(--background-secondary);
-  }
-
-  .search-result-file-match:hover {
-    background-color: rgb(var(--ctp-accent), 80%);
-    color: var(--text-on-accent);
-  }
-
-  .search-result-file-match:hover .search-result-file-match-destination-file:hover {
-    background-color: var(--interactive-hover);
-    box-shadow: var(--input-shadow-hover);
+    background-color: var(--ctp-list-hover-background);
     color: var(--text-normal);
   }
 }
 
 .search-suggest-item.is-selected {
-  background-color: rgb(var(--ctp-accent));
-  color: var(--text-on-accent);
+  background-color: var(--ctp-list-selection-background);
+  color: var(--text-normal);
+
+  .list-item-part.clickable-icon {
+    color: var(--ctp-icon-foreground);
+  }
 
   .search-suggest-info-text {
-    color: var(--text-on-accent);
+    color: var(--text-muted);
   }
 }
 
@@ -50,60 +42,45 @@
   font-variant: all-small-caps;
 }
 
-.search-suggest-item.is-selected {
-  background-color: rgb(var(--ctp-accent));
-  color: var(--text-on-accent);
-
-  .list-item-part.clickable-icon {
-    color: var(--text-muted);
-  }
-
-  .search-suggest-info-text {
-    color: var(--text-on-accent);
-  }
-}
-
 .list-item-part.clickable-icon:hover,
 .list-item-part.clickable-icon:active {
-  background-color: rgb(var(--ctp-accent));
+  background-color: var(--ctp-list-hover-background);
 }
 
 .search-result-file-match:hover .search-result-file-matched-text {
-  background-color: transparent;
-  color: inherit;
+  background-color: var(--ctp-search-match-current-background);
+  color: var(--text-normal);
 }
 
 .search-result-file-matched-text {
-  background-color: rgb(var(--ctp-rosewater));
-  color: var(--text-on-accent);
+  background-color: var(--ctp-search-match-background);
+  color: var(--text-normal);
 }
 
 .is-flashing,
 .cm-s-obsidian .is-flashing .cm-url {
-  --tag-color: var(--text-on-accent);
+  --tag-color: var(--text-normal);
 
-  background-color: rgb(var(--ctp-rosewater));
-  color: var(--text-on-accent);
+  background-color: var(--ctp-search-match-current-background);
+  color: var(--text-normal);
 }
 
-.is-flashing .cm-quote.cm-quote {
-  color: var(--text-on-accent);
-}
-
+.is-flashing .cm-quote.cm-quote,
+.cm-s-obsidian .is-flashing .cm-hmd-internal-link,
 .cm-s-obsidian .is-flashing .cm-url .cm-underline:hover,
 .cm-s-obsidian .is-flashing span.cm-url:hover {
-  --link-external-color-hover: var(--text-on-accent);
+  color: var(--text-normal);
 }
 
 .community-item .suggestion-highlight {
-  color: var(--text-on-accent);
+  color: var(--text-accent);
 }
 
 .community-item:hover {
-  --background-modifier-border-hover: rgb(var(--ctp-accent));
+  --background-modifier-border-hover: var(--ctp-focus-border);
 }
 
 .community-item.is-selected,
 .community-item.is-selected:hover {
-  --interactive-accent: rgb(var(--ctp-mauve));
+  --interactive-accent: var(--ctp-list-selection-background);
 }

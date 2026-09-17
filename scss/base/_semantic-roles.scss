@@ -1,0 +1,111 @@
+/*
+ * Palette data and Style Settings metadata live in _ctp-style-settings.scss.
+ * This file is the only owner of shared Catppuccin semantic colour roles.
+ * Components consume these roles instead of choosing palette colours directly.
+ */
+
+.theme-light,
+.theme-dark {
+  /* Obsidian compatibility aliases. Complete colours and RGB channels agree. */
+  --color-red-rgb: var(--ctp-red);
+  --color-red: rgb(var(--color-red-rgb));
+  --color-orange-rgb: var(--ctp-peach);
+  --color-orange: rgb(var(--color-orange-rgb));
+  --color-yellow-rgb: var(--ctp-yellow);
+  --color-yellow: rgb(var(--color-yellow-rgb));
+  --color-green-rgb: var(--ctp-green);
+  --color-green: rgb(var(--color-green-rgb));
+  --color-cyan-rgb: var(--ctp-sky);
+  --color-cyan: rgb(var(--color-cyan-rgb));
+  --color-blue-rgb: var(--ctp-blue);
+  --color-blue: rgb(var(--color-blue-rgb));
+  --color-purple-rgb: var(--ctp-mauve);
+  --color-purple: rgb(var(--color-purple-rgb));
+  --color-pink-rgb: var(--ctp-pink);
+  --color-pink: rgb(var(--color-pink-rgb));
+
+  /* Core surfaces follow the reference Crust → Mantle → Base hierarchy. */
+  --background-primary: rgb(var(--ctp-base));
+  --background-primary-rgb: var(--ctp-base);
+  --background-primary-alt: rgb(var(--ctp-mantle));
+  --background-secondary: rgb(var(--ctp-mantle));
+  --background-secondary-alt: rgb(var(--ctp-crust));
+  --background-modifier-border: rgb(var(--ctp-surface0));
+  --background-modifier-border-hover: rgb(var(--ctp-surface1));
+  --background-modifier-border-focus: rgb(var(--ctp-overlay0));
+  --background-modifier-form-field: rgb(var(--ctp-surface0));
+  --background-modifier-form-field-highlighted: rgb(var(--ctp-surface1));
+  --background-modifier-box-shadow: rgb(var(--ctp-crust), 30%);
+  --background-modifier-cover: rgb(var(--ctp-crust), 90%);
+  --background-modifier-success: rgb(var(--ctp-green), 90%);
+  --background-modifier-success-rgb: var(--ctp-green);
+  --background-modifier-error: rgb(var(--ctp-red), 90%);
+  --background-modifier-error-rgb: var(--ctp-red);
+  --background-modifier-error-hover: rgb(var(--ctp-red));
+
+  /* Accent-dependent roles all derive from the selected accent channels. */
+  --color-accent: rgb(var(--ctp-accent));
+  --color-accent-1: rgb(var(--ctp-accent));
+  --color-accent-2: color-mix(in srgb, rgb(var(--ctp-accent)) 90%, rgb(var(--ctp-base)));
+  --interactive-accent: var(--color-accent);
+  --interactive-accent-rgb: var(--ctp-accent);
+  --interactive-accent-hover: var(--color-accent-2);
+  --interactive-success: rgb(var(--ctp-green));
+
+  /* Solid accents are indicators. Text-bearing selections use neutral surfaces. */
+  --ctp-focus-border: rgb(var(--ctp-accent));
+  --ctp-icon-foreground: rgb(var(--ctp-accent));
+  --ctp-on-accent: rgb(var(--ctp-crust));
+  --ctp-control-background: rgb(var(--ctp-surface0));
+  --ctp-control-foreground: rgb(var(--ctp-text));
+  --ctp-control-hover-background: rgb(var(--ctp-surface1));
+  --ctp-list-selection-background: rgb(var(--ctp-surface0));
+  --ctp-list-hover-background: rgb(var(--ctp-surface0), 50%);
+  --ctp-list-secondary-foreground: rgb(var(--ctp-subtext0));
+  --ctp-search-match-background: rgb(var(--ctp-sky), 30%);
+  --ctp-search-match-current-background: rgb(var(--ctp-red), 30%);
+  --ctp-tree-guide-active: rgb(var(--ctp-overlay2));
+  --ctp-tree-guide-inactive: rgb(var(--ctp-surface1));
+  --text-normal: rgb(var(--ctp-text));
+  --text-muted: rgb(var(--ctp-subtext0));
+  --text-muted-rgb: var(--ctp-subtext0);
+  --text-faint: rgb(var(--ctp-overlay1));
+  --text-accent: rgb(var(--ctp-blue));
+  --text-accent-hover: rgb(var(--ctp-sky));
+  --text-error: rgb(var(--ctp-red));
+  --text-error-hover: rgb(var(--ctp-red), 80%);
+  --text-success: rgb(var(--ctp-green));
+  --text-highlight-bg: rgb(var(--ctp-yellow), 28%);
+  --text-highlight-bg-active: rgb(var(--ctp-yellow), 35%);
+  --text-selection: rgb(var(--ctp-overlay2), 25%);
+  --text-on-accent: var(--ctp-on-accent);
+  --text-on-accent-inverted: var(--ctp-on-accent);
+  --caret-color: rgb(var(--ctp-rosewater));
+  --interactive-normal: var(--ctp-control-background);
+  --interactive-hover: var(--ctp-control-hover-background);
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: rgb(var(--ctp-surface2), 50%);
+  --scrollbar-active-thumb-bg: rgb(var(--ctp-surface0), 40%);
+  --mono-rgb-0: var(--ctp-crust);
+  --mono-rgb-100: var(--ctp-text);
+  --color-base-00: rgb(var(--ctp-crust));
+  --color-base-10: rgb(var(--ctp-mantle));
+  --color-base-20: rgb(var(--ctp-base));
+  --color-base-25: rgb(var(--ctp-surface0));
+  --color-base-30: rgb(var(--ctp-surface1));
+  --color-base-35: rgb(var(--ctp-surface2));
+  --color-base-40: rgb(var(--ctp-overlay0));
+  --color-base-50: rgb(var(--ctp-overlay1));
+  --color-base-60: rgb(var(--ctp-overlay2));
+  --color-base-70: rgb(var(--ctp-subtext0));
+  --color-base-100: rgb(var(--ctp-text));
+}
+
+.theme-light:not([class*="ctp-accent-"], .ctp-full-palette),
+.theme-dark:not([class*="ctp-accent-"], .ctp-full-palette) {
+  --ctp-accent: var(--ctp-mauve);
+}
+
+.theme-light {
+  --text-selection: rgb(var(--ctp-overlay2), 30%);
+}

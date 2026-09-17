@@ -1,0 +1,29 @@
+/* Catppuccin editor roles for Reading View and Live Preview code tokens. */
+/* stylelint-disable selector-class-pattern -- CodeMirror owns these class names. */
+.markdown-rendered,
+.markdown-source-view.mod-cm6 {
+  :is(.token.operator, .cm-operator) {
+    color: var(--code-operator);
+  }
+
+  :is(.token.regex, .cm-regexp) {
+    color: rgb(var(--ctp-pink));
+  }
+
+  :is(.token.attr-name, .token.class-name, .token.type, .cm-typeName) {
+    color: rgb(var(--ctp-yellow));
+  }
+
+  :is(.token.parameter, .cm-variableName.cm-definition) {
+    color: rgb(var(--ctp-maroon));
+  }
+
+  :is(.token.builtin, .token.constant, .token.symbol, .cm-bool, .cm-atom) {
+    color: rgb(var(--ctp-red));
+  }
+
+  :is(.token.function, .token.property, .cm-propertyName) {
+    color: rgb(var(--ctp-blue));
+  }
+}
+/* stylelint-enable selector-class-pattern */

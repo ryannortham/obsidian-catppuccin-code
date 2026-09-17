@@ -7,13 +7,13 @@
 }
 
 .tree-item-self:hover .tree-item-flair {
-  color: var(--text-on-accent);
+  color: var(--text-muted);
 }
 
 @media (hover: hover) {
   .backlink-pane > .tree-item-self.is-clickable.is-collapsed:hover,
   .outgoing-link-pane > .tree-item-self.is-clickable.is-collapsed:hover {
-    color: var(--text-on-accent);
+    color: var(--text-normal);
   }
 }
 
@@ -38,7 +38,7 @@
 
 .is-flashing .nav-folder-title,
 .is-flashing .nav-file-title {
-  color: var(--text-on-accent);
+  color: var(--text-normal);
 }
 
 /*
@@ -47,14 +47,14 @@
 
 .tree-item-self:is(.is-active, .is-selected)
   :is(.tree-item-icon, .tree-item-icon svg, .tree-item-flair) {
-  color: var(--ctp-list-secondary-foreground, var(--text-on-accent));
+  color: var(--ctp-list-secondary-foreground, var(--text-muted));
 }
 
 @media (hover: hover) {
   body:not(.is-grabbing)
     .tree-item-self.is-clickable:not(.is-active, .is-selected):hover {
     .tree-item-icon {
-      --icon-color: var(--text-on-accent);
+      --icon-color: var(--text-muted);
     }
   }
 }
