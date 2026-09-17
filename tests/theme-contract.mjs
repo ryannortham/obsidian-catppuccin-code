@@ -209,8 +209,12 @@ assert(
   "Embedded Base views in Reading View must retain Obsidian's UI font size",
 );
 assert(
-  /\.bases-embed[\s\S]*?\.bases-view\[data-view-type="kanban"\][\s\S]*?scrollbar-gutter: auto[\s\S]*?\.base-board-board[\s\S]*?flex: 0 0 auto[\s\S]*?justify-content: safe center[\s\S]*?\.base-board-column[\s\S]*?max-height: 400px[\s\S]*?flex-basis: 210px/.test(pluginCompatibilitySource),
-  "Embedded Base Board views must use their full width and safely centre compact columns",
+  /\.bases-embed[\s\S]*?\.bases-view\[data-view-type="kanban"\][\s\S]*?scrollbar-gutter: auto[\s\S]*?\.base-board-board[\s\S]*?flex: 0 0 auto[\s\S]*?justify-content: safe center[\s\S]*?\.base-board-column:not\(\.base-board-column--collapsed\)[\s\S]*?min-width: 210px[\s\S]*?max-width: 280px[\s\S]*?max-height: 400px[\s\S]*?flex: 1 1 210px/.test(pluginCompatibilitySource),
+  "Embedded Base Board views must use their full width and safely centre bounded flexible columns",
+);
+assert(
+  /\.base-board-column--collapsed[\s\S]*?min-width: 44px[\s\S]*?max-width: 44px[\s\S]*?flex: 0 0 44px[\s\S]*?\.base-board-column-placeholder[\s\S]*?min-width: 210px[\s\S]*?max-width: 280px[\s\S]*?flex: 1 1 210px[\s\S]*?\.base-board-column--collapsed\.base-board-column--drag-expanded[\s\S]*?min-width: 210px[\s\S]*?max-width: 280px[\s\S]*?flex: 1 1 210px/.test(pluginCompatibilitySource),
+  "Embedded Base Board collapsed columns and drag placeholders must retain bounded sizing",
 );
 assert(
   /\.base-board-card-chip:is\([\s\S]*?formula\.project_scope[\s\S]*?formula\.company_link[\s\S]*?\.base-board-chip-label[\s\S]*?display: none/.test(pluginCompatibilitySource),
@@ -245,8 +249,8 @@ assert(
   "Base Board column disclosure controls must use and rotate the native file-tree glyph",
 );
 assert(
-  /\.base-board-filter-title[\s\S]*?&::before[\s\S]*?mask: url\("data:image\/svg\+xml,[\s\S]*?M2 5h20[\s\S]*?> \.lucide-filter[\s\S]*?display: none/.test(pluginCompatibilitySource),
-  "Base Board filter title must replace the plugin funnel with the native Bases list-filter glyph",
+  /\.base-board-filter-title[\s\S]*?&::before[\s\S]*?mask: url\("data:image\/svg\+xml,[\s\S]*?M13\.172 2[\s\S]*?> \.lucide-filter[\s\S]*?display: none/.test(pluginCompatibilitySource),
+  "Base Board filter title must replace the plugin funnel with Obsidian's native Tags glyph",
 );
 assert(!sidebarSource.includes(".nav-file-tag"), "Obsidian must retain ownership of stock file extension badges");
 for (const [name, source] of Object.entries({
