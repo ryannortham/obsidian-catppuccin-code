@@ -23,23 +23,7 @@
   }
 
   :is(.markdown-rendered .task-list-item, .markdown-source-view .HyperMD-task-line)
-    > input[type="checkbox"]:not(
-    [data-task=">"],
-    [data-task="!"],
-    [data-task="-"],
-    [data-task="<"],
-    [data-task="l"],
-    [data-task="*"],
-    [data-task="I"],
-    [data-task="p"],
-    [data-task="f"],
-    [data-task="k"],
-    [data-task="u"],
-    [data-task="w"],
-    [data-task="c"],
-    [data-task="d"],
-    [data-task="b"]
-  ):checked {
+    > input[type="checkbox"]:checked {
     border-color: transparent;
     background-color: rgb(var(--ctp-green));
     box-shadow: 0 0 0 1px rgb(var(--ctp-green), 40%);

@@ -46,16 +46,28 @@ function rgbToHex(value) {
   return `#${channels.map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
 }
 
+const themeSettingsBlock = paletteSource.match(
+  /\/\* @settings\nname: "Catppuccin: Themes"[\s\S]*?\*\//,
+)?.[0];
 const fontSettingsBlock = paletteSource.match(
   /\/\* @settings\nname: "Catppuccin: Font Styles"[\s\S]*?\*\//,
+)?.[0];
+const layoutSettingsBlock = paletteSource.match(
+  /\/\* @settings\nname: "Catppuccin: Layout"[\s\S]*?\*\//,
 )?.[0];
 const fontColorsBlock = paletteSource.match(
   /\/\* @settings\nname: "Catppuccin: Font Colors"[\s\S]*?\*\//,
 )?.[0];
 assert(paletteSource.includes('name: "Catppuccin: Themes"'), "Theme settings section must be named Themes");
 assert(
-  /id: ctp-vscode-layout[\s\S]*?type: class-toggle[\s\S]*?default: true/.test(paletteSource),
-  "VS Code layout must be a default-on class toggle",
+  layoutSettingsBlock?.includes("id: ctp-vscode-layout") &&
+    /type: class-toggle[\s\S]*?default: true/.test(layoutSettingsBlock),
+  "VS Code layout must be a default-on class toggle in its own Layout section",
+);
+assert(!themeSettingsBlock?.includes("id: ctp-vscode-layout"), "VS Code layout must not live under Themes");
+assert(
+  layoutSettingsBlock?.includes("description: Use compact tabs and VS Code-style activity indicators"),
+  "VS Code layout description must be concise and describe its visible changes",
 );
 assert(!paletteSource.includes("Catppuccin: Catppuccin Accents"), "Duplicated Catppuccin accent label must be removed");
 assert(!paletteSource.includes("catppuccin-interface-styles"), "Empty Interface Styles section must be removed");
@@ -401,7 +413,6 @@ assert(!existsSync(join(root, "scss/vendors/_fonts.scss")), "Bundled font source
 assert(!existsSync(join(root, "obsidian.css")), "Legacy font-bundled artifact must be removed");
 assert(!/@font-face|data:font|Vollkorn|Nunito Sans/i.test(compiledCss), "Compiled theme must not bundle or force fonts");
 assert(Buffer.byteLength(compiledCss) < 250_000, "Compiled theme unexpectedly exceeds 250 KB");
-assert(!/%2311111b/i.test(read("scss/vendors/_checklists.scss")), "Checklist SVGs must not bake in Mocha Crust");
 assert(!mainSource.includes('components/pdfs'), "PDF component partial must not be compiled");
 assert(!existsSync(join(root, "scss/components/_pdfs.scss")), "PDF component source must be removed");
 assert(!/\bpdf\b/i.test(`${appVariableSource}\n${iconsSource}\n${interfaceSource}`), "PDF-specific theme code must be removed");

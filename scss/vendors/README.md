@@ -8,8 +8,6 @@ must remain isolated from core Obsidian interface ownership.
   Client, and Base Board contracts. Shared colours remain active in both layout
   modes; only the Agent Client radius and Metadata Menu tab optical offset are
   gated by `ctp-vscode-layout`.
-- `_checklists.scss` provides task-status glyph compatibility
-  rules and their required mask syntax.
 
 Do not move these selectors into the core interface partial or put the entire
 vendor file behind the layout toggle. Core Obsidian controls must continue to
