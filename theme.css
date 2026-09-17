@@ -1,16 +1,6 @@
 @charset "UTF-8";
 body {
-  /** Variables controlling many core aspects of Obsidian's appearance.
-   * At present (5/15/23), some of these may be overwritten inside other
-   * selectors.
-   * If a change you make here is not reflected in the theme,
-   * cmd/ctrl+f to see if the variable is being defined elsewhere.
-   * -- Original theme author's notes:
-  * List of variables is placed in body rather than :root so
-  * that we can	combine all property types including colors
-  * and sort alphabetically to maximize readability in
-  * the compiled app.css file.
-  */
+  /** Obsidian variables customized by Catppuccin Code. */
   /* Animations */
   --anim-duration-none: 0;
   --anim-duration-superfast: 70ms;
@@ -1865,9 +1855,7 @@ input[type=datetime-local]::-webkit-datetime-edit-second-field:focus {
     color: var(--text-normal);
   }
 }
-/**
-* 1. Fix #97 highlighted link contrast issues
-*/
+/* Keep highlighted links readable in both editor modes. */
 .cm-s-obsidian .cm-highlight.cm-link .cm-underline {
   color: var(--text-normal);
   text-decoration: var(--text-normal) solid underline;
@@ -1888,7 +1876,7 @@ input[type=datetime-local]::-webkit-datetime-edit-second-field:focus {
   background-color: rgb(var(--ctp-mantle));
 }
 
-/* Obsidian's CodeMirror classes intentionally retain their upstream casing. */
+/* Obsidian and CodeMirror define these class names. */
 /* stylelint-disable selector-class-pattern */
 .markdown-rendered pre,
 .markdown-source-view.mod-cm6 :is(.HyperMD-codeblock-bg,
@@ -1904,10 +1892,7 @@ input[type=datetime-local]::-webkit-datetime-edit-second-field:focus {
   background-color: transparent;
 }
 
-/**
-* 1. Compatibility for mermaid mindmaps #73
-* 2. CSS modified from obsidian forums post, !important seems to be req
-*/
+/* Keep Mermaid mindmap labels readable across light and dark flavors. */
 .theme-dark .mermaid .mindmap-node text {
   fill: var(--text-on-accent) !important;
 }
@@ -1916,9 +1901,7 @@ input[type=datetime-local]::-webkit-datetime-edit-second-field:focus {
   fill: var(--text-on-accent) !important;
 }
 
-/**
-* 1. Colors for the first eight nodes in a mindmap
-*/
+/* Use the Catppuccin palette for the first eight mindmap nodes. */
 .mermaid .section-0 path,
 .mermaid .section-0 line,
 .mermaid .section-edge-0 {
@@ -1975,7 +1958,6 @@ input[type=datetime-local]::-webkit-datetime-edit-second-field:focus {
   stroke: var(--color-cyan) !important;
 }
 
-/* TODO Add to Style Settings instead */
 .cm-s-obsidian span.obsidian-search-match-highlight {
   background-color: var(--ctp-search-match-current-background);
   box-shadow: 0 0 0 2px var(--ctp-focus-border);
@@ -2100,12 +2082,7 @@ input[type=datetime-local]::-webkit-datetime-edit-second-field:focus {
     color: var(--text-normal);
   }
 }
-/*
-* #TODO?
-* This is trying to minimize how jarring this weird thing
-* that happens when you click the folder name in the header title.
-* It looks odd in the default theme, too.
-*/
+/* Keep Obsidian's temporary flash state readable while renaming a tree item. */
 .is-flashing .nav-folder-title,
 .is-flashing .nav-file-title {
   color: var(--text-normal);
@@ -2188,6 +2165,13 @@ button.mod-cta:hover {
 .theme-dark .view-content .style-settings-container .setting-item:not(.setting-item-heading) .setting-item-control,
 .theme-light .view-content .style-settings-container .setting-item:not(.setting-item-heading) .setting-item-control {
   padding-top: 0;
+}
+
+.setting-item:has(input[placeholder="Search Style Settings..."]) {
+  align-items: center;
+}
+.setting-item:has(input[placeholder="Search Style Settings..."]) .setting-item-name {
+  overflow: visible;
 }
 
 /**
@@ -3053,10 +3037,8 @@ body.theme-light.ctp-vscode-layout .workspace-tab-header .metadata-menu.fileclas
 }
 
 /* stylelint-enable selector-class-pattern */
-/* stylelint-disable property-no-vendor-prefix, selector-class-pattern, selector-pseudo-element-colon-notation -- Obsidian task DOM and legacy mask compatibility. */
-/**
-* 1. Checklist icons implemented for #91. This scss is from Kepano's Minimal Theme under its MIT License. Thanks Kepano!
-*/
+/* stylelint-disable property-no-vendor-prefix, selector-class-pattern, selector-pseudo-element-colon-notation -- Obsidian task DOM and WebKit mask compatibility. */
+/* Custom task-status glyphs adapted from Kepano's Minimal Theme under its MIT License. */
 .cm-formatting.cm-formatting-task.cm-property {
   font-family: var(--font-monospace);
 }

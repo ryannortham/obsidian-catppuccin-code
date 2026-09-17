@@ -5,7 +5,7 @@
   background-color: rgb(var(--ctp-mantle));
 }
 
-/* Obsidian's CodeMirror classes intentionally retain their upstream casing. */
+/* Obsidian and CodeMirror define these class names. */
 /* stylelint-disable selector-class-pattern */
 .markdown-rendered pre,
 .markdown-source-view.mod-cm6 :is(

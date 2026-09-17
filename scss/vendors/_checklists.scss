@@ -1,8 +1,6 @@
-/* stylelint-disable property-no-vendor-prefix, selector-class-pattern, selector-pseudo-element-colon-notation -- Obsidian task DOM and legacy mask compatibility. */
+/* stylelint-disable property-no-vendor-prefix, selector-class-pattern, selector-pseudo-element-colon-notation -- Obsidian task DOM and WebKit mask compatibility. */
 
-/**
-* 1. Checklist icons implemented for #91. This scss is from Kepano's Minimal Theme under its MIT License. Thanks Kepano!
-*/
+/* Custom task-status glyphs adapted from Kepano's Minimal Theme under its MIT License. */
 
 .cm-formatting.cm-formatting-task.cm-property {
   font-family:var(--font-monospace);

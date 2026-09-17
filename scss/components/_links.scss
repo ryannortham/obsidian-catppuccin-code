@@ -52,9 +52,7 @@
   }
 }
 
-/**
-* 1. Fix #97 highlighted link contrast issues
-*/
+/* Keep highlighted links readable in both editor modes. */
 
 
 .cm-s-obsidian .cm-highlight.cm-link .cm-underline {

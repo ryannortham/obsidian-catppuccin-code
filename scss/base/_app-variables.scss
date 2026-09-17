@@ -1,15 +1,5 @@
 body {
-  /** Variables controlling many core aspects of Obsidian's appearance.
-  * At present (5/15/23), some of these may be overwritten inside other
-  * selectors.
-  * If a change you make here is not reflected in the theme,
-  * cmd/ctrl+f to see if the variable is being defined elsewhere.
-  * -- Original theme author's notes:
-	* List of variables is placed in body rather than :root so
-	* that we can	combine all property types including colors
-	* and sort alphabetically to maximize readability in
-	* the compiled app.css file.
-	*/
+  /** Obsidian variables customized by Catppuccin Code. */
 
   /* Animations */
   --anim-duration-none: 0;

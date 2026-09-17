@@ -1,9 +1,8 @@
 {
   "name": "obsidian-catppuccin-code",
   "version": "1.0.0",
-  "description": "Catppuccin for Obsidian, reworked to match Catppuccin for VS Code.",
+  "description": "A Catppuccin theme for Obsidian with an optional VS Code-inspired interface layout.",
   "scripts": {
-    "build": "sass scss/main.scss:dist/catppuccin.css",
     "build:theme": "sass scss/main.scss:theme.css",
     "lint": "stylelint 'scss/**/*.scss'",
     "test": "node tests/layout-contract.mjs && node tests/theme-contract.mjs && node tests/markdown-contract.mjs",

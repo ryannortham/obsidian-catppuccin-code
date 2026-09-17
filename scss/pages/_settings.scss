@@ -40,4 +40,17 @@ button.mod-cta {
       padding-top: 0;
     }
   }
+
+}
+
+// Style Settings can render in the main workspace or a separate native Settings
+// window, so this uniquely scoped rule must not depend on the window's theme class.
+.setting-item:has(input[placeholder="Search Style Settings..."]) {
+  // Center the action links against the taller search control.
+  align-items: center;
+
+  // Let Obsidian's stock focus highlight extend beyond the input without clipping.
+  .setting-item-name {
+    overflow: visible;
+  }
 }

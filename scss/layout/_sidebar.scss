@@ -17,12 +17,7 @@
   }
 }
 
-/*
-* #TODO?
-* This is trying to minimize how jarring this weird thing
-* that happens when you click the folder name in the header title.
-* It looks odd in the default theme, too.
-*/
+/* Keep Obsidian's temporary flash state readable while renaming a tree item. */
 
 .is-flashing .nav-folder-title,
 .is-flashing .nav-file-title {

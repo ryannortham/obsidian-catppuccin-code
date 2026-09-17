@@ -1,80 +1,59 @@
 # Contributing
 
-Contributions are always appreciated, especially if you want to use your contribution as an opportunity to learn more about git, CSS, Obsidian, etc. or expand the theme for a plugin you use. Expanding the theme's integration with Style Settings is also welcome. This is an inclusive project, and you can contribute (without judgment!) regardless of skill level. Before contributing, please take a moment to read the below information regarding the theme's structure and color usage (but don't worry about perfection; we can always nail things down in review). If you are unsure how to contribute after reading the section below, open an issue and we can talk through it. 🤙
+Catppuccin Code is an independently maintained Obsidian theme. Contributions
+are welcome, especially improvements to Obsidian compatibility, Style Settings,
+and the optional VS Code-inspired layout.
 
-## Theme layout and colors
+## Getting started
 
-The theme file structure is loosely based on the [7-1 Pattern](https://sass-guidelin.es/#the-7-1-pattern). It's written largely in plain CSS, but contained in SCSS files. If you are not familiar with SCSS, please see [sass-lang.com](https://sass-lang.com/). The repository includes a `.stylelintrc.yml` file if you care to use [Stylelint](https://stylelint.io/).
+Install the locked dependencies and run the complete local check suite:
 
-There are two files that might be helpful to investigate before contributing:
-[_app-variables.scss](scss/base/_app-variables.scss) and
-[_ctp-style-settings.scss](scss/base/_ctp-style-settings.scss).
-
-`_app-variables.scss` contains variables from Obsidian's CSS, some of which have been customized for Catppuccin. You can rely on these variables as references, but it is generally best to leave this file untouched. However, it can sometimes make sense to change variables inside specific selectors. For example:
-
-```scss
-.some-guy {
-  --h1-color: rgb(var(--ctp-accent));
-
-  color: var(--h1-color);
-}
+```bash
+pnpm install --frozen-lockfile
+pnpm run build:theme
+pnpm run lint
+pnpm test
+pnpm run test:visual
+pnpm run test:visual:check
 ```
 
-`_ctp-style-settings.scss` defines the Catppuccin colors for the theme. This
-file provides the names of the colors being used elsewhere in the theme. Color
-usage unique to the default user experience can be found in
-[_document-palette.scss](scss/themes/_document-palette.scss), while shared
-interface roles live in
-[_semantic-roles.scss](scss/base/_semantic-roles.scss).
+The generated `theme.css` is committed because it is the installable theme
+artifact. Edit the SCSS source, then regenerate it with `pnpm run build:theme`.
 
-## What colors go where?
+## Project structure
 
-Obsidian has a few selectors to keep in mind when modifying its CSS. Three of the more important ones: `.is-selected`, `.is-active`, and `:hover`.
+- `scss/base/` contains Obsidian variable defaults, the Catppuccin palette, and
+  shared semantic roles.
+- `scss/components/` contains document, editor, input, link, and command-palette
+  styling.
+- `scss/layout/` contains interface colors and the optional VS Code-inspired
+  geometry.
+- `scss/pages/` contains page-specific styling such as Canvas and Settings.
+- `scss/themes/` contains flavor and document-palette rules.
+- `scss/vendors/` contains isolated compatibility rules for supported plugins
+  and task-status checklists.
+- `tests/` contains source contracts and deterministic visual fixtures.
 
-The theme aims to use colors in the following ways:
+Use semantic roles from `scss/base/_semantic-roles.scss` for shared colors.
+Keep layout geometry in `_vscode-layout.scss` behind the
+`ctp-vscode-layout` class so native Obsidian layout remains a supported mode.
+Plugin selectors belong in `scss/vendors/` and should not become core interface
+rules.
 
-+ `.is-active`
-  + Selected list rows use the neutral `--ctp-list-selection-background` role.
-  + Active sidebar tabs remain transparent and use the selected accent for their icon.
-  + Active editor tabs use Base with a selected-accent indicator.
-+ `.is-selected`
-  + Selected rows use the same neutral selection role as active rows so their text remains readable.
-+ `:hover`
-  + Controls and sidebar tabs use `--ctp-hover-background`, whether or not the control is active.
-  + The selected accent is reserved for foreground emphasis, indicators, CTA buttons, and focus borders.
-  + Hovering over highlighted text should usually cause the highlighted color to become somewhat transparent (e.g. `(rgb(var(--ctp-rosewater), 60%))` for highlighted search results).
-  + Hovering over an item should cause either some part of it to get brighter or its text to become underlined
-  + Items in this category will often need their `color` changed from something like `var(--text-normal)` to `var(--text-on-accent)`
+## Local installation
 
-When transitioning from a default state to one of the above states, the
-relevant transition from [_animations.scss](scss/components/_animations.scss)
-is often applied. For example:
+To test a build in Obsidian, copy `theme.css`, `manifest.json`, and
+`screenshot.png` into:
 
-```scss
-.a-guy {
-  color: var(--text-normal);
-  transition: var(--transition-hover-color);
-
-  &:hover {
-    color: rgb(var(--ctp-accent));
-  }
-}
+```text
+.obsidian/themes/Catppuccin Code/
 ```
 
-## Working the theme
-Here's one way to work the theme:
-+ Fork or clone the repository
-+ From your terminal, `cd` to the repository
-+ Run `pnpm install`
-+ Run `pnpm run build`
-  + You will now be able to see the compiled SASS under `dist/`
-+ Symlink the `dist/catppuccin.css` file to your Obsidian vault's `.obsidian/snippets` directory using `ln dist/catppuccin.css /path/to/your/vault/.obsidian/snippets/catppuccin.css`
-+ Enable the snippet in Obsidian's settings
-+ In Obsidian, turn off any snippets or theme currently in use
-+ Make liberal use of the development tools in Obsidian (`cmd+opt+i` or `ctrl+shift+i`)
+Select **Catppuccin Code** in **Settings → Appearance**, then reload the
+workspace from Obsidian's View menu if necessary.
 
-To compile the sass files for a pull review, run `sass scss/main.scss theme.css`.
+## Pull requests
 
-## CSS for plugins
-
-If you are contributing plugin-related CSS, `./scss/vendors/_plugins` is where to go to make changes/additions. Add a comment indicating the name of the plugin you're adding CSS for and write your CSS below the comment. If you are adding CSS to a plugin already named in the file, just include your CSS at the bottom of that plugin's section.
+Explain the user-visible behavior being changed, include screenshots for visual
+changes, and report the checks you ran. Do not edit generated CSS by hand or
+add bundled fonts; the theme inherits Obsidian's configured fonts.

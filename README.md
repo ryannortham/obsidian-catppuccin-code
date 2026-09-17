@@ -11,9 +11,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-a6da95?style=for-the-badge&labelColor=363a4f" alt="MIT license"></a>
 </p>
 
-Catppuccin Code is a fork of
-[Catppuccin for Obsidian](https://github.com/catppuccin/obsidian), restyled to
-match [Catppuccin for VS Code](https://github.com/catppuccin/vscode).
+Catppuccin Code is an Obsidian theme inspired by
+[Catppuccin for VS Code](https://github.com/catppuccin/vscode).
 
 It includes all four Catppuccin flavors, configurable accents, and Style
 Settings support. The theme inherits Obsidian's configured interface, text, and
@@ -77,10 +76,9 @@ compatibility boundaries, and visual regression workflow.
 
 ## Credits
 
-Catppuccin Code builds on the original
-[Catppuccin for Obsidian](https://github.com/catppuccin/obsidian) theme and the
-[Catppuccin palette](https://github.com/catppuccin/catppuccin). Its interface
-color hierarchy follows [Catppuccin for VS Code](https://github.com/catppuccin/vscode).
+Catppuccin Code uses the
+[Catppuccin palette](https://github.com/catppuccin/catppuccin) and follows the
+interface language of [Catppuccin for VS Code](https://github.com/catppuccin/vscode).
 
 Released under the [MIT License](LICENSE).
 

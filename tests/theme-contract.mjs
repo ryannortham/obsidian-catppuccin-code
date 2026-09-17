@@ -81,6 +81,18 @@ assert(
   "Style Settings controls must remain right-aligned in a single row",
 );
 assert(
+  /\.setting-item:has\(input\[placeholder="Search Style Settings\.\.\."\]\)[\s\S]*?align-items: center/.test(settingsPageSource),
+  "Style Settings Import and Export links must align with the search control",
+);
+assert(
+  /\.setting-item:has\(input\[placeholder="Search Style Settings\.\.\."\]\)[\s\S]*?\.setting-item-name\s*\{[\s\S]*?overflow: visible/.test(settingsPageSource),
+  "Style Settings search focus highlight must not be clipped by its wrapper",
+);
+assert(
+  !/input\[placeholder="Search Style Settings\.\.\."\][\s\S]*?:focus/.test(settingsPageSource),
+  "Style Settings search focus styling must remain stock-owned",
+);
+assert(
   /id: ctp-editor-monospace[\s\S]*?type: class-toggle[\s\S]*?default: true/.test(fontSettingsBlock ?? ""),
   "Editor monospace must be a default-on Font Styles toggle",
 );
