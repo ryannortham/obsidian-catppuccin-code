@@ -28,6 +28,19 @@ button.mod-cta {
   border-color: rgb(var(--ctp-surface1));
 }
 
+$ctp-download-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='7 10 12 15 17 10'/%3E%3Cline x1='12' x2='12' y1='15' y2='3'/%3E%3C/svg%3E");
+$ctp-upload-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='17 8 12 3 7 8'/%3E%3Cline x1='12' x2='12' y1='3' y2='15'/%3E%3C/svg%3E");
+
+@mixin ctp-settings-action-icon($icon) {
+  display: block;
+  width: var(--icon-size, 18px);
+  height: var(--icon-size, 18px);
+  flex: none;
+  background-color: currentcolor;
+  content: "";
+  mask: $icon center / contain no-repeat;
+}
+
 //Style settings customisation
 //Keep Style Settings controls in Obsidian's stock single-row layout.
 .theme-dark,
@@ -43,14 +56,148 @@ button.mod-cta {
 
 }
 
+// Keep card copy and controls on two calm, vertically centered columns.
+.style-settings-container .setting-item:not(.setting-item-heading) {
+  column-gap: var(--size-4-4);
+
+  .setting-item-info,
+  .setting-item-control {
+    align-self: center;
+  }
+
+  .setting-item-info {
+    min-width: 0;
+  }
+
+  .setting-item-name,
+  .setting-item-description {
+    line-height: var(--line-height-normal);
+  }
+
+  .setting-item-description {
+    margin-top: var(--size-2-1);
+
+    // Style Settings appends an unclassed default-value block to selects.
+    > div {
+      margin-top: var(--size-2-2);
+
+      > small {
+        display: block;
+        color: var(--text-faint);
+        font-size: inherit;
+
+        > strong {
+          font-weight: var(--font-medium);
+        }
+      }
+    }
+  }
+
+  .setting-item-control {
+    align-items: center;
+    gap: var(--size-2-2);
+
+    > * {
+      margin-block: 0;
+    }
+  }
+}
+
+// Top-level Style Settings headings should use Obsidian's plain section
+// treatment instead of the plugin's rounded bottom-border treatment.
+.style-settings-heading[data-level="0"] {
+  border-radius: 0;
+  border-bottom: 0;
+}
+
+// Style Settings uses Obsidian's legacy `install` icon for section exports.
+// Replace only that glyph with the clearer Lucide download icon.
+.style-settings-heading .extra-setting-button[aria-label="Export settings"] {
+  > svg {
+    display: none;
+  }
+
+  &::after {
+    @include ctp-settings-action-icon($ctp-download-icon);
+  }
+}
+
 // Style Settings can render in the main workspace or a separate native Settings
 // window, so this uniquely scoped rule must not depend on the window's theme class.
 .setting-item:has(input[placeholder="Search Style Settings..."]) {
-  // Center the action links against the taller search control.
   align-items: center;
 
-  // Let Obsidian's stock focus highlight extend beyond the input without clipping.
   .setting-item-name {
     overflow: visible;
+  }
+
+  .setting-item-control {
+    gap: var(--size-2-2);
+  }
+
+  :is(.style-settings-import, .style-settings-export) {
+    position: relative;
+    display: inline-flex;
+    width: var(--input-height, 32px);
+    height: var(--input-height, 32px);
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: var(--clickable-icon-radius);
+    margin: 0;
+    color: var(--icon-color, var(--text-muted));
+    font-size: 0;
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: 2px solid var(--background-modifier-border-focus);
+      outline-offset: 2px;
+    }
+
+    &::after {
+      position: absolute;
+      z-index: var(--layer-tooltip);
+      top: calc(100% + var(--size-2-2));
+      left: 50%;
+      padding: var(--size-2-1) var(--size-2-2);
+      border-radius: var(--radius-s);
+      background-color: var(--background-modifier-message);
+      color: var(--text-normal);
+      content: var(--ctp-settings-action-label);
+      font-size: var(--font-ui-smaller);
+      line-height: var(--line-height-tight);
+      opacity: 0%;
+      pointer-events: none;
+      transform: translate(-50%, -2px);
+      transition:
+        opacity 100ms ease,
+        transform 100ms ease,
+        visibility 0s linear;
+      visibility: hidden;
+      white-space: nowrap;
+    }
+
+    &:is(:hover, :focus-visible)::after {
+      opacity: 100%;
+      transform: translate(-50%);
+      transition-delay: 400ms;
+      visibility: visible;
+    }
+  }
+
+  .style-settings-import {
+    --ctp-settings-action-label: "Import";
+
+    &::before {
+      @include ctp-settings-action-icon($ctp-upload-icon);
+    }
+  }
+
+  .style-settings-export {
+    --ctp-settings-action-label: "Export";
+
+    &::before {
+      @include ctp-settings-action-icon($ctp-download-icon);
+    }
   }
 }

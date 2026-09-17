@@ -2237,11 +2237,135 @@ button.mod-cta:hover {
   padding-top: 0;
 }
 
+.style-settings-container .setting-item:not(.setting-item-heading) {
+  column-gap: var(--size-4-4);
+}
+.style-settings-container .setting-item:not(.setting-item-heading) .setting-item-info,
+.style-settings-container .setting-item:not(.setting-item-heading) .setting-item-control {
+  align-self: center;
+}
+.style-settings-container .setting-item:not(.setting-item-heading) .setting-item-info {
+  min-width: 0;
+}
+.style-settings-container .setting-item:not(.setting-item-heading) .setting-item-name,
+.style-settings-container .setting-item:not(.setting-item-heading) .setting-item-description {
+  line-height: var(--line-height-normal);
+}
+.style-settings-container .setting-item:not(.setting-item-heading) .setting-item-description {
+  margin-top: var(--size-2-1);
+}
+.style-settings-container .setting-item:not(.setting-item-heading) .setting-item-description > div {
+  margin-top: var(--size-2-2);
+}
+.style-settings-container .setting-item:not(.setting-item-heading) .setting-item-description > div > small {
+  display: block;
+  color: var(--text-faint);
+  font-size: inherit;
+}
+.style-settings-container .setting-item:not(.setting-item-heading) .setting-item-description > div > small > strong {
+  font-weight: var(--font-medium);
+}
+.style-settings-container .setting-item:not(.setting-item-heading) .setting-item-control {
+  align-items: center;
+  gap: var(--size-2-2);
+}
+.style-settings-container .setting-item:not(.setting-item-heading) .setting-item-control > * {
+  margin-block: 0;
+}
+
+.style-settings-heading[data-level="0"] {
+  border-radius: 0;
+  border-bottom: 0;
+}
+
+.style-settings-heading .extra-setting-button[aria-label="Export settings"] > svg {
+  display: none;
+}
+.style-settings-heading .extra-setting-button[aria-label="Export settings"]::after {
+  display: block;
+  width: var(--icon-size, 18px);
+  height: var(--icon-size, 18px);
+  flex: none;
+  background-color: currentcolor;
+  content: "";
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='7 10 12 15 17 10'/%3E%3Cline x1='12' x2='12' y1='15' y2='3'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
 .setting-item:has(input[placeholder="Search Style Settings..."]) {
   align-items: center;
 }
 .setting-item:has(input[placeholder="Search Style Settings..."]) .setting-item-name {
   overflow: visible;
+}
+.setting-item:has(input[placeholder="Search Style Settings..."]) .setting-item-control {
+  gap: var(--size-2-2);
+}
+.setting-item:has(input[placeholder="Search Style Settings..."]) :is(.style-settings-import, .style-settings-export) {
+  position: relative;
+  display: inline-flex;
+  width: var(--input-height, 32px);
+  height: var(--input-height, 32px);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: var(--clickable-icon-radius);
+  margin: 0;
+  color: var(--icon-color, var(--text-muted));
+  font-size: 0;
+  text-decoration: none;
+}
+.setting-item:has(input[placeholder="Search Style Settings..."]) :is(.style-settings-import, .style-settings-export):focus-visible {
+  outline: 2px solid var(--background-modifier-border-focus);
+  outline-offset: 2px;
+}
+.setting-item:has(input[placeholder="Search Style Settings..."]) :is(.style-settings-import, .style-settings-export)::after {
+  position: absolute;
+  z-index: var(--layer-tooltip);
+  top: calc(100% + var(--size-2-2));
+  left: 50%;
+  padding: var(--size-2-1) var(--size-2-2);
+  border-radius: var(--radius-s);
+  background-color: var(--background-modifier-message);
+  color: var(--text-normal);
+  content: var(--ctp-settings-action-label);
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
+  opacity: 0%;
+  pointer-events: none;
+  transform: translate(-50%, -2px);
+  transition: opacity 100ms ease, transform 100ms ease, visibility 0s linear;
+  visibility: hidden;
+  white-space: nowrap;
+}
+.setting-item:has(input[placeholder="Search Style Settings..."]) :is(.style-settings-import, .style-settings-export):is(:hover, :focus-visible)::after {
+  opacity: 100%;
+  transform: translate(-50%);
+  transition-delay: 400ms;
+  visibility: visible;
+}
+.setting-item:has(input[placeholder="Search Style Settings..."]) .style-settings-import {
+  --ctp-settings-action-label: "Import";
+}
+.setting-item:has(input[placeholder="Search Style Settings..."]) .style-settings-import::before {
+  display: block;
+  width: var(--icon-size, 18px);
+  height: var(--icon-size, 18px);
+  flex: none;
+  background-color: currentcolor;
+  content: "";
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='17 8 12 3 7 8'/%3E%3Cline x1='12' x2='12' y1='3' y2='15'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.setting-item:has(input[placeholder="Search Style Settings..."]) .style-settings-export {
+  --ctp-settings-action-label: "Export";
+}
+.setting-item:has(input[placeholder="Search Style Settings..."]) .style-settings-export::before {
+  display: block;
+  width: var(--icon-size, 18px);
+  height: var(--icon-size, 18px);
+  flex: none;
+  background-color: currentcolor;
+  content: "";
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='7 10 12 15 17 10'/%3E%3Cline x1='12' x2='12' y1='15' y2='3'/%3E%3C/svg%3E") center/contain no-repeat;
 }
 
 /**
@@ -2389,25 +2513,25 @@ body.theme-light :is(.nav-files-container, .workspace-leaf-content[data-type=out
   --icon-color: var(--ctp-icon-foreground);
   color: var(--ctp-icon-foreground);
 }
-body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):is(.is-active, .is-selected, [aria-pressed=true]),
-body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):is(.is-active, .is-selected, [aria-pressed=true]) {
+body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .style-settings-import, .style-settings-export)):is(.is-active, .is-selected, [aria-pressed=true]),
+body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .style-settings-import, .style-settings-export)):is(.is-active, .is-selected, [aria-pressed=true]) {
   --background-modifier-active-hover: var(--ctp-tab-active-background);
   --icon-color-active: var(--ctp-icon-foreground);
   background-color: var(--ctp-list-selection-background);
   color: var(--ctp-icon-foreground);
 }
-body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):is(.is-active, .is-selected, [aria-pressed=true]) svg,
-body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):is(.is-active, .is-selected, [aria-pressed=true]) svg {
+body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .style-settings-import, .style-settings-export)):is(.is-active, .is-selected, [aria-pressed=true]) svg,
+body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .style-settings-import, .style-settings-export)):is(.is-active, .is-selected, [aria-pressed=true]) svg {
   background-color: transparent;
   color: var(--ctp-icon-foreground);
 }
 @media (hover: hover) {
-  body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):not(.is-active,
+  body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .style-settings-import, .style-settings-export)):not(.is-active,
   .is-selected,
   [aria-pressed=true],
   [aria-disabled=true],
   :disabled):hover,
-  body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):not(.is-active,
+  body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .style-settings-import, .style-settings-export)):not(.is-active,
   .is-selected,
   [aria-pressed=true],
   [aria-disabled=true],
@@ -2417,12 +2541,12 @@ body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-
     background-color: var(--ctp-hover-background);
     color: var(--ctp-icon-foreground);
   }
-  body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):not(.is-active,
+  body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .style-settings-import, .style-settings-export)):not(.is-active,
   .is-selected,
   [aria-pressed=true],
   [aria-disabled=true],
   :disabled):hover svg,
-  body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):not(.is-active,
+  body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .style-settings-import, .style-settings-export)):not(.is-active,
   .is-selected,
   [aria-pressed=true],
   [aria-disabled=true],
@@ -2434,10 +2558,10 @@ body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-
   body.theme-light :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button):hover {
     background-color: transparent;
   }
-  body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):is(.is-active,
+  body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .style-settings-import, .style-settings-export)):is(.is-active,
   .is-selected,
   [aria-pressed=true]):not([aria-disabled=true], :disabled):hover,
-  body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):is(.is-active,
+  body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .style-settings-import, .style-settings-export)):is(.is-active,
   .is-selected,
   [aria-pressed=true]):not([aria-disabled=true], :disabled):hover {
     --background-modifier-hover: var(--ctp-list-selection-background);
@@ -2445,10 +2569,10 @@ body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-
     background-color: var(--ctp-list-selection-background);
     color: var(--ctp-icon-foreground);
   }
-  body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):is(.is-active,
+  body.theme-dark :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .style-settings-import, .style-settings-export)):is(.is-active,
   .is-selected,
   [aria-pressed=true]):not([aria-disabled=true], :disabled):hover svg,
-  body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button)):is(.is-active,
+  body.theme-light :where(:is(.clickable-icon:not(.modal-close-button, .workspace-tab-header-inner-close-button, .search-input-clear-button, .mod-close, [aria-label="Clear search history"]), .status-bar-item.mod-clickable, .workspace-tab-header-tab-list, .workspace-tab-header-new-tab, .sidebar-toggle-button, .canvas-control-item, .canvas-controls button, .style-settings-import, .style-settings-export)):is(.is-active,
   .is-selected,
   [aria-pressed=true]):not([aria-disabled=true], :disabled):hover svg {
     background-color: transparent;

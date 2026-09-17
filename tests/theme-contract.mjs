@@ -142,8 +142,37 @@ assert(
   "Style Settings search focus highlight must not be clipped by its wrapper",
 );
 assert(
-  !/input\[placeholder="Search Style Settings\.\.\."\][\s\S]*?:focus/.test(settingsPageSource),
+  !settingsPageSource.includes('input[placeholder="Search Style Settings..."]:focus'),
   "Style Settings search focus styling must remain stock-owned",
+);
+assert(
+  /\.style-settings-container \.setting-item:not\(\.setting-item-heading\)[\s\S]*?\.setting-item-name,[\s\S]*?\.setting-item-description[\s\S]*?line-height: var\(--line-height-normal\)[\s\S]*?> div[\s\S]*?margin-top: var\(--size-2-2\)[\s\S]*?> small[\s\S]*?font-size: inherit/.test(settingsPageSource),
+  "Style Settings default values must use readable description spacing",
+);
+assert(
+  /\.style-settings-container \.setting-item:not\(\.setting-item-heading\)[\s\S]*?\.setting-item-info,[\s\S]*?\.setting-item-control[\s\S]*?align-self: center[\s\S]*?\.setting-item-control[\s\S]*?align-items: center[\s\S]*?gap: var\(--size-2-2\)/.test(settingsPageSource),
+  "Style Settings card controls must remain vertically centered",
+);
+assert(
+  /\.style-settings-heading\[data-level="0"\][\s\S]*?border-radius: 0;[\s\S]*?border-bottom: 0;/.test(settingsPageSource),
+  "Top-level Style Settings headings must not draw a rounded underline",
+);
+assert(
+  /@mixin ctp-settings-action-icon\(\$icon\)[\s\S]*?mask: \$icon center \/ contain no-repeat/.test(settingsPageSource) &&
+    /\.style-settings-heading \.extra-setting-button\[aria-label="Export settings"\][\s\S]*?> svg[\s\S]*?display: none;[\s\S]*?&::after[\s\S]*?@include ctp-settings-action-icon\(\$ctp-download-icon\)/.test(settingsPageSource),
+  "Style Settings section exports must use the download glyph",
+);
+assert(
+  /:is\(\.style-settings-import, \.style-settings-export\)[\s\S]*?font-size: 0;[\s\S]*?\.style-settings-import[\s\S]*?--ctp-settings-action-label: "Import"[\s\S]*?&::before[\s\S]*?\$ctp-upload-icon[\s\S]*?\.style-settings-export[\s\S]*?--ctp-settings-action-label: "Export"[\s\S]*?&::before[\s\S]*?\$ctp-download-icon/.test(settingsPageSource),
+  "Style Settings Import and Export actions must be complementary icon buttons",
+);
+assert(
+  /&::after[\s\S]*?content: var\(--ctp-settings-action-label\)[\s\S]*?visibility: hidden[\s\S]*?&:is\(:hover, :focus-visible\)::after[\s\S]*?transition-delay: 400ms[\s\S]*?visibility: visible/.test(settingsPageSource),
+  "Style Settings action icons must expose delayed mouse and keyboard tooltips",
+);
+assert(
+  interfaceSource.includes('".style-settings-import"') && interfaceSource.includes('".style-settings-export"'),
+  "Style Settings action icons must share the standard control hover treatment",
 );
 assert(
   /id: ctp-editor-monospace[\s\S]*?type: class-toggle[\s\S]*?default: true/.test(workspaceSettingsBlock ?? ""),
