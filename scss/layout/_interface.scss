@@ -45,6 +45,10 @@ body.theme-light {
     background-color: var(--background-primary);
   }
 
+  .nav-footer {
+    border-top: 0;
+  }
+
   :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) {
     background-color: transparent;
   }

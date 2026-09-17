@@ -20,6 +20,7 @@ assert(
 );
 assert(layout.includes("--header-height: 32px"), "Enabled layout must provide compact root tabs");
 assert(!interfaceSource.includes("--header-height: 32px"), "Shared interface rules must not force compact tabs");
+assert(/\.nav-footer\s*\{[\s\S]*?border-top: 0;/.test(interfaceSource), "Sidebar footers must not draw a top divider");
 assert(
   /:is\(\.markdown-rendered \.task-list-item, \.markdown-source-view \.HyperMD-task-line\)[\s\S]*?input\[type="checkbox"\]/.test(documentPalette),
   "Checkbox colours must be scoped to document task rows",
