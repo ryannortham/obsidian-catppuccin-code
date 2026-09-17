@@ -184,6 +184,12 @@ assert(!interfaceSource.includes(".nav-buttons-container"), "Theme must not over
 assert(!interfaceSource.includes(".nav-action-button"), "Theme must not override Obsidian stock nav-action sizing");
 assert(!/\.clickable-icon,[\s\S]*?margin: 0 2px/.test(iconsSource), "Generic clickable icons must retain Obsidian stock margin ownership");
 assert(!appVariableSource.includes("--icon-color-hover:"), "Generic icon hover color must remain stock-owned");
+assert(!appVariableSource.includes("--toggle-"), "Toggle geometry and colours must remain stock-owned");
+assert(
+  !inputsSource.includes("--background-modifier-border-hover: var(--ctp-focus-border)"),
+  "Toggle off-state colour must retain Obsidian's stock background fallback",
+);
+assert(!inputsSource.includes(".checkbox-container"), "Toggle appearance must remain stock-owned");
 assert(!paletteSource.includes("catppuccin-icon-styles"), "Obsolete Icon Styles settings must be removed");
 assert(!paletteSource.includes("ctp-icon-hide"), "Obsolete folder-icon setting must be removed");
 assert(!iconsSource.includes("nav-folder-title-content::before"), "Generated folder icons must be removed");
